@@ -2,6 +2,8 @@ import math
 import profile
 import re
 
+# program based on assignment:
+# http://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/dd_prog1.htm
 def documentDist(fileName1, fileName2):
     wordListForFile1 = generateWordList(fileName1)
     wordFrequencyListFile1 = generateWordFrequenciesForFile(wordListForFile1)
