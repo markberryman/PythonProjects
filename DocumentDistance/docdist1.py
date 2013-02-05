@@ -51,10 +51,8 @@ def generateWordFrequenciesForFile(wordList):
     return wordFrequencyList
 
 def sortWordFrequencyList(wordFrequencyList):
-    bubbleSortCount = 0
-
-    while bubbleSort(wordFrequencyList) == True:
-        bubbleSortCount += 1
+    # choose your sorting algo here
+    bubbleSort(wordFrequencyList)
 
     return wordFrequencyList
 
@@ -62,6 +60,12 @@ def sortWordFrequencyList(wordFrequencyList):
 # bubble sort land
 ##################
 def bubbleSort(data):
+    while bubbleSortHelper(data) == True:
+        pass
+
+    return data
+
+def bubbleSortHelper(data):
     swappedAnElement = False;
 
     for i in range(len(data) - 1):
