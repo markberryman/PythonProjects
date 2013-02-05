@@ -87,10 +87,32 @@ def shouldSwap(item1, item2):
 def calculateDotProductOfWordlists(wordList1, wordList2):
     result = 0
     
-    for wordFrequencyFromList1 in wordList1:
-        for wordFrequencyFromList2 in wordList2:
-            if wordFrequencyFromList1[0] == wordFrequencyFromList2[0]:
-                result = result + (wordFrequencyFromList1[1] * wordFrequencyFromList2[1])
+    #for wordFrequencyFromList1 in wordList1:
+    #    for wordFrequencyFromList2 in wordList2:
+    #        if wordFrequencyFromList1[0] == wordFrequencyFromList2[0]:
+    #            result = result + (wordFrequencyFromList1[1] * wordFrequencyFromList2[1])
+
+    # surprisingly, i'm not getting much perf benefit from this slightly
+    # optimized processing of the word lists compared to the simple nested
+    # for loop above
+    wordList1Index = 0
+    wordList2Index = 0
+
+    wordList1Length = len(wordList1)
+    wordList2Length = len(wordList2)
+
+    while ((wordList1Index < wordList1Length) and (wordList2Index < wordList2Length)):
+        wordFrequency1 = wordList1[wordList1Index]
+        wordFrequency2 = wordList2[wordList2Index]
+        if (wordFrequency1[0] == wordFrequency2[0]):
+            result = result + (wordFrequency1[1] * wordFrequency2[1])
+            wordList1Index += 1
+            wordList2Index += 1
+        else:
+            if (wordFrequency1[0] < wordFrequency2[0]):
+                wordList1Index += 1
+            else:
+                wordList2Index += 1
 
     return result
 
