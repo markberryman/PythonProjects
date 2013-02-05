@@ -1,3 +1,4 @@
+*.suo
 *.py[cod]
 
 # C extensions
