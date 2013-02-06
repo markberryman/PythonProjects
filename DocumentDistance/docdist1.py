@@ -66,10 +66,9 @@ def combSort(data):
     gap = int(dataLength / shrinkFactor)
     swapped = True
 
-    i = 0
-
     while (((gap == 1) and (swapped == False)) == False):
         swapped = False
+        i = 0
         while ((i + gap) < dataLength):
             if (data[i][0] > data[i + gap][0]):
                 temp = data[i]
@@ -81,8 +80,6 @@ def combSort(data):
         gap = int(gap / shrinkFactor)
         if (gap < 1):
             gap = 1
-
-        i = 0
 
 ############################
 # end of comb sort sort land
