@@ -92,8 +92,6 @@ def bubbleSort(data):
     while bubbleSortHelper(data) == True:
         pass
 
-    return data
-
 def bubbleSortHelper(data):
     swappedAnElement = False;
 
