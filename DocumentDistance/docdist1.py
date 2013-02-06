@@ -52,9 +52,44 @@ def generateWordFrequenciesForFile(wordList):
 
 def sortWordFrequencyList(wordFrequencyList):
     # choose your sorting algo here
-    bubbleSort(wordFrequencyList)
+    #bubbleSort(wordFrequencyList)
+    combSort(wordFrequencyList)
 
     return wordFrequencyList
+
+#####################
+# comb sort sort land
+#####################
+def combSort(data):
+    shrinkFactor = 1.333
+    dataLength = len(data)
+    gap = int(dataLength / shrinkFactor)
+    swapped = True
+
+    i = 0
+    j = i + gap
+
+    while (((gap == 1) and (swapped == False)) == False):
+        swapped = False
+        while (j < dataLength):
+            if (data[i][0] > data[j][0]):
+                temp = data[i]
+                data[i] = data[j]
+                data[j] = temp
+                swapped = True
+            i += 1
+            j += 1
+
+        gap = int(gap / shrinkFactor)
+        if (gap < 1):
+            gap = 1
+
+        i = 0
+        j = i + gap
+
+############################
+# end of comb sort sort land
+############################
 
 ##################
 # bubble sort land
@@ -82,7 +117,6 @@ def shouldSwap(item1, item2):
         return True
 
     return False
-
 #########################
 # end of bubble sort land
 #########################
