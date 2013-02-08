@@ -30,7 +30,11 @@ def generateWordList(fileName):
 
     for line in file:
         wordsInLine = re.findall(r"[\w]+", line.lower())
-        wordList = wordList + wordsInLine
+
+        for word in wordsInLine:
+            # huge win to use "append" here over string concat via '+'
+            # the latter being an O(n^2) algo
+            wordList.append(word)
 
     return wordList
 
