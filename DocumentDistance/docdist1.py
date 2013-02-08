@@ -39,22 +39,15 @@ def generateWordList(fileName):
     return wordList
 
 def generateWordFrequenciesForFile(wordList):
-    wordFrequencyList = []
+    wordFrequenceDictionary = {}
 
-    # todo - ugh an n^2 algo, need to fix this!
     for word in wordList:
-        foundWord = False
+        if (wordFrequenceDictionary.has_key(word) == True):
+            wordFrequenceDictionary[word] = wordFrequenceDictionary[word] + 1
+        else:
+            wordFrequenceDictionary[word] = 1
 
-        for wordFrequency in wordFrequencyList:
-            if wordFrequency[0] == word:
-                wordFrequency[1] += 1
-                foundWord = True
-                break
-
-        if foundWord == False:
-            wordFrequencyList = wordFrequencyList + [[word, 1]]    
-
-    return wordFrequencyList
+    return wordFrequenceDictionary.items()
 
 def sortWordFrequencyList(wordFrequencyList):
     # choose your sorting algo here
