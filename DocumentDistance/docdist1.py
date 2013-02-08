@@ -7,14 +7,14 @@ import re
 def documentDist(fileName1, fileName2):
     wordListForFile1 = generateWordList(fileName1)
     wordFrequencyListFile1 = generateWordFrequenciesForFile(wordListForFile1)
-    sortWordFrequencyList(wordFrequencyListFile1)
+    wordFrequencyListFile1 = sortWordFrequencyList(wordFrequencyListFile1)
 
     print "File {0} : {1} words, {2} distinct words".format(fileName1, len(wordListForFile1),
                                                             len(wordFrequencyListFile1))
 
     wordListForFile2 = generateWordList(fileName2)
     wordFrequencyListFile2 = generateWordFrequenciesForFile(wordListForFile2)
-    sortWordFrequencyList(wordFrequencyListFile2)
+    wordFrequencyListFile2 = sortWordFrequencyList(wordFrequencyListFile2)
 
     print "File {0} : {1} words, {2} distinct words".format(fileName2, len(wordListForFile2),
                                                             len(wordFrequencyListFile2))
@@ -51,10 +51,54 @@ def generateWordFrequenciesForFile(wordList):
 
 def sortWordFrequencyList(wordFrequencyList):
     # choose your sorting algo here
-    #bubbleSort(wordFrequencyList)
-    combSort(wordFrequencyList)
+    #bubbleSort(wordFrequencyList)  # in place sort, no need to return the list
+    #combSort(wordFrequencyList)    # in place sort, no need to return the list
+    return mergeSort(wordFrequencyList)    # not an in place sort, must return the list
 
-    return wordFrequencyList
+######################
+# merge sort sort land
+######################
+def mergeSort(list):
+    if (len(list) == 1):
+        return list
+
+    splitIndex = len(list) / 2
+    list1 = list[:splitIndex]
+    list2 = list[splitIndex:]
+
+    list1_prime = mergeSort(list1)
+    list2_prime = mergeSort(list2)
+
+    return mergeSortSorter(list1_prime, list2_prime)
+
+def mergeSortSorter(list1, list2):
+    list1Index = 0
+    list2Index = 0
+
+    newList = []
+
+    while ((list1Index < len(list1)) and (list2Index < len(list2))):
+        if (list1[list1Index][0] < list2[list2Index][0]):
+            newList.append(list1[list1Index])
+            list1Index += 1
+        else:
+            newList.append(list2[list2Index])
+            list2Index += 1
+            
+    # parse remaining elements in the list that still has data
+    while (list1Index < len(list1)):
+        newList.append(list1[list1Index])
+        list1Index += 1
+
+    while (list2Index < len(list2)):
+        newList.append(list2[list2Index])
+        list2Index += 1
+
+    return newList
+
+#############################
+# end of merge sort sort land
+#############################
 
 #####################
 # comb sort sort land
