@@ -41,6 +41,7 @@ def generateWordList(fileName):
 def generateWordFrequenciesForFile(wordList):
     wordFrequencyList = []
 
+    # todo - ugh an n^2 algo, need to fix this!
     for word in wordList:
         foundWord = False
 
