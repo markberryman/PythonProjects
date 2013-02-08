@@ -44,6 +44,7 @@ def generateWordFrequenciesForFile(wordList):
             if wordFrequency[0] == word:
                 wordFrequency[1] += 1
                 foundWord = True
+                break
 
         if foundWord == False:
             wordFrequencyList = wordFrequencyList + [[word, 1]]    
