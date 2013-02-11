@@ -66,10 +66,7 @@ def mergeSort(list):
     list1 = list[:splitIndex]
     list2 = list[splitIndex:]
 
-    list1_prime = mergeSort(list1)
-    list2_prime = mergeSort(list2)
-
-    return mergeSortSorter(list1_prime, list2_prime)
+    return mergeSortSorter(mergeSort(list1), mergeSort(list2))
 
 def mergeSortSorter(list1, list2):
     list1Index = 0
