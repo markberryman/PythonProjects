@@ -77,7 +77,10 @@ def mergeSortSorter(list1, list2):
 
     newList = []
 
-    while ((list1Index < len(list1)) and (list2Index < len(list2))):
+    lengthList1 = len(list1)
+    lengthList2 = len(list2)
+
+    while ((list1Index < lengthList1) and (list2Index < lengthList2)):
         if (list1[list1Index][0] < list2[list2Index][0]):
             newList.append(list1[list1Index])
             list1Index += 1
@@ -86,11 +89,11 @@ def mergeSortSorter(list1, list2):
             list2Index += 1
             
     # parse remaining elements in the list that still has data
-    while (list1Index < len(list1)):
+    while (list1Index < lengthList1):
         newList.append(list1[list1Index])
         list1Index += 1
 
-    while (list2Index < len(list2)):
+    while (list2Index < lengthList2):
         newList.append(list2[list2Index])
         list2Index += 1
 
