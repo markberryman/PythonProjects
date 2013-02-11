@@ -85,14 +85,10 @@ def mergeSortSorter(list1, list2):
             newList.append(list2[list2Index])
             list2Index += 1
             
-    # parse remaining elements in the list that still has data
-    while (list1Index < lengthList1):
-        newList.append(list1[list1Index])
-        list1Index += 1
-
-    while (list2Index < lengthList2):
-        newList.append(list2[list2Index])
-        list2Index += 1
+    if (list1Index < lengthList1):
+        newList.extend(list1[list1Index:])
+    else:
+        newList.extend(list2[list2Index:])
 
     return newList
 
