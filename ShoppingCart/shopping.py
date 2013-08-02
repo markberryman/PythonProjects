@@ -1,13 +1,43 @@
-def get_order():
-    print("[command] [item] (command is 'a' to add, 'd' to delete, 'q' to quit): ")
+class Cart:
+    def __init__(self):
+        self._contents = dict()
 
-    line = input()
+    def process(self, order):
+        if order.add:
+            if not order.item in self._contents:
+                self._contents[order.item] = 1
 
-    command = line[:1]
-    item = line[2:]
+            self._contents[order.item] += 1
+        elif order.delete:
+            if order.item in self._contents:
+                self._contents[order.item] -= 1
 
-    # returning a tuple
-    return (command, item)
+                if self._contents[order.item] == 0:
+                    del self._contents[order.item]
+        
+
+class Order:
+    def __init__(self):
+        self.quit = False
+        self.add = False
+        self.delete = False
+        self.item = None
+
+    def get_input(self):
+        print("[command] [item] (command is 'a' to add, 'd' to delete, 'q' to quit): ")
+
+        line = input()
+
+        command = line[:1]
+        self.item = line[2:]
+
+        if command == "a":
+            self.add = True
+        elif command == "d":
+            self.delete = True
+        elif command == "q":
+            self.quit = True
+
 
 def process_order(order, cart):
     command, item = order
@@ -30,7 +60,6 @@ def process_order(order, cart):
     return True
     
 def go_shopping():
-    cart = dict()
 
     while True:
         order = get_order()
@@ -41,4 +70,11 @@ def go_shopping():
     print(cart)
     print("Finished!")
 
-go_shopping()
+cart = Cart()
+order = Order()
+order.get_input()
+
+while not order.quit:
+    cart.process(order)
+    order = Order()
+    order.get_input()
