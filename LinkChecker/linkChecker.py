@@ -1,3 +1,7 @@
+import http.client
+# todo - understand how this "from" keyword works
+from urllib.parse import urlparse
+
 class LinkParser:
     def ParseLinks(self, markup):
         links = set()
@@ -6,13 +10,25 @@ class LinkParser:
         return links
 
 class PageGetter:
-    def GetPage(self, page):
-        print("Getting page \"{0}\"".format(page))
-        # todo - get the page
-        # todo - track if the link is broken or not
-        # we can return some special value to indicate the link
-        # was broken
-        return "page markup"
+    def GetPage(self, url):
+        print("Getting url \"{0}\"".format(url))
+
+        # todo - move url splittling into separate function
+        # todo - make sure this is going to work for relative urls
+        urlParts = urlparse(url)
+        netloc = urlParts.netloc
+        path = urlParts.path
+
+        conn = http.client.HTTPConnection(netloc)
+        conn.request("GET", path)
+        # todo - add some debug output here
+        res = conn.getresponse()
+
+        # todo - what other status codes should be considered valid?
+        if (res.status != 200):
+            return None
+        
+        return res.read()        
 
 class LinkChecker:
     def __init__(self, startLink, depth):
@@ -35,6 +51,7 @@ class LinkChecker:
             
             for link in links:
                 markup = self.pageGetter.GetPage(link)
+                # todo - check for a None value to indicate a broken link
                 self.numLinksProcessed += 1
                 newLinks = self.linkParser.ParseLinks(markup)
                 nextSetOfLinks.union(newLinks)
