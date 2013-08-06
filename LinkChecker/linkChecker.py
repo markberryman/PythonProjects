@@ -10,6 +10,8 @@ class PageGetter:
         print("Getting page \"{0}\"".format(page))
         # todo - get the page
         # todo - track if the link is broken or not
+        # we can return some special value to indicate the link
+        # was broken
         return "page markup"
 
 class LinkChecker:
