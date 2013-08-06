@@ -6,38 +6,49 @@ class LinkParser:
         return links
 
 class PageGetter:
-    def __init__(self, page):
-        self.page = page
-
-    def GetPage(self):
-        print("Getting page \"{0}\"".format(self.page))
+    def GetPage(self, page):
+        print("Getting page \"{0}\"".format(page))
         # todo - get the page
+        # todo - track if the link is broken or not
         return "page markup"
 
 class LinkChecker:
-    def __init__(self, startLink):
+    def __init__(self, startLink, depth):
         self.startLink = startLink
+        self.depth = depth
 
     def __repr__(self):
         return "Starting link: {0}".format(self.startLink)
 
     def CheckLinks(self):
-        pageGetter = PageGetter(self.startLink)
-        markup = pageGetter.GetPage()
+        pageGetter = PageGetter()
+        markup = pageGetter.GetPage(self.startLink)
         linkParser = LinkParser()
         links = linkParser.ParseLinks(markup)
+
+        # iterate over the links until max depth reached
+        while (self.depth > 0):
+            nextSetOfLinks = set()
+            
+            for link in links:
+                markup = pageGetter.GetPage(link)
+                newLinks = linkParser.ParseLinks(markup)
+                nextSetOfLinks.union(newLinks)
+
+            links.union(nextSetOfLinks)
         
-        # todo - add new links to set to parse
-        # todo - repeat until no links left
+            self.depth -= 1;
+
         return
         
 
-# todo - take a single input param that's the page to start with
+# todo - take input param that's the start page and link depth
 startLink = "http://www.markwberryman.com"
+depth = 1
 
-print("Starting link checking with \"{0}\"".format(startLink))
+print("Starting link checking with \"{0}\" and depth {1}".format(startLink, depth))
 
-linkChecker = LinkChecker(startLink)
+linkChecker = LinkChecker(startLink, depth)
 linkChecker.CheckLinks()
 
 print(linkChecker)
