@@ -18,24 +18,28 @@ class LinkChecker:
         self.depth = depth
         self.pageGetter = PageGetter()
         self.linkParser = LinkParser()
+        self.numLinksProcessed = 0
 
     def __repr__(self):
-        return "Starting link: {0}".format(self.startLink)
+        return "Started with link: {0}. Processed {1} links.".format(
+            self.startLink, self.numLinksProcessed)
 
     def CheckLinks(self):
-        markup = self.pageGetter.GetPage(self.startLink)
-        links = self.linkParser.ParseLinks(markup)
+        links = set()
+        links.add(self.startLink)
 
-        # iterate over the links until max depth reached
-        while (self.depth > 0):
+        while (self.depth >= 0):
             nextSetOfLinks = set()
             
             for link in links:
                 markup = self.pageGetter.GetPage(link)
+                self.numLinksProcessed += 1
                 newLinks = self.linkParser.ParseLinks(markup)
                 nextSetOfLinks.union(newLinks)
 
-            links.union(nextSetOfLinks)
+            # toss out the processed links and get ready
+            # to process the next set of links
+            links = nextSetOfLinks.copy()
         
             self.depth -= 1;
 
