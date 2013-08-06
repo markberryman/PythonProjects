@@ -16,23 +16,23 @@ class LinkChecker:
     def __init__(self, startLink, depth):
         self.startLink = startLink
         self.depth = depth
+        self.pageGetter = PageGetter()
+        self.linkParser = LinkParser()
 
     def __repr__(self):
         return "Starting link: {0}".format(self.startLink)
 
     def CheckLinks(self):
-        pageGetter = PageGetter()
-        markup = pageGetter.GetPage(self.startLink)
-        linkParser = LinkParser()
-        links = linkParser.ParseLinks(markup)
+        markup = self.pageGetter.GetPage(self.startLink)
+        links = self.linkParser.ParseLinks(markup)
 
         # iterate over the links until max depth reached
         while (self.depth > 0):
             nextSetOfLinks = set()
             
             for link in links:
-                markup = pageGetter.GetPage(link)
-                newLinks = linkParser.ParseLinks(markup)
+                markup = self.pageGetter.GetPage(link)
+                newLinks = self.linkParser.ParseLinks(markup)
                 nextSetOfLinks.union(newLinks)
 
             links.union(nextSetOfLinks)
