@@ -11,7 +11,7 @@ class LinkParser:
         return links
 
 class PageGetter:
-    def parse_url(self, url):
+    def _parse_url(self, url):
         urlParts = urlparse(url)
         netloc = urlParts.netloc
         path = urlParts.path
@@ -21,7 +21,7 @@ class PageGetter:
     def get_page(self, url):
         print("Getting url \"{0}\"".format(url))
 
-        host, path = self.parse_url(url)
+        host, path = self._parse_url(url)
 
         conn = http.client.HTTPConnection(host)
         conn.request("GET", path)
