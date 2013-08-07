@@ -45,6 +45,7 @@ class LinkChecker:
         self.pageGetter = PageGetter()
         self.linkParser = LinkParser()
         self.numLinksProcessed = 0
+        self.brokenLinks = set()
 
     def __repr__(self):
         return "Started with link: {0}. Processed {1} links.".format(
@@ -59,7 +60,10 @@ class LinkChecker:
             
             for link in links:
                 markup = self.pageGetter.get_page(link)
-                # todo - check for a None value to indicate a broken link
+
+                if (markup == None):
+                    self.brokenLinks.add(link)
+                
                 self.numLinksProcessed += 1
                 newLinks = self.linkParser.parse_links(markup)
                 nextSetOfLinks.union(newLinks)
