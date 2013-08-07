@@ -11,7 +11,6 @@ class LinkParser:
 
 class PageGetter:
     def parse_url(self, url):
-        # todo - return a tuple containing the host and path
         urlParts = urlparse(url)
         netloc = urlParts.netloc
         path = urlParts.path
@@ -21,7 +20,6 @@ class PageGetter:
     def get_page(self, url):
         print("Getting url \"{0}\"".format(url))
 
-        # todo - make sure this is going to work for relative urls
         host, path = self.parse_url(url)
 
         conn = http.client.HTTPConnection(host)
