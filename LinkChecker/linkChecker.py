@@ -11,7 +11,7 @@ class LinkParser:
     def parse_links(self, markup):
         links = set()
 
-        parser = HTMLLinkParser(strict=False)
+        parser = HTMLLinkParser()
         #parser.feed(markup)
         parser.feed('<html><head><title>Test</title></head>'
             '<body><h1>Parse me!</h1></body></html>')
