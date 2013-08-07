@@ -32,8 +32,7 @@ class PageGetter:
 
         print("Response status = {0}".format(res.status))
 
-        # todo - what other status codes should be considered valid?
-        if (res.status != 200):
+        if ((res.status < 200) and (res.status >= 400)):
             return None
         
         return res.read()        
