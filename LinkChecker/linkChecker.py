@@ -17,16 +17,20 @@ class PageGetter:
         path = urlParts.path
 
         return netloc, path
+
+    def _request_url(self, host, path):
+        conn = http.client.HTTPConnection(host)
+        conn.request("GET", path)
+
+        return conn.getresponse()
         
     def get_page(self, url):
         print("Getting url \"{0}\"".format(url))
 
         host, path = self._parse_url(url)
+        res = self._request_url(host, path)
 
-        conn = http.client.HTTPConnection(host)
-        conn.request("GET", path)
-        # todo - add some debug output here
-        res = conn.getresponse()
+        print("Response status = {0}".format(res.status))
 
         # todo - what other status codes should be considered valid?
         if (res.status != 200):
