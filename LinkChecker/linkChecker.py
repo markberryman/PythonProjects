@@ -6,6 +6,7 @@ class LinkParser:
     def parse_links(self, markup):
         links = set()
         # todo - parse the markup for links
+        # todo - patch up relative paths to include a host value
         print("Parse links returning {0} links".format(len(links)))
         return links
 
