@@ -1,11 +1,21 @@
 import http.client
 # todo - understand how this "from" keyword works
 from urllib.parse import urlparse
+from html.parser import HTMLParser
+
+class HTMLLinkParser(HTMLParser):
+    def handle_starttag(self, tag, attrs):
+        print("Found start tag: ", tag)
 
 class LinkParser:
     def parse_links(self, markup):
         links = set()
-        # todo - parse the markup for links
+
+        parser = HTMLLinkParser(strict=False)
+        #parser.feed(markup)
+        parser.feed('<html><head><title>Test</title></head>'
+            '<body><h1>Parse me!</h1></body></html>')
+        
         # todo - patch up relative paths to include a host value
         print("Parse links returning {0} links".format(len(links)))
         return links
