@@ -43,7 +43,8 @@ class PageGetter:
 
         print("Response status = {0}".format(statusCode))
 
-        if ((statusCode < 200) or (statusCode >= 400)):
+        if ((statusCode < http.client.OK) or
+            (statusCode >= http.client.BAD_REQUEST)):
             return None
 
         # todo - use the correct encoding based on the response headers
