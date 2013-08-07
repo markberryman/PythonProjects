@@ -33,7 +33,7 @@ class PageGetter:
 
         print("Response status = {0}".format(statusCode))
 
-        if ((statusCode < 200) and (statusCode >= 400)):
+        if ((statusCode < 200) or (statusCode >= 400)):
             return None
         
         return res.read()        
@@ -50,6 +50,22 @@ class LinkChecker:
     def __repr__(self):
         return "Started with link: {0}. Processed {1} links.".format(
             self.startLink, self.numLinksProcessed)
+
+    def print_results(self):
+        print("Results:")
+        print("Started with link: {0}".format(self.startLink))
+        print("Number of links checked = {0}".
+              format(self.numLinksProcessed))
+        print("Number of broken links = {0}".
+              format(len(self.brokenLinks)))
+
+        if (len(self.brokenLinks) > 0):
+            print("Broken links:")
+
+            for link in self.brokenLinks:
+                print(">>> {0}".format(link))
+        else:
+            print("No broken links.")
 
     def check_links(self):
         links = set()
@@ -86,4 +102,4 @@ print("Starting link checking with \"{0}\" and depth {1}".format(startLink, dept
 linkChecker = LinkChecker(startLink, depth)
 linkChecker.check_links()
 
-print(linkChecker)
+linkChecker.print_results()
