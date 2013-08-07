@@ -10,16 +10,21 @@ class LinkParser:
         return links
 
 class PageGetter:
-    def GetPage(self, url):
-        print("Getting url \"{0}\"".format(url))
-
-        # todo - move url splittling into separate function
-        # todo - make sure this is going to work for relative urls
+    def ParseUrl(self, url):
+        # todo - return a tuple containing the host and path
         urlParts = urlparse(url)
         netloc = urlParts.netloc
         path = urlParts.path
 
-        conn = http.client.HTTPConnection(netloc)
+        return netloc, path
+        
+    def GetPage(self, url):
+        print("Getting url \"{0}\"".format(url))
+
+        # todo - make sure this is going to work for relative urls
+        host, path = self.ParseUrl(url)
+
+        conn = http.client.HTTPConnection(host)
         conn.request("GET", path)
         # todo - add some debug output here
         res = conn.getresponse()
