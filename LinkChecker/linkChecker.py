@@ -5,6 +5,7 @@ from html.parser import HTMLParser
 
 class HTMLLinkParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
+        # todo - implement link parsing logic
         print("Found start tag: ", tag)
 
 class LinkParser:
@@ -12,9 +13,8 @@ class LinkParser:
         links = set()
 
         parser = HTMLLinkParser()
-        #parser.feed(markup)
-        parser.feed('<html><head><title>Test</title></head>'
-            '<body><h1>Parse me!</h1></body></html>')
+        
+        parser.feed(markup)
         
         # todo - patch up relative paths to include a host value
         print("Parse links returning {0} links".format(len(links)))
@@ -45,8 +45,11 @@ class PageGetter:
 
         if ((statusCode < 200) or (statusCode >= 400)):
             return None
+
+        # todo - use the correct encoding based on the response headers
+        responseBytes = res.read()
         
-        return res.read()        
+        return responseBytes.decode("utf-8")
 
 class LinkChecker:
     def __init__(self, startLink, depth):
