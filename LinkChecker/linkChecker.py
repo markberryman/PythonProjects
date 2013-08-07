@@ -29,10 +29,11 @@ class PageGetter:
 
         host, path = self._parse_url(url)
         res = self._request_url(host, path)
+        statusCode = res.status
 
-        print("Response status = {0}".format(res.status))
+        print("Response status = {0}".format(statusCode))
 
-        if ((res.status < 200) and (res.status >= 400)):
+        if ((statusCode < 200) and (statusCode >= 400)):
             return None
         
         return res.read()        
