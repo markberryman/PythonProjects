@@ -4,21 +4,30 @@ from urllib.parse import urlparse
 from html.parser import HTMLParser
 
 class HTMLLinkParser(HTMLParser):
+    def __init__(self):
+        super().__init__(self)
+        self.links = set()
+
+    # tag and attribute values are automatically lowercased
     def handle_starttag(self, tag, attrs):
-        # todo - implement link parsing logic
-        print("Found start tag: ", tag)
+        # todo - what type of tags do we want to look for?
+        if (tag == "a"):
+            for attr in attrs:
+                # todo - use list comprehension to make this cleaner
+                attrName, attrValue = attr
+
+                if (attrName == "href"):
+                    self.links.add(attrValue)
 
 class LinkParser:
     def parse_links(self, markup):
-        links = set()
-
         parser = HTMLLinkParser()
         
         parser.feed(markup)
         
         # todo - patch up relative paths to include a host value
-        print("Parse links returning {0} links".format(len(links)))
-        return links
+        print("Parse links returning {0} links".format(len(parser.links)))
+        return parser.links
 
 class PageGetter:
     def _parse_url(self, url):
@@ -100,6 +109,8 @@ class LinkChecker:
 
             # toss out the processed links and get ready
             # to process the next set of links
+            # todo - add optimization to record links we've
+            # previously visited in case they come up again
             links = nextSetOfLinks.copy()
         
             self.depth -= 1;
