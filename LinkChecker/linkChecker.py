@@ -1,8 +1,12 @@
+# todo - need unit tests
+
 import http.client
 # todo - understand how this "from" keyword works
 from urllib.parse import urlparse
 from html.parser import HTMLParser
 
+# this class only parses HTML markup and returns the
+# detected links "as-is" (i.e., no path transformations)
 class HTMLLinkParser(HTMLParser):
     def __init__(self):
         super().__init__(self)
@@ -19,22 +23,18 @@ class HTMLLinkParser(HTMLParser):
                 if (attrName == "href"):
                     self.links.add(attrValue)
 
+# this class takes HTML markup and returns a set of links
 class LinkParser:
     def parse_links(self, markup):
         parser = HTMLLinkParser()
         
         parser.feed(markup)
-        
-        # todo - patch up relative paths to include a host value
+
         print("Parse links returning {0} links".format(len(parser.links)))
+        
         return parser.links
 
-    def is_relative_link(self, link):
-        # todo - is this sufficient?
-        isRelative = not link.lower().startswith("http")
-
-        return isRelative
-
+# this class requests a web page and returns its content
 class PageGetter:
     def _parse_url(self, url):
         urlParts = urlparse(url)
@@ -66,6 +66,19 @@ class PageGetter:
         responseBytes = res.read()
         
         return responseBytes.decode("utf-8")
+
+# this class transforms links
+class LinkConverter:
+    def convert_relative_link_to_absolute_link(self, host, link):
+        if self._is_link_relative(link):
+            return host + link
+
+        return link
+        
+    def _is_link_relative(self, link):
+        isRelative = not link.lower().startswith("http")
+
+        return isRelative
 
 class LinkChecker:
     def __init__(self, startLink, depth):
@@ -118,6 +131,8 @@ class LinkChecker:
             # todo - add optimization to record links we've
             # previously visited in case they come up again
             links = nextSetOfLinks.copy()
+
+            # todo - convert relative links to absolute links
         
             self.depth -= 1;
 
