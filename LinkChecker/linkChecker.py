@@ -29,6 +29,12 @@ class LinkParser:
         print("Parse links returning {0} links".format(len(parser.links)))
         return parser.links
 
+    def is_relative_link(self, link):
+        # todo - is this sufficient?
+        isRelative = not link.lower().startswith("http")
+
+        return isRelative
+
 class PageGetter:
     def _parse_url(self, url):
         urlParts = urlparse(url)
