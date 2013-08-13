@@ -4,7 +4,6 @@ import http.client
 # todo - understand how this "from" keyword works
 from urllib.parse import urlparse
 from html.parser import HTMLParser
-import linkAnalysisUtility
 
 # this class only parses HTML markup and returns the
 # detected links "as-is" (i.e., no path transformations)
