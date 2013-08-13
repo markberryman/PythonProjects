@@ -103,6 +103,7 @@ class LinkChecker:
             nextSetOfLinks = set()
             
             for link in links:
+                # todo - should we block leaving the root domain?
                 markup = self.pageGetter.get_page(link)
 
                 if (markup == None):
