@@ -1,40 +1,27 @@
 import linkAnalysisUtility
 import unittest
 
-class LinkAnalysisUtilityTests(unittest.TestCase):
-    @staticmethod
-    def suite():
-        # todo - how to merge multiple test suites?
-        return IsLinkRelativeTests.suite()
-
 class IsLinkRelativeTests(unittest.TestCase):
-    @staticmethod
-    def suite():
-        tests = [
-            'IsLinkRelativeReturnsTrueWhenLinkIsRelative',
-            'IsLinkRelativeReturnsFalseWhenLinkIsNotRelative',
-            'IsLinkRelativeReturnsFalseWhenLinkIsNotRelativeAndIgnoresCase'
-            ]
-
-        return unittest.TestSuite(map(IsLinkRelativeTests, tests))
-
-    def IsLinkRelativeReturnsTrueWhenLinkIsRelative(self):
+    def test_ReturnsTrueWhenLinkIsRelative(self):
         link = "/foo.html"
         
         result = linkAnalysisUtility.LinkAnalysisUtility.is_link_relative(link)
 
         self.assertTrue(result);
 
-    def IsLinkRelativeReturnsFalseWhenLinkIsNotRelative(self):
+    def test_ReturnsFalseWhenLinkIsNotRelative(self):
         link = "http://www.foo.com"
         
         result = linkAnalysisUtility.LinkAnalysisUtility.is_link_relative(link)
 
         self.assertFalse(result);
         
-    def IsLinkRelativeReturnsFalseWhenLinkIsNotRelativeAndIgnoresCase(self):
+    def test_ReturnsFalseWhenLinkIsNotRelativeAndIgnoresCase(self):
         link = "HTTP://www.foo.com"
         
         result = linkAnalysisUtility.LinkAnalysisUtility.is_link_relative(link)
 
         self.assertFalse(result);
+
+if __name__ == '__main__':
+    unittest.main()
