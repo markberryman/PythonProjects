@@ -67,14 +67,6 @@ class PageGetter:
         
         return responseBytes.decode("utf-8")
 
-# this class transforms links
-class LinkConverter:
-    def convert_relative_link_to_absolute_link(self, host, link):
-        if self._is_link_relative(link):
-            return host + link
-
-        return link
-
 class LinkChecker:
     def __init__(self, startLink, depth):
         self.startLink = startLink
