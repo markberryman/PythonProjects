@@ -103,13 +103,13 @@ class LinkChecker:
             nextSetOfLinks = set()
             
             for link in links:
+                self.numLinksProcessed += 1
+
                 # todo - should we block leaving the root domain?
                 markup = self.pageGetter.get_page(link)
 
                 if (markup == None):
                     self.brokenLinks.add(link)
-                
-                self.numLinksProcessed += 1
                                 
                 newLinks = self.linkParser.parse_links(markup)
                 nextSetOfLinks.union(newLinks)
