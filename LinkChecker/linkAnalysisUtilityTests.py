@@ -1,7 +1,7 @@
 import linkAnalysisUtility
 import unittest
 
-class LinkAnalysisUtilityClassTests(unittest.TestCase):
+class LinkAnalysisUtilityTests(unittest.TestCase):
     @staticmethod
     def suite():
         # todo - how to merge multiple test suites?
