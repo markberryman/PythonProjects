@@ -95,6 +95,16 @@ class LinkChecker:
         else:
             print("No broken links.")
 
+    # todo - unit test this by injecting dependencies
+    def process_link(self, link):
+        result = None
+        markup = self.pageGetter.get_page(link)
+
+        if (markup != None):
+            result = self.linkParser.parse_links(markup)
+        
+        return result
+
     def check_links(self):
         links = set()
         links.add(self.startLink)
@@ -106,12 +116,14 @@ class LinkChecker:
                 self.numLinksProcessed += 1
 
                 # todo - should we block leaving the root domain?
-                markup = self.pageGetter.get_page(link)
-
-                if (markup == None):
+                newLinks = self.process_link(link)
+                
+                # using None as special indicator that the link was broken
+                # if the link had no new links to follow, we'd get back
+                # an empty set
+                if (newLinks == None):
                     self.brokenLinks.add(link)
                                 
-                newLinks = self.linkParser.parse_links(markup)
                 nextSetOfLinks.union(newLinks)
                 
             # toss out the processed links and get ready
