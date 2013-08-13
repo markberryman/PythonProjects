@@ -1,26 +1,24 @@
 import linkAnalysisUtility
 import unittest
 
-class LinkAnalysisUtilityTests:
+class LinkAnalysisUtilityTests(unittest.TestCase):
     @staticmethod
     def suite():
-        suite = unittest.TestSuite()
-        
-        suite.addTest(IsLinkRelativeReturnsTrueWhenLinkIsRelative())
-        suite.addTest(IsLinkRelativeReturnsFalseWhenLinkIsNotRelative())
+        tests = [
+            'IsLinkRelativeReturnsTrueWhenLinkIsRelative',
+            'IsLinkRelativeReturnsFalseWhenLinkIsNotRelative'
+            ]
 
-        return suite
+        return unittest.TestSuite(map(LinkAnalysisUtilityTests, tests))
 
-class IsLinkRelativeReturnsTrueWhenLinkIsRelative(unittest.TestCase):
-    def runTest(self):
+    def IsLinkRelativeReturnsTrueWhenLinkIsRelative(self):
         link = "/foo.html"
         
         result = linkAnalysisUtility.LinkAnalysisUtility.is_link_relative(link)
 
         self.assertTrue(result);
 
-class IsLinkRelativeReturnsFalseWhenLinkIsNotRelative(unittest.TestCase):
-    def runTest(self):
+    def IsLinkRelativeReturnsFalseWhenLinkIsNotRelative(self):
         link = "http://www.foo.com"
         
         result = linkAnalysisUtility.LinkAnalysisUtility.is_link_relative(link)
