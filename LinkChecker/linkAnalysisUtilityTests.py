@@ -5,9 +5,9 @@ class LinkAnalysisUtilityTests(unittest.TestCase):
     @staticmethod
     def suite():
         # todo - how to merge multiple test suites?
-        return IsLinkRelativeMethodTests.suite()
+        return IsLinkRelativeTests.suite()
 
-class IsLinkRelativeMethodTests(unittest.TestCase):
+class IsLinkRelativeTests(unittest.TestCase):
     @staticmethod
     def suite():
         tests = [
@@ -16,7 +16,7 @@ class IsLinkRelativeMethodTests(unittest.TestCase):
             'IsLinkRelativeReturnsFalseWhenLinkIsNotRelativeAndIgnoresCase'
             ]
 
-        return unittest.TestSuite(map(IsLinkRelativeMethodTests, tests))
+        return unittest.TestSuite(map(IsLinkRelativeTests, tests))
 
     def IsLinkRelativeReturnsTrueWhenLinkIsRelative(self):
         link = "/foo.html"
