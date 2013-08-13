@@ -21,11 +21,12 @@ class HTMLLinkParser(HTMLParser):
                 attrName, attrValue = attr
 
                 if (attrName == "href"):
+                    # todo - should do the link union here for optimization
                     self.links.add(attrValue)
 
-# this class takes HTML markup and returns a set of links
 class LinkParser:
     def parse_links(self, markup):
+        """Returns set of links for the given markup."""
         parser = HTMLLinkParser()
         
         parser.feed(markup)
@@ -109,9 +110,10 @@ class LinkChecker:
                     self.brokenLinks.add(link)
                 
                 self.numLinksProcessed += 1
+                                
                 newLinks = self.linkParser.parse_links(markup)
                 nextSetOfLinks.union(newLinks)
-
+                
             # toss out the processed links and get ready
             # to process the next set of links
             # todo - add optimization to record links we've
@@ -135,3 +137,5 @@ linkChecker = LinkChecker(startLink, depth)
 linkChecker.check_links()
 
 linkChecker.print_results()
+
+input('Press Enter to exit')
