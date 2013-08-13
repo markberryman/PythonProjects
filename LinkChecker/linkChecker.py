@@ -4,6 +4,7 @@ import http.client
 # todo - understand how this "from" keyword works
 from urllib.parse import urlparse
 from html.parser import HTMLParser
+import linkAnalysisUtility
 
 # this class only parses HTML markup and returns the
 # detected links "as-is" (i.e., no path transformations)
@@ -74,11 +75,6 @@ class LinkConverter:
             return host + link
 
         return link
-        
-    def _is_link_relative(self, link):
-        isRelative = not link.lower().startswith("http")
-
-        return isRelative
 
 class LinkChecker:
     def __init__(self, startLink, depth):
