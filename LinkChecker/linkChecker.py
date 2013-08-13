@@ -24,17 +24,6 @@ class HTMLLinkParser(HTMLParser):
                     # todo - should do the link union here for optimization
                     self.links.add(attrValue)
 
-class LinkParser:
-    def parse_links(self, markup):
-        """Returns set of links for the given markup."""
-        parser = HTMLLinkParser()
-        
-        parser.feed(markup)
-
-        print("Parse links returning {0} links".format(len(parser.links)))
-        
-        return parser.links
-
 # this class requests a web page and returns its content
 class PageGetter:
     def _parse_url(self, url):
@@ -72,7 +61,6 @@ class LinkChecker:
         self.startLink = startLink
         self.depth = depth
         self.pageGetter = PageGetter()
-        self.linkParser = LinkParser()
         self.numLinksProcessed = 0
         self.brokenLinks = set()
 
@@ -101,7 +89,11 @@ class LinkChecker:
         markup = self.pageGetter.get_page(link)
 
         if (markup != None):
-            result = self.linkParser.parse_links(markup)
+            # todo - instead of instantiating an HTMLLinkParser each time; re-use one
+            parser = HTMLLinkParser()
+            parser.feed(markup)
+            print("Parse links returning {0} links".format(len(parser.links)))
+            result = parser.links
         
         return result
 
