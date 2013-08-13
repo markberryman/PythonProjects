@@ -59,8 +59,7 @@ class PageGetter:
 
         print("Response status = {0}".format(statusCode))
 
-        if ((statusCode < http.client.OK) or
-            (statusCode >= http.client.BAD_REQUEST)):
+        if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
             return None
 
         # todo - use the correct encoding based on the response headers
@@ -86,8 +85,7 @@ class LinkChecker:
         self.brokenLinks = set()
 
     def __repr__(self):
-        return "Started with link: {0}. Processed {1} links.".format(
-            self.startLink, self.numLinksProcessed)
+        return "Started with link: {0}. Processed {1} links.".format(self.startLink, self.numLinksProcessed)
 
     def print_results(self):
         print("Results:")
@@ -130,7 +128,7 @@ class LinkChecker:
 
             # todo - convert relative links to absolute links
         
-            self.depth -= 1;
+            self.depth -= 1
 
         return
         
