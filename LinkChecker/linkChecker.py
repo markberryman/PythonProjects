@@ -55,10 +55,10 @@ class PageGetter:
         return responseBytes.decode("utf-8")
 
 class LinkChecker:
-    def __init__(self, startLink, depth):
+    def __init__(self, startLink, depth, pageGetter):
         self.startLink = startLink
         self.depth = depth
-        self.pageGetter = PageGetter()
+        self.pageGetter = pageGetter
         self.numLinksProcessed = 0
         self.brokenLinks = set()
 
@@ -135,7 +135,7 @@ depth = 1
 
 print("Starting link checking with \"{0}\" and depth {1}".format(startLink, depth))
 
-linkChecker = LinkChecker(startLink, depth)
+linkChecker = LinkChecker(startLink, depth, PageGetter())
 linkChecker.check_links()
 
 linkChecker.print_results()
