@@ -29,21 +29,20 @@ class LinkChecker:
         else:
             print("No broken links.")
 
-    # todo - unit test this by injecting dependencies
     def process_link(self, link):
-        result = None
+        """Returns a boolean indicating if the links is broken and the new links discovered."""
+        isLinkBroken = False
         statusCode, markup = self.pageGetter.get_page(link)
 
         if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
-            self.brokenLinks.add(link)
+            isLinkBroken = True
         else:
             # todo - instead of instantiating an HTMLLinkParser each time; re-use one
             parser = htmlLinkParser.HTMLLinkParser()
             parser.feed(markup)
-            print("Parse links returning {0} links".format(len(parser.links)))
-            result = parser.links
+            print("Parse links returning {0} links".format(len(parser.links)))      
         
-        return result
+        return isLinkBroken, parser.links
 
     def check_links(self):
         links = set()
@@ -56,13 +55,12 @@ class LinkChecker:
                 self.numLinksProcessed += 1
 
                 # todo - should we block leaving the root domain?
-                newLinks = self.process_link(link)
-                
-                # using None as special indicator that the link was broken
-                # if the link had no new links to follow, we'd get back
-                # an empty set
-                if (newLinks != None):
+                isLinkBroken, newLinks = self.process_link(link)
+
+                if (isLinkBroken == False):
                     nextSetOfLinks.union(newLinks)
+                else:
+                    self.brokenLinks.add(link)                  
                 
             # toss out the processed links and get ready
             # to process the next set of links
