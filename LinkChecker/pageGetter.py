@@ -23,4 +23,4 @@ class PageGetter:
         responseBytes = res.read()
 
         # todo - use the correct encoding based on the response headers        
-        return responseBytes.decode()
+        return statusCode, responseBytes.decode()

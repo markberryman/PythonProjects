@@ -13,13 +13,14 @@ class MockRequester(object):
         return MockResponse()
 
 class PageGetterTests(unittest.TestCase):
-    def test_GetPageReturnsUrlContent(self):
+    def test_GetPageReturnsStatusCodeAndUrlContent(self):
         mockRequester = MockRequester()
         sut = pageGetter.PageGetter(mockRequester)
         
-        result = sut.get_page("some url")
+        statusCodeResult, contentResult = sut.get_page("some url")
 
-        self.assertEqual(result, "hi")
+        self.assertEqual(200, statusCodeResult)
+        self.assertEqual("hi", contentResult)
 
 if __name__ == '__main__':
     unittest.main()
