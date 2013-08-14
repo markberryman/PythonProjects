@@ -20,7 +20,7 @@ class PageGetter:
         if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
             return None
 
-        # todo - use the correct encoding based on the response headers
         responseBytes = res.read()
-        
-        return responseBytes.decode("utf-8")
+
+        # todo - use the correct encoding based on the response headers        
+        return responseBytes.decode()
