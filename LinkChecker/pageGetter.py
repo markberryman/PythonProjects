@@ -1,5 +1,4 @@
 import contentRequester
-import http.client
 
 class PageGetter:
     """Gets a web page and returns its content"""
@@ -16,9 +15,6 @@ class PageGetter:
         statusCode = res.status
 
         print("Response status = {0}".format(statusCode))
-
-        if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
-            return None
 
         responseBytes = res.read()
 
