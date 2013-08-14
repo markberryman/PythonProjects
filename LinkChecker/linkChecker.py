@@ -3,10 +3,11 @@ import pageGetter
 import http.client
 
 class LinkChecker:
-    def __init__(self, startLink, depth, pageGetter):
+    def __init__(self, startLink, depth, pageGetter, htmlLinkParser):
         self.startLink = startLink
         self.depth = depth
         self.pageGetter = pageGetter
+        self.htmlLinkParser = htmlLinkParser
         self.numLinksProcessed = 0
         self.brokenLinks = set()
 
@@ -36,10 +37,8 @@ class LinkChecker:
 
         if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
             isLinkBroken = True
-        else:
-            # todo - instead of instantiating an HTMLLinkParser each time; re-use one
-            parser = htmlLinkParser.HTMLLinkParser()
-            parser.feed(markup)
+        else:            
+            self.htmlLinkParser.feed(markup)
             print("Parse links returning {0} links".format(len(parser.links)))      
         
         return isLinkBroken, parser.links
@@ -81,7 +80,7 @@ depth = 1
 
 print("Starting link checking with \"{0}\" and depth {1}".format(startLink, depth))
 
-linkChecker = LinkChecker(startLink, depth, pageGetter.PageGetter())
+linkChecker = LinkChecker(startLink, depth, pageGetter.PageGetter(), htmlLinkParser.HTMLLinkParser())
 linkChecker.check_links()
 
 linkChecker.print_results()
