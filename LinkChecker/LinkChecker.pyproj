@@ -16,6 +16,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Compile Include="htmlLinkParser.py" />
+    <Compile Include="htmlLinkParserTests.py" />
     <Compile Include="linkAnalysisUtility.py" />
     <Compile Include="linkAnalysisUtilityTests.py" />
     <Compile Include="linkChecker.py" />
