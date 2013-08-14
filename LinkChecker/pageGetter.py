@@ -1,5 +1,4 @@
 import http.client
-# todo - understand how this "from" keyword works
 from urllib.parse import urlparse
 
 class PageGetter:
