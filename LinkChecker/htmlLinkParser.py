@@ -17,5 +17,3 @@ class HTMLLinkParser(HTMLParser):
                 if (attrName == "href"):
                     # todo - should do the link union here for optimization
                     self.links.add(attrValue)
-
-
