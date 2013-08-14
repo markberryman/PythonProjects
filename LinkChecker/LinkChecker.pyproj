@@ -24,6 +24,7 @@
     <Compile Include="linkConverterUtility.py" />
     <Compile Include="linkConverterUtilityTests.py" />
     <Compile Include="pageGetter.py" />
+    <Compile Include="pageGetterTests.py" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
