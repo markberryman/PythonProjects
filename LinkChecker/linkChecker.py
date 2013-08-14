@@ -1,26 +1,7 @@
+import htmlLinkParser
 import http.client
 # todo - understand how this "from" keyword works
 from urllib.parse import urlparse
-from html.parser import HTMLParser
-
-# this class only parses HTML markup and returns the
-# detected links "as-is" (i.e., no path transformations)
-class HTMLLinkParser(HTMLParser):
-    def __init__(self):
-        super().__init__(self)
-        self.links = set()
-
-    # tag and attribute values are automatically lowercased
-    def handle_starttag(self, tag, attrs):
-        # todo - what type of tags do we want to look for?
-        if (tag == "a"):
-            for attr in attrs:
-                # todo - use list comprehension to make this cleaner
-                attrName, attrValue = attr
-
-                if (attrName == "href"):
-                    # todo - should do the link union here for optimization
-                    self.links.add(attrValue)
 
 # this class requests a web page and returns its content
 class PageGetter:
@@ -88,7 +69,7 @@ class LinkChecker:
 
         if (markup != None):
             # todo - instead of instantiating an HTMLLinkParser each time; re-use one
-            parser = HTMLLinkParser()
+            parser = htmlLinkParser.HTMLLinkParser()
             parser.feed(markup)
             print("Parse links returning {0} links".format(len(parser.links)))
             result = parser.links
