@@ -30,18 +30,22 @@ class LinkChecker:
         else:
             print("No broken links.")
 
-    def process_link(self, link):
-        """Returns a boolean indicating if the links is broken and the new links discovered."""
+    def get_link(self, link):
+        """Returns a boolean indicating if the link is broken and the markup returned by the link."""
         isLinkBroken = False
         statusCode, markup = self.pageGetter.get_page(link)
 
         if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
             isLinkBroken = True
-        else:            
-            self.htmlLinkParser.feed(markup)
-            print("Parse links returning {0} links".format(len(parser.links)))      
+
+        return isLinkBroken, markup
+
+    def process_link(self, markup):
+        """Returns the new links contained in the provided markup."""
+        self.htmlLinkParser.feed(markup)
+        print("Parse links returning {0} links".format(len(self.htmlLinkParser.links)))      
         
-        return isLinkBroken, parser.links
+        return self.htmlLinkParser.links
 
     def check_links(self):
         links = set()
@@ -54,9 +58,10 @@ class LinkChecker:
                 self.numLinksProcessed += 1
 
                 # todo - should we block leaving the root domain?
-                isLinkBroken, newLinks = self.process_link(link)
-
+                isLinkBroken, markup = self.get_link(link)
+                
                 if (isLinkBroken == False):
+                    newLinks = self.process_link(markup)
                     nextSetOfLinks.union(newLinks)
                 else:
                     self.brokenLinks.add(link)                  
