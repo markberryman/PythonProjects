@@ -77,17 +77,3 @@ class LinkChecker:
             self.depth -= 1
 
         return
-        
-
-# todo - take input param that's the start page and link depth
-startLink = "http://www.markwberryman.com"
-depth = 1
-
-print("Starting link checking with \"{0}\" and depth {1}".format(startLink, depth))
-
-linkChecker = LinkChecker(startLink, depth, pageGetter.PageGetter(), htmlLinkParser.HTMLLinkParser())
-linkChecker.check_links()
-
-linkChecker.print_results()
-
-input('Press Enter to exit')

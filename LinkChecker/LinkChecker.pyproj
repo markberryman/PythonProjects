@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{986a85b7-05d9-47b0-addb-e1c1a57d9704}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>linkChecker.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -24,6 +24,7 @@
     <Compile Include="linkCheckerTests.py" />
     <Compile Include="linkConverterUtility.py" />
     <Compile Include="linkConverterUtilityTests.py" />
+    <Compile Include="main.py" />
     <Compile Include="pageGetter.py" />
     <Compile Include="pageGetterTests.py" />
   </ItemGroup>
