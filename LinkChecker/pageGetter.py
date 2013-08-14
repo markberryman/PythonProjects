@@ -3,13 +3,6 @@ from urllib.parse import urlparse
 
 class PageGetter:
     """Gets a web page and returns its content"""
-    def _parse_url(self, url):
-        urlParts = urlparse(url)
-        netloc = urlParts.netloc
-        path = urlParts.path
-
-        return netloc, path
-
     def _request_url(self, host, path):
         conn = http.client.HTTPConnection(host)
         conn.request("GET", path)
@@ -19,8 +12,9 @@ class PageGetter:
     def get_page(self, url):
         print("Getting url \"{0}\"".format(url))
 
-        host, path = self._parse_url(url)
-        res = self._request_url(host, path)
+        urlParts = urlparse(url)
+
+        res = self._request_url(urlParts.netloc, urlParts.path)
         statusCode = res.status
 
         print("Response status = {0}".format(statusCode))
