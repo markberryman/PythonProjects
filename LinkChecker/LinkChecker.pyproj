@@ -25,6 +25,7 @@
     <Compile Include="linkConverterUtility.py" />
     <Compile Include="linkConverterUtilityTests.py" />
     <Compile Include="linkRequester.py" />
+    <Compile Include="linkRequesterTests.py" />
     <Compile Include="main.py" />
     <Compile Include="pageGetter.py" />
     <Compile Include="pageGetterTests.py" />

@@ -1,4 +1,5 @@
 ﻿import linkChecker
+import linkRequester
 import pageGetter
 import unittest
 
@@ -17,29 +18,6 @@ class MockHtmlLinkParser(object):
     def feed(self, markup):
         if (markup == "some markup"):
             self.feedMethodCalledCorrectly = True
-
-class GetLinkTests(unittest.TestCase):
-    def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeLessThanOK(self):
-        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(199))
-        
-        isLinkBroken, markup = sut.get_link("some link")
-
-        self.assertTrue(isLinkBroken)
-    
-    def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeGreaternThanOrEqualToBadRequest(self):
-        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(400))
-        
-        isLinkBroken, markup = sut.get_link("some link")
-
-        self.assertTrue(isLinkBroken)    
-
-    def test_ReturnsLinkNotBrokenAndMarkupIfLinkNotBroken(self):
-        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(200))
-        
-        isLinkBroken, markup = sut.get_link("some link")
-
-        self.assertFalse(isLinkBroken)
-        self.assertEqual("some markup", markup)
 
 class ProcessMarkupTests(unittest.TestCase):
     def test_InvokesFeedMethodOnMarkup(self):
@@ -72,7 +50,7 @@ class CheckLinksHelperTests(unittest.TestCase):
         self.assertEqual(0, sut.numLinksProcessed)
 
     def test_RecordsNumberOfLinksProcessed(self):
-        mockLinkRequester = linkChecker.LinkRequester()
+        mockLinkRequester = linkRequester.LinkRequester()
         linksToProcess = set()
         linksToProcess.add("http://www.foo.com")
 
