@@ -41,12 +41,12 @@ class GetLinkTests(unittest.TestCase):
         self.assertFalse(isLinkBroken)
         self.assertEqual("some markup", markup)
 
-class ProcessLinkTests(unittest.TestCase):
+class ProcessMarkupTests(unittest.TestCase):
     def test_InvokesFeedMethodOnMarkup(self):
         mockHtmlLinkParser = MockHtmlLinkParser()
         sut = linkChecker.LinkChecker("start link", 1, htmlLinkParser_ = mockHtmlLinkParser)
 
-        sut.process_link("some markup")
+        sut.process_markup("some markup")
 
         self.assertTrue(mockHtmlLinkParser.feedMethodCalledCorrectly)
 
@@ -55,7 +55,7 @@ class ProcessLinkTests(unittest.TestCase):
         mockHtmlLinkParser.links = set()
         sut = linkChecker.LinkChecker("start link", 1, htmlLinkParser_ = mockHtmlLinkParser)
 
-        result = sut.process_link("some markup")
+        result = sut.process_markup("some markup")
 
         self.assertTrue(result is mockHtmlLinkParser.links)
 

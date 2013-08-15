@@ -3,9 +3,9 @@ import pageGetter
 import http.client
 
 class LinkChecker:
-    def __init__(self, startLink, depth, pageGetter_ = None, htmlLinkParser_ = None):
+    def __init__(self, startLink, maxDepth, pageGetter_ = None, htmlLinkParser_ = None):
         self.startLink = startLink
-        self.depth = depth
+        self.maxDepth = maxDepth
 
         self.pageGetter = pageGetter.PageGetter() \
             if pageGetter_ is None \
@@ -46,41 +46,36 @@ class LinkChecker:
 
         return isLinkBroken, markup
 
-    def process_link(self, markup):
+    def process_markup(self, markup):
         """Returns the new links contained in the provided markup."""
         self.htmlLinkParser.feed(markup)
         print("Parse links returning {0} links".format(len(self.htmlLinkParser.links)))      
         
         return self.htmlLinkParser.links
 
-    def check_links(self):
-        """Loops through the link checking, stopping at the specified depth."""
-        links = set()
-        links.add(self.startLink)
-
-        while (self.depth >= 0):
-            nextSetOfLinks = set()
-            
-            for link in links:
+    def check_links_recursive(self, linksToProcess, curDepth):
+        if ((curDepth <= self.maxDepth) and (len(linksToProcess) != 0)):
+            for link in linksToProcess:
                 self.numLinksProcessed += 1
 
                 # todo - should we block leaving the root domain?
                 isLinkBroken, markup = self.get_link(link)
                 
-                if (isLinkBroken == False):
-                    newLinks = self.process_link(markup)
-                    nextSetOfLinks.union(newLinks)
+                if (isLinkBroken):
+                    self.brokenLinks.add(link)                
                 else:
-                    self.brokenLinks.add(link)                  
-                
-            # toss out the processed links and get ready
-            # to process the next set of links
-            # todo - add optimization to record links we've
-            # previously visited in case they come up again
-            links = nextSetOfLinks.copy()
+                    # todo - convert relative links to absolute links
+                    newLinks = self.process_markup(markup)
+                    self.check_links_recursive(newLinks, curDepth + 1)
 
-            # todo - convert relative links to absolute links
+        return None
+
+    def check_links(self):
+        """Loops through the link checking, stopping at the specified depth."""
+        # todo - why can't i pass this directly
+        linksToProcess = set()
+        linksToProcess.add(self.startLink)
+
+        self.check_links_recursive(linksToProcess, 1)
         
-            self.depth -= 1
-
-        return
+        return None
