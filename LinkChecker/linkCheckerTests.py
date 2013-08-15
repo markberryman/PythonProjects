@@ -19,23 +19,23 @@ class MockHtmlLinkParser(object):
         if (markup == "some markup"):
             self.feedMethodCalledCorrectly = True
 
-class ProcessMarkupTests(unittest.TestCase):
-    def test_InvokesFeedMethodOnMarkup(self):
-        mockHtmlLinkParser = MockHtmlLinkParser()
-        sut = linkChecker.LinkChecker("start link", 1, mockHtmlLinkParser, None)
+#class ProcessMarkupTests(unittest.TestCase):
+#    def test_InvokesFeedMethodOnMarkup(self):
+#        mockHtmlLinkParser = MockHtmlLinkParser()
+#        sut = linkChecker.LinkChecker("start link", 1, mockHtmlLinkParser, None)
 
-        sut.process_markup("some markup")
+#        sut.process_markup("some markup")
 
-        self.assertTrue(mockHtmlLinkParser.feedMethodCalledCorrectly)
+#        self.assertTrue(mockHtmlLinkParser.feedMethodCalledCorrectly)
 
-    def test_ReturnsLinks(self):
-        mockHtmlLinkParser = MockHtmlLinkParser()
-        mockHtmlLinkParser.links = set()
-        sut = linkChecker.LinkChecker("start link", 1, mockHtmlLinkParser, None)
+#    def test_ReturnsLinks(self):
+#        mockHtmlLinkParser = MockHtmlLinkParser()
+#        mockHtmlLinkParser.links = set()
+#        sut = linkChecker.LinkChecker("start link", 1, mockHtmlLinkParser, None)
 
-        result = sut.process_markup("some markup")
+#        result = sut.process_markup("some markup")
 
-        self.assertTrue(result is mockHtmlLinkParser.links)
+#        self.assertTrue(result is mockHtmlLinkParser.links)
 
 class MockLinkRequester(object):
     def get_link(self, link):

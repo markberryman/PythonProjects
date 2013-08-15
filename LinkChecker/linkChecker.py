@@ -30,17 +30,11 @@ class LinkChecker:
         else:
             print("No broken links.")
 
-    def process_markup(self, markup):
-        """Returns the new links contained in the provided markup."""
-        self.htmlLinkParser.feed(markup)
-        print("Parse links returning {0} links".format(len(self.htmlLinkParser.links)))      
-        
-        return self.htmlLinkParser.links
-
     def check_links_helper(self, linksToProcess, curDepth):
         """Checks the provided set of links but not beyond the specified depth."""
         if (curDepth <= self.maxDepth):
             for link in linksToProcess:
+                # todo - optimize: add the length of linksToProcess when done
                 self.numLinksProcessed += 1
 
                 # todo - should we block leaving the root domain?
@@ -50,7 +44,12 @@ class LinkChecker:
                     self.brokenLinks.add(link)                
                 else:
                     # todo - convert relative links to absolute links
-                    newLinks = self.process_markup(markup)
+                    self.htmlLinkParser.feed(markup)                    
+
+                    newLinks = self.htmlLinkParser.links
+
+                    print("Parse links returning {0} links".format(len(newLinks)))
+
                     self.check_links_helper(newLinks, curDepth + 1)
 
         return None
