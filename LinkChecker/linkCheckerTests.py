@@ -59,6 +59,10 @@ class ProcessMarkupTests(unittest.TestCase):
 
         self.assertTrue(result is mockHtmlLinkParser.links)
 
+class MockLinkRequester(object):
+    def get_link(self, link):
+        return false, "markup"
+
 class CheckLinksHelperTests(unittest.TestCase):
     def test_ProcessesNoLinksIfCurrentLinkDepthExceedsMaxDepth(self):
         sut = linkChecker.LinkChecker("start link", 1)
@@ -66,6 +70,18 @@ class CheckLinksHelperTests(unittest.TestCase):
         sut.check_links_helper(set(), 2)
 
         self.assertEqual(0, sut.numLinksProcessed)
+
+    def test_RecordsNumberOfLinksProcessed(self):
+        mockLinkRequester = linkChecker.LinkRequester()
+        linksToProcess = set()
+        linksToProcess.add("http://www.foo.com")
+
+        sut = linkChecker.LinkChecker("start link", 1, linkRequester_ = mockLinkRequester)
+        
+        sut.check_links_helper(linksToProcess, 1)
+
+        self.assertEqual(1, sut.numLinksProcessed)
+
 
 if __name__ == '__main__':
     unittest.main()

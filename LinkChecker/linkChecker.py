@@ -2,8 +2,25 @@ import htmlLinkParser
 import pageGetter
 import http.client
 
+class LinkRequester:
+    """Requests a link using the provided page getter."""
+    def __init__(self, pageGetter_ = None):
+        self.pageGetter = pageGetter.PageGetter() \
+            if pageGetter_ is None \
+            else pageGetter_
+
+    def get_link(self, link):
+        """Returns a boolean indicating if the link is broken and the markup returned by the link."""
+        isLinkBroken = False
+        statusCode, markup = self.pageGetter.get_page(link)
+
+        if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
+            isLinkBroken = True
+
+        return isLinkBroken, markup
+
 class LinkChecker:
-    def __init__(self, startLink, maxDepth, pageGetter_ = None, htmlLinkParser_ = None):
+    def __init__(self, startLink, maxDepth, pageGetter_ = None, htmlLinkParser_ = None, linkRequester_ = None):
         self.startLink = startLink
         self.maxDepth = maxDepth
 
@@ -12,8 +29,11 @@ class LinkChecker:
             else pageGetter_
         self.htmlLinkParser = htmlLinkParser.HTMLLinkParser() \
             if htmlLinkParser_ is None \
-            else htmlLinkParser_
-        
+            else htmlLinkParser_        
+        self.linkRequester = LinkRequester() \
+            if linkRequester_ is None \
+            else linkRequester_
+
         self.numLinksProcessed = 0
         self.brokenLinks = set()
 
@@ -36,16 +56,6 @@ class LinkChecker:
         else:
             print("No broken links.")
 
-    def get_link(self, link):
-        """Returns a boolean indicating if the link is broken and the markup returned by the link."""
-        isLinkBroken = False
-        statusCode, markup = self.pageGetter.get_page(link)
-
-        if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
-            isLinkBroken = True
-
-        return isLinkBroken, markup
-
     def process_markup(self, markup):
         """Returns the new links contained in the provided markup."""
         self.htmlLinkParser.feed(markup)
@@ -60,7 +70,7 @@ class LinkChecker:
                 self.numLinksProcessed += 1
 
                 # todo - should we block leaving the root domain?
-                isLinkBroken, markup = self.get_link(link)
+                isLinkBroken, markup = self.linkRequester.get_link(link)
                 
                 if (isLinkBroken):
                     self.brokenLinks.add(link)                
