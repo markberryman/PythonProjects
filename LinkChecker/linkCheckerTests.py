@@ -1,4 +1,5 @@
 ﻿import linkChecker
+import pageGetter
 import unittest
 
 class MockPageGetter(object):
@@ -6,7 +7,7 @@ class MockPageGetter(object):
         self.statusCodeToReturn = statusCodeToReturn;
 
     def get_page(self, link):
-        return self.statusCodeToReturn, None
+        return self.statusCodeToReturn, "some markup"
 
 
 class GetLinkTests(unittest.TestCase):
@@ -24,11 +25,13 @@ class GetLinkTests(unittest.TestCase):
 
         self.assertTrue(isLinkBroken)    
 
-    #def test_ReturnsNotBrokenLinkWhenLinkNotBroken(self):
-    #    self.assertTrue(False)
+    def test_ReturnsLinkNotBrokenAndMarkupIfLinkNotBroken(self):
+        sut = linkChecker.LinkChecker("start link", 1, MockPageGetter(200), None)
+        
+        isLinkBroken, markup = sut.get_link("some link")
 
-    #def test_ReturnsMarkupWhenLinkIsNotBroken(self):
-    #    self.assertTrue(False)
+        self.assertFalse(isLinkBroken)
+        self.assertEqual("some markup", markup)
 
 #class MockHtmlLinkParser(object):
 
