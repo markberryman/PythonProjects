@@ -54,6 +54,7 @@ class LinkChecker:
         return self.htmlLinkParser.links
 
     def check_links_recursive(self, linksToProcess, curDepth):
+        """Checks the provided set of links but not beyond the specified depth."""
         if ((curDepth <= self.maxDepth) and (len(linksToProcess) != 0)):
             for link in linksToProcess:
                 self.numLinksProcessed += 1
