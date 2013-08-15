@@ -12,21 +12,21 @@ class MockPageGetter(object):
 
 class GetLinkTests(unittest.TestCase):
     def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeLessThanOK(self):
-        sut = linkChecker.LinkChecker("start link", 1, MockPageGetter(199))
+        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(199))
         
         isLinkBroken, markup = sut.get_link("some link")
 
         self.assertTrue(isLinkBroken)
     
     def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeGreaternThanOrEqualToBadRequest(self):
-        sut = linkChecker.LinkChecker("start link", 1, MockPageGetter(400))
+        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(400))
         
         isLinkBroken, markup = sut.get_link("some link")
 
         self.assertTrue(isLinkBroken)    
 
     def test_ReturnsLinkNotBrokenAndMarkupIfLinkNotBroken(self):
-        sut = linkChecker.LinkChecker("start link", 1, MockPageGetter(200))
+        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(200))
         
         isLinkBroken, markup = sut.get_link("some link")
 
@@ -45,7 +45,7 @@ class MockHtmlLinkParser(object):
 class ProcessLinkTests(unittest.TestCase):
     def test_InvokesFeedMethodOnMarkup(self):
         mockHtmlLinkParser = MockHtmlLinkParser()
-        sut = linkChecker.LinkChecker("start link", 1, htmlLinkParser=mockHtmlLinkParser)
+        sut = linkChecker.LinkChecker("start link", 1, htmlLinkParser_ = mockHtmlLinkParser)
 
         sut.process_link("some markup")
 
@@ -54,7 +54,7 @@ class ProcessLinkTests(unittest.TestCase):
     def test_ReturnsLinks(self):
         mockHtmlLinkParser = MockHtmlLinkParser()
         mockHtmlLinkParser.links = set()
-        sut = linkChecker.LinkChecker("start link", 1, htmlLinkParser=mockHtmlLinkParser)
+        sut = linkChecker.LinkChecker("start link", 1, htmlLinkParser_ = mockHtmlLinkParser)
 
         result = sut.process_link("some markup")
 

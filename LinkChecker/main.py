@@ -8,7 +8,7 @@ depth = 1
 
 print("Starting link checking with \"{0}\" and depth {1}".format(startLink, depth))
 
-checker = linkChecker.LinkChecker(startLink, depth, pageGetter.PageGetter(), htmlLinkParser.HTMLLinkParser())
+checker = linkChecker.LinkChecker(startLink, depth)
 checker.check_links()
 
 checker.print_results()

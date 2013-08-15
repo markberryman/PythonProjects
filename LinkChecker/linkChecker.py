@@ -3,11 +3,17 @@ import pageGetter
 import http.client
 
 class LinkChecker:
-    def __init__(self, startLink, depth, pageGetter = None, htmlLinkParser = None):
+    def __init__(self, startLink, depth, pageGetter_ = None, htmlLinkParser_ = None):
         self.startLink = startLink
         self.depth = depth
-        self.pageGetter = pageGetter
-        self.htmlLinkParser = htmlLinkParser
+
+        self.pageGetter = pageGetter.PageGetter() \
+            if pageGetter_ is None \
+            else pageGetter_
+        self.htmlLinkParser = htmlLinkParser.HTMLLinkParser() \
+            if htmlLinkParser_ is None \
+            else htmlLinkParser_
+        
         self.numLinksProcessed = 0
         self.brokenLinks = set()
 
