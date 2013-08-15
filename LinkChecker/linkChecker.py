@@ -1,23 +1,6 @@
 import htmlLinkParser
+import linkRequester
 import pageGetter
-import http.client
-
-class LinkRequester:
-    """Requests a link using the provided page getter."""
-    def __init__(self, pageGetter_ = None):
-        self.pageGetter = pageGetter.PageGetter() \
-            if pageGetter_ is None \
-            else pageGetter_
-
-    def get_link(self, link):
-        """Returns a boolean indicating if the link is broken and the markup returned by the link."""
-        isLinkBroken = False
-        statusCode, markup = self.pageGetter.get_page(link)
-
-        if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
-            isLinkBroken = True
-
-        return isLinkBroken, markup
 
 class LinkChecker:
     def __init__(self, startLink, maxDepth, pageGetter_ = None, htmlLinkParser_ = None, linkRequester_ = None):
@@ -30,7 +13,7 @@ class LinkChecker:
         self.htmlLinkParser = htmlLinkParser.HTMLLinkParser() \
             if htmlLinkParser_ is None \
             else htmlLinkParser_        
-        self.linkRequester = LinkRequester() \
+        self.linkRequester = linkRequester.LinkRequester() \
             if linkRequester_ is None \
             else linkRequester_
 
