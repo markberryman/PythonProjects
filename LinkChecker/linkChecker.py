@@ -55,7 +55,7 @@ class LinkChecker:
 
     def check_links_helper(self, linksToProcess, curDepth):
         """Checks the provided set of links but not beyond the specified depth."""
-        if ((curDepth <= self.maxDepth) and (len(linksToProcess) != 0)):
+        if (curDepth <= self.maxDepth):
             for link in linksToProcess:
                 self.numLinksProcessed += 1
 
