@@ -3,7 +3,7 @@ import pageGetter
 import http.client
 
 class LinkChecker:
-    def __init__(self, startLink, depth, pageGetter, htmlLinkParser = None):
+    def __init__(self, startLink, depth, pageGetter = None, htmlLinkParser = None):
         self.startLink = startLink
         self.depth = depth
         self.pageGetter = pageGetter

@@ -33,19 +33,32 @@ class GetLinkTests(unittest.TestCase):
         self.assertFalse(isLinkBroken)
         self.assertEqual("some markup", markup)
 
-#class MockHtmlLinkParser(object):
+class MockHtmlLinkParser(object):
+    def __init__(self):
+        self.feedMethodCalledCorrectly = False
+        self.links = set()
 
+    def feed(self, markup):
+        if (markup == "some markup"):
+            self.feedMethodCalledCorrectly = True
 
-#class ProcessLinkTests(unittest.TestCase):
-#    def test_ReturnsBrokenLinkWhenLinkBroken(self):
-#        sut = linkChecker.LinkChecker("start link", 1, MockPageGetter(), 
-#        self.assertTrue(False)
+class ProcessLinkTests(unittest.TestCase):
+    def test_InvokesFeedMethodOnMarkup(self):
+        mockHtmlLinkParser = MockHtmlLinkParser()
+        sut = linkChecker.LinkChecker("start link", 1, htmlLinkParser=mockHtmlLinkParser)
 
-#    def test_ReturnsNotBrokenLinkWhenLinkNotBroken(self):
-#        self.assertTrue(False)
+        sut.process_link("some markup")
 
-#    def test_ReturnsNewLinks(self):
-#        self.assertTrue(False)
+        self.assertTrue(mockHtmlLinkParser.feedMethodCalledCorrectly)
+
+    def test_ReturnsLinks(self):
+        mockHtmlLinkParser = MockHtmlLinkParser()
+        mockHtmlLinkParser.links = set()
+        sut = linkChecker.LinkChecker("start link", 1, htmlLinkParser=mockHtmlLinkParser)
+
+        result = sut.process_link("some markup")
+
+        self.assertTrue(result is mockHtmlLinkParser.links)
 
 if __name__ == '__main__':
     unittest.main()
