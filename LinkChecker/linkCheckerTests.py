@@ -62,7 +62,6 @@ class ProcessMarkupTests(unittest.TestCase):
 class CheckLinksHelperTests(unittest.TestCase):
     def test_ProcessesNoLinksIfCurrentLinkDepthExceedsMaxDepth(self):
         sut = linkChecker.LinkChecker("start link", 1)
-        sut.maxDepth = 1
 
         sut.check_links_helper(set(), 2)
 
