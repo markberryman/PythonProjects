@@ -2,19 +2,27 @@
 import unittest
 
 class MockPageGetter(object):
+    def __init__(self, statusCodeToReturn):
+        self.statusCodeToReturn = statusCodeToReturn;
+
     def get_page(self, link):
-        statusCode = 1  # indicates link is broken
-        return statusCode, None
+        return self.statusCodeToReturn, None
 
 
 class GetLinkTests(unittest.TestCase):
-    def test_ReturnsBrokenLinkWhenLinkBroken(self):
-        sut = linkChecker.LinkChecker("start link", 1, MockPageGetter(), None)
+    def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeLessThanOK(self):
+        sut = linkChecker.LinkChecker("start link", 1, MockPageGetter(199), None)
         
         isLinkBroken, markup = sut.get_link("some link")
 
         self.assertTrue(isLinkBroken)
+    
+    def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeGreaternThanOrEqualToBadRequest(self):
+        sut = linkChecker.LinkChecker("start link", 1, MockPageGetter(400), None)
         
+        isLinkBroken, markup = sut.get_link("some link")
+
+        self.assertTrue(isLinkBroken)    
 
     #def test_ReturnsNotBrokenLinkWhenLinkNotBroken(self):
     #    self.assertTrue(False)
