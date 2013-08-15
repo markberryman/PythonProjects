@@ -54,6 +54,7 @@ class LinkChecker:
         return self.htmlLinkParser.links
 
     def check_links(self):
+        """Loops through the link checking, stopping at the specified depth."""
         links = set()
         links.add(self.startLink)
 
