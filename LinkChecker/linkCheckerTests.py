@@ -9,6 +9,14 @@ class MockPageGetter(object):
     def get_page(self, link):
         return self.statusCodeToReturn, "some markup"
 
+class MockHtmlLinkParser(object):
+    def __init__(self):
+        self.feedMethodCalledCorrectly = False
+        self.links = set()
+
+    def feed(self, markup):
+        if (markup == "some markup"):
+            self.feedMethodCalledCorrectly = True
 
 class GetLinkTests(unittest.TestCase):
     def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeLessThanOK(self):
@@ -32,15 +40,6 @@ class GetLinkTests(unittest.TestCase):
 
         self.assertFalse(isLinkBroken)
         self.assertEqual("some markup", markup)
-
-class MockHtmlLinkParser(object):
-    def __init__(self):
-        self.feedMethodCalledCorrectly = False
-        self.links = set()
-
-    def feed(self, markup):
-        if (markup == "some markup"):
-            self.feedMethodCalledCorrectly = True
 
 class ProcessLinkTests(unittest.TestCase):
     def test_InvokesFeedMethodOnMarkup(self):
