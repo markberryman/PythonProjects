@@ -3,17 +3,11 @@ import linkRequester
 import pageGetter
 
 class LinkChecker:
-    def __init__(self, startLink, maxDepth, htmlLinkParser_ = None, linkRequester_ = None):
+    def __init__(self, startLink, maxDepth, htmlLinkParser, linkRequester):
         self.startLink = startLink
         self.maxDepth = maxDepth
-
-        self.htmlLinkParser = htmlLinkParser.HTMLLinkParser() \
-            if htmlLinkParser_ is None \
-            else htmlLinkParser_        
-        self.linkRequester = linkRequester.LinkRequester() \
-            if linkRequester_ is None \
-            else linkRequester_
-
+        self.htmlLinkParser = htmlLinkParser
+        self.linkRequester = linkRequester
         self.numLinksProcessed = 0
         self.brokenLinks = set()
 
