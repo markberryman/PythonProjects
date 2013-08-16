@@ -31,6 +31,15 @@ class LinkChecker:
             print("No broken links.")
 
     # todo - add unit tests
+    def __process_link_helper(self, markup):
+        # todo - convert relative links to absolute links
+        self.htmlLinkParser.feed(markup)                    
+        newLinks = self.htmlLinkParser.links
+        print("Parse links returning {0} links".format(len(newLinks)))
+
+        return newLinks
+
+    # todo - add unit tests
     def process_link(self, link):
         """Returns the new links detected from processing a link."""
         # todo - should we block leaving the root domain?
@@ -41,10 +50,7 @@ class LinkChecker:
         if (isLinkBroken):
             self.brokenLinks.add(link)                
         else:
-            # todo - convert relative links to absolute links
-            self.htmlLinkParser.feed(markup)                    
-            newLinks = self.htmlLinkParser.links
-            print("Parse links returning {0} links".format(len(newLinks)))
+            newLinks = self.__process_link_helper(markup)
 
         return newLinks
 
