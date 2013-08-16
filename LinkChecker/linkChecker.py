@@ -38,8 +38,7 @@ class LinkChecker:
 
         return newLinks
 
-    # todo - add unit tests
-    def process_link(self, link):
+    def __process_link(self, link):
         """Returns the new links detected from processing a link."""
         # todo - should we block leaving the root domain?
         isLinkBroken, markup = self.linkRequester.get_link(link)
@@ -58,7 +57,7 @@ class LinkChecker:
         """Checks the provided set of links but not beyond the specified depth."""
         if (curDepth <= self.maxDepth):
             for link in linksToProcess:             
-                newLinks = self.process_link(link)
+                newLinks = self.__process_link(link)
 
                 self.check_links_helper(newLinks, curDepth + 1)
 
