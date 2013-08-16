@@ -3,13 +3,6 @@ import linkRequester
 import pageGetter
 import unittest
 
-class MockPageGetter(object):
-    def __init__(self, statusCodeToReturn):
-        self.statusCodeToReturn = statusCodeToReturn;
-
-    def get_page(self, link):
-        return self.statusCodeToReturn, "some markup"
-
 class MockHtmlLinkParser(object):
     def __init__(self):
         self.feedMethodCalledCorrectly = False

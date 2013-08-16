@@ -30,7 +30,17 @@ class LinkChecker:
         else:
             print("No broken links.")
 
+    # todo - move this to a utility class and unit test
+    def __check_for_broken_link(self, link, markup):
+        if (markup is None):
+            self.brokenLinks.add(link)
+
+    # todo - pass in the dependent HTMLLinkParser object and then
+    # move this method to a utility class and unit test
     def __process_link_helper(self, markup):
+        if (markup is None):
+            return None
+
         # todo - convert relative links to absolute links
         self.htmlLinkParser.feed(markup)                    
         newLinks = self.htmlLinkParser.links
@@ -41,16 +51,11 @@ class LinkChecker:
     def __process_link(self, link):
         """Returns the new links detected from processing a link."""
         # todo - should we block leaving the root domain?
-        isLinkBroken, markup = self.linkRequester.get_link(link)
+        markup = self.linkRequester.get_link(link)
+
+        self.__check_for_broken_link(markup, link)
                 
-        newLinks = None
-
-        if (isLinkBroken):
-            self.brokenLinks.add(link)                
-        else:
-            newLinks = self.__process_link_helper(markup)
-
-        return newLinks
+        return self.__process_link_helper(markup)
 
     # todo - add test; won't be unit tests though    
     def check_links_helper(self, linksToProcess, curDepth):
