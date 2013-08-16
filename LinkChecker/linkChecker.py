@@ -30,13 +30,14 @@ class LinkChecker:
         else:
             print("No broken links.")
 
+    def do_stuff(self):
+        return None
+
+    # todo - this function is doing too much; break it up and/or move static code to utility class    
     def check_links_helper(self, linksToProcess, curDepth):
         """Checks the provided set of links but not beyond the specified depth."""
         if (curDepth <= self.maxDepth):
-            for link in linksToProcess:
-                # todo - optimize: add the length of linksToProcess when done
-                self.numLinksProcessed += 1
-
+            for link in linksToProcess:             
                 # todo - should we block leaving the root domain?
                 isLinkBroken, markup = self.linkRequester.get_link(link)
                 
@@ -51,6 +52,8 @@ class LinkChecker:
                     print("Parse links returning {0} links".format(len(newLinks)))
 
                     self.check_links_helper(newLinks, curDepth + 1)
+
+            self.numLinksProcessed += len(linksToProcess)
 
         return None
 
