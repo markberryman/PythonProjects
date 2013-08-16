@@ -1,25 +1,34 @@
 import linkRequester
+import unittest
+
+class MockPageGetter(object):
+    def __init__(self, statusCodeToReturn):
+        self.statusCodeToReturn = statusCodeToReturn;
+
+    def get_page(self, link):
+        return self.statusCodeToReturn, "some markup"
 
 class GetLinkTests(unittest.TestCase):
-    def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeLessThanOK(self):
-        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(199))
+    def test_ReturnsNoneWhenLinkResponseStatusCodeLessThanOK(self):
+        sut = linkRequester.LinkRequester(MockPageGetter(199))
         
-        isLinkBroken, markup = sut.get_link("some link")
+        result = sut.get_link("some link")
 
-        self.assertTrue(isLinkBroken)
+        self.assertTrue(result is None)
     
-    def test_ReturnsBrokenLinkWhenLinkResponseStatusCodeGreaternThanOrEqualToBadRequest(self):
-        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(400))
+    def test_ReturnsNoneWhenLinkResponseStatusCodeGreaternThanOrEqualToBadRequest(self):
+        sut = linkRequester.LinkRequester(MockPageGetter(400))
         
-        isLinkBroken, markup = sut.get_link("some link")
+        result = sut.get_link("some link")
 
-        self.assertTrue(isLinkBroken)    
+        self.assertTrue(result is None)  
 
-    def test_ReturnsLinkNotBrokenAndMarkupIfLinkNotBroken(self):
-        sut = linkChecker.LinkChecker("start link", 1, pageGetter_ = MockPageGetter(200))
+    def test_ReturnsMarkupIfLinkNotBroken(self):
+        sut = linkRequester.LinkRequester(MockPageGetter(200))
         
-        isLinkBroken, markup = sut.get_link("some link")
+        result = sut.get_link("some link")
 
-        self.assertFalse(isLinkBroken)
-        self.assertEqual("some markup", markup)
+        self.assertEqual("some markup", result)
 
+if __name__ == '__main__':
+    unittest.main()
