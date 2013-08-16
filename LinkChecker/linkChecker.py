@@ -30,7 +30,6 @@ class LinkChecker:
         else:
             print("No broken links.")
 
-    # todo - add unit tests
     def __process_link_helper(self, markup):
         # todo - convert relative links to absolute links
         self.htmlLinkParser.feed(markup)                    
