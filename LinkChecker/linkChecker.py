@@ -1,5 +1,6 @@
 import htmlLinkParser
 import linkRequester
+import linkCheckerUtilities
 import pageGetter
 
 class LinkChecker:
@@ -30,20 +31,6 @@ class LinkChecker:
         else:
             print("No broken links.")
 
-    # todo - pass in the dependent HTMLLinkParser object and then
-    # move this method to a utility class and unit test
-    def __process_link_helper(self, markup):
-        """Returns the new links detected from processing a link."""
-        if (markup is None):
-            return None
-
-        # todo - convert relative links to absolute links
-        self.htmlLinkParser.feed(markup)                    
-        newLinks = self.htmlLinkParser.links
-        print("Parse links returning {0} links".format(len(newLinks)))
-
-        return newLinks
-
     # todo - add test; won't be unit test though
     def __process_link(self, link):
         """Requests a link, checks if its broken and sends the related markup for processing."""
@@ -53,7 +40,7 @@ class LinkChecker:
         if (markup is None):
             self.brokenLinks.add(link)
                 
-        return self.__process_link_helper(markup)
+        return linkCheckerUtilities.get_links_from_markup(markup, self.htmlLinkParser)
 
     # todo - add test; won't be unit tests though    
     def check_links_helper(self, linksToProcess, curDepth):
