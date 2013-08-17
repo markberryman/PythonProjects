@@ -33,6 +33,7 @@ class LinkChecker:
     # todo - pass in the dependent HTMLLinkParser object and then
     # move this method to a utility class and unit test
     def __process_link_helper(self, markup):
+        """Returns the new links detected from processing a link."""
         if (markup is None):
             return None
 
@@ -43,8 +44,9 @@ class LinkChecker:
 
         return newLinks
 
+    # todo - add test; won't be unit test though
     def __process_link(self, link):
-        """Returns the new links detected from processing a link."""
+        """Requests a link, checks if its broken and sends the related markup for processing."""
         # todo - should we block leaving the root domain?
         markup = self.linkRequester.get_link(link)
 
