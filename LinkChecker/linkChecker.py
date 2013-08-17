@@ -52,8 +52,6 @@ class LinkChecker:
 
         if (markup is None):
             self.brokenLinks.add(link)
-
-        self.__check_for_broken_link(markup, link)
                 
         return self.__process_link_helper(markup)
 
