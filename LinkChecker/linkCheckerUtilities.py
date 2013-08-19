@@ -10,6 +10,6 @@ class linkCheckerUtilities(object):
         # todo - convert relative links to absolute links
         htmlLinkParser.feed(markup)
         
-        print("Processed markup and found {0} links".format(len(htmlLinkParser.links)))
+        print("Processed markup and found {} links".format(len(htmlLinkParser.links)))
                             
         return htmlLinkParser.links

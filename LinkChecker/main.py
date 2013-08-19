@@ -8,7 +8,7 @@ import htmlLinkParser
 startLink = "http://www.markwberryman.com"
 depth = 1
 
-print("Starting link checking with \"{0}\" and depth {1}".format(startLink, depth))
+print("Starting link checking with \"{}\" and depth {}".format(startLink, depth))
 
 linkParser = htmlLinkParser.HTMLLinkParser()
 contRequester = contentRequester.ContentRequester()

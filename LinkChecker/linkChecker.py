@@ -13,21 +13,21 @@ class LinkChecker:
         self.brokenLinks = set()
 
     def __repr__(self):
-        return "Started with link: {0}. Processed {1} links.".format(self.startLink, self.numLinksProcessed)
+        return "Started with link: {}. Processed {} links.".format(self.startLink, self.numLinksProcessed)
 
     def print_results(self):
         print("Results:")
         print("Started with link: {0}".format(self.startLink))
-        print("Number of links checked = {0}".
+        print("Number of links checked = {}".
               format(self.numLinksProcessed))
-        print("Number of broken links = {0}".
+        print("Number of broken links = {}".
               format(len(self.brokenLinks)))
 
         if (len(self.brokenLinks) > 0):
             print("Broken links:")
 
             for link in self.brokenLinks:
-                print(">>> {0}".format(link))
+                print(">>> {}".format(link))
         else:
             print("No broken links.")
 
