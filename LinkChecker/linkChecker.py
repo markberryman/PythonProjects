@@ -17,7 +17,7 @@ class LinkChecker:
 
     def print_results(self):
         print("Results:")
-        print("Started with link: {0}".format(self.startLink))
+        print("Started with link: {}".format(self.startLink))
         print("Number of links checked = {}".
               format(self.numLinksProcessed))
         print("Number of broken links = {}".
