@@ -1,1 +1,0 @@
-* fix recursive use of link requester and page getter; both depend on each other!
