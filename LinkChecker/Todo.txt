@@ -2,5 +2,5 @@
 
 Class design:
 
-linkChecker -> HTMLLinkParser
+LinkChecker -> HTMLLinkParser
 			-> LinkRequester	-> PageGetter	-> ContentRequester
