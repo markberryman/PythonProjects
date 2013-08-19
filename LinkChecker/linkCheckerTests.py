@@ -35,12 +35,12 @@ class MockLinkRequester(object):
         return False, "markup"
 
 class CheckLinksHelperTests(unittest.TestCase):
-    def test_ProcessesNoLinksIfCurrentLinkDepthExceedsMaxDepth(self):
-        sut = linkChecker.LinkChecker("start link", 1, None, None)
+    #def test_ProcessesNoLinksIfCurrentLinkDepthExceedsMaxDepth(self):
+    #    sut = linkChecker.LinkChecker("start link", 1, None, None)
 
-        sut.check_links_helper(set(), 2)
+    #    sut.check_links_helper(set(), 2)
 
-        self.assertEqual(0, sut.numLinksProcessed)
+    #    self.assertEqual(0, sut.numLinksProcessed)
 
     #def test_RecordsNumberOfLinksProcessed(self):
     #    mockLinkRequester = MockLinkRequester()

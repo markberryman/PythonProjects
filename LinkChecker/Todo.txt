@@ -1,4 +1,5 @@
-* todo
+* add top leven fn'l test for LinkChecker.check_links method
+* figure out why unit tests are taking so long to run
 
 Class design:
 
