@@ -1,0 +1,6 @@
+* todo
+
+Class design:
+
+linkChecker -> HTMLLinkParser
+			-> LinkRequester	-> PageGetter	-> ContentRequester
