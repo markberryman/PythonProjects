@@ -43,7 +43,7 @@ class LinkChecker:
         return linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, self.htmlLinkParser)
 
     # todo - add test; won't be unit tests though    
-    def check_links_helper(self, linksToProcess, curDepth):
+    def __check_links_helper(self, linksToProcess, curDepth):
         """Checks the provided set of links but not beyond the specified depth."""
         if (curDepth <= self.maxDepth):
             for link in linksToProcess:             
