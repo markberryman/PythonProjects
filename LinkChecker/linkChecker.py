@@ -39,8 +39,8 @@ class LinkChecker:
 
         if (markup is None):
             self.brokenLinks.add(link)
-                
-        return linkCheckerUtilities.get_links_from_markup(markup, self.htmlLinkParser)
+        
+        return linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, self.htmlLinkParser)
 
     # todo - add test; won't be unit tests though    
     def check_links_helper(self, linksToProcess, curDepth):
