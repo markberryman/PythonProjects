@@ -32,6 +32,8 @@
     <Compile Include="pageGetterTests.py" />
     <Compile Include="linkCheckerUtilities.py" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Todo.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
