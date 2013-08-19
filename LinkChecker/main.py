@@ -1,3 +1,4 @@
+import contentRequester
 import linkChecker
 import linkRequester
 import pageGetter
@@ -9,7 +10,12 @@ depth = 1
 
 print("Starting link checking with \"{0}\" and depth {1}".format(startLink, depth))
 
-checker = linkChecker.LinkChecker(startLink, depth, htmlLinkParser.HTMLLinkParser(), linkRequester.LinkRequester())
+linkParser = htmlLinkParser.HTMLLinkParser()
+contRequester = contentRequester.ContentRequester()
+pageGetter = pageGetter.PageGetter(contRequester)
+requester = linkRequester.LinkRequester(pageGetter)
+
+checker = linkChecker.LinkChecker(startLink, depth, linkParser, requester)
 checker.check_links()
 
 checker.print_results()
