@@ -1,4 +1,5 @@
-﻿import linkChecker
+﻿from html.parser import HTMLParser
+import linkChecker
 import linkRequester
 import pageGetter
 import unittest
@@ -12,47 +13,37 @@ class MockHtmlLinkParser(object):
         if (markup == "some markup"):
             self.feedMethodCalledCorrectly = True
 
-#class ProcessMarkupTests(unittest.TestCase):
-#    def test_InvokesFeedMethodOnMarkup(self):
-#        mockHtmlLinkParser = MockHtmlLinkParser()
-#        sut = linkChecker.LinkChecker("start link", 1, mockHtmlLinkParser, None)
+class MockHtmlLinkParser(HTMLParser):
+    def __init__(self):
+        super().__init__(self)
+        self.links = set()
 
-#        sut.process_markup("some markup")
+    # tag and attribute values are automatically lowercased
+    def handle_starttag(self, tag, attrs):
+        # todo - what type of tags do we want to look for?
+        if (tag == "a"):
+            for attr in attrs:
+                # todo - use list comprehension to make this cleaner
+                attrName, attrValue = attr
 
-#        self.assertTrue(mockHtmlLinkParser.feedMethodCalledCorrectly)
-
-#    def test_ReturnsLinks(self):
-#        mockHtmlLinkParser = MockHtmlLinkParser()
-#        mockHtmlLinkParser.links = set()
-#        sut = linkChecker.LinkChecker("start link", 1, mockHtmlLinkParser, None)
-
-#        result = sut.process_markup("some markup")
-
-#        self.assertTrue(result is mockHtmlLinkParser.links)
+                if (attrName == "href"):
+                    # todo - should do the link union here for optimization
+                    self.links.add(attrValue)
 
 class MockLinkRequester(object):
     def get_link(self, link):
-        return False, "markup"
+        return "some markup"
 
-class CheckLinksHelperTests(unittest.TestCase):
-    #def test_ProcessesNoLinksIfCurrentLinkDepthExceedsMaxDepth(self):
-    #    sut = linkChecker.LinkChecker("start link", 1, None, None)
+# these are more functional tests rather than unit tests
+class CheckLinksTests(unittest.TestCase):
+    def test_CheckLinksFunctionalTest(self):
+        mockHtmlLinkParser = MockHtmlLinkParser()
+        mockLinkRequester = MockLinkRequester()
+        sut = linkChecker.LinkChecker("bogus start link", 1, mockHtmlLinkParser, mockLinkRequester)
 
-    #    sut.check_links_helper(set(), 2)
+        sut.check_links()
 
-    #    self.assertEqual(0, sut.numLinksProcessed)
-
-    #def test_RecordsNumberOfLinksProcessed(self):
-    #    mockLinkRequester = MockLinkRequester()
-    #    linksToProcess = set()
-    #    linksToProcess.add("http://www.foo.com")
-
-    #    sut = linkChecker.LinkChecker("start link", 1, None, mockLinkRequester)
-        
-    #    sut.check_links_helper(linksToProcess, 1)
-
-    #    self.assertEqual(1, sut.numLinksProcessed)
-
+        self.assertEqual(1, sut.numLinksProcessed)
 
 if __name__ == '__main__':
     unittest.main()
