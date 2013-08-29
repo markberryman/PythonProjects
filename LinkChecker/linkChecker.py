@@ -51,7 +51,7 @@ class LinkChecker:
         return None
 
     def check_links(self):
-        """Loops through the link checking, stopping at the specified depth."""
+        """Starts the link checking process w/ the specified start link."""
         # todo - why can't i pass this directly
         linksToProcess = set()
         linksToProcess.add(self.startLink)
