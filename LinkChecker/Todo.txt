@@ -1,6 +1,0 @@
-* 
-
-Class design:
-
-LinkChecker -> HTMLLinkParser
-			-> LinkRequester	-> PageGetter	-> ContentRequester
