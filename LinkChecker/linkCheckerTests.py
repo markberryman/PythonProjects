@@ -14,11 +14,11 @@ class MockHtmlLinkParser(HTMLParser):
         return None
         
 class MockLinkRequester(object):
-    def __init__(self, dummyMarkupToReturn):
+    def __init__(self, dummyMarkupToReturn = None):
         self.dummyMarkupToReturn = dummyMarkupToReturn
 
     def get_link(self, link):
-        return "some markup"
+        return self.dummyMarkupToReturn
 
 # these are more functional tests rather than unit tests
 class CheckLinksTests(unittest.TestCase):
