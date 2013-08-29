@@ -10,13 +10,18 @@ depth = 1
 
 print("Starting link checking with \"{}\" and depth {}".format(startLink, depth))
 
-linkParser = htmlLinkParser.HTMLLinkParser()
+linkParserFactory = linkChecker.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 pageGetter = pageGetter.PageGetter(contRequester)
 requester = linkRequester.LinkRequester(pageGetter)
 
-checker = linkChecker.LinkChecker(startLink, depth, linkParser, requester)
-checker.check_links()
+checker = linkChecker.LinkChecker(linkParserFactory, requester)
+
+# todo - why can't i pass this directly
+linksToProcess = set()
+linksToProcess.add(startLink)
+
+checker.check_links(linksToProcess, 1)
 
 checker.print_results()
 

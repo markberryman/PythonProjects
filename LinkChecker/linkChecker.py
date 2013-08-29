@@ -3,11 +3,13 @@ import linkRequester
 import linkCheckerUtilities
 import pageGetter
 
+class HtmlLinkParserFactory:
+    def create_html_link_parser(self):
+        return htmlLinkParser.HTMLLinkParser()
+
 class LinkChecker:
-    def __init__(self, startLink, maxDepth, htmlLinkParser, linkRequester):
-        self.startLink = startLink
-        self.maxDepth = maxDepth
-        self.htmlLinkParser = htmlLinkParser
+    def __init__(self, htmlLinkParserFactory, linkRequester):
+        self.htmlLinkParserFactory = htmlLinkParserFactory
         self.linkRequester = linkRequester
         self.numLinksProcessed = 0
         self.brokenLinks = set()
@@ -31,10 +33,9 @@ class LinkChecker:
         else:
             print("No broken links.")
 
-    # todo - add test; won't be unit tests though    
-    def __check_links_helper(self, linksToProcess, curDepth):
-        """Checks the provided set of links but not beyond the specified depth."""
-        if (curDepth <= self.maxDepth):
+    def check_links(self, linksToProcess, depth):
+        """Checks the provided set of links to a specified depth."""
+        if (depth != 0):
             for link in linksToProcess:
                 # todo - should we block leaving the root domain?
                 markup = self.linkRequester.get_link(link)
@@ -42,20 +43,12 @@ class LinkChecker:
                 if (markup is None):
                     self.brokenLinks.add(link)
         
-                newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, self.htmlLinkParser)
+                htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
 
-                self.__check_links_helper(newLinks, curDepth + 1)
+                newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
+
+                self.check_links(newLinks, depth - 1)
 
             self.numLinksProcessed += len(linksToProcess)
 
-        return None
-
-    def check_links(self):
-        """Starts the link checking process w/ the specified start link."""
-        # todo - why can't i pass this directly
-        linksToProcess = set()
-        linksToProcess.add(self.startLink)
-
-        self.__check_links_helper(linksToProcess, 1)
-        
         return None
