@@ -4,15 +4,6 @@ import linkRequester
 import pageGetter
 import unittest
 
-class MockHtmlLinkParser(object):
-    def __init__(self):
-        self.feedMethodCalledCorrectly = False
-        self.links = set()
-
-    def feed(self, markup):
-        if (markup == "some markup"):
-            self.feedMethodCalledCorrectly = True
-
 class MockHtmlLinkParser(HTMLParser):
     def __init__(self):
         super().__init__(self)
