@@ -14,7 +14,7 @@ class MockHtmlLinkParser(HTMLParser):
         return None
         
 class MockLinkRequester(object):
-    def __init__(self, dummyMarkupToReturn = None):
+    def __init__(self, dummyMarkupToReturn = "dummy markup"):
         self.dummyMarkupToReturn = dummyMarkupToReturn
 
     def get_link(self, link):
@@ -33,12 +33,12 @@ class CheckLinksTests(unittest.TestCase):
 
     def test_CheckLinksAddsBrokenLink(self):
         mockHtmlLinkParser = MockHtmlLinkParser()
-        mockLinkRequester = MockLinkRequester()
+        mockLinkRequester = MockLinkRequester(None)
         sut = linkChecker.LinkChecker("a broken link", 1, mockHtmlLinkParser, mockLinkRequester)
 
         sut.check_links()
 
-        self.assertEqual(1, sut.numLinksProcessed)
+        self.assertEqual(1, len(sut.brokenLinks))
 
 if __name__ == '__main__':
     unittest.main()
