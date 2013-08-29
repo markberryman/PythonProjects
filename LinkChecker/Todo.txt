@@ -1,4 +1,4 @@
-* add top leven fn'l test for LinkChecker.check_links method
+* 
 
 Class design:
 
