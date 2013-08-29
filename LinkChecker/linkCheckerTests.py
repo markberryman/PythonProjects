@@ -20,16 +20,8 @@ class MockHtmlLinkParser(HTMLParser):
 
     # tag and attribute values are automatically lowercased
     def handle_starttag(self, tag, attrs):
-        # todo - what type of tags do we want to look for?
-        if (tag == "a"):
-            for attr in attrs:
-                # todo - use list comprehension to make this cleaner
-                attrName, attrValue = attr
-
-                if (attrName == "href"):
-                    # todo - should do the link union here for optimization
-                    self.links.add(attrValue)
-
+        return None
+        
 class MockLinkRequester(object):
     def get_link(self, link):
         return "some markup"
