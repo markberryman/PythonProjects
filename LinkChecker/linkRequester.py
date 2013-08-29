@@ -7,7 +7,7 @@ class LinkRequester:
         self.pageGetter = pageGetter
 
     def get_link(self, link):
-        """Returns a boolean indicating if the link is broken and the markup returned by the link."""
+        """Returns markup from requested link."""
         statusCode, markup = self.pageGetter.get_page(link)
 
         if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
