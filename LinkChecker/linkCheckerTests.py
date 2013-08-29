@@ -9,7 +9,6 @@ class MockHtmlLinkParser(HTMLParser):
         super().__init__(self)
         self.links = set()
 
-    # tag and attribute values are automatically lowercased
     def handle_starttag(self, tag, attrs):
         return None
         
