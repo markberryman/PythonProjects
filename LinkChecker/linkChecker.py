@@ -34,14 +34,12 @@ class LinkChecker:
                 # todo - should we block leaving the root domain?
                 markup = self.linkRequester.get_link(link)
 
-                if (markup is None):
+                if (markup is not None):
+                    htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
+                    newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
+                    self.check_links(newLinks, depth - 1)
+                else:
                     self.brokenLinks.add(link)
-        
-                htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
-
-                newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
-
-                self.check_links(newLinks, depth - 1)
 
             self.numLinksProcessed += len(linksToProcess)
 
