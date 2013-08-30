@@ -18,11 +18,7 @@ requester = linkRequester.LinkRequester(pageGetter)
 
 checker = linkChecker.LinkChecker(linkParserFactory, requester)
 
-# todo - why can't i pass this directly
-linksToProcess = set()
-linksToProcess.add(startLink)
-
-checker.check_links(linksToProcess, 1)
+checker.check_links(set([startLink]), 1)
 
 checker.print_results()
 

@@ -29,10 +29,8 @@ class CheckLinksTests(unittest.TestCase):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
         mockLinkRequester = MockLinkRequester()
         sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester)
-        linksToProcess = set()
-        linksToProcess.add("bogus start link")
 
-        sut.check_links(linksToProcess, 1)
+        sut.check_links(set(["bogus start link"]), 1)
 
         self.assertEqual(1, sut.numLinksProcessed)
 
@@ -40,10 +38,8 @@ class CheckLinksTests(unittest.TestCase):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
         mockLinkRequester = MockLinkRequester(None)
         sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester)
-        linksToProcess = set()
-        linksToProcess.add("a broken link")
 
-        sut.check_links(linksToProcess, 1)
+        sut.check_links(set(["broken link"]), 1)
 
         self.assertEqual(1, len(sut.brokenLinks))
 
