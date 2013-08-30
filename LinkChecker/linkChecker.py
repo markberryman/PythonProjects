@@ -1,11 +1,6 @@
-import htmlLinkParser
 import linkRequester
 import linkCheckerUtilities
 import pageGetter
-
-class HtmlLinkParserFactory:
-    def create_html_link_parser(self):
-        return htmlLinkParser.HTMLLinkParser()
 
 class LinkChecker:
     def __init__(self, htmlLinkParserFactory, linkRequester):

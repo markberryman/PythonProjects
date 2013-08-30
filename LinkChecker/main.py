@@ -1,4 +1,5 @@
 import contentRequester
+import htmlLinkParserFactory
 import linkChecker
 import linkRequester
 import pageGetter
@@ -10,7 +11,7 @@ depth = 1
 
 print("Starting link checking with \"{}\" and depth {}".format(startLink, depth))
 
-linkParserFactory = linkChecker.HtmlLinkParserFactory()
+linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 pageGetter = pageGetter.PageGetter(contRequester)
 requester = linkRequester.LinkRequester(pageGetter)
