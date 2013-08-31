@@ -1,3 +1,4 @@
+import html.parser
 import linkRequester
 import linkCheckerUtilities
 import pageGetter
@@ -8,6 +9,7 @@ class LinkChecker:
         self.linkRequester = linkRequester
         self.numLinksProcessed = 0
         self.brokenLinks = set()
+        self.invalidMarkupLinks = set()
 
     def __repr__(self):
         return "Processed {} links.".format(self.numLinksProcessed)
@@ -27,6 +29,17 @@ class LinkChecker:
         else:
             print("No broken links.")
 
+        print("Number of links with invalid markup = {}".
+              format(len(self.invalidMarkupLinks)))
+
+        if (len(self.invalidMarkupLinks) > 0):
+            print("Invalid markup links:")
+
+            for link in self.invalidMarkupLinks:
+                print(">>> {}".format(link))
+        else:
+            print("No links with invalid markup.")
+
     def check_links(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
         if (depth != 0):
@@ -36,8 +49,12 @@ class LinkChecker:
 
                 if (markup is not None):
                     htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
-                    newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
-                    self.check_links(newLinks, depth - 1)
+
+                    try:
+                        newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
+                        self.check_links(newLinks, depth - 1)
+                    except html.parser.HTMLParseError:
+                        self.invalidMarkupLinks.add(link)
                 else:
                     self.brokenLinks.add(link)
 

@@ -1,4 +1,5 @@
-﻿from html.parser import HTMLParser
+﻿import html.parser
+from html.parser import HTMLParser
 import linkChecker
 import linkRequester
 import pageGetter
@@ -8,6 +9,9 @@ class MockHtmlLinkParser(HTMLParser):
     def __init__(self):
         super().__init__(self)
         self.links = set()
+
+    def feed(self, data):
+        raise html.parser.HTMLParseError("error")
 
     def handle_starttag(self, tag, attrs):
         return None
@@ -42,6 +46,15 @@ class CheckLinksTests(unittest.TestCase):
         sut.check_links(set(["broken link"]), 1)
 
         self.assertEqual(1, len(sut.brokenLinks))
+
+    def test_CheckLinksTracksPagesWithInvalidMarkup(self):
+        mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
+        mockLinkRequester = MockLinkRequester()
+        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester)
+
+        sut.check_links(set(["link with invalid markup"]), 1)
+
+        self.assertEqual(1, len(sut.invalidMarkupLinks))
 
 if __name__ == '__main__':
     unittest.main()

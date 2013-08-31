@@ -1,5 +1,3 @@
-import html.parser
-
 class linkCheckerUtilities(object):
     """Various utility methods"""
 
@@ -10,10 +8,7 @@ class linkCheckerUtilities(object):
             return None
 
         # todo - convert relative links to absolute links
-        try:
-            htmlLinkParser.feed(markup)
-        except html.parser.HTMLParseError:
-            print("Invalid markup!")        
+        htmlLinkParser.feed(markup)
         
         print("Processed markup and found {} links".format(len(htmlLinkParser.links)))
                             
