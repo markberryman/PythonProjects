@@ -8,7 +8,7 @@ class LinkRequester:
 
     def get_link(self, link):
         """Returns markup from requested link."""
-        return self.pageGetter.get_page(link)
+        return self.pageGetter.get_resource(link)
 
         #if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
         #    # using a return value of None to indicate to calling code

@@ -5,7 +5,7 @@ class ResourceGetter:
     def __init__(self, contRequester):
         self.contRequester = contRequester
         
-    def get_page(self, linkToProcess):
+    def get_resource(self, linkToProcess):
         """Gets a web page and returns its content"""
         responseData = None
 
