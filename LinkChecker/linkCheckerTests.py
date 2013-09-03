@@ -27,12 +27,17 @@ class MockLinkRequester(object):
     def get_link(self, link):
         return self.dummyMarkupToReturn
 
+class MockLinkFilter(object):
+    def filter_links(links):
+        return links
+
 # these are more functional tests rather than unit tests
 class CheckLinksTests(unittest.TestCase):
     def test_CheckLinksFunctionalTest(self):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
         mockLinkRequester = MockLinkRequester()
-        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester)
+        mockLinkFilter = MockLinkFilter()
+        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, mockLinkFilter)
 
         sut.check_links(set(["bogus start link"]), 1)
 
@@ -41,7 +46,8 @@ class CheckLinksTests(unittest.TestCase):
     def test_CheckLinksAddsBrokenLink(self):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
         mockLinkRequester = MockLinkRequester(None)
-        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester)
+        mockLinkFilter = MockLinkFilter()
+        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, mockLinkFilter)
 
         sut.check_links(set(["broken link"]), 1)
 
@@ -50,7 +56,8 @@ class CheckLinksTests(unittest.TestCase):
     def test_CheckLinksTracksPagesWithInvalidMarkup(self):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
         mockLinkRequester = MockLinkRequester()
-        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester)
+        mockLinkFilter = MockLinkFilter()
+        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, mockLinkFilter)
 
         sut.check_links(set(["link with invalid markup"]), 1)
 
