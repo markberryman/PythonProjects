@@ -10,6 +10,14 @@ class HandleStartTagTests(unittest.TestCase):
 
         self.assertEqual(0, len(sut.links))
 
+    def test_DoesNotAddLinkFromTagWithNoLink(self):
+        dummyMarkup = "<html> <a ></a> </html>"
+        sut = htmlLinkParser.HTMLLinkParser()
+        
+        sut.feed(dummyMarkup)
+
+        self.assertEqual(0, len(sut.links))
+
     def test_ReturnsLinkFromMarkupWithAnchorTag(self):
         dummyLink1 = "http://www.foo.com"
         dummyLink2 = "http://www.bar.com"
