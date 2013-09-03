@@ -1,14 +1,13 @@
 import http.client
 import html.parser
 import link
-import linkRequester
 import linkCheckerUtilities
 import resourceGetter
 
 class LinkChecker:
-    def __init__(self, htmlLinkParserFactory, linkRequester, linkFilter):
+    def __init__(self, htmlLinkParserFactory, resourceGetter, linkFilter):
         self.htmlLinkParserFactory = htmlLinkParserFactory
-        self.linkRequester = linkRequester
+        self.resourceGetter = resourceGetter
         self.linkFilter = linkFilter
         self.numLinksProcessed = 0
         self.brokenLinks = set()
@@ -47,7 +46,7 @@ class LinkChecker:
         """Checks the provided set of links to a specified depth."""
         if (depth != 0):
             for linkToProcess in linksToProcess:                
-                statusCode, markup = self.linkRequester.get_link(linkToProcess)
+                statusCode, markup = self.resourceGetter.get_resource(linkToProcess)
 
                 if (self.__is_link_broken(statusCode) == False):
                     if (linkToProcess.type == link.LinkType.ANCHOR):

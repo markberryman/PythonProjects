@@ -3,7 +3,6 @@ import htmlLinkParserFactory
 import link
 import linkChecker
 import linkFilter
-import linkRequester
 import resourceGetter
 import htmlLinkParser
 
@@ -15,10 +14,9 @@ print("Starting link checking with \"{}\" and depth {}".format(startLink, depth)
 linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
-requester = linkRequester.LinkRequester(resourceGetter)
 linkFilter = linkFilter.LinkFilter()
 
-checker = linkChecker.LinkChecker(linkParserFactory, requester, linkFilter)
+checker = linkChecker.LinkChecker(linkParserFactory, resourceGetter, linkFilter)
 
 checker.check_links(set([startLink]), depth)
 

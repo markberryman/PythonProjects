@@ -1,7 +1,6 @@
 ﻿import html.parser
 from html.parser import HTMLParser
 import linkChecker
-import linkRequester
 import resourceGetter
 import unittest
 

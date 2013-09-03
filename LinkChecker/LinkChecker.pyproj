@@ -29,8 +29,6 @@
     <Compile Include="linkConverterUtilityTests.py" />
     <Compile Include="linkFilter.py" />
     <Compile Include="linkFilterTests.py" />
-    <Compile Include="linkRequester.py" />
-    <Compile Include="linkRequesterTests.py" />
     <Compile Include="main.py" />
     <Compile Include="resourceGetter.py" />
     <Compile Include="resourceGetterTests.py" />
