@@ -16,7 +16,7 @@ class HTMLLinkParser(HTMLParser):
         if (tag == "link"):
             link = self.__process_link_tag(attrs)
 
-        # handling tags that don't have a link
+        # handling tags that don't have a link (i.e., bad markup)
         if (link is not None):
             self.links.add(link)
 
