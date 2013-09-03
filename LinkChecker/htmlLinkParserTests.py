@@ -1,4 +1,5 @@
 import htmlLinkParser
+import link
 import unittest
 
 class HandleStartTagTests(unittest.TestCase):
@@ -19,16 +20,14 @@ class HandleStartTagTests(unittest.TestCase):
         self.assertEqual(0, len(sut.links))
 
     def test_ReturnsLinkFromMarkupWithAnchorTag(self):
-        dummyLink1 = "http://www.foo.com"
-        dummyLink2 = "http://www.bar.com"
-        dummyMarkup = "<html> <a href=\"{}\"></a> <a href=\"{}\"></a> </html>".format(dummyLink1, dummyLink2)
+        dummyLink = "http://www.foo.com"
+        dummyMarkup = "<html> <a href=\"{}\"></a> </html>".format(dummyLink)
         sut = htmlLinkParser.HTMLLinkParser()
         
         sut.feed(dummyMarkup)
 
-        self.assertEqual(2, len(sut.links))
-        self.assertTrue(dummyLink1 in sut.links)
-        self.assertTrue(dummyLink2 in sut.links)
+        self.assertEqual(1, len(sut.links))
+        self.assertEqual(list(sut.links)[0].type, link.LinkType.ANCHOR)
 
     def test_ReturnsStylesheetLink(self):
         dummyLink = "http://www.foo.com/style.css"
@@ -38,7 +37,7 @@ class HandleStartTagTests(unittest.TestCase):
         sut.feed(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
-        self.assertTrue(dummyLink in sut.links)
+        self.assertEqual(list(sut.links)[0].type, link.LinkType.STYLESHEET)
 
     def test_ReturnsScriptLink(self):
         dummyLink = "http://www.foo.com/script.js"
@@ -48,7 +47,7 @@ class HandleStartTagTests(unittest.TestCase):
         sut.feed(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
-        self.assertTrue(dummyLink in sut.links)
+        self.assertEqual(list(sut.links)[0].type, link.LinkType.SCRIPT)
 
     def test_ReturnsImageLink(self):
         dummyLink = "http://www.foo.com/bar.jpg"
@@ -58,7 +57,7 @@ class HandleStartTagTests(unittest.TestCase):
         sut.feed(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
-        self.assertTrue(dummyLink in sut.links)
+        self.assertEqual(list(sut.links)[0].type, link.LinkType.IMAGE)
 
 if __name__ == '__main__':
     unittest.main()

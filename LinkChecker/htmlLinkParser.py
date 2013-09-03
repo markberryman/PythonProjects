@@ -1,3 +1,4 @@
+import link
 from html.parser import HTMLParser
 
 class HTMLLinkParser(HTMLParser):
@@ -8,74 +9,77 @@ class HTMLLinkParser(HTMLParser):
 
     # tag and attribute values are automatically lowercased
     def handle_starttag(self, tag, attrs):
-        link = None
+        newLink = None
 
         if (tag == "a"):
-            link = self.__process_anchor_tag(attrs)
+            newLink = self.__process_anchor_tag(attrs)
                         
         if (tag == "link"):
-            link = self.__process_link_tag(attrs)
+            newLink = self.__process_link_tag(attrs)
 
         if (tag == "script"):
-            link = self.__process_script_tag(attrs)
+            newLink = self.__process_script_tag(attrs)
 
         if (tag == "img"):
-            link = self.__process_image_tag(attrs)
+            newLink = self.__process_image_tag(attrs)
 
         # handling tags that don't have a link (i.e., bad markup)
-        if (link is not None):
-            self.links.add(link)
+        if (newLink is not None):
+            self.links.add(newLink)
 
     @staticmethod
     def __process_anchor_tag(attrs):
-        link = None
+        newLink = None
 
         for attr in attrs:
             attrName, attrValue = attr
 
             if (attrName == "href"):
-                link = attrValue
+                newLink = link.Link(attrValue, link.LinkType.ANCHOR)
 
-        return link
+        return newLink
 
     @staticmethod
     def __process_link_tag(attrs):
-        link = None
+        newLink = None
+        newLinkHrefValue = None
         isStyleSheetLink = False
 
         for attr in attrs:
             attrName, attrValue = attr
 
             if (attrName == "href"):
-                link = attrValue
+                newLinkHrefValue = attrValue
 
             if (attrName == "rel"):
                 if (attrValue == "stylesheet"):
                     isStyleSheetLink = True
 
         if (isStyleSheetLink):
-            return link
+            newLink = link.Link(newLinkHrefValue, link.LinkType.STYLESHEET)
+
+        return newLink
 
     @staticmethod
     def __process_script_tag(attrs):
-        link = None
+        newLink = None
 
         for attr in attrs:
             attrName, attrValue = attr
 
             if (attrName == "src"):
-                link = attrValue
+                newLink = link.Link(attrValue, link.LinkType.SCRIPT)
 
-        return link
+        return newLink
 
     @staticmethod
     def __process_image_tag(attrs):
-        link = None
+        newLink = None
 
         for attr in attrs:
             attrName, attrValue = attr
 
             if (attrName == "src"):
-                link = attrValue
+                newLink = link.Link(attrValue, link.LinkType.IMAGE)
 
-        return link
+        return newLink

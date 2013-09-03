@@ -1,4 +1,6 @@
+import http.client
 import html.parser
+import link
 import linkRequester
 import linkCheckerUtilities
 import pageGetter
@@ -44,21 +46,30 @@ class LinkChecker:
     def check_links(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
         if (depth != 0):
-            for link in linksToProcess:                
-                markup = self.linkRequester.get_link(link)
+            for linkToProcess in linksToProcess:                
+                statusCode, markup = self.linkRequester.get_link(linkToProcess)
 
-                if (markup is not None):
-                    htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
+                if (self.__is_link_broken(statusCode) == False):
+                    if (linkToProcess.type == link.LinkType.ANCHOR):
+                        htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
 
-                    try:
-                        newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
-                        newLinks = self.linkFilter.filter_links(newLinks)
-                        self.check_links(newLinks, depth - 1)
-                    except html.parser.HTMLParseError:
-                        self.invalidMarkupLinks.add(link)
+                        try:
+                            newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
+                            newLinks = self.linkFilter.filter_links(newLinks)
+                            self.check_links(newLinks, depth - 1)
+                        except html.parser.HTMLParseError:
+                            self.invalidMarkupLinks.add(linkToProcess)
                 else:
-                    self.brokenLinks.add(link)
+                    self.brokenLinks.add(linkToProcess)
 
             self.numLinksProcessed += len(linksToProcess)
 
         return None
+
+    def __is_link_broken(self, statusCode):
+        result = False
+
+        if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
+            result = True
+
+        return result

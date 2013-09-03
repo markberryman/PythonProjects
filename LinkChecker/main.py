@@ -1,12 +1,13 @@
 import contentRequester
 import htmlLinkParserFactory
+import link
 import linkChecker
 import linkFilter
 import linkRequester
 import pageGetter
 import htmlLinkParser
 
-startLink = "http://www.markwberryman.com"
+startLink = link.Link("http://www.markwberryman.com", link.LinkType.ANCHOR)
 depth = 2
 
 print("Starting link checking with \"{}\" and depth {}".format(startLink, depth))
