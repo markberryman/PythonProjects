@@ -50,5 +50,15 @@ class HandleStartTagTests(unittest.TestCase):
         self.assertEqual(1, len(sut.links))
         self.assertTrue(dummyLink in sut.links)
 
+    def test_ReturnsImageLink(self):
+        dummyLink = "http://www.foo.com/bar.jpg"
+        dummyMarkup = "<img src=\"{}\" />".format(dummyLink)
+        sut = htmlLinkParser.HTMLLinkParser()
+        
+        sut.feed(dummyMarkup)
+
+        self.assertEqual(1, len(sut.links))
+        self.assertTrue(dummyLink in sut.links)
+
 if __name__ == '__main__':
     unittest.main()
