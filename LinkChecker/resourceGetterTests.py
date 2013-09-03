@@ -1,3 +1,4 @@
+import link
 import resourceGetter
 import unittest
 
@@ -13,14 +14,25 @@ class MockRequester(object):
         return MockResponse()
 
 class ResourceGetterTests(unittest.TestCase):
-    def test_GetPageReturnsStatusCodeAndUrlContent(self):
+    def test_GetResourceReturnsStatusCodeAndUrlContentForAnchorTag(self):
         mockRequester = MockRequester()
-        sut = pageGetter.PageGetter(mockRequester)
+        dummyLink = link.Link("url", link.LinkType.ANCHOR)
+        sut = resourceGetter.ResourceGetter(mockRequester)
         
-        statusCodeResult, contentResult = sut.get_page("some url")
+        statusCodeResult, contentResult = sut.get_resource(dummyLink)
 
         self.assertEqual(200, statusCodeResult)
         self.assertEqual("hi", contentResult)
+
+    def test_GetResourceReturnsNoneForMarkupForNonAnchorLink(self):
+        mockRequester = MockRequester()
+        dummyLink = link.Link("url", link.LinkType.IMAGE)
+        sut = resourceGetter.ResourceGetter(mockRequester)
+        
+        statusCodeResult, contentResult = sut.get_resource(dummyLink)
+
+        self.assertEqual(200, statusCodeResult)
+        self.assertEqual(None, contentResult)
 
 if __name__ == '__main__':
     unittest.main()
