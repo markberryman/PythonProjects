@@ -40,5 +40,15 @@ class HandleStartTagTests(unittest.TestCase):
         self.assertEqual(1, len(sut.links))
         self.assertTrue(dummyLink in sut.links)
 
+    def test_ReturnsScriptLink(self):
+        dummyLink = "http://www.foo.com/script.js"
+        dummyMarkup = "<script src=\"{}\" />".format(dummyLink)
+        sut = htmlLinkParser.HTMLLinkParser()
+        
+        sut.feed(dummyMarkup)
+
+        self.assertEqual(1, len(sut.links))
+        self.assertTrue(dummyLink in sut.links)
+
 if __name__ == '__main__':
     unittest.main()

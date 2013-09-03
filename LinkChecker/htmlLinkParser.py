@@ -16,6 +16,9 @@ class HTMLLinkParser(HTMLParser):
         if (tag == "link"):
             link = self.__process_link_tag(attrs)
 
+        if (tag == "script"):
+            link = self.__process_script_tag(attrs)
+
         # handling tags that don't have a link (i.e., bad markup)
         if (link is not None):
             self.links.add(link)
@@ -49,3 +52,15 @@ class HTMLLinkParser(HTMLParser):
 
         if (isStyleSheetLink):
             return link
+
+    @staticmethod
+    def __process_script_tag(attrs):
+        link = None
+
+        for attr in attrs:
+            attrName, attrValue = attr
+
+            if (attrName == "src"):
+                link = attrValue
+
+        return link
