@@ -4,7 +4,7 @@ import link
 import linkChecker
 import linkFilter
 import linkRequester
-import pageGetter
+import resourceGetter
 import htmlLinkParser
 
 startLink = link.Link("http://www.markwberryman.com", link.LinkType.ANCHOR)
@@ -14,8 +14,8 @@ print("Starting link checking with \"{}\" and depth {}".format(startLink, depth)
 
 linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
-pageGetter = pageGetter.PageGetter(contRequester)
-requester = linkRequester.LinkRequester(pageGetter)
+resourceGetter = resourceGetter.ResourceGetter(contRequester)
+requester = linkRequester.LinkRequester(resourceGetter)
 linkFilter = linkFilter.LinkFilter()
 
 checker = linkChecker.LinkChecker(linkParserFactory, requester, linkFilter)

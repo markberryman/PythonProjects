@@ -1,4 +1,4 @@
-import pageGetter
+import resourceGetter
 import unittest
 
 class MockResponse(object):
@@ -12,7 +12,7 @@ class MockRequester(object):
     def request_url(self, url):
         return MockResponse()
 
-class PageGetterTests(unittest.TestCase):
+class ResourceGetterTests(unittest.TestCase):
     def test_GetPageReturnsStatusCodeAndUrlContent(self):
         mockRequester = MockRequester()
         sut = pageGetter.PageGetter(mockRequester)

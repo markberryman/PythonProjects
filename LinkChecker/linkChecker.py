@@ -3,7 +3,7 @@ import html.parser
 import link
 import linkRequester
 import linkCheckerUtilities
-import pageGetter
+import resourceGetter
 
 class LinkChecker:
     def __init__(self, htmlLinkParserFactory, linkRequester, linkFilter):

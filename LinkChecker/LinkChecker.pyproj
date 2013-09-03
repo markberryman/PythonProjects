@@ -32,8 +32,8 @@
     <Compile Include="linkRequester.py" />
     <Compile Include="linkRequesterTests.py" />
     <Compile Include="main.py" />
-    <Compile Include="pageGetter.py" />
-    <Compile Include="pageGetterTests.py" />
+    <Compile Include="resourceGetter.py" />
+    <Compile Include="resourceGetterTests.py" />
     <Compile Include="linkCheckerUtilities.py" />
   </ItemGroup>
   <ItemGroup>

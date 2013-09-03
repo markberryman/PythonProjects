@@ -1,7 +1,7 @@
 import contentRequester
 import link
 
-class PageGetter:
+class ResourceGetter:
     """Gets a web page and returns its content"""
     def __init__(self, contRequester):
         self.contRequester = contRequester

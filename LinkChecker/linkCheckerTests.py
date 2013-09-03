@@ -2,7 +2,7 @@
 from html.parser import HTMLParser
 import linkChecker
 import linkRequester
-import pageGetter
+import resourceGetter
 import unittest
 
 class MockHtmlLinkParser(HTMLParser):

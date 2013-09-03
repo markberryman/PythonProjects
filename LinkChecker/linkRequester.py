@@ -1,5 +1,5 @@
 import http.client
-import pageGetter
+import resourceGetter
 
 class LinkRequester:
     """Requests a link using the provided page getter."""
