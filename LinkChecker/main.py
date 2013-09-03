@@ -6,7 +6,6 @@ import linkRequester
 import pageGetter
 import htmlLinkParser
 
-# todo - take input param that's the start page and link depth
 startLink = "http://www.markwberryman.com"
 depth = 1
 

@@ -14,6 +14,5 @@ class PageGetter:
         print("Response status = {0}".format(statusCode))
 
         responseBytes = res.read()
-
-        # todo - use the correct encoding based on the response headers        
+                
         return statusCode, responseBytes.decode()

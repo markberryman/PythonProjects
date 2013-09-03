@@ -6,8 +6,7 @@ class linkCheckerUtilities(object):
         """Returns the new links detected from processing a link."""
         if (markup is None):
             return None
-
-        # todo - convert relative links to absolute links
+                
         htmlLinkParser.feed(markup)
         
         print("Processed markup and found {} links".format(len(htmlLinkParser.links)))

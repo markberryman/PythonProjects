@@ -7,13 +7,10 @@ class HTMLLinkParser(HTMLParser):
         self.links = set()
 
     # tag and attribute values are automatically lowercased
-    def handle_starttag(self, tag, attrs):
-        # todo - what type of tags do we want to look for?
+    def handle_starttag(self, tag, attrs):        
         if (tag == "a"):
             for attr in attrs:
-                # todo - use list comprehension to make this cleaner
                 attrName, attrValue = attr
 
-                if (attrName == "href"):
-                    # todo - should do the link union here for optimization
+                if (attrName == "href"):                    
                     self.links.add(attrValue)

@@ -44,8 +44,7 @@ class LinkChecker:
     def check_links(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
         if (depth != 0):
-            for link in linksToProcess:
-                # todo - should we block leaving the root domain?
+            for link in linksToProcess:                
                 markup = self.linkRequester.get_link(link)
 
                 if (markup is not None):
