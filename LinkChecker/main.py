@@ -9,7 +9,7 @@ import htmlLinkParser
 startLink = link.Link("http://www.markwberryman.com", link.LinkType.ANCHOR)
 depth = 2
 
-print("Starting link checking with \"{}\" and depth {}".format(startLink, depth))
+print("Starting link checking with \"{}\" and depth {}".format(startLink.value, depth))
 
 linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
