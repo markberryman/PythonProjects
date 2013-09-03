@@ -13,7 +13,7 @@ class HandleStartTagTests(unittest.TestCase):
     def test_ReturnsLinkFromMarkupWithAnchorTag(self):
         dummyLink1 = "http://www.foo.com"
         dummyLink2 = "http://www.bar.com"
-        dummyMarkup = "<html>" + "<a href=\"" + dummyLink1 + "\"></a>" + "<a href=\"" + dummyLink2 + "\"></a>" + "</html>";
+        dummyMarkup = "<html> <a href=\"{}\"></a> <a href=\"{}\"></a> </html>".format(dummyLink1, dummyLink2)
         sut = htmlLinkParser.HTMLLinkParser()
         
         sut.feed(dummyMarkup)
@@ -23,14 +23,14 @@ class HandleStartTagTests(unittest.TestCase):
         self.assertTrue(dummyLink2 in sut.links)
 
     def test_ReturnsStylesheetLink(self):
-        dummyLink1 = "http://www.foo.com/style.css"
-        dummyMarkup = "<link " + "rel=\"stylesheet\"" + " href=\"" + dummyLink1 + "\" />"
+        dummyLink = "http://www.foo.com/style.css"
+        dummyMarkup = "<link rel=\"stylesheet\" href=\"{}\" />".format(dummyLink)
         sut = htmlLinkParser.HTMLLinkParser()
         
         sut.feed(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
-        self.assertTrue(dummyLink1 in sut.links)
+        self.assertTrue(dummyLink in sut.links)
 
 if __name__ == '__main__':
     unittest.main()
