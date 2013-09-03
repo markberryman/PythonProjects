@@ -1,6 +1,7 @@
 import contentRequester
 import htmlLinkParserFactory
 import linkChecker
+import linkFilter
 import linkRequester
 import pageGetter
 import htmlLinkParser
@@ -15,8 +16,9 @@ linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 pageGetter = pageGetter.PageGetter(contRequester)
 requester = linkRequester.LinkRequester(pageGetter)
+linkFilter = linkFilter.LinkFilter()
 
-checker = linkChecker.LinkChecker(linkParserFactory, requester)
+checker = linkChecker.LinkChecker(linkParserFactory, requester, linkFilter)
 
 checker.check_links(set([startLink]), 1)
 

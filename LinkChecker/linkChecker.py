@@ -4,9 +4,10 @@ import linkCheckerUtilities
 import pageGetter
 
 class LinkChecker:
-    def __init__(self, htmlLinkParserFactory, linkRequester):
+    def __init__(self, htmlLinkParserFactory, linkRequester, linkFilter):
         self.htmlLinkParserFactory = htmlLinkParserFactory
         self.linkRequester = linkRequester
+        self.linkFilter = linkFilter
         self.numLinksProcessed = 0
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
@@ -52,6 +53,7 @@ class LinkChecker:
 
                     try:
                         newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
+                        newLinks = self.linkFilter.filter_links(newLinks)
                         self.check_links(newLinks, depth - 1)
                     except html.parser.HTMLParseError:
                         self.invalidMarkupLinks.add(link)
