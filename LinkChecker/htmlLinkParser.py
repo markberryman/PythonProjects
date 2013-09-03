@@ -7,27 +7,45 @@ class HTMLLinkParser(HTMLParser):
         self.links = set()
 
     # tag and attribute values are automatically lowercased
-    def handle_starttag(self, tag, attrs):        
+    def handle_starttag(self, tag, attrs):
+        link = None
+
         if (tag == "a"):
-            for attr in attrs:
-                attrName, attrValue = attr
-
-                if (attrName == "href"):
-                    self.links.add(attrValue)
-
+            link = self.__process_anchor_tag(attrs)
+                        
         if (tag == "link"):
-            stylesheetLink = False
+            link = self.__process_link_tag(attrs)
 
-            for attr in attrs:
-                attrName, attrValue = attr
+        # handling tags that don't have a link
+        if (link is not None):
+            self.links.add(link)
 
-                if (attrName == "rel"):
-                    if (attrValue == "stylesheet"):
-                        stylesheetLink = True
+    @staticmethod
+    def __process_anchor_tag(attrs):
+        link = None
 
-            if (stylesheetLink):
-                for attr in attrs:
-                    attrName, attrValue = attr
+        for attr in attrs:
+            attrName, attrValue = attr
 
-                    if (attrName == "href"):
-                        self.links.add(attrValue)
+            if (attrName == "href"):
+                link = attrValue
+
+        return link
+
+    @staticmethod
+    def __process_link_tag(attrs):
+        link = None
+        isStyleSheetLink = False
+
+        for attr in attrs:
+            attrName, attrValue = attr
+
+            if (attrName == "href"):
+                link = attrValue
+
+            if (attrName == "rel"):
+                if (attrValue == "stylesheet"):
+                    isStyleSheetLink = True
+
+        if (isStyleSheetLink):
+            return link
