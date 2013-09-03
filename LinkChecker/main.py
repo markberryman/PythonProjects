@@ -7,7 +7,7 @@ import pageGetter
 import htmlLinkParser
 
 startLink = "http://www.markwberryman.com"
-depth = 1
+depth = 2
 
 print("Starting link checking with \"{}\" and depth {}".format(startLink, depth))
 
@@ -19,7 +19,7 @@ linkFilter = linkFilter.LinkFilter()
 
 checker = linkChecker.LinkChecker(linkParserFactory, requester, linkFilter)
 
-checker.check_links(set([startLink]), 1)
+checker.check_links(set([startLink]), depth)
 
 checker.print_results()
 

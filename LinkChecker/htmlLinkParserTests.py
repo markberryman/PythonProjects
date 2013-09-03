@@ -22,5 +22,15 @@ class HandleStartTagTests(unittest.TestCase):
         self.assertTrue(dummyLink1 in sut.links)
         self.assertTrue(dummyLink2 in sut.links)
 
+    def test_ReturnsStylesheetLink(self):
+        dummyLink1 = "http://www.foo.com/style.css"
+        dummyMarkup = "<link " + "rel=\"stylesheet\"" + " href=\"" + dummyLink1 + "\" />"
+        sut = htmlLinkParser.HTMLLinkParser()
+        
+        sut.feed(dummyMarkup)
+
+        self.assertEqual(1, len(sut.links))
+        self.assertTrue(dummyLink1 in sut.links)
+
 if __name__ == '__main__':
     unittest.main()

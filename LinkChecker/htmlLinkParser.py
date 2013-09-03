@@ -12,5 +12,22 @@ class HTMLLinkParser(HTMLParser):
             for attr in attrs:
                 attrName, attrValue = attr
 
-                if (attrName == "href"):                    
+                if (attrName == "href"):
                     self.links.add(attrValue)
+
+        if (tag == "link"):
+            stylesheetLink = False
+
+            for attr in attrs:
+                attrName, attrValue = attr
+
+                if (attrName == "rel"):
+                    if (attrValue == "stylesheet"):
+                        stylesheetLink = True
+
+            if (stylesheetLink):
+                for attr in attrs:
+                    attrName, attrValue = attr
+
+                    if (attrName == "href"):
+                        self.links.add(attrValue)
