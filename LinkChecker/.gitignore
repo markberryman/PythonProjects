@@ -1,4 +1,6 @@
 Todo.txt
 
+TestResults/
+
 # VS Python performance testing related files
 *.pyperf
