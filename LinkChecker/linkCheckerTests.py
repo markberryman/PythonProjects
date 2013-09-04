@@ -21,11 +21,12 @@ class MockHtmlLinkParserFactory(object):
         return MockHtmlLinkParser()
     
 class MockLinkRequester(object):
-    def __init__(self, dummyMarkupToReturn = "dummy markup"):
+    def __init__(self, dummyMarkupToReturn = "dummy markup", dummyStatusCodeToReturn = 200):
         self.dummyMarkupToReturn = dummyMarkupToReturn
+        self.dummyStatusCodeToReturn = dummyStatusCodeToReturn
 
     def get_resource(self, link):
-        return 404, self.dummyMarkupToReturn
+        return self.dummyStatusCodeToReturn, self.dummyMarkupToReturn
 
 class MockLinkFilter(object):
     def filter_links(self, links):
@@ -45,7 +46,7 @@ class CheckLinksTests(unittest.TestCase):
 
     def test_CheckLinksAddsBrokenLink(self):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
-        mockLinkRequester = MockLinkRequester(None)
+        mockLinkRequester = MockLinkRequester(None, 404)
         dummyLink = link.Link("broken link", link.LinkType.ANCHOR)
         sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, None)
 
@@ -56,9 +57,8 @@ class CheckLinksTests(unittest.TestCase):
     def test_CheckLinksTracksPagesWithInvalidMarkup(self):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
         mockLinkRequester = MockLinkRequester()
-        mockLinkFilter = MockLinkFilter()
         dummyLink = link.Link("link with invalid markup", link.LinkType.ANCHOR)
-        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, mockLinkFilter)
+        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, None)
 
         sut.check_links(set([dummyLink]), 1)
 
