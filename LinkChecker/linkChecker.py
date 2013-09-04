@@ -13,6 +13,8 @@ class LinkChecker:
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
 
+        self.allLinksProcessed = set()
+
     def __repr__(self):
         return "Processed {} links.".format(self.numLinksProcessed)
 
@@ -45,25 +47,28 @@ class LinkChecker:
     def check_links(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
         if (depth != 0):
-            for linkToProcess in linksToProcess:                
-                statusCode, markup = self.resourceGetter.get_resource(linkToProcess)
 
-                if (self.__is_link_broken(statusCode) == False):
-                    if (linkToProcess.type == link.LinkType.ANCHOR):
-                        htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
+            for linkToProcess in linksToProcess:
+                if linkToProcess.value.lower() not in self.allLinksProcessed:
+                    self.numLinksProcessed += 1
+                    self.allLinksProcessed.add(linkToProcess.value.lower())
 
-                        try:
-                            newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
+                    statusCode, markup = self.resourceGetter.get_resource(linkToProcess)
 
-                            if (self.linkFilter is not None):
-                                newLinks = self.linkFilter.filter_links(newLinks)
+                    if (self.__is_link_broken(statusCode) == False):
+                        if (linkToProcess.type == link.LinkType.ANCHOR):
+                            htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
 
-                            self.check_links(newLinks, depth - 1)
-                        except html.parser.HTMLParseError:
-                            self.invalidMarkupLinks.add(linkToProcess)
-                else:
-                    self.brokenLinks.add(linkToProcess)
+                            try:
+                                newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
 
-            self.numLinksProcessed += len(linksToProcess)
+                                if (self.linkFilter is not None):
+                                    newLinks = self.linkFilter.filter_links(newLinks)
+
+                                self.check_links(newLinks, depth - 1)
+                            except html.parser.HTMLParseError:
+                                self.invalidMarkupLinks.add(linkToProcess)
+                    else:
+                        self.brokenLinks.add(linkToProcess)
 
         return None    
