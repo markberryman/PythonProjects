@@ -26,8 +26,7 @@ class LinkChecker:
         if (len(self.brokenLinks) > 0):
             print("Broken links:")
 
-            for link in self.brokenLinks:
-                print(">>> {}".format(link.value))
+            self.__print_links(self.brokenLinks)
         else:
             print("No broken links.")
 
@@ -37,10 +36,13 @@ class LinkChecker:
         if (len(self.invalidMarkupLinks) > 0):
             print("Invalid markup links:")
 
-            for link in self.invalidMarkupLinks:
-                print(">>> {}".format(link.value))
+            self.__print_links(self.invalidMarkupLinks)
         else:
             print("No links with invalid markup.")
+
+    def __print_links(self, links):
+        for link in links:
+            print(">>> {}".format(link.value))
 
     def check_links(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
