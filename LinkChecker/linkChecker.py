@@ -44,6 +44,9 @@ class LinkChecker:
         for link in links:
             print(">>> {}".format(link.value))
 
+    def __is_link_broken(self, statusCode):
+        return ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST))
+
     def check_links(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
         if (depth != 0):
@@ -65,12 +68,4 @@ class LinkChecker:
 
             self.numLinksProcessed += len(linksToProcess)
 
-        return None
-
-    def __is_link_broken(self, statusCode):
-        result = False
-
-        if ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST)):
-            result = True
-
-        return result
+        return None    
