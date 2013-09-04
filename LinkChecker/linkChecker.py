@@ -56,8 +56,8 @@ class LinkChecker:
 
                         try:
                             newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
-                            newLinks = self.linkFilter.filter_links(newLinks)
-                            self.check_links(newLinks, depth - 1)
+                            filteredLinks = self.linkFilter.filter_links(newLinks)
+                            self.check_links(filteredLinks, depth - 1)
                         except html.parser.HTMLParseError:
                             self.invalidMarkupLinks.add(linkToProcess)
                 else:
