@@ -27,7 +27,7 @@ class LinkChecker:
             print("Broken links:")
 
             for link in self.brokenLinks:
-                print(">>> {}".format(link))
+                print(">>> {}".format(link.value))
         else:
             print("No broken links.")
 
@@ -38,7 +38,7 @@ class LinkChecker:
             print("Invalid markup links:")
 
             for link in self.invalidMarkupLinks:
-                print(">>> {}".format(link))
+                print(">>> {}".format(link.value))
         else:
             print("No links with invalid markup.")
 
