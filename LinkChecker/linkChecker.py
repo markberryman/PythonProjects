@@ -20,25 +20,20 @@ class LinkChecker:
         print("Results:")
         print("Number of links checked = {}".
               format(self.numLinksProcessed))
+
         print("Number of broken links = {}".
               format(len(self.brokenLinks)))
 
         if (len(self.brokenLinks) > 0):
             print("Broken links:")
-
             self.__print_links(self.brokenLinks)
-        else:
-            print("No broken links.")
 
         print("Number of links with invalid markup = {}".
               format(len(self.invalidMarkupLinks)))
 
         if (len(self.invalidMarkupLinks) > 0):
             print("Invalid markup links:")
-
             self.__print_links(self.invalidMarkupLinks)
-        else:
-            print("No links with invalid markup.")
 
     def __print_links(self, links):
         for link in links:
