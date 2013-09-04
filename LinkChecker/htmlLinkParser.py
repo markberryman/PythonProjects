@@ -10,76 +10,42 @@ class HTMLLinkParser(HTMLParser):
     # tag and attribute values are automatically lowercased
     def handle_starttag(self, tag, attrs):
         newLink = None
+        attrDict = dict(attrs)
 
         if (tag == "a"):
-            newLink = self.__process_anchor_tag(attrs)
+            newLink = self.__process_anchor_tag(attrDict)
                         
         if (tag == "link"):
-            newLink = self.__process_link_tag(attrs)
+            newLink = self.__process_link_tag(attrDict)
 
         if (tag == "script"):
-            newLink = self.__process_script_tag(attrs)
+            newLink = self.__process_script_tag(attrDict)
 
         if (tag == "img"):
-            newLink = self.__process_image_tag(attrs)
+            newLink = self.__process_image_tag(attrDict)
 
         # handling tags that don't have a link (i.e., bad markup)
         if (newLink is not None):
             self.links.add(newLink)
 
     @staticmethod
-    def __process_anchor_tag(attrs):
-        newLink = None
-
-        for attr in attrs:
-            attrName, attrValue = attr
-
-            if (attrName == "href"):
-                newLink = link.Link(attrValue, link.LinkType.ANCHOR)
-
-        return newLink
+    def __process_anchor_tag(attrDict):
+        if "href" in attrDict:
+            return link.Link(attrDict["href"], link.LinkType.ANCHOR)
 
     @staticmethod
-    def __process_link_tag(attrs):
-        newLink = None
-        newLinkHrefValue = None
-        isStyleSheetLink = False
-
-        for attr in attrs:
-            attrName, attrValue = attr
-
-            if (attrName == "href"):
-                newLinkHrefValue = attrValue
-
-            if (attrName == "rel"):
-                if (attrValue == "stylesheet"):
-                    isStyleSheetLink = True
-
-        if (isStyleSheetLink):
-            newLink = link.Link(newLinkHrefValue, link.LinkType.STYLESHEET)
-
-        return newLink
+    def __process_link_tag(attrDict):
+        if "rel" in attrDict:
+            if (attrDict["rel"] == "stylesheet"):
+                if "href" in attrDict:
+                    return link.Link(attrDict["href"], link.LinkType.STYLESHEET)
 
     @staticmethod
-    def __process_script_tag(attrs):
-        newLink = None
-
-        for attr in attrs:
-            attrName, attrValue = attr
-
-            if (attrName == "src"):
-                newLink = link.Link(attrValue, link.LinkType.SCRIPT)
-
-        return newLink
+    def __process_script_tag(attrDict):
+        if "src" in attrDict:
+            return link.Link(attrDict["src"], link.LinkType.SCRIPT)
 
     @staticmethod
-    def __process_image_tag(attrs):
-        newLink = None
-
-        for attr in attrs:
-            attrName, attrValue = attr
-
-            if (attrName == "src"):
-                newLink = link.Link(attrValue, link.LinkType.IMAGE)
-
-        return newLink
+    def __process_image_tag(attrDict):
+        if "src" in attrDict:
+            return link.Link(attrDict["src"], link.LinkType.IMAGE)

@@ -29,6 +29,15 @@ class HandleStartTagTests(unittest.TestCase):
         self.assertEqual(1, len(sut.links))
         self.assertEqual(list(sut.links)[0].type, link.LinkType.ANCHOR)
 
+    def test_DoesNotAddLinkForAnchorTagWithNoHref(self):
+        dummyLink = "http://www.foo.com"
+        dummyMarkup = "<html> <a></a> </html>"
+        sut = htmlLinkParser.HTMLLinkParser()
+        
+        sut.feed(dummyMarkup)
+
+        self.assertEqual(0, len(sut.links))
+                
     def test_ReturnsStylesheetLink(self):
         dummyLink = "http://www.foo.com/style.css"
         dummyMarkup = "<link rel=\"stylesheet\" href=\"{}\" />".format(dummyLink)
