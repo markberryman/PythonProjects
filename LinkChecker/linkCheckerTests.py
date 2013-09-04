@@ -36,9 +36,8 @@ class CheckLinksTests(unittest.TestCase):
     def test_CheckLinksFunctionalTest(self):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
         mockLinkRequester = MockLinkRequester()
-        mockLinkFilter = MockLinkFilter()
         dummyLink = link.Link("some link", link.LinkType.ANCHOR)
-        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, mockLinkFilter)
+        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, None)
 
         sut.check_links(set([dummyLink]), 1)
 
@@ -47,9 +46,8 @@ class CheckLinksTests(unittest.TestCase):
     def test_CheckLinksAddsBrokenLink(self):
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory()
         mockLinkRequester = MockLinkRequester(None)
-        mockLinkFilter = MockLinkFilter()
         dummyLink = link.Link("broken link", link.LinkType.ANCHOR)
-        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, mockLinkFilter)
+        sut = linkChecker.LinkChecker(mockHtmlLinkParserFactory, mockLinkRequester, None)
 
         sut.check_links(set([dummyLink]), 1)
 
