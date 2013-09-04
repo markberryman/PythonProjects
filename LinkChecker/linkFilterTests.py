@@ -1,9 +1,10 @@
-﻿import linkFilter
+﻿import link
+import linkFilter
 import unittest
 
 class FilterLinksTests(unittest.TestCase):
     def test_FiltersMailToLinks(self):
-        dummyLinks = set(["mailto:foo"])
+        dummyLinks = set(link.Link("mailto:foo", link.LinkType.ANCHOR))
         sut = linkFilter.LinkFilter()
 
         filteredLinks = sut.filter_links(dummyLinks)
