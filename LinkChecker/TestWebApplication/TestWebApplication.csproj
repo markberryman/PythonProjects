@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="avalidlink.html" />
     <Content Include="Index.html" />
   </ItemGroup>
   <ItemGroup>
