@@ -4,19 +4,17 @@ import unittest
 
 class MailToFilterTests(unittest.TestCase):
     def test_FiltersMailToLinks(self):
-        dummyLink = link.Link("mailto:foo", link.LinkType.ANCHOR)
         sut = linkFilter.MailToFilter()
 
-        filterResult = sut.filter(dummyLink)
+        filterResult = sut.filter("mailto:foo")
 
         self.assertTrue(filterResult)
 
 class DomainCheckFilterTests(unittest.TestCase):
     def test_ReturnsTrueWhenHostnameDoesNotMatchBaseHostname(self):
-        dummyLink = link.Link("http://www.foo.com", link.LinkType.ANCHOR)
-        sut = linkFilter.DomainCheckFilter(link.Link("http://www.markwberryman.com", link.LinkType.ANCHOR))
+        sut = linkFilter.DomainCheckFilter("http://www.markwberryman.com")
 
-        filterResult = sut.filter(dummyLink)
+        filterResult = sut.filter("http://www.foo.com")
 
         self.assertTrue(filterResult)
 

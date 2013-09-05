@@ -7,14 +7,14 @@ class LinkFilter(object):
 
 class MailToFilter(LinkFilter):
     def filter(self, link):
-        return link.value.lower().startswith("mailto:")
+        return link.lower().startswith("mailto:")
 
 class DomainCheckFilter(LinkFilter):
     def __init__(self, baseLink):
-        self.baseHostname = urlparse(baseLink.value).hostname
+        self.baseHostname = urlparse(baseLink).hostname
 
     def filter(self, link):
-        linkHostname = urlparse(link.value).hostname
+        linkHostname = urlparse(link).hostname
 
         # no need to convet to lowercase; hostName attribute already does it
         return self.baseHostname != linkHostname
