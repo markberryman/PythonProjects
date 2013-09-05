@@ -14,7 +14,7 @@ print("Starting link checking with \"{}\" and depth {}".format(startLink.value, 
 linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
-linkFilters = set([linkFilter.MailToFilter()])
+linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink)])
 
 checker = linkChecker.LinkChecker(linkParserFactory, resourceGetter, linkFilters)
 
