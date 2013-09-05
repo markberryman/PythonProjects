@@ -18,24 +18,33 @@ class LinkChecker:
     def __repr__(self):
         return "Processed {} links.".format(self.numLinksProcessed)
 
+    def get_results(self):
+        return {
+                "numLinksProcessed": self.numLinksProcessed,
+                "brokenLinks": self.brokenLinks,
+                "invalidMarkupLinks": self.invalidMarkupLinks
+                }
+
     def print_results(self):
+        results = self.get_results()
+
         print("Results:")
         print("Number of links checked = {}".
-              format(self.numLinksProcessed))
+              format(results["numLinksProcessed"]))
 
         print("Number of broken links = {}".
-              format(len(self.brokenLinks)))
+              format(len(results["brokenLinks"])))
 
-        if (len(self.brokenLinks) > 0):
+        if (len(results["brokenLinks"]) > 0):
             print("Broken links:")
-            self.__print_links(self.brokenLinks)
+            self.__print_links(results["brokenLinks"])
 
         print("Number of links with invalid markup = {}".
-              format(len(self.invalidMarkupLinks)))
+              format(len(results["invalidMarkupLinks"])))
 
-        if (len(self.invalidMarkupLinks) > 0):
+        if (len(results["invalidMarkupLinks"]) > 0):
             print("Invalid markup links:")
-            self.__print_links(self.invalidMarkupLinks)
+            self.__print_links(results["invalidMarkupLinks"])
 
     def __print_links(self, links):
         for link in links:

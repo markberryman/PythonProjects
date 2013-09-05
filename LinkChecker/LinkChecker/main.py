@@ -6,7 +6,7 @@ import linkFilter
 import resourceGetter
 import htmlLinkParser
 
-startLink = link.Link("http://www.markwberryman.com", link.LinkType.ANCHOR)
+startLink = link.Link("http://localhost:35944/index.html", link.LinkType.ANCHOR)
 depth = 2
 
 print("Starting link checking with \"{}\" and depth {}".format(startLink.value, depth))

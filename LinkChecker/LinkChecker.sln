@@ -5,6 +5,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LinkChecker", "LinkChecker\
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LinkCheckerProcessWrapper", "LinkCheckerProcessWrapper\LinkCheckerProcessWrapper.pyproj", "{5E01038A-114E-444D-8F00-E2A277FB508A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebApplication", "TestWebApplication\TestWebApplication.csproj", "{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{5E01038A-114E-444D-8F00-E2A277FB508A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E01038A-114E-444D-8F00-E2A277FB508A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E01038A-114E-444D-8F00-E2A277FB508A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
