@@ -17,4 +17,4 @@ class DomainCheckFilter(LinkFilter):
         linkHostname = urlparse(link.value).hostname
 
         # no need to convet to lowercase; hostName attribute already does it
-        return self.baseHostname == linkHostname
+        return self.baseHostname != linkHostname
