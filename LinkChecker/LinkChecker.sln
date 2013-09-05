@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LinkChecker", "LinkChecker\LinkChecker.pyproj", "{986A85B7-05D9-47B0-ADDB-E1C1A57D9704}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LinkCheckerProcessWrapper", "LinkCheckerProcessWrapper\LinkCheckerProcessWrapper.pyproj", "{5E01038A-114E-444D-8F00-E2A277FB508A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{986A85B7-05D9-47B0-ADDB-E1C1A57D9704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{986A85B7-05D9-47B0-ADDB-E1C1A57D9704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{986A85B7-05D9-47B0-ADDB-E1C1A57D9704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E01038A-114E-444D-8F00-E2A277FB508A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E01038A-114E-444D-8F00-E2A277FB508A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E01038A-114E-444D-8F00-E2A277FB508A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E01038A-114E-444D-8F00-E2A277FB508A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
