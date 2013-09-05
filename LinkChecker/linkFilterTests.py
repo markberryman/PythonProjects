@@ -2,15 +2,14 @@
 import linkFilter
 import unittest
 
-class FilterLinksTests(unittest.TestCase):
+class MailToFilterTests(unittest.TestCase):
     def test_FiltersMailToLinks(self):
         dummyLink = link.Link("mailto:foo", link.LinkType.ANCHOR)
-        dummyLinks = set([dummyLink])
-        sut = linkFilter.LinkFilter()
+        sut = linkFilter.MailToFilter()
 
-        filteredLinks = sut.filter_links(dummyLinks)
+        filterResult = sut.filter(dummyLink)
 
-        self.assertEqual(0, len(filteredLinks))
+        self.assertTrue(filterResult)
 
 if __name__ == '__main__':
     unittest.main()
