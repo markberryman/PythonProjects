@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LinkChecker", "LinkChecker.pyproj", "{986A85B7-05D9-47B0-ADDB-E1C1A57D9704}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LinkChecker", "LinkChecker\LinkChecker.pyproj", "{986A85B7-05D9-47B0-ADDB-E1C1A57D9704}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
