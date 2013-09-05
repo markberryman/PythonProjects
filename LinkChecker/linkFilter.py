@@ -1,11 +1,8 @@
 class LinkFilter(object):
-    """Filters out links based on the filter_links method."""
+    """Abstract class defining for filtering links."""
+    def filter(self, dataItem):
+        raise NotImplementedError()
 
-    def filter_links(self, links):
-        linksToFilterOut = set()
-
-        for link in links:
-            if (link.value.lower().startswith("mailto:")):
-                linksToFilterOut.add(link)
-
-        return links.difference(linksToFilterOut)        
+class MailToFilter(LinkFilter):
+    def filter(self, link):
+        return link.value.lower().startswith("mailto:")
