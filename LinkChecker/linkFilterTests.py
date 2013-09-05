@@ -6,7 +6,7 @@ class MailToFilterTests(unittest.TestCase):
     def test_FiltersMailToLinks(self):
         sut = linkFilter.MailToFilter()
 
-        filterResult = sut.filter("mailto:foo")
+        filterResult = sut.shouldFilter("mailto:foo")
 
         self.assertTrue(filterResult)
 
@@ -14,7 +14,7 @@ class DomainCheckFilterTests(unittest.TestCase):
     def test_ReturnsTrueWhenHostnameDoesNotMatchBaseHostname(self):
         sut = linkFilter.DomainCheckFilter("http://www.markwberryman.com")
 
-        filterResult = sut.filter("http://www.foo.com")
+        filterResult = sut.shouldFilter("http://www.foo.com")
 
         self.assertTrue(filterResult)
 

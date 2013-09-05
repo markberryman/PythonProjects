@@ -67,7 +67,7 @@ class LinkChecker:
 
                                     for filter in self.linkFilters:
                                         for newLink in newLinks:
-                                            if filter.filter(newLink.value):
+                                            if filter.shouldFilter(newLink.value):
                                                 linksToFilter.add(newLink)
 
                                         newLinks = newLinks.difference(linksToFilter)
