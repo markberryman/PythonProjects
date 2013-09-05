@@ -2,5 +2,7 @@ Todo.txt
 
 TestResults/
 
+LinkCheckerProcessWrapper/azureStorageCreds.py
+
 # VS Python performance testing related files
 *.pyperf
