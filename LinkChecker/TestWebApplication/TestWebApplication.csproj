@@ -57,8 +57,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="alinkwithinvalidmarkup.html" />
     <Content Include="avalidlink.html" />
+    <Content Include="image.png" />
     <Content Include="Index.html" />
+    <Content Include="style.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

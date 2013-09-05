@@ -73,7 +73,7 @@ class CheckLinksTests(unittest.TestCase):
     #    self.assertEqual(1, len(sut.invalidMarkupLinks))
 
     def test_FunctionalE2ETest(self):
-        startLink = link.Link("http://localhost:35944/index.html", link.LinkType.ANCHOR)
+        startLink = link.Link("http://localhost:35944/index.html", link.LinkType.ANCHOR)        
         depth = 2
         linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
         contRequester = contentRequester.ContentRequester()
@@ -84,7 +84,9 @@ class CheckLinksTests(unittest.TestCase):
         checker.check_links(set([startLink]), depth)
         results = checker.get_results()
         
-        self.assertEqual(3, len(results["linksProcessed"]))
+        self.assertEqual(8, len(results["linksProcessed"]))
+        self.assertEqual(3, len(results["brokenLinks"]))
+        self.assertEqual(1, len(results["invalidMarkupLinks"]))
 
 if __name__ == '__main__':
     unittest.main()

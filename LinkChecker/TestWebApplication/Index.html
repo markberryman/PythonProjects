@@ -3,8 +3,18 @@
 <head>
     <title></title>
 </head>
-<body>
+<body>    
     <a href="http://localhost:35944/avalidlink.html"></a>
     <a href="http://localhost:35944/abrokenlink.html"></a>
+    <a href="http://localhost:35944/alinkwithinvalidmarkup.html"></a>
+    <a href="http://www.differentdomain.com/index.html"></a>
+    <a href="http://www.differentdomain.com/index.html"></a>
+    <a href="mailto:me@foo.com">E-mail</a>    
+    <link rel='stylesheet' href='http://localhost:35944/style.css' />
+    <link rel='stylesheet' href='http://localhost:35944/brokenlinktostylesheet.css' />
+    <link rel="alternate" href='http://localhost:35944/shouldnotbechecked' />
+
+    <img src="http://localhost:35944/image.png" />
+    <img src="http://localhost:35944/brokenlinktoimage.png" />
 </body>
 </html>
