@@ -84,7 +84,7 @@ class CheckLinksTests(unittest.TestCase):
         checker.check_links(set([startLink]), depth)
         results = checker.get_results()
         
-        self.assertEqual(3, results["numLinksProcessed"])
+        self.assertEqual(3, len(results["linksProcessed"]))
 
 if __name__ == '__main__':
     unittest.main()

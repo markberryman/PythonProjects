@@ -9,18 +9,13 @@ class LinkChecker:
         self.htmlLinkParserFactory = htmlLinkParserFactory
         self.resourceGetter = resourceGetter
         self.linkFilters = linkFilters
-        self.numLinksProcessed = 0
+        self.linksProcessed = set()
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
 
-        self.allLinksProcessed = set()
-
-    def __repr__(self):
-        return "Processed {} links.".format(self.numLinksProcessed)
-
     def get_results(self):
         return {
-                "numLinksProcessed": self.numLinksProcessed,
+                "linksProcessed": self.linksProcessed,
                 "brokenLinks": self.brokenLinks,
                 "invalidMarkupLinks": self.invalidMarkupLinks
                 }
@@ -30,7 +25,7 @@ class LinkChecker:
 
         print("Results:")
         print("Number of links checked = {}".
-              format(results["numLinksProcessed"]))
+              format(len(results["linksProcessed"])))
 
         print("Number of broken links = {}".
               format(len(results["brokenLinks"])))
@@ -58,9 +53,8 @@ class LinkChecker:
         if (depth != 0):
 
             for linkToProcess in linksToProcess:
-                if linkToProcess.value.lower() not in self.allLinksProcessed:
-                    self.numLinksProcessed += 1
-                    self.allLinksProcessed.add(linkToProcess.value.lower())
+                if linkToProcess.value.lower() not in self.linksProcessed:
+                    self.linksProcessed.add(linkToProcess.value.lower())
 
                     statusCode, markup = self.resourceGetter.get_resource(linkToProcess)
 
