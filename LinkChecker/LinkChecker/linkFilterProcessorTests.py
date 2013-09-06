@@ -6,7 +6,7 @@ class MockFilter(object):
     def __init__(self, filterFn):
         self.filterFn = filterFn
 
-    def shouldFilter(self, link):
+    def should_filter(self, link):
         return self.filterFn(link)
 
 class ApplyFiltersTests(unittest.TestCase):
