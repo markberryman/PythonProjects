@@ -2,6 +2,7 @@ import http.client
 import html.parser
 import link
 import linkCheckerUtilities
+import linkFilterProcessor
 import resourceGetter
 
 class LinkChecker:
@@ -65,16 +66,8 @@ class LinkChecker:
                             try:
                                 newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
 
-                                if (self.linkFilters is not None):
-                                    linksToFilter = set()
+                                newLinks = linkFilterProcessor.LinkFilterProcessor.apply_filters(self.linkFilters, newLinks)
 
-                                    for filter in self.linkFilters:
-                                        for newLink in newLinks:
-                                            if filter.shouldFilter(newLink.value):
-                                                linksToFilter.add(newLink)
-
-                                        newLinks = newLinks.difference(linksToFilter)
-        
                                 self.check_links(newLinks, depth - 1)
                             except html.parser.HTMLParseError:
                                 self.invalidMarkupLinks.add(linkToProcess)

@@ -28,6 +28,8 @@
     <Compile Include="linkConverterUtility.py" />
     <Compile Include="linkConverterUtilityTests.py" />
     <Compile Include="linkFilter.py" />
+    <Compile Include="linkFilterProcessor.py" />
+    <Compile Include="linkFilterProcessorTests.py" />
     <Compile Include="linkFilterTests.py" />
     <Compile Include="main.py" />
     <Compile Include="resourceGetter.py" />
