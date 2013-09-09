@@ -13,13 +13,6 @@ class LinkChecker:
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
 
-    def get_results(self):
-        return {
-                "linksProcessed": self.linksProcessed,
-                "brokenLinks": self.brokenLinks,
-                "invalidMarkupLinks": self.invalidMarkupLinks
-                }
-
     def print_results(self):
         results = self.get_results()
 
@@ -48,7 +41,7 @@ class LinkChecker:
     def __is_link_broken(self, statusCode):
         return ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST))
 
-    def check_links(self, linksToProcess, depth):
+    def __check_links_helper(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
         if (depth != 0):
 
@@ -65,10 +58,19 @@ class LinkChecker:
 
                                 print("Processed markup and found {} links".format(len(newLinks)))
 
-                                self.check_links(newLinks, depth - 1)
+                                self.__check_links_helper(newLinks, depth - 1)
                             except html.parser.HTMLParseError:
                                 self.invalidMarkupLinks.add(linkToProcess)
                     else:
                         self.brokenLinks.add(linkToProcess)
 
-        return None    
+        return None
+
+    def check_links(self, linksToProcess, depth):
+        self.__check_links_helper(linksToProcess, depth)
+
+        return {
+                "linksProcessed": self.linksProcessed,
+                "brokenLinks": self.brokenLinks,
+                "invalidMarkupLinks": self.invalidMarkupLinks
+                }
