@@ -31,6 +31,7 @@
     <Compile Include="linkFilterProcessorUnitTests.py" />
     <Compile Include="linkFilterTests.py" />
     <Compile Include="linkProcessor.py" />
+    <Compile Include="linkTests.py" />
     <Compile Include="main.py" />
     <Compile Include="markupProcessor.py" />
     <Compile Include="markupProcessorUnitTests.py" />

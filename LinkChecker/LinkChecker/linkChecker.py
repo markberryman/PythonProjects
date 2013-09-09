@@ -1,4 +1,3 @@
-import http.client
 import html.parser
 import link
 import linkProcessor
@@ -36,9 +35,6 @@ class LinkChecker:
         for link in links:
             print(">>> {}".format(link.value))
 
-    def __is_link_broken(self, statusCode):
-        return ((statusCode < http.client.OK) or (statusCode >= http.client.BAD_REQUEST))
-
     def __check_links_helper(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
         if (depth != 0):
@@ -47,9 +43,9 @@ class LinkChecker:
                 if linkToProcess.value.lower() not in self.linksProcessed:
                     self.linksProcessed.add(linkToProcess.value.lower())
 
-                    statusCode, markup = self.resourceGetter.get_resource(linkToProcess)
+                    linkToProcess.resultStatusCode, markup = self.resourceGetter.get_resource(linkToProcess)
 
-                    if (self.__is_link_broken(statusCode) == False):
+                    if (linkToProcess.is_link_broken() == False):
                         if (linkToProcess.type == link.LinkType.ANCHOR):
                             try:
                                 newLinks = self.linkProcessor.process_link(linkToProcess, markup)
