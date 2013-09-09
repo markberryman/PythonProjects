@@ -18,11 +18,11 @@ linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
 linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
-mp = markupProcessor.MarkupProcessor(linkParserFactory)
-lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
-lp = linkProcessor.LinkProcessor(mp, lfp)
+markupProcessor = markupProcessor.MarkupProcessor(linkParserFactory)
+linkFilterProcessor = linkFilterProcessor.LinkFilterProcessor(linkFilters)
+linkProcessor = linkProcessor.LinkProcessor(markupProcessor, linkFilterProcessor)
 
-checker = linkChecker.LinkChecker(resourceGetter, lp)
+checker = linkChecker.LinkChecker(resourceGetter, linkProcessor)
 
 checker.check_links(set([startLink]), depth)
 
