@@ -3,6 +3,7 @@ import htmlLinkParserFactory
 import link
 import linkChecker
 import linkFilter
+import markupProcessor
 import resourceGetter
 import unittest
 
@@ -15,7 +16,8 @@ class CheckLinksTests(unittest.TestCase):
         contRequester = contentRequester.ContentRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)
         linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
-        checker = linkChecker.LinkChecker(linkParserFactory, resGetter, linkFilters)
+        mp = markupProcessor.MarkupProcessor(linkFilters, linkParserFactory)
+        checker = linkChecker.LinkChecker(resGetter, mp)
 
         checker.check_links(set([startLink]), depth)
         results = checker.get_results()

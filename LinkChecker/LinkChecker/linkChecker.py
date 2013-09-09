@@ -1,15 +1,12 @@
 import http.client
 import html.parser
 import link
-import linkCheckerUtilities
-import linkFilterProcessor
-import resourceGetter
+import markupProcessor
 
 class LinkChecker:
-    def __init__(self, htmlLinkParserFactory, resourceGetter, linkFilters):
-        self.htmlLinkParserFactory = htmlLinkParserFactory
+    def __init__(self, resourceGetter, markupProcessor):
         self.resourceGetter = resourceGetter
-        self.linkFilters = linkFilters
+        self.markupProcessor = markupProcessor
         self.linksProcessed = set()
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
@@ -60,13 +57,9 @@ class LinkChecker:
                     statusCode, markup = self.resourceGetter.get_resource(linkToProcess)
 
                     if (self.__is_link_broken(statusCode) == False):
-                        if (linkToProcess.type == link.LinkType.ANCHOR):
-                            htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
-
+                        if (linkToProcess.type == link.LinkType.ANCHOR):                           
                             try:
-                                newLinks = linkCheckerUtilities.linkCheckerUtilities.get_links_from_markup(markup, htmlLinkParser)
-
-                                newLinks = linkFilterProcessor.LinkFilterProcessor.apply_filters(self.linkFilters, newLinks)
+                                newLinks = self.markupProcessor.process_markup(markup)
 
                                 self.check_links(newLinks, depth - 1)
                             except html.parser.HTMLParseError:
