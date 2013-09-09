@@ -59,7 +59,10 @@ class LinkChecker:
                     if (self.__is_link_broken(statusCode) == False):
                         if (linkToProcess.type == link.LinkType.ANCHOR):                           
                             try:
-                                newLinks = self.markupProcessor.process_markup(markup)
+                                newLinks = self.markupProcessor.get_links_from_markup(markup)
+                                newLinks = self.markupProcessor.apply_filters(newLinks)
+
+                                print("Processed markup and found {} links".format(len(newLinks)))
 
                                 self.check_links(newLinks, depth - 1)
                             except html.parser.HTMLParseError:

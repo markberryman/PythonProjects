@@ -24,18 +24,15 @@
     <Compile Include="linkAnalysisUtilityTests.py" />
     <Compile Include="linkChecker.py" />
     <Compile Include="linkCheckerTests.py" />
-    <Compile Include="linkCheckerUtilitiesTests.py" />
     <Compile Include="linkConverterUtility.py" />
     <Compile Include="linkConverterUtilityTests.py" />
     <Compile Include="linkFilter.py" />
-    <Compile Include="linkFilterProcessor.py" />
-    <Compile Include="linkFilterProcessorTests.py" />
     <Compile Include="linkFilterTests.py" />
     <Compile Include="main.py" />
     <Compile Include="markupProcessor.py" />
+    <Compile Include="markupProcessorUnitTests.py" />
     <Compile Include="resourceGetter.py" />
     <Compile Include="resourceGetterTests.py" />
-    <Compile Include="linkCheckerUtilities.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Todo.txt" />
