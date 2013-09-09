@@ -7,10 +7,6 @@ class LinkFilterProcessor:
 
         filter = filters.pop()
 
-        linksToFilter = set()
-
-        for link in links:
-            if filter.should_filter(link.value):
-                linksToFilter.add(link)
+        linksToFilter = set([link for link in links if filter.should_filter(link.value)])
 
         return LinkFilterProcessor.apply_filters(filters, links.difference(linksToFilter))
