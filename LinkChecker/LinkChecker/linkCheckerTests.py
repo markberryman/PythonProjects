@@ -25,7 +25,7 @@ class CheckLinksTests(unittest.TestCase):
 
         results = sut.check_links(set([startLink]), depth)
         
-        self.assertEqual(8, len(results["linksProcessed"]))
+        self.assertEqual(10, len(results["linksProcessed"]))
         self.assertEqual(3, len(results["brokenLinks"]))
         self.assertEqual(1, len(results["invalidMarkupLinks"]))
 
