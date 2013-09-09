@@ -1,5 +1,13 @@
-﻿import linkFilterProcessor
+﻿import link
+import linkFilterProcessor
 import unittest
+
+class MockFilter(object):
+    def __init__(self, filterFn):
+        self.filterFn = filterFn
+
+    def should_filter(self, link):
+        return self.filterFn(link)
 
 class ApplyFiltersUnitTests(unittest.TestCase):
     def test_ReturnsLinksWhenNoFiltersLeftToApply(self):

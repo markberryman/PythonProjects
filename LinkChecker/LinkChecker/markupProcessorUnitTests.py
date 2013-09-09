@@ -2,13 +2,6 @@
 import markupProcessor
 import unittest
 
-class MockFilter(object):
-    def __init__(self, filterFn):
-        self.filterFn = filterFn
-
-    def should_filter(self, link):
-        return self.filterFn(link)
-
 class MockHtmlLinkParser(object):
     def __init__(self):
         self.links = set()
