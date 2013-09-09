@@ -4,6 +4,7 @@ import link
 import linkChecker
 import linkFilter
 import linkFilterProcessor
+import linkProcessor
 import markupProcessor
 import resourceGetter
 import unittest
@@ -19,7 +20,8 @@ class CheckLinksTests(unittest.TestCase):
         linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
         mp = markupProcessor.MarkupProcessor(linkParserFactory)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
-        checker = linkChecker.LinkChecker(resGetter, mp, lfp)
+        lp = linkProcessor.LinkProcessor(mp, lfp)
+        checker = linkChecker.LinkChecker(resGetter, lp)
 
         checker.check_links(set([startLink]), depth)
         results = checker.get_results()
