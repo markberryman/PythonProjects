@@ -32,9 +32,11 @@
     <Compile Include="linkFilterTests.py" />
     <Compile Include="linkProcessor.py" />
     <Compile Include="linkTests.py" />
+    <Compile Include="linkTransformer.py" />
     <Compile Include="main.py" />
     <Compile Include="markupProcessor.py" />
     <Compile Include="markupProcessorUnitTests.py" />
+    <Compile Include="relativeLinkTransformerUnitTests.py" />
     <Compile Include="resourceGetter.py" />
     <Compile Include="resourceGetterTests.py" />
   </ItemGroup>
