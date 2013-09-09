@@ -21,10 +21,10 @@ class CheckLinksTests(unittest.TestCase):
         mp = markupProcessor.MarkupProcessor(linkParserFactory)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
         lp = linkProcessor.LinkProcessor(mp, lfp)
-        checker = linkChecker.LinkChecker(resGetter, lp)
+        sut = linkChecker.LinkChecker(resGetter, lp)
 
-        checker.check_links(set([startLink]), depth)
-        results = checker.get_results()
+        sut.check_links(set([startLink]), depth)
+        results = sut.get_results()
         
         self.assertEqual(8, len(results["linksProcessed"]))
         self.assertEqual(3, len(results["brokenLinks"]))
