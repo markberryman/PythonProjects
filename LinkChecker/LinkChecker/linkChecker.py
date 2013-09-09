@@ -1,9 +1,7 @@
 import http.client
 import html.parser
 import link
-import linkFilterProcessor
 import linkProcessor
-import markupProcessor
 
 class LinkChecker:
     def __init__(self, resourceGetter, linkProcessor):
