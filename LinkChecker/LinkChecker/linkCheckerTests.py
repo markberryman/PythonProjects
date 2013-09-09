@@ -73,7 +73,7 @@ class CheckLinksTests(unittest.TestCase):
     #    self.assertEqual(1, len(sut.invalidMarkupLinks))
 
     def test_FunctionalE2ETest(self):
-        startLink = link.Link("http://localhost:35944/index.html", link.LinkType.ANCHOR)        
+        startLink = link.Link("http://localhost:35944/index.html")
         depth = 2
         linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
         contRequester = contentRequester.ContentRequester()

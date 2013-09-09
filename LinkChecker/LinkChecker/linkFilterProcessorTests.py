@@ -12,7 +12,7 @@ class MockFilter(object):
 class ApplyFiltersTests(unittest.TestCase):
     def test_ReturnsLinksWhenNoFiltersLeftToApply(self):
         dummyFilters = []
-        dummyLinks = set([link.Link("a link", link.LinkType.ANCHOR)])
+        dummyLinks = set([link.Link("a link")])
         
         result = linkFilterProcessor.LinkFilterProcessor.apply_filters(dummyFilters, dummyLinks)
 
@@ -23,9 +23,9 @@ class ApplyFiltersTests(unittest.TestCase):
         dummyFilterIsUpperCase = MockFilter(lambda x: x.isupper())
         dummyFilters = [dummyFilterIsLowerCase, dummyFilterIsUpperCase]
         dummyLinks = set([
-                         link.Link("lowercase", link.LinkType.ANCHOR),
-                         link.Link("uppercase", link.LinkType.ANCHOR),
-                         link.Link("MIXEDcase", link.LinkType.ANCHOR)
+                         link.Link("lowercase"),
+                         link.Link("uppercase"),
+                         link.Link("MIXEDcase")
                          ])
         
         result = linkFilterProcessor.LinkFilterProcessor.apply_filters(dummyFilters, dummyLinks)
