@@ -3,6 +3,7 @@ import htmlLinkParserFactory
 import link
 import linkChecker
 import linkFilter
+import linkFilterProcessor
 import markupProcessor
 import resourceGetter
 import htmlLinkParser
@@ -16,9 +17,10 @@ linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
 linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
-mp = markupProcessor.MarkupProcessor(linkFilters, linkParserFactory)
+mp = markupProcessor.MarkupProcessor(linkParserFactory)
+lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
 
-checker = linkChecker.LinkChecker(resourceGetter, mp)
+checker = linkChecker.LinkChecker(resourceGetter, mp, lfp)
 
 checker.check_links(set([startLink]), depth)
 

@@ -23,34 +23,9 @@ class MockHtmlLinkParserFactory(object):
     def create_html_link_parser(self):
         return self.htmlLinkParser
 
-class ApplyFiltersUnitTests(unittest.TestCase):
-    def test_ReturnsLinksWhenNoFiltersLeftToApply(self):
-        dummyFilters = []
-        dummyLinks = set([link.Link("a link")])
-        sut = markupProcessor.MarkupProcessor(dummyFilters, None)
-        
-        result = sut.apply_filters(dummyLinks)
-
-        self.assertEqual(1, len(result))
-
-    def test_AppliesMultipleAllFilters(self):
-        dummyFilterIsLowerCase = MockFilter(lambda x: x.islower())
-        dummyFilterIsUpperCase = MockFilter(lambda x: x.isupper())
-        dummyFilters = [dummyFilterIsLowerCase, dummyFilterIsUpperCase]
-        dummyLinks = set([
-                         link.Link("lowercase"),
-                         link.Link("uppercase"),
-                         link.Link("MIXEDcase")
-                         ])
-        sut = markupProcessor.MarkupProcessor(dummyFilters, None)
-
-        result = sut.apply_filters(dummyLinks)
-
-        self.assertEqual(1, len(result))
-
 class GetLinksFromMarkup(unittest.TestCase):
     def test_returnsNoneIfMarkupProvidedIsNone(self):
-        sut = markupProcessor.MarkupProcessor(None, None)
+        sut = markupProcessor.MarkupProcessor(None)
 
         result = sut.get_links_from_markup(None)
 
@@ -59,7 +34,7 @@ class GetLinksFromMarkup(unittest.TestCase):
     def test_returnsLinksFromHtmlLinkParser(self):
         mockHtmlLinkParser = MockHtmlLinkParser()
         mockHtmlLinkParserFactory = MockHtmlLinkParserFactory(mockHtmlLinkParser)
-        sut = markupProcessor.MarkupProcessor(None, mockHtmlLinkParserFactory)
+        sut = markupProcessor.MarkupProcessor(mockHtmlLinkParserFactory)
 
         result = sut.get_links_from_markup("some markup")
 
