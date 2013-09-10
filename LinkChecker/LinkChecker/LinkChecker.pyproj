@@ -18,28 +18,32 @@
     <Compile Include="contentRequester.py" />
     <Compile Include="htmlLinkParser.py" />
     <Compile Include="htmlLinkParserFactory.py" />
-    <Compile Include="htmlLinkParserTests.py" />
+    <Compile Include="test\htmlLinkParserTests.py" />
     <Compile Include="link.py" />
     <Compile Include="linkChecker.py" />
-    <Compile Include="linkCheckerTests.py" />
+    <Compile Include="test\linkCheckerTests.py" />
     <Compile Include="linkFilter.py" />
-    <Compile Include="linkTransformProcessorUnitTests.py" />
+    <Compile Include="test\linkTransformProcessorUnitTests.py" />
     <Compile Include="linkTransformProcessor.py" />
     <Compile Include="linkFilterProcessor.py" />
-    <Compile Include="linkFilterProcessorUnitTests.py" />
-    <Compile Include="linkFilterTests.py" />
+    <Compile Include="test\linkFilterProcessorUnitTests.py" />
+    <Compile Include="test\linkFilterTests.py" />
     <Compile Include="linkProcessor.py" />
     <Compile Include="linkTests.py" />
     <Compile Include="linkTransform.py" />
     <Compile Include="main.py" />
     <Compile Include="markupProcessor.py" />
-    <Compile Include="markupProcessorUnitTests.py" />
-    <Compile Include="linkTransformUnitTests.py" />
+    <Compile Include="test\markupProcessorUnitTests.py" />
+    <Compile Include="test\linkTransformUnitTests.py" />
     <Compile Include="resourceGetter.py" />
-    <Compile Include="resourceGetterTests.py" />
+    <Compile Include="test\resourceGetterTests.py" />
+    <Compile Include="test\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Todo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
