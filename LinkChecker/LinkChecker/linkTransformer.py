@@ -13,7 +13,8 @@ class RelativeLinkTransformer(LinkTransformer):
         self.currentLink = currentLink
         
     def transform(self, link):
-        if (link.value.lower().startswith("http://") == False):
+        if ((link.value.lower().startswith("http://") == False) and
+            (link.value.lower().startswith("mailto:") == False)):
             link.value = "{}/{}".format(self.currentLink.value, link.value)
 
         return link

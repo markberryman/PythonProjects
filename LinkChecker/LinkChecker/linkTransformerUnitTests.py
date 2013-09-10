@@ -21,6 +21,14 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
 
         self.assertEqual(result, dummyNewLink)
 
+    def test_DoesNotTransformsMailToLink(self):
+        dummyCurrentLink = link.Link("http://www.foo.com")
+        dummyNewLink = link.Link("mailto:...")
+        sut = linkTransformer.RelativeLinkTransformer(dummyCurrentLink)
+
+        result = sut.transform(dummyNewLink)
+
+        self.assertEqual(result, dummyNewLink)
 
 if __name__ == '__main__':
     unittest.main()
