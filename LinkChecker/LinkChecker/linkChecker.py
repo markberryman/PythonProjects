@@ -54,7 +54,7 @@ class LinkChecker:
                                     linkToProcess, markup)
 
                                 print(
-                                    "Processed markup and found {} links".format(
+                                    "Processed markup, found {} links".format(
                                         len(newLinks)))
 
                                 self.__check_links_helper(newLinks, depth - 1)
