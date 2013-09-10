@@ -29,11 +29,11 @@ class CheckLinksTests(unittest.TestCase):
 
         results = sut.check_links(set([startLink]), depth)
         
-        self.assertEqual(10, len(results["linksProcessed"]))
+        self.assertEqual(10, len(results["linksRequested"]))
         self.assertEqual(3, len(results["brokenLinks"]))
         self.assertEqual(1, len(results["invalidMarkupLinks"]))
-        self.assertTrue("http://localhost:35944/arelativelink.html" in results["linksProcessed"])
-        self.assertTrue("http://localhost:35944/subdir/arelativelinkinasubdir.html" in results["linksProcessed"])
+        self.assertTrue("http://localhost:35944/arelativelink.html" in results["linksRequested"])
+        self.assertTrue("http://localhost:35944/subdir/arelativelinkinasubdir.html" in results["linksRequested"])
         
 
 if __name__ == '__main__':

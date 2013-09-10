@@ -6,14 +6,14 @@ class LinkChecker:
     def __init__(self, resourceGetter, linkProcessor):
         self.resourceGetter = resourceGetter
         self.linkProcessor = linkProcessor
-        self.linksProcessed = set()
+        self.linksRequested = set()
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
 
     def print_results(self, results):
         print("Results:")
         print("Number of links checked = {}".
-              format(len(results["linksProcessed"])))
+              format(len(results["linksRequested"])))
 
         print("Number of broken links = {}".
               format(len(results["brokenLinks"])))
@@ -38,8 +38,8 @@ class LinkChecker:
         if (depth != 0):
 
             for linkToProcess in linksToProcess:
-                if linkToProcess.value.lower() not in self.linksProcessed:
-                    self.linksProcessed.add(linkToProcess.value.lower())
+                if linkToProcess.value.lower() not in self.linksRequested:
+                    self.linksRequested.add(linkToProcess.value.lower())
 
                     linkToProcess.resultStatusCode, markup = self.resourceGetter.get_resource(linkToProcess)
 
@@ -62,7 +62,7 @@ class LinkChecker:
         self.__check_links_helper(linksToProcess, depth)
 
         return {
-                "linksProcessed": self.linksProcessed,
+                "linksRequested": self.linksRequested,
                 "brokenLinks": self.brokenLinks,
                 "invalidMarkupLinks": self.invalidMarkupLinks
                 }
