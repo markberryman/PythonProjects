@@ -10,9 +10,7 @@ class LinkChecker:
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
 
-    def print_results(self):
-        results = self.get_results()
-
+    def print_results(self, results):
         print("Results:")
         print("Number of links checked = {}".
               format(len(results["linksProcessed"])))

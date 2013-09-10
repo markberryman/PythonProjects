@@ -1,4 +1,5 @@
 import link
+from urllib.parse import urlparse
 
 class LinkTransformer(object):
     """Abstract class for defining link transformers."""
@@ -8,12 +9,31 @@ class LinkTransformer(object):
 
 class RelativeLinkTransformer(LinkTransformer):
     """Transforms relative links to absolute links."""
-    def __init__(self, currentLink):
-        self.currentLink = currentLink
-        
-    def transform(self, link):
-        if ((link.value.lower().startswith("http://") == False) and
-            (link.value.lower().startswith("mailto:") == False)):
-            link.value = "{}/{}".format(self.currentLink.value, link.value)
+    def transform(self, currentLink, newLink):
+        urlparts = urlparse(currentLink.value)
 
-        return link
+        # absolute link, nothing to touch
+        if (newLink.value.lower().startswith("http")):
+            return
+
+        if (newLink.value.lower().startswith("mailto:")):
+            return
+
+        if (urlparts.path == ""):
+            newLink.value = "{}/{}".format(currentLink.value, newLink.value)
+            return
+
+        if ((urlparts.netloc == "") and (("/" in urlparts.path) == False)):
+            newLink.value = "{}/{}".format(currentLink.value, newLink.value)
+            return
+
+        if (urlparts.path.endswith("/")):
+            # note that we're not joining the two strings w/ a slash here to
+            # prevent a double slash
+            newLink.value = "{}{}".format(currentLink.value, newLink.value)
+            return
+
+        if (urlparts.path.endswith("/") == False):
+            indexOfFinalSlash = currentLink.value.rfind("/")
+            newLink.value = "{}/{}".format(currentLink.value[:indexOfFinalSlash], newLink.value)
+            return

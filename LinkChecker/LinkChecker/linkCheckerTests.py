@@ -4,6 +4,8 @@ import link
 import linkChecker
 import linkFilter
 import linkFilterProcessor
+import linkTransformer
+import linkTransformersProcessor
 import linkProcessor
 import markupProcessor
 import resourceGetter
@@ -18,9 +20,11 @@ class CheckLinksTests(unittest.TestCase):
         contRequester = contentRequester.ContentRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)
         linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
+        linkTransformers = [linkTransformer.RelativeLinkTransformer()]
         mp = markupProcessor.MarkupProcessor(linkParserFactory)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
-        lp = linkProcessor.LinkProcessor(mp, lfp)
+        lt = linkTransformersProcessor.LinkTransformersProcessor(linkTransformers)
+        lp = linkProcessor.LinkProcessor(mp, lfp, lt)
         sut = linkChecker.LinkChecker(resGetter, lp)
 
         results = sut.check_links(set([startLink]), depth)
@@ -28,6 +32,9 @@ class CheckLinksTests(unittest.TestCase):
         self.assertEqual(10, len(results["linksProcessed"]))
         self.assertEqual(3, len(results["brokenLinks"]))
         self.assertEqual(1, len(results["invalidMarkupLinks"]))
+        self.assertTrue("http://localhost:35944/arelativelink.html" in results["linksProcessed"])
+        self.assertTrue("http://localhost:35944/subdir/arelativelinkinasubdir.html" in results["linksProcessed"])
+        
 
 if __name__ == '__main__':
     unittest.main()

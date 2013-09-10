@@ -5,6 +5,8 @@ import linkChecker
 import linkFilter
 import linkFilterProcessor
 import linkProcessor
+import linkTransformer
+import linkTransformersProcessor
 import markupProcessor
 import resourceGetter
 import htmlLinkParser
@@ -18,14 +20,16 @@ linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
 linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
+linkTransformers = [linkTransformer.RelativeLinkTransformer()]
 markupProcessor = markupProcessor.MarkupProcessor(linkParserFactory)
 linkFilterProcessor = linkFilterProcessor.LinkFilterProcessor(linkFilters)
-linkProcessor = linkProcessor.LinkProcessor(markupProcessor, linkFilterProcessor)
+linkTransformersProcessor = linkTransformersProcessor.LinkTransformersProcessor(linkTransformers)
+linkProcessor = linkProcessor.LinkProcessor(markupProcessor, linkFilterProcessor, linkTransformersProcessor)
 
 checker = linkChecker.LinkChecker(resourceGetter, linkProcessor)
 
-checker.check_links(set([startLink]), depth)
+results = checker.check_links(set([startLink]), depth)
 
-checker.print_results()
+checker.print_results(results)
 
 input('Press Enter to exit')
