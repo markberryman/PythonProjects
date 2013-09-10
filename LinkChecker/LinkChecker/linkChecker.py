@@ -47,20 +47,19 @@ class LinkChecker:
 
                     linkToProcess.resultStatusCode = statusCode
 
-                    if ((linkToProcess.is_link_broken() is False) and
-                            (linkToProcess.type == link.LinkType.ANCHOR)):
+                    if (linkToProcess.is_link_broken() is False):
+                        if (linkToProcess.type == link.LinkType.ANCHOR):
+                            try:
+                                newLinks = self.linkProcessor.process_link(
+                                    linkToProcess, markup)
 
-                        try:
-                            newLinks = self.linkProcessor.process_link(
-                                linkToProcess, markup)
+                                print(
+                                    "Processed markup and found {} links".format(
+                                        len(newLinks)))
 
-                            print(
-                                "Processed markup and found {} links".format(
-                                    len(newLinks)))
-
-                            self.__check_links_helper(newLinks, depth - 1)
-                        except html.parser.HTMLParseError:
-                            self.invalidMarkupLinks.add(linkToProcess)
+                                self.__check_links_helper(newLinks, depth - 1)
+                            except html.parser.HTMLParseError:
+                                self.invalidMarkupLinks.add(linkToProcess)
                     else:
                         self.brokenLinks.add(linkToProcess)
 
