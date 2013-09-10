@@ -19,7 +19,7 @@ class ApplyFiltersUnitTests(unittest.TestCase):
 
         self.assertEqual(1, len(result))
 
-    def test_AppliesMultipleAllFilters(self):
+    def test_AppliesAllFilters(self):
         dummyFilterIsLowerCase = MockFilter(lambda x: x.islower())
         dummyFilterIsUpperCase = MockFilter(lambda x: x.isupper())
         dummyFilters = [dummyFilterIsLowerCase, dummyFilterIsUpperCase]
