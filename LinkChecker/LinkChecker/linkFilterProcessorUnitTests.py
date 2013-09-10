@@ -16,7 +16,7 @@ class ApplyFiltersUnitTests(unittest.TestCase):
         dummyFilters = []
         dummyLinks = set([link.Link("a link")])
         sut = linkFilterProcessor.LinkFilterProcessor(dummyFilters)
-        
+
         result = sut.apply_filters(dummyLinks)
 
         self.assertEqual(1, len(result))

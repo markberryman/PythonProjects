@@ -37,5 +37,6 @@ class RelativeLinkTransform(LinkTransform):
 
         if (urlparts.path.endswith("/") is False):
             indexOfFinalSlash = currentLink.value.rfind("/")
-            newLink.value = "{}/{}".format(currentLink.value[:indexOfFinalSlash], newLink.value)
+            newLink.value = "{}/{}".format(
+                currentLink.value[:indexOfFinalSlash], newLink.value)
             return
