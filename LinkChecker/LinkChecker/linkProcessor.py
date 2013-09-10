@@ -1,6 +1,6 @@
 import link
 import linkFilterProcessor
-import linkTransformersProcessor
+import linkTransformProcessor
 import markupProcessor
 
 class LinkProcessor(object):

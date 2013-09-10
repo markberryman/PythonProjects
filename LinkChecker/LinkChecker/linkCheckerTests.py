@@ -5,7 +5,7 @@ import linkChecker
 import linkFilter
 import linkFilterProcessor
 import linkTransform
-import linkTransformersProcessor
+import linkTransformProcessor
 import linkProcessor
 import markupProcessor
 import resourceGetter
@@ -23,7 +23,7 @@ class CheckLinksTests(unittest.TestCase):
         linkTransformers = [linkTransform.RelativeLinkTransform()]
         mp = markupProcessor.MarkupProcessor(linkParserFactory)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
-        lt = linkTransformersProcessor.LinkTransformersProcessor(linkTransformers)
+        lt = linkTransformProcessor.LinkTransformProcessor(linkTransformers)
         lp = linkProcessor.LinkProcessor(mp, lfp, lt)
         sut = linkChecker.LinkChecker(resGetter, lp)
 

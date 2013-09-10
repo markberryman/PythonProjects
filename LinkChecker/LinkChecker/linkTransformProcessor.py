@@ -1,4 +1,4 @@
-class LinkTransformersProcessor(object):
+class LinkTransformProcessor(object):
     """Transforms links based on a supplied set of transformers."""
 
     def __init__(self, transformers):

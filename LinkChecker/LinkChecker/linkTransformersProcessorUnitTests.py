@@ -1,5 +1,5 @@
 ﻿import link
-import linkTransformersProcessor
+import linkTransformProcessor
 import unittest
 
 class MockTransform(object):
@@ -13,7 +13,7 @@ class ApplyTransformersUnitTests(unittest.TestCase):
     def test_ReturnsLinksWhenNoTransformersLeftToApply(self):
         dummyTransformers = []
         dummyLinks = [link.Link("a link")]
-        sut = linkTransformersProcessor.LinkTransformersProcessor(dummyTransformers)
+        sut = linkTransformProcessor.LinkTransformProcessor(dummyTransformers)
         
         result = sut.apply_transformers(dummyLinks)
 
@@ -24,7 +24,7 @@ class ApplyTransformersUnitTests(unittest.TestCase):
         dummyTransformB = MockTransform()
         dummyTransformers = [dummyTransformA, dummyTransformB]
         dummyLinks = [link.Link("a link")]
-        sut = linkTransformersProcessor.LinkTransformersProcessor(dummyTransformers)
+        sut = linkTransformProcessor.LinkTransformProcessor(dummyTransformers)
 
         sut.apply_transformers(dummyLinks)
 

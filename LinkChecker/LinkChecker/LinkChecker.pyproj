@@ -28,7 +28,7 @@
     <Compile Include="linkConverterUtilityTests.py" />
     <Compile Include="linkFilter.py" />
     <Compile Include="linkTransformersProcessorUnitTests.py" />
-    <Compile Include="linkTransformersProcessor.py" />
+    <Compile Include="linkTransformProcessor.py" />
     <Compile Include="linkFilterProcessor.py" />
     <Compile Include="linkFilterProcessorUnitTests.py" />
     <Compile Include="linkFilterTests.py" />

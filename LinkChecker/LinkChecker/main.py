@@ -6,7 +6,7 @@ import linkFilter
 import linkFilterProcessor
 import linkProcessor
 import linkTransform
-import linkTransformersProcessor
+import linkTransformProcessor
 import markupProcessor
 import resourceGetter
 import htmlLinkParser
@@ -23,8 +23,8 @@ linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(start
 linkTransformers = [linkTransform.RelativeLinkTransform()]
 markupProcessor = markupProcessor.MarkupProcessor(linkParserFactory)
 linkFilterProcessor = linkFilterProcessor.LinkFilterProcessor(linkFilters)
-linkTransformersProcessor = linkTransformersProcessor.LinkTransformersProcessor(linkTransformers)
-linkProcessor = linkProcessor.LinkProcessor(markupProcessor, linkFilterProcessor, linkTransformersProcessor)
+linkTransformProcessor = linkTransformProcessor.LinkTransformProcessor(linkTransformers)
+linkProcessor = linkProcessor.LinkProcessor(markupProcessor, linkFilterProcessor, linkTransformProcessor)
 
 checker = linkChecker.LinkChecker(resourceGetter, linkProcessor)
 
