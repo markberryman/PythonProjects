@@ -15,12 +15,15 @@ import unittest
 # these are more functional tests rather than unit tests
 class CheckLinksTests(unittest.TestCase):
     def test_FunctionalE2ETest(self):
-        startLink = link.Link("http://localhost:35944/index.html")
+        baseStartUrl = "http://localhost:35944"
+        startLink = link.Link(baseStartUrl + "/index.html")
         depth = 2
         linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
         contRequester = contentRequester.ContentRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)
-        linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
+        linkFilters = set(
+            [linkFilter.MailToFilter(),
+                linkFilter.DomainCheckFilter(startLink.value)])
         linkTransformers = [linkTransform.RelativeLinkTransform()]
         mp = markupProcessor.MarkupProcessor(linkParserFactory)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
@@ -29,13 +32,17 @@ class CheckLinksTests(unittest.TestCase):
         sut = linkChecker.LinkChecker(resGetter, lp)
 
         results = sut.check_links(set([startLink]), depth)
-        
-        self.assertEqual(10, len(results["linksRequested"]))
+
+        linksRequested = results["linksRequested"]
+        self.assertEqual(10, len(linksRequested))
         self.assertEqual(3, len(results["brokenLinks"]))
         self.assertEqual(1, len(results["invalidMarkupLinks"]))
-        self.assertTrue("http://localhost:35944/arelativelink.html" in results["linksRequested"])
-        self.assertTrue("http://localhost:35944/subdir/arelativelinkinasubdir.html" in results["linksRequested"])
-        
+        self.assertTrue(
+            baseStartUrl + "/arelativelink.html" in linksRequested)
+        self.assertTrue(
+            baseStartUrl + "/subdir/arelativelinkinasubdir.html"
+            in linksRequested)
+
 
 if __name__ == '__main__':
     unittest.main()

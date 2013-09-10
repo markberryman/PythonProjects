@@ -25,7 +25,7 @@ class RelativeLinkTransform(LinkTransform):
             newLink.value = "{}/{}".format(currentLink.value, newLink.value)
             return
 
-        if ((urlparts.netloc == "") and (("/" in urlparts.path) == False)):
+        if ((urlparts.netloc == "") and (("/" in urlparts.path) is False)):
             newLink.value = "{}/{}".format(currentLink.value, newLink.value)
             return
 
@@ -35,7 +35,7 @@ class RelativeLinkTransform(LinkTransform):
             newLink.value = "{}{}".format(currentLink.value, newLink.value)
             return
 
-        if (urlparts.path.endswith("/") == False):
+        if (urlparts.path.endswith("/") is False):
             indexOfFinalSlash = currentLink.value.rfind("/")
             newLink.value = "{}/{}".format(currentLink.value[:indexOfFinalSlash], newLink.value)
             return

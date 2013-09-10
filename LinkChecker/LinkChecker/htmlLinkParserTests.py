@@ -41,7 +41,8 @@ class HandleStartTagTests(unittest.TestCase):
 
     def test_ReturnsStylesheetLink(self):
         dummyLink = "http://www.foo.com/style.css"
-        dummyMarkup = "<link rel=\"stylesheet\" href=\"{}\" />".format(dummyLink)
+        dummyMarkup = "<link rel=\"stylesheet\" href=\"{}\" />".format(
+            dummyLink)
         sut = htmlLinkParser.HTMLLinkParser()
 
         sut.feed(dummyMarkup)

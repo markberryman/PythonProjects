@@ -8,21 +8,21 @@ class IsLinkRelativeTests(unittest.TestCase):
 
         result = linkAnalysisUtility.LinkAnalysisUtility.is_link_relative(link)
 
-        self.assertTrue(result);
+        self.assertTrue(result)
 
     def test_ReturnsFalseWhenLinkIsNotRelative(self):
         link = "http://www.foo.com"
 
         result = linkAnalysisUtility.LinkAnalysisUtility.is_link_relative(link)
 
-        self.assertFalse(result);
+        self.assertFalse(result)
 
     def test_ReturnsFalseWhenLinkIsNotRelativeAndIgnoresCase(self):
         link = "HTTP://www.foo.com"
-        
+
         result = linkAnalysisUtility.LinkAnalysisUtility.is_link_relative(link)
 
-        self.assertFalse(result);
+        self.assertFalse(result)
 
 if __name__ == '__main__':
     unittest.main()

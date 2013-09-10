@@ -24,7 +24,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNetlocAndNoPath(self):
         # >>> urlparse("http://www.foo.com")
-        # ParseResult(scheme='http', netloc='www.foo.com', path='', params='', query='', fragment='')
+        # ParseResult(scheme='http', netloc='www.foo.com', path='')
         dummyCurrentLink = link.Link("http://www.foo.com")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -35,7 +35,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNoNetloc(self):
         # >>> urlparse("www.foo.com")
-        # ParseResult(scheme='', netloc='', path='www.foo.com', params='', query='', fragment='')
+        # ParseResult(scheme='', netloc='', path='www.foo.com')
         dummyCurrentLink = link.Link("www.foo.com")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -46,7 +46,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNetlocAndOnlySlashForPath(self):
         # >>> urlparse("http://www.foo.com/")
-        # ParseResult(scheme='http', netloc='www.foo.com', path='/', params='', query='', fragment='')
+        # ParseResult(scheme='http', netloc='www.foo.com', path='/')
         dummyCurrentLink = link.Link("http://www.foo.com/")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -57,7 +57,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNoNetlocAndPathEndingWithSlash(self):
         # >>> urlparse("www.foo.com/")
-        # ParseResult(scheme='', netloc='', path='www.foo.com/', params='', query='', fragment='')
+        # ParseResult(scheme='', netloc='', path='www.foo.com/')
         dummyCurrentLink = link.Link("www.foo.com/")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -68,7 +68,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNetlocAndPathEndingWithFileWithNoExtension(self):
         # >>> urlparse("http://www.foo.com/x")
-        # ParseResult(scheme='http', netloc='www.foo.com', path='/x', params='', query='', fragment='')
+        # ParseResult(scheme='http', netloc='www.foo.com', path='/x')
         dummyCurrentLink = link.Link("http://www.foo.com/x")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -79,7 +79,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNetlocAndPathEndingWithFileWithExtension(self):
         # >>> urlparse("http://www.foo.com/x.html")
-        # ParseResult(scheme='http', netloc='www.foo.com', path='/x.html', params='', query='', fragment='')
+        # ParseResult(scheme='http', netloc='www.foo.com', path='/x.html')
         dummyCurrentLink = link.Link("http://www.foo.com/x.html")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -90,7 +90,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNetlocAndPathContainingDirectoryAndFileWithExtension(self):
         # >>> urlparse("http://www.foo.com/x/y.html")
-        # ParseResult(scheme='http', netloc='www.foo.com', path='/x/y.html', params='', query='', fragment='')
+        # ParseResult(scheme='http', netloc='www.foo.com', path='/x/y.html')
         dummyCurrentLink = link.Link("http://www.foo.com/x/y.html")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -101,7 +101,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNoNetlocAndPathEndingWithFileWithNoExtension(self):
         # >>> urlparse("www.foo.com/x")
-        # ParseResult(scheme='', netloc='', path='www.foo.com/x', params='', query='', fragment='')
+        # ParseResult(scheme='', netloc='', path='www.foo.com/x')
         dummyCurrentLink = link.Link("www.foo.com/x")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -112,7 +112,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNoNetlocAndPathEndingWithFileWithExtension(self):
         # >>> urlparse("www.foo.com/x.html")
-        # ParseResult(scheme='', netloc='', path='www.foo.com/x.html', params='', query='', fragment='')
+        # ParseResult(scheme='', netloc='', path='www.foo.com/x.html')
         dummyCurrentLink = link.Link("www.foo.com/x.html")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
@@ -123,7 +123,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
     def test_TransformsRelativeLinkWithNoNetlocAndPathContainingDirectoryAndFileWithExtension(self):
         # >>> urlparse("www.foo.com/x/y.html")
-        # ParseResult(scheme='', netloc='', path='www.foo.com/x/y.html', params='', query='', fragment='')
+        # ParseResult(scheme='', netloc='', path='www.foo.com/x/y.html')
         dummyCurrentLink = link.Link("www.foo.com/x/y.html")
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()

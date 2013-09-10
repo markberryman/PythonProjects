@@ -29,7 +29,8 @@ class GetLinksFromMarkup(unittest.TestCase):
 
     def test_returnsLinksFromHtmlLinkParser(self):
         mockHtmlLinkParser = MockHtmlLinkParser()
-        mockHtmlLinkParserFactory = MockHtmlLinkParserFactory(mockHtmlLinkParser)
+        mockHtmlLinkParserFactory = MockHtmlLinkParserFactory(
+            mockHtmlLinkParser)
         sut = markupProcessor.MarkupProcessor(mockHtmlLinkParserFactory)
 
         result = sut.get_links_from_markup("some markup")

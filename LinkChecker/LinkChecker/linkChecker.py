@@ -42,18 +42,25 @@ class LinkChecker:
                 if linkToProcess.value.lower() not in self.linksRequested:
                     self.linksRequested.add(linkToProcess.value.lower())
 
-                    linkToProcess.resultStatusCode, markup = self.resourceGetter.get_resource(linkToProcess)
+                    statusCode, markup = self.resourceGetter.get_resource(
+                        linkToProcess)
 
-                    if (linkToProcess.is_link_broken() == False):
-                        if (linkToProcess.type == link.LinkType.ANCHOR):
-                            try:
-                                newLinks = self.linkProcessor.process_link(linkToProcess, markup)
+                    linkToProcess.resultStatusCode = statusCode
 
-                                print("Processed markup and found {} links".format(len(newLinks)))
+                    if ((linkToProcess.is_link_broken() is False) and
+                            (linkToProcess.type == link.LinkType.ANCHOR)):
 
-                                self.__check_links_helper(newLinks, depth - 1)
-                            except html.parser.HTMLParseError:
-                                self.invalidMarkupLinks.add(linkToProcess)
+                        try:
+                            newLinks = self.linkProcessor.process_link(
+                                linkToProcess, markup)
+
+                            print(
+                                "Processed markup and found {} links".format(
+                                    len(newLinks)))
+
+                            self.__check_links_helper(newLinks, depth - 1)
+                        except html.parser.HTMLParseError:
+                            self.invalidMarkupLinks.add(linkToProcess)
                     else:
                         self.brokenLinks.add(linkToProcess)
 
@@ -63,7 +70,7 @@ class LinkChecker:
         self.__check_links_helper(linksToProcess, depth)
 
         return {
-                "linksRequested": self.linksRequested,
-                "brokenLinks": self.brokenLinks,
-                "invalidMarkupLinks": self.invalidMarkupLinks
-                }
+            "linksRequested": self.linksRequested,
+            "brokenLinks": self.brokenLinks,
+            "invalidMarkupLinks": self.invalidMarkupLinks
+            }

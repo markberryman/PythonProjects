@@ -3,7 +3,8 @@ from html.parser import HTMLParser
 
 
 class HTMLLinkParser(HTMLParser):
-    """Parses HTML markup and returns the number of discovered links "as-is" (i.e., no path transformations)"""
+    """Parses HTML markup and returns the number of discovered
+    links."""
     def __init__(self):
         super().__init__(self)
         self.links = set()
@@ -39,7 +40,8 @@ class HTMLLinkParser(HTMLParser):
         if "rel" in attrDict:
             if (attrDict["rel"] == "stylesheet"):
                 if "href" in attrDict:
-                    return link.Link(attrDict["href"], link.LinkType.STYLESHEET)
+                    return link.Link(
+                        attrDict["href"], link.LinkType.STYLESHEET)
 
     @staticmethod
     def __process_script_tag(attrDict):

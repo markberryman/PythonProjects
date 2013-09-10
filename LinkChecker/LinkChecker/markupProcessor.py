@@ -14,6 +14,6 @@ class MarkupProcessor(object):
 
         htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
 
-        htmlLinkParser.feed(markup)        
+        htmlLinkParser.feed(markup)
 
         return htmlLinkParser.links
