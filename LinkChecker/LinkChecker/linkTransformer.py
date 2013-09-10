@@ -1,5 +1,4 @@
 import link
-from urllib.parse import urlparse
 
 class LinkTransformer(object):
     """Abstract class for defining link transformers."""
