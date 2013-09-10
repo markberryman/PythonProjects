@@ -21,7 +21,10 @@ class LinkProcessor(object):
         # we must apply transforms ahead of filtering b/c of the interaction
         # b/w the transform converting relative links to absolute links and the
         # filter which checks to ensure we're not leaving the root domain
-        self.linkTransformProcessor.apply_transformers(linkToProcess, newLinks)
+        context = {
+            "currentLink": linkToProcess
+            }
+        self.linkTransformProcessor.apply_transformers(context, newLinks)
         newLinks = self.linkFilterProcessor.apply_filters(newLinks)
 
         return newLinks

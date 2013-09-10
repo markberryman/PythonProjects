@@ -5,13 +5,14 @@ from urllib.parse import urlparse
 class LinkTransform(object):
     """Abstract class for defining link transformers."""
 
-    def transform(self, link):
+    def transform(self, context, newLink):
         raise NotImplementedError()
 
 
 class RelativeLinkTransform(LinkTransform):
     """Transforms relative links to absolute links."""
-    def transform(self, currentLink, newLink):
+    def transform(self, context, newLink):
+        currentLink = context["currentLink"]
         urlparts = urlparse(currentLink.value)
 
         # absolute link, nothing to touch

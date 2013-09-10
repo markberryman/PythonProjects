@@ -4,14 +4,14 @@ class LinkTransformProcessor(object):
     def __init__(self, transformers):
         self.transformers = transformers
 
-    def apply_transformers(self, currentLink, newLinks):
-        """Applies transformers to newly found links. Some transforms require
-        knowing the "current" link as well so that must be provided."""
+    def apply_transformers(self, context, newLinks):
+        """Applies transformers to newly found links. The provided
+        context contains add'l info required by some trasnforms."""
         if (len(self.transformers) == 0):
             return newLinks
 
         transformer = self.transformers.pop()
 
-        [transformer.transform(currentLink, link) for link in newLinks]
+        [transformer.transform(context, link) for link in newLinks]
 
-        return self.apply_transformers(currentLink, newLinks)
+        return self.apply_transformers(context, newLinks)
