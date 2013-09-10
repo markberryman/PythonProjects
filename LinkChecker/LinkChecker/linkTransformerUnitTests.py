@@ -1,19 +1,20 @@
-﻿import linkTransformer
+﻿import link
+import linkTransformer
 import unittest
 
 class RelativeLinkTransformerUnitTests(unittest.TestCase):
     def test_TransformsRelativeLink(self):
-        dummyCurrentLink = "http://www.foo.com"
-        dummyNewLink = "relativelink.html"
+        dummyCurrentLink = link.Link("http://www.foo.com")
+        dummyNewLink = link.Link("relativelink.html")
         sut = linkTransformer.RelativeLinkTransformer(dummyCurrentLink)
 
         result = sut.transform(dummyNewLink)
 
-        self.assertEqual(result, "http://www.foo.com/relativelink.html")
+        self.assertEqual(result.value, "http://www.foo.com/relativelink.html")
         
     def test_DoesNotTransformsAbsoluteLink(self):
-        dummyCurrentLink = "http://www.foo.com"
-        dummyNewLink = "http://www.bar.com"
+        dummyCurrentLink = link.Link("http://www.foo.com")
+        dummyNewLink = link.Link("http://www.bar.com")
         sut = linkTransformer.RelativeLinkTransformer(dummyCurrentLink)
 
         result = sut.transform(dummyNewLink)
