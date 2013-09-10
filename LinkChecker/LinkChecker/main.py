@@ -5,7 +5,7 @@ import linkChecker
 import linkFilter
 import linkFilterProcessor
 import linkProcessor
-import linkTransformer
+import linkTransform
 import linkTransformersProcessor
 import markupProcessor
 import resourceGetter
@@ -20,7 +20,7 @@ linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
 contRequester = contentRequester.ContentRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
 linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
-linkTransformers = [linkTransformer.RelativeLinkTransform()]
+linkTransformers = [linkTransform.RelativeLinkTransform()]
 markupProcessor = markupProcessor.MarkupProcessor(linkParserFactory)
 linkFilterProcessor = linkFilterProcessor.LinkFilterProcessor(linkFilters)
 linkTransformersProcessor = linkTransformersProcessor.LinkTransformersProcessor(linkTransformers)
