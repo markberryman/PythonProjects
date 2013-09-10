@@ -2,6 +2,7 @@
 import linkFilter
 import unittest
 
+
 class MailToFilterTests(unittest.TestCase):
     def test_FiltersMailToLinks(self):
         sut = linkFilter.MailToFilter()
@@ -9,6 +10,7 @@ class MailToFilterTests(unittest.TestCase):
         filterResult = sut.should_filter("mailto:foo")
 
         self.assertTrue(filterResult)
+
 
 class DomainCheckFilterTests(unittest.TestCase):
     def test_ReturnsTrueWhenHostnameDoesNotMatchBaseHostname(self):

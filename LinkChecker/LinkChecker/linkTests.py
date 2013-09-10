@@ -1,6 +1,7 @@
 ﻿import link
 import unittest
 
+
 class IsLinkBrokenTests(unittest.TestCase):
     def test_ReturnsTrueIfStatusCodeLessThanOK(self):
         sut = link.Link("some link")

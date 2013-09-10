@@ -2,6 +2,7 @@
 import markupProcessor
 import unittest
 
+
 class MockHtmlLinkParser(object):
     def __init__(self):
         self.links = set()
@@ -9,12 +10,14 @@ class MockHtmlLinkParser(object):
     def feed(self, markup):
         return None
 
+
 class MockHtmlLinkParserFactory(object):
     def __init__(self, htmlLinkParser):
         self.htmlLinkParser = htmlLinkParser
 
     def create_html_link_parser(self):
         return self.htmlLinkParser
+
 
 class GetLinksFromMarkup(unittest.TestCase):
     def test_returnsNoneIfMarkupProvidedIsNone(self):

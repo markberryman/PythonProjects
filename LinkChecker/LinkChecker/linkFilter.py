@@ -1,13 +1,16 @@
 from urllib.parse import urlparse
 
+
 class LinkFilter(object):
     """Abstract class defining for filtering links."""
     def should_filter(self, dataItem):
         raise NotImplementedError()
 
+
 class MailToFilter(LinkFilter):
     def should_filter(self, link):
         return link.lower().startswith("mailto:")
+
 
 class DomainCheckFilter(LinkFilter):
     def __init__(self, baseLink):

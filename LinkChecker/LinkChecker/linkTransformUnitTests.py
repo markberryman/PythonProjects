@@ -2,6 +2,7 @@
 import linkTransform
 import unittest
 
+
 class RelativeLinkTransformUnitTests(unittest.TestCase):
     def test_DoesNotTransformsAbsoluteLink(self):
         dummyCurrentLink = link.Link("some link")

@@ -3,6 +3,7 @@ import linkFilterProcessor
 import linkTransformProcessor
 import markupProcessor
 
+
 class LinkProcessor(object):
     """Processes the markup returned from requesting a link."""
     def __init__(self, markupProcessor, linkFilterProcessor, linkTransformerProcessor):

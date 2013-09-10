@@ -2,6 +2,7 @@ import html.parser
 import link
 import linkProcessor
 
+
 class LinkChecker:
     def __init__(self, resourceGetter, linkProcessor):
         self.resourceGetter = resourceGetter

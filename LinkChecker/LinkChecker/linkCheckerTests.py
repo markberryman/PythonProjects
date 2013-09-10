@@ -11,6 +11,7 @@ import markupProcessor
 import resourceGetter
 import unittest
 
+
 # these are more functional tests rather than unit tests
 class CheckLinksTests(unittest.TestCase):
     def test_FunctionalE2ETest(self):

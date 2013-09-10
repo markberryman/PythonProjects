@@ -1,6 +1,7 @@
 import link
 from html.parser import HTMLParser
 
+
 class HTMLLinkParser(HTMLParser):
     """Parses HTML markup and returns the number of discovered links "as-is" (i.e., no path transformations)"""
     def __init__(self):
@@ -14,7 +15,7 @@ class HTMLLinkParser(HTMLParser):
 
         if (tag == "a"):
             newLink = self.__process_anchor_tag(attrDict)
-                        
+
         if (tag == "link"):
             newLink = self.__process_link_tag(attrDict)
 

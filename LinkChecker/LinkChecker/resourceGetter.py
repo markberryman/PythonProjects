@@ -1,10 +1,11 @@
 import contentRequester
 import link
 
+
 class ResourceGetter:
     def __init__(self, contRequester):
         self.contRequester = contRequester
-        
+
     def get_resource(self, linkToProcess):
         """Gets a web page and returns its content"""
         responseData = None
@@ -19,5 +20,5 @@ class ResourceGetter:
         # only want to fetch the content of anchor links
         if (linkToProcess.type == link.LinkType.ANCHOR):
             responseData = res.read().decode()
-            
+
         return statusCode, responseData

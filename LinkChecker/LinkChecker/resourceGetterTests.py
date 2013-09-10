@@ -2,6 +2,7 @@ import link
 import resourceGetter
 import unittest
 
+
 class MockResponse(object):
     def __init__(self):
         self.status = 200
@@ -9,16 +10,18 @@ class MockResponse(object):
     def read(self):
         return b"hi"
 
+
 class MockRequester(object):
     def request_url(self, url):
         return MockResponse()
+
 
 class ResourceGetterTests(unittest.TestCase):
     def test_GetResourceReturnsStatusCodeAndUrlContentForAnchorTag(self):
         mockRequester = MockRequester()
         dummyLink = link.Link("url", link.LinkType.ANCHOR)
         sut = resourceGetter.ResourceGetter(mockRequester)
-        
+
         statusCodeResult, contentResult = sut.get_resource(dummyLink)
 
         self.assertEqual(200, statusCodeResult)
@@ -28,7 +31,7 @@ class ResourceGetterTests(unittest.TestCase):
         mockRequester = MockRequester()
         dummyLink = link.Link("url", link.LinkType.IMAGE)
         sut = resourceGetter.ResourceGetter(mockRequester)
-        
+
         statusCodeResult, contentResult = sut.get_resource(dummyLink)
 
         self.assertEqual(200, statusCodeResult)

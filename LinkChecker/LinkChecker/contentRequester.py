@@ -1,6 +1,7 @@
 import http.client
 from urllib.parse import urlparse
 
+
 class ContentRequester(object):
     """Requests content from url."""
     def request_url(self, url):
@@ -10,4 +11,3 @@ class ContentRequester(object):
         conn.request("GET", urlParts.path)
 
         return conn.getresponse()
-

@@ -4,5 +4,3 @@ class LinkAnalysisUtility:
         isRelative = not link.lower().startswith("http")
 
         return isRelative
-
-
