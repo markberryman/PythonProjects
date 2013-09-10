@@ -27,6 +27,8 @@
     <Compile Include="linkConverterUtility.py" />
     <Compile Include="linkConverterUtilityTests.py" />
     <Compile Include="linkFilter.py" />
+    <Compile Include="linkTransformersProcessorUnitTests.py" />
+    <Compile Include="linkTransformersProcessor.py" />
     <Compile Include="linkFilterProcessor.py" />
     <Compile Include="linkFilterProcessorUnitTests.py" />
     <Compile Include="linkFilterTests.py" />
@@ -36,7 +38,7 @@
     <Compile Include="main.py" />
     <Compile Include="markupProcessor.py" />
     <Compile Include="markupProcessorUnitTests.py" />
-    <Compile Include="relativeLinkTransformerUnitTests.py" />
+    <Compile Include="linkTransformerUnitTests.py" />
     <Compile Include="resourceGetter.py" />
     <Compile Include="resourceGetterTests.py" />
   </ItemGroup>
