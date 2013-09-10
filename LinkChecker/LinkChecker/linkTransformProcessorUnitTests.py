@@ -6,7 +6,7 @@ class MockTransform(object):
     def __init__(self):
         self.transformFnCalled = False
 
-    def transform(self, link):
+    def transform(self, currentLink, link):
         self.transformFnCalled = True
 
 class ApplyTransformersUnitTests(unittest.TestCase):
@@ -15,7 +15,7 @@ class ApplyTransformersUnitTests(unittest.TestCase):
         dummyLinks = [link.Link("a link")]
         sut = linkTransformProcessor.LinkTransformProcessor(dummyTransformers)
         
-        result = sut.apply_transformers(dummyLinks)
+        result = sut.apply_transformers("current link", dummyLinks)
 
         self.assertEqual(dummyLinks, result)
 
@@ -26,7 +26,7 @@ class ApplyTransformersUnitTests(unittest.TestCase):
         dummyLinks = [link.Link("a link")]
         sut = linkTransformProcessor.LinkTransformProcessor(dummyTransformers)
 
-        sut.apply_transformers(dummyLinks)
+        sut.apply_transformers("current link", dummyLinks)
 
         self.assertTrue(dummyTransformA.transformFnCalled)
         self.assertTrue(dummyTransformB.transformFnCalled)
