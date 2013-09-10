@@ -63,6 +63,7 @@
     <Content Include="image.png" />
     <Content Include="Index.html" />
     <Content Include="style.css" />
+    <Content Include="subdir\arelativelinkinasubdir.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

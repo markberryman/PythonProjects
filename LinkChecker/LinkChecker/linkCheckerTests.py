@@ -4,7 +4,7 @@ import link
 import linkChecker
 import linkFilter
 import linkFilterProcessor
-import linkTransformer
+import linkTransform
 import linkTransformersProcessor
 import linkProcessor
 import markupProcessor
@@ -20,7 +20,7 @@ class CheckLinksTests(unittest.TestCase):
         contRequester = contentRequester.ContentRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)
         linkFilters = set([linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
-        linkTransformers = [linkTransformer.RelativeLinkTransformer()]
+        linkTransformers = [linkTransform.RelativeLinkTransform()]
         mp = markupProcessor.MarkupProcessor(linkParserFactory)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
         lt = linkTransformersProcessor.LinkTransformersProcessor(linkTransformers)

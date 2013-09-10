@@ -1,12 +1,12 @@
 ﻿import link
-import linkTransformer
+import linkTransform
 import unittest
 
-class RelativeLinkTransformerUnitTests(unittest.TestCase):
+class RelativeLinkTransformUnitTests(unittest.TestCase):
     def test_DoesNotTransformsAbsoluteLink(self):
         dummyCurrentLink = link.Link("some link")
         dummyNewLink = link.Link("http://www.foo.com")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -15,7 +15,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
     def test_DoesNotTransformsMailToLink(self):
         dummyCurrentLink = link.Link("http://www.foo.com")
         dummyNewLink = link.Link("mailto:...")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -26,7 +26,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='http', netloc='www.foo.com', path='', params='', query='', fragment='')
         dummyCurrentLink = link.Link("http://www.foo.com")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -37,7 +37,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='', netloc='', path='www.foo.com', params='', query='', fragment='')
         dummyCurrentLink = link.Link("www.foo.com")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -48,7 +48,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='http', netloc='www.foo.com', path='/', params='', query='', fragment='')
         dummyCurrentLink = link.Link("http://www.foo.com/")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -59,7 +59,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='', netloc='', path='www.foo.com/', params='', query='', fragment='')
         dummyCurrentLink = link.Link("www.foo.com/")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -70,7 +70,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='http', netloc='www.foo.com', path='/x', params='', query='', fragment='')
         dummyCurrentLink = link.Link("http://www.foo.com/x")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -81,7 +81,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='http', netloc='www.foo.com', path='/x.html', params='', query='', fragment='')
         dummyCurrentLink = link.Link("http://www.foo.com/x.html")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -92,7 +92,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='http', netloc='www.foo.com', path='/x/y.html', params='', query='', fragment='')
         dummyCurrentLink = link.Link("http://www.foo.com/x/y.html")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -103,7 +103,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='', netloc='', path='www.foo.com/x', params='', query='', fragment='')
         dummyCurrentLink = link.Link("www.foo.com/x")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -114,7 +114,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='', netloc='', path='www.foo.com/x.html', params='', query='', fragment='')
         dummyCurrentLink = link.Link("www.foo.com/x.html")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
@@ -125,7 +125,7 @@ class RelativeLinkTransformerUnitTests(unittest.TestCase):
         # ParseResult(scheme='', netloc='', path='www.foo.com/x/y.html', params='', query='', fragment='')
         dummyCurrentLink = link.Link("www.foo.com/x/y.html")
         dummyNewLink = link.Link("relativelink.html")
-        sut = linkTransformer.RelativeLinkTransformer()
+        sut = linkTransform.RelativeLinkTransform()
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 

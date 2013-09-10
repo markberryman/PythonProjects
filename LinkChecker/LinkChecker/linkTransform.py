@@ -1,13 +1,13 @@
 import link
 from urllib.parse import urlparse
 
-class LinkTransformer(object):
+class LinkTransform(object):
     """Abstract class for defining link transformers."""
 
     def transform(self, link):
         raise NotImplementedError()
 
-class RelativeLinkTransformer(LinkTransformer):
+class RelativeLinkTransform(LinkTransform):
     """Transforms relative links to absolute links."""
     def transform(self, currentLink, newLink):
         urlparts = urlparse(currentLink.value)
