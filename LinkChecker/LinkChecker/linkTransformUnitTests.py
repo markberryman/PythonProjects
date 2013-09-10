@@ -22,7 +22,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         self.assertEqual(dummyNewLink.value, "mailto:...")
 
-    def test_TransformsRelativeLinkWithNetlocAndNoPath(self):
+    def test_TransformsLinkWithNetlocAndNoPath(self):
         # >>> urlparse("http://www.foo.com")
         # ParseResult(scheme='http', netloc='www.foo.com', path='')
         dummyCurrentLink = link.Link("http://www.foo.com")
@@ -31,9 +31,10 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
-        self.assertEqual(dummyNewLink.value, "http://www.foo.com/relativelink.html")
+        self.assertEqual(
+            dummyNewLink.value, "http://www.foo.com/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNoNetloc(self):
+    def test_TransformsLinkWithNoNetloc(self):
         # >>> urlparse("www.foo.com")
         # ParseResult(scheme='', netloc='', path='www.foo.com')
         dummyCurrentLink = link.Link("www.foo.com")
@@ -42,9 +43,10 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
-        self.assertEqual(dummyNewLink.value, "www.foo.com/relativelink.html")
+        self.assertEqual(
+            dummyNewLink.value, "www.foo.com/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNetlocAndOnlySlashForPath(self):
+    def test_TransformsLinkWithNetlocAndOnlySlashForPath(self):
         # >>> urlparse("http://www.foo.com/")
         # ParseResult(scheme='http', netloc='www.foo.com', path='/')
         dummyCurrentLink = link.Link("http://www.foo.com/")
@@ -53,9 +55,10 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
-        self.assertEqual(dummyNewLink.value, "http://www.foo.com/relativelink.html")
+        self.assertEqual(
+            dummyNewLink.value, "http://www.foo.com/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNoNetlocAndPathEndingWithSlash(self):
+    def test_TransformsLinkWithNoNetlocAndPathEndingWithSlash(self):
         # >>> urlparse("www.foo.com/")
         # ParseResult(scheme='', netloc='', path='www.foo.com/')
         dummyCurrentLink = link.Link("www.foo.com/")
@@ -64,9 +67,10 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
-        self.assertEqual(dummyNewLink.value, "www.foo.com/relativelink.html")
+        self.assertEqual(
+            dummyNewLink.value, "www.foo.com/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNetlocAndPathEndingWithFileWithNoExtension(self):
+    def test_TransformsLinkWithNetlocAndPathEndingWithNoExtension(self):
         # >>> urlparse("http://www.foo.com/x")
         # ParseResult(scheme='http', netloc='www.foo.com', path='/x')
         dummyCurrentLink = link.Link("http://www.foo.com/x")
@@ -75,9 +79,10 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
-        self.assertEqual(dummyNewLink.value, "http://www.foo.com/relativelink.html")
+        self.assertEqual(
+            dummyNewLink.value, "http://www.foo.com/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNetlocAndPathEndingWithFileWithExtension(self):
+    def test_TransformsLinkWithNetlocAndPathEndingWithFileExtension(self):
         # >>> urlparse("http://www.foo.com/x.html")
         # ParseResult(scheme='http', netloc='www.foo.com', path='/x.html')
         dummyCurrentLink = link.Link("http://www.foo.com/x.html")
@@ -86,9 +91,10 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
-        self.assertEqual(dummyNewLink.value, "http://www.foo.com/relativelink.html")
+        self.assertEqual(
+            dummyNewLink.value, "http://www.foo.com/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNetlocAndPathContainingDirectoryAndFileWithExtension(self):
+    def test_TransformsLinkWithNetlocAndPathWithDirAndFileExtension(self):
         # >>> urlparse("http://www.foo.com/x/y.html")
         # ParseResult(scheme='http', netloc='www.foo.com', path='/x/y.html')
         dummyCurrentLink = link.Link("http://www.foo.com/x/y.html")
@@ -97,9 +103,10 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
-        self.assertEqual(dummyNewLink.value, "http://www.foo.com/x/relativelink.html")
+        self.assertEqual(
+            dummyNewLink.value, "http://www.foo.com/x/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNoNetlocAndPathEndingWithFileWithNoExtension(self):
+    def test_TransformsLinkWithNoNetlocAndPathEndingWithNoExtension(self):
         # >>> urlparse("www.foo.com/x")
         # ParseResult(scheme='', netloc='', path='www.foo.com/x')
         dummyCurrentLink = link.Link("www.foo.com/x")
@@ -110,7 +117,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         self.assertEqual(dummyNewLink.value, "www.foo.com/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNoNetlocAndPathEndingWithFileWithExtension(self):
+    def test_TransformsLinkWithNoNetlocAndPathEndingWithFileExtension(self):
         # >>> urlparse("www.foo.com/x.html")
         # ParseResult(scheme='', netloc='', path='www.foo.com/x.html')
         dummyCurrentLink = link.Link("www.foo.com/x.html")
@@ -121,7 +128,7 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         self.assertEqual(dummyNewLink.value, "www.foo.com/relativelink.html")
 
-    def test_TransformsRelativeLinkWithNoNetlocAndPathContainingDirectoryAndFileWithExtension(self):
+    def test_TransformsLinkWithNoNetlocAndPathWithDirAndFileExtension(self):
         # >>> urlparse("www.foo.com/x/y.html")
         # ParseResult(scheme='', netloc='', path='www.foo.com/x/y.html')
         dummyCurrentLink = link.Link("www.foo.com/x/y.html")
@@ -130,7 +137,8 @@ class RelativeLinkTransformUnitTests(unittest.TestCase):
 
         sut.transform(dummyCurrentLink, dummyNewLink)
 
-        self.assertEqual(dummyNewLink.value, "www.foo.com/x/relativelink.html")
+        self.assertEqual(
+            dummyNewLink.value, "www.foo.com/x/relativelink.html")
 
 
 if __name__ == '__main__':
