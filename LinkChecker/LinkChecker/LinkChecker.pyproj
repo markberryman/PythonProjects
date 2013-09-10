@@ -20,12 +20,8 @@
     <Compile Include="htmlLinkParserFactory.py" />
     <Compile Include="htmlLinkParserTests.py" />
     <Compile Include="link.py" />
-    <Compile Include="linkAnalysisUtility.py" />
-    <Compile Include="linkAnalysisUtilityTests.py" />
     <Compile Include="linkChecker.py" />
     <Compile Include="linkCheckerTests.py" />
-    <Compile Include="linkConverterUtility.py" />
-    <Compile Include="linkConverterUtilityTests.py" />
     <Compile Include="linkFilter.py" />
     <Compile Include="linkTransformProcessorUnitTests.py" />
     <Compile Include="linkTransformProcessor.py" />
