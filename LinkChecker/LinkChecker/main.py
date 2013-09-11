@@ -22,7 +22,8 @@ contRequester = contentRequester.ContentRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
 linkFilters = set(
     [linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
-linkTransformers = [linkTransform.RelativeLinkTransform()]
+linkTransformers = [linkTransform.RelativeLinkTransform(),
+                    linkTransform.LowerCaseTransform()]
 markupProcessor = markupProcessor.MarkupProcessor(linkParserFactory)
 linkFilterProcessor = linkFilterProcessor.LinkFilterProcessor(linkFilters)
 linkTransformProcessor = linkTransformProcessor.LinkTransformProcessor(

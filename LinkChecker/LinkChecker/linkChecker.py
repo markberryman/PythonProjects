@@ -39,8 +39,8 @@ class LinkChecker:
         if (depth != 0):
 
             for linkToProcess in linksToProcess:
-                if linkToProcess.value.lower() not in self.linksRequested:
-                    self.linksRequested.add(linkToProcess.value.lower())
+                if linkToProcess.value not in self.linksRequested:
+                    self.linksRequested.add(linkToProcess.value)
 
                     statusCode, markup = self.resourceGetter.get_resource(
                         linkToProcess)

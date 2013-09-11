@@ -24,7 +24,8 @@ class CheckLinksTests(unittest.TestCase):
         linkFilters = set(
             [linkFilter.MailToFilter(),
                 linkFilter.DomainCheckFilter(startLink.value)])
-        linkTransformers = [linkTransform.RelativeLinkTransform()]
+        linkTransformers = [linkTransform.RelativeLinkTransform(),
+                            linkTransform.LowerCaseTransform()]
         mp = markupProcessor.MarkupProcessor(linkParserFactory)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
         lt = linkTransformProcessor.LinkTransformProcessor(linkTransformers)
