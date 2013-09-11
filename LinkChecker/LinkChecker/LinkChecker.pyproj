@@ -29,7 +29,6 @@
     <Compile Include="test\linkFilterProcessorTests.py" />
     <Compile Include="test\linkFilterTests.py" />
     <Compile Include="linkProcessor.py" />
-    <Compile Include="linkTests.py" />
     <Compile Include="linkTransform.py" />
     <Compile Include="main.py" />
     <Compile Include="markupProcessor.py" />
