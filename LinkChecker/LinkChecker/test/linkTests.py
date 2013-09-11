@@ -1,4 +1,4 @@
-﻿import link
+import link
 import unittest
 
 

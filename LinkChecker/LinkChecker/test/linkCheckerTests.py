@@ -1,4 +1,4 @@
-﻿import contentRequester
+import contentRequester
 import htmlLinkParserFactory
 import link
 import linkChecker
