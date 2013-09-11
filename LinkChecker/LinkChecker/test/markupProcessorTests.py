@@ -1,4 +1,3 @@
-import link
 import markupProcessor
 import unittest
 
