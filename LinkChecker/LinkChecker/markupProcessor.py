@@ -1,6 +1,3 @@
-import htmlLinkParserFactory
-
-
 class MarkupProcessor(object):
     """Processes markup and returns links."""
 

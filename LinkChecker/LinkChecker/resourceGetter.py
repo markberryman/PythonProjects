@@ -1,4 +1,3 @@
-import contentRequester
 import link
 
 

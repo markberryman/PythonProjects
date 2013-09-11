@@ -9,7 +9,6 @@ import linkTransform
 import linkTransformProcessor
 import markupProcessor
 import resourceGetter
-import htmlLinkParser
 
 startLink = link.Link("http://www.markwberryman.com", link.LinkType.ANCHOR)
 depth = 2
