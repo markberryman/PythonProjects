@@ -1,6 +1,5 @@
 import html.parser
 import link
-import linkProcessor
 
 
 class LinkChecker:
@@ -31,8 +30,8 @@ class LinkChecker:
             self.__print_links(results["invalidMarkupLinks"])
 
     def __print_links(self, links):
-        for link in links:
-            print(">>> {}".format(link.value))
+        for l in links:
+            print(">>> {}".format(l.value))
 
     def __check_links_helper(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
