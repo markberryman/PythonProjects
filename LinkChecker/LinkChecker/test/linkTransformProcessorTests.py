@@ -12,15 +12,6 @@ class MockTransform(object):
 
 
 class ApplyTransformersUnitTests(unittest.TestCase):
-    def test_ReturnsLinksWhenNoTransformersLeftToApply(self):
-        dummyTransformers = []
-        dummyLinks = [link.Link("a link")]
-        sut = linkTransformProcessor.LinkTransformProcessor(dummyTransformers)
-
-        result = sut.apply_transformers("current link", dummyLinks)
-
-        self.assertEqual(dummyLinks, result)
-
     def test_AppliesAllTransforms(self):
         dummyTransformA = MockTransform()
         dummyTransformB = MockTransform()
