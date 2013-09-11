@@ -1,4 +1,8 @@
+# lint and pyflakes scripts
 lc
+pf
+
+
 Todo.txt
 
 TestResults/
