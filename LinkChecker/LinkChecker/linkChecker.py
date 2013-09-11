@@ -15,6 +15,8 @@ class LinkChecker:
         print("Number of links checked = {}".
               format(len(results["linksRequested"])))
 
+        self.__print_links(results["linksRequested"])
+
         print("Number of broken links = {}".
               format(len(results["brokenLinks"])))
 
@@ -30,8 +32,10 @@ class LinkChecker:
             self.__print_links(results["invalidMarkupLinks"])
 
     def __print_links(self, links):
+        links = sorted(links)
+
         for l in links:
-            print(">>> {}".format(l.value))
+            print(">>> {}".format(l))
 
     def __check_links_helper(self, linksToProcess, depth):
         """Checks the provided set of links to a specified depth."""
