@@ -12,7 +12,7 @@ import resourceGetter
 
 startLink = link.Link(
     "http://www.microsoft.com/en-us/default.aspx", link.LinkType.ANCHOR)
-depth = 2
+depth = 3
 
 print("Starting link checking with \"{}\" and depth {}".format(
     startLink.value, depth))
