@@ -11,10 +11,11 @@ class LinkType:
 class Link(object):
     """Represents a link to a resource"""
 
-    def __init__(self, value, type=LinkType.ANCHOR):
+    def __init__(self, value, type=LinkType.ANCHOR, depth=0):
         self.value = value
         self.type = type
         self.resultStatusCode = None
+        self.depth = depth
 
     def is_link_broken(self):
         return ((self.resultStatusCode < http.client.OK) or
