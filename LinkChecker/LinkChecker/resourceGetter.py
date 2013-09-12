@@ -11,7 +11,7 @@ class ResourceGetter:
 
         res = self.contRequester.request_url(linkToProcess.value)
 
-        statusCode = res.status
+        linkToProcess.resultStatusCode = res.status
 
         # only want to fetch the content of anchor links
         if (linkToProcess.type == link.LinkType.ANCHOR):
@@ -24,4 +24,4 @@ class ResourceGetter:
                 # and move on for now
                 pass
 
-        return statusCode, responseData
+        return responseData

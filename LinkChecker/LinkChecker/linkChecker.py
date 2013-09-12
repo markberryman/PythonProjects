@@ -49,16 +49,13 @@ class LinkChecker:
 
         while (numActiveWorkItems > 0):
             # we block here
-            statusCode, markup, processedLink = self.pLinkRequester.get_result()
+            markup, processedLink = self.pLinkRequester.get_result()
 
             self.linksRequested.add(processedLink.value)
 
             numActiveWorkItems -= 1
 
-            print("{} --> {}".format(statusCode, processedLink.value))
-
-            # todo - consider setting status code inside of get_result
-            processedLink.resultStatusCode = statusCode
+            print("{} --> {}".format(processedLink.resultStatusCode, processedLink.value))
 
             if (processedLink.is_link_broken() is False):
                 if (processedLink.type == link.LinkType.ANCHOR):

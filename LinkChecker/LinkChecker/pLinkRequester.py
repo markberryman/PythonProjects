@@ -19,12 +19,12 @@ class PLinkRequester(object):
         while True:
             item = self.inputQueue.get()
             # item is a Link obj
-            statusCode, responseData = self.workFn(item)
+            responseData = self.workFn(item)
             # also return the item so that we can map the
             # result to the link 
             # todo - consider adding these as properties to the
             # Link object itself
-            self.outputQueue.put((statusCode, responseData, item))
+            self.outputQueue.put((responseData, item))
             self.inputQueue.task_done()
 
     def add_work(self, item):
