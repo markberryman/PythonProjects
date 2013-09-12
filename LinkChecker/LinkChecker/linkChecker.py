@@ -68,11 +68,10 @@ class LinkChecker:
                                 processedLink, markup)
 
                             for nl in newLinks:
-                                # todo - check to see if we've previously
-                                # requested this link
-                                nl.depth = processedLink.depth + 1
-                                self.pLinkRequester.add_work(nl)
-                                numActiveWorkItems += 1
+                                if (nl.value not in self.linksRequested):
+                                    nl.depth = processedLink.depth + 1
+                                    self.pLinkRequester.add_work(nl)
+                                    numActiveWorkItems += 1
                         except html.parser.HTMLParseError:
                             self.invalidMarkupLinks.add(processedLink.value)
             else:
