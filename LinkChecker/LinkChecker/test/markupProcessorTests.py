@@ -19,12 +19,12 @@ class MockHtmlLinkParserFactory(object):
 
 
 class GetLinksFromMarkup(unittest.TestCase):
-    def test_returnsNoneIfMarkupProvidedIsNone(self):
+    def test_returnsEmptySetIfMarkupProvidedIsNone(self):
         sut = markupProcessor.MarkupProcessor(None)
 
         result = sut.get_links_from_markup(None)
 
-        self.assertTrue(result is None)
+        self.assertEqual(0, len(result))
 
     def test_returnsLinksFromHtmlLinkParser(self):
         mockHtmlLinkParser = MockHtmlLinkParser()
