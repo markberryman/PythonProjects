@@ -48,7 +48,6 @@ class LinkChecker:
         numActiveWorkItems = 1
 
         while (numActiveWorkItems > 0):
-            # we block here
             markup, processedLink = self.pLinkRequester.get_result()
 
             self.linksRequested.add(processedLink.value)
