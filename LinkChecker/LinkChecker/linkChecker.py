@@ -74,8 +74,8 @@ class LinkChecker:
                                 numActiveWorkItems += 1
                         except html.parser.HTMLParseError:
                             self.invalidMarkupLinks.add(processedLink.value)
-                else:
-                    self.brokenLinks.add(processedLink.value)
+            else:
+                self.brokenLinks.add(processedLink.value)
 
 
     #def __check_links_helper(self, linksToProcess, depth):
