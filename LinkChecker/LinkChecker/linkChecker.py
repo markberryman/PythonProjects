@@ -49,6 +49,8 @@ class LinkChecker:
             # we block here
             statusCode, markup, processedLink = self.pLinkProcessor.get_result()
 
+            self.linksRequested.add(processedLink.value)
+
             numActiveWorkItems -= 1
 
             print("{} --> {}".format(statusCode, processedLink.value))
@@ -70,9 +72,9 @@ class LinkChecker:
                                 self.pLinkProcessor.add_work(nl)
                                 numActiveWorkItems += 1
                         except html.parser.HTMLParseError:
-                            self.invalidMarkupLinks.add(processedLink)
+                            self.invalidMarkupLinks.add(processedLink.value)
                 else:
-                    self.brokenLinks.add(processedLink)
+                    self.brokenLinks.add(processedLink.value)
 
 
     #def __check_links_helper(self, linksToProcess, depth):
