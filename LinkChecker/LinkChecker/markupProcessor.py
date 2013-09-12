@@ -7,7 +7,7 @@ class MarkupProcessor(object):
     def get_links_from_markup(self, markup):
         """Processes markup and returns links."""
         if (markup is None):
-            return None
+            return set()
 
         htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
 
