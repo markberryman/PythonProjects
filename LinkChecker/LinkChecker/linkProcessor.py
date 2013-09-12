@@ -18,6 +18,7 @@ class LinkProcessor(object):
         context = {
             "currentLink": linkToProcess
             }
+
         self.linkTransformProcessor.apply_transformers(context, newLinks)
         newLinks = self.linkFilterProcessor.apply_filters(newLinks)
 

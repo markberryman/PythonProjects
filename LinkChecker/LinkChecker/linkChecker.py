@@ -1,5 +1,6 @@
 import html.parser
 import link
+import pLinkProcessor
 
 
 class LinkChecker:
@@ -9,6 +10,9 @@ class LinkChecker:
         self.linksRequested = set()
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
+        self.pLinkProcessor = pLinkProcessor.PLinkProcessor(
+            20, self.resourceGetter.get_resource)
+        self.workItemsSubmitted = 0
 
     def print_results(self, results):
         print("Results:")
@@ -37,39 +41,76 @@ class LinkChecker:
         for l in links:
             print(">>> {}".format(l))
 
-    def __check_links_helper(self, linksToProcess, depth):
-        """Checks the provided set of links to a specified depth."""
-        if (depth != 0):
+    def __check_links_helper2(self, startLink, depth):
+        self.pLinkProcessor.add_work(startLink)
+        numActiveWorkItems = 1
 
-            for linkToProcess in linksToProcess:
-                if linkToProcess.value not in self.linksRequested:
-                    self.linksRequested.add(linkToProcess.value)
+        while (numActiveWorkItems > 0):
+            # we block here
+            statusCode, markup, processedLink = self.pLinkProcessor.get_result()
 
-                    statusCode, markup = self.resourceGetter.get_resource(
-                        linkToProcess)
+            numActiveWorkItems -= 1
 
-                    linkToProcess.resultStatusCode = statusCode
+            print("{} --> {}".format(statusCode, processedLink.value))
 
-                    if (linkToProcess.is_link_broken() is False):
-                        if (linkToProcess.type == link.LinkType.ANCHOR):
-                            try:
-                                newLinks = self.linkProcessor.process_link(
-                                    linkToProcess, markup)
+            # todo - consider setting status code inside of get_result
+            processedLink.resultStatusCode = statusCode
 
-                                print(
-                                    "Processed markup, found {} links".format(
-                                        len(newLinks)))
+            if (processedLink.is_link_broken() is False):
+                if (processedLink.type == link.LinkType.ANCHOR):
+                    try:
+                        newLinks = self.linkProcessor.process_link(
+                            processedLink, markup)
 
-                                self.__check_links_helper(newLinks, depth - 1)
-                            except html.parser.HTMLParseError:
-                                self.invalidMarkupLinks.add(linkToProcess)
-                    else:
-                        self.brokenLinks.add(linkToProcess)
+                        for nl in newLinks:
+                            # todo - check to see if we've previously
+                            # requested this link
+                            # todo - don't add more work if we've
+                            # exceeded the max depth
+                            # look at add a depth value to a link
 
-        return None
+                            self.pLinkProcessor.add_work(nl)
+                            numActiveWorkItems += 1
+                    except html.parser.HTMLParseError:
+                        self.invalidMarkupLinks.add(processedLink)
+                else:
+                    self.brokenLinks.add(processedLink)
+
+
+    #def __check_links_helper(self, linksToProcess, depth):
+    #    """Checks the provided set of links to a specified depth."""
+    #    if (depth != 0):
+
+    #        for linkToProcess in linksToProcess:
+    #            if linkToProcess.value not in self.linksRequested:
+    #                self.linksRequested.add(linkToProcess.value)
+
+    #                statusCode, markup = self.resourceGetter.get_resource(
+    #                    linkToProcess)
+
+    #                linkToProcess.resultStatusCode = statusCode
+
+    #                if (linkToProcess.is_link_broken() is False):
+    #                    if (linkToProcess.type == link.LinkType.ANCHOR):
+    #                        try:
+    #                            newLinks = self.linkProcessor.process_link(
+    #                                linkToProcess, markup)
+
+    #                            print(
+    #                                "Processed markup, found {} links".format(
+    #                                    len(newLinks)))
+
+    #                            self.__check_links_helper(newLinks, depth - 1)
+    #                        except html.parser.HTMLParseError:
+    #                            self.invalidMarkupLinks.add(linkToProcess)
+    #                else:
+    #                    self.brokenLinks.add(linkToProcess)
+
+    #    return None
 
     def check_links(self, linksToProcess, depth):
-        self.__check_links_helper(linksToProcess, depth)
+        self.pLinkProcessor.start()
+        self.__check_links_helper2(linksToProcess.pop(), depth)
 
         return {
             "linksRequested": self.linksRequested,
