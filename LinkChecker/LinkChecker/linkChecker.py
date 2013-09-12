@@ -4,7 +4,7 @@ import pLinkProcessor
 
 
 class LinkChecker:
-    def __init__(self, resourceGetter, linkProcessor):
+    def __init__(self, resourceGetter, linkProcessor, maxDepth):
         self.resourceGetter = resourceGetter
         self.linkProcessor = linkProcessor
         self.linksRequested = set()
@@ -13,6 +13,7 @@ class LinkChecker:
         self.pLinkProcessor = pLinkProcessor.PLinkProcessor(
             20, self.resourceGetter.get_resource)
         self.workItemsSubmitted = 0
+        self.maxDepth = maxDepth
 
     def print_results(self, results):
         print("Results:")
@@ -41,7 +42,7 @@ class LinkChecker:
         for l in links:
             print(">>> {}".format(l))
 
-    def __check_links_helper2(self, startLink, depth):
+    def __check_links_helper2(self, startLink):
         self.pLinkProcessor.add_work(startLink)
         numActiveWorkItems = 1
 
@@ -60,7 +61,7 @@ class LinkChecker:
 
             if (processedLink.is_link_broken() is False):
                 if (processedLink.type == link.LinkType.ANCHOR):
-                    if (processedLink.depth <= depth):
+                    if (processedLink.depth < self.maxDepth):
                         try:
                             newLinks = self.linkProcessor.process_link(
                                 processedLink, markup)
@@ -108,9 +109,9 @@ class LinkChecker:
 
     #    return None
 
-    def check_links(self, linksToProcess, depth):
+    def check_links(self, startLink):
         self.pLinkProcessor.start()
-        self.__check_links_helper2(linksToProcess.pop(), depth)
+        self.__check_links_helper2(startLink)
 
         return {
             "linksRequested": self.linksRequested,

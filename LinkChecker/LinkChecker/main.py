@@ -11,7 +11,8 @@ import markupProcessor
 import resourceGetter
 
 startLink = link.Link(
-    "http://www.microsoft.com/en-us/default.aspx", link.LinkType.ANCHOR)
+    #"http://www.microsoft.com/en-us/default.aspx", link.LinkType.ANCHOR)
+    "http://www.markwberryman.com/", link.LinkType.ANCHOR)
 depth = 1
 
 print("Starting link checking with \"{}\" and depth {}".format(
@@ -31,9 +32,9 @@ linkTransformProcessor = linkTransformProcessor.LinkTransformProcessor(
 linkProcessor = linkProcessor.LinkProcessor(
     markupProcessor, linkFilterProcessor, linkTransformProcessor)
 
-checker = linkChecker.LinkChecker(resourceGetter, linkProcessor)
+checker = linkChecker.LinkChecker(resourceGetter, linkProcessor, depth)
 
-results = checker.check_links(set([startLink]), depth)
+results = checker.check_links(startLink)
 
 checker.print_results(results)
 
