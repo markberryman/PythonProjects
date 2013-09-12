@@ -57,19 +57,20 @@ class LinkChecker:
             print("{} --> {}".format(processedLink.resultStatusCode, processedLink.value))
 
             if (processedLink.is_link_broken() is False):
-                if (processedLink.type == link.LinkType.ANCHOR):
-                    if (processedLink.depth < self.maxDepth):
-                        try:
-                            newLinks = self.linkProcessor.process_link(
-                                processedLink, markup)
+                if (processedLink.type == link.LinkType.ANCHOR):                    
+                    try:
+                        newLinks = self.linkProcessor.process_link(
+                            processedLink, markup)
 
-                            for nl in newLinks:
-                                if (nl.value not in self.linksRequested):
-                                    nl.depth = processedLink.depth + 1
+                        for nl in newLinks:
+                            if (nl.value not in self.linksRequested):
+                                nl.depth = processedLink.depth + 1
+
+                                if (nl.depth < self.maxDepth):
                                     self.pLinkRequester.add_work(nl)
                                     numActiveWorkItems += 1
-                        except html.parser.HTMLParseError:
-                            self.invalidMarkupLinks.add(processedLink.value)
+                    except html.parser.HTMLParseError:
+                        self.invalidMarkupLinks.add(processedLink.value)
             else:
                 self.brokenLinks.add(processedLink.value)
 
