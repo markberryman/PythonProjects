@@ -77,38 +77,6 @@ class LinkChecker:
             else:
                 self.brokenLinks.add(processedLink.value)
 
-
-    #def __check_links_helper(self, linksToProcess, depth):
-    #    """Checks the provided set of links to a specified depth."""
-    #    if (depth != 0):
-
-    #        for linkToProcess in linksToProcess:
-    #            if linkToProcess.value not in self.linksRequested:
-    #                self.linksRequested.add(linkToProcess.value)
-
-    #                statusCode, markup = self.resourceGetter.get_resource(
-    #                    linkToProcess)
-
-    #                linkToProcess.resultStatusCode = statusCode
-
-    #                if (linkToProcess.is_link_broken() is False):
-    #                    if (linkToProcess.type == link.LinkType.ANCHOR):
-    #                        try:
-    #                            newLinks = self.linkProcessor.process_link(
-    #                                linkToProcess, markup)
-
-    #                            print(
-    #                                "Processed markup, found {} links".format(
-    #                                    len(newLinks)))
-
-    #                            self.__check_links_helper(newLinks, depth - 1)
-    #                        except html.parser.HTMLParseError:
-    #                            self.invalidMarkupLinks.add(linkToProcess)
-    #                else:
-    #                    self.brokenLinks.add(linkToProcess)
-
-    #    return None
-
     def check_links(self, startLink):
         self.pLinkRequester.start()
         self.__check_links_helper2(startLink)
