@@ -8,6 +8,7 @@ import linkProcessor
 import linkTransform
 import linkTransformProcessor
 import markupProcessor
+import pLinkRequester
 import resourceGetter
 
 startLink = link.Link(
@@ -31,8 +32,11 @@ linkTransformProcessor = linkTransformProcessor.LinkTransformProcessor(
     linkTransformers)
 linkProcessor = linkProcessor.LinkProcessor(
     markupProcessor, linkFilterProcessor, linkTransformProcessor)
+pLinkRequester = pLinkRequester.PLinkRequester(
+    3, resourceGetter.get_resource)
 
-checker = linkChecker.LinkChecker(resourceGetter, linkProcessor, depth)
+checker = linkChecker.LinkChecker(
+    resourceGetter, linkProcessor, pLinkRequester, depth)
 
 results = checker.check_links(startLink)
 

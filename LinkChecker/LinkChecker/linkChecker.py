@@ -1,17 +1,15 @@
 import html.parser
 import link
-import pLinkProcessor
 
 
 class LinkChecker:
-    def __init__(self, resourceGetter, linkProcessor, maxDepth):
+    def __init__(self, resourceGetter, linkProcessor, pLinkRequester, maxDepth):
         self.resourceGetter = resourceGetter
         self.linkProcessor = linkProcessor
         self.linksRequested = set()
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
-        self.pLinkProcessor = pLinkProcessor.PLinkProcessor(
-            3, self.resourceGetter.get_resource)
+        self.pLinkRequester = pLinkRequester
         self.workItemsSubmitted = 0
         self.maxDepth = maxDepth
 
@@ -46,12 +44,12 @@ class LinkChecker:
             print("* {}".format(l))
 
     def __check_links_helper2(self, startLink):
-        self.pLinkProcessor.add_work(startLink)
+        self.pLinkRequester.add_work(startLink)
         numActiveWorkItems = 1
 
         while (numActiveWorkItems > 0):
             # we block here
-            statusCode, markup, processedLink = self.pLinkProcessor.get_result()
+            statusCode, markup, processedLink = self.pLinkRequester.get_result()
 
             self.linksRequested.add(processedLink.value)
 
@@ -73,7 +71,7 @@ class LinkChecker:
                                 # todo - check to see if we've previously
                                 # requested this link
                                 nl.depth = processedLink.depth + 1
-                                self.pLinkProcessor.add_work(nl)
+                                self.pLinkRequester.add_work(nl)
                                 numActiveWorkItems += 1
                         except html.parser.HTMLParseError:
                             self.invalidMarkupLinks.add(processedLink.value)
@@ -113,7 +111,7 @@ class LinkChecker:
     #    return None
 
     def check_links(self, startLink):
-        self.pLinkProcessor.start()
+        self.pLinkRequester.start()
         self.__check_links_helper2(startLink)
 
         return {
