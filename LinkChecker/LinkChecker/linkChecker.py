@@ -11,17 +11,19 @@ class LinkChecker:
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
         self.pLinkProcessor = pLinkProcessor.PLinkProcessor(
-            20, self.resourceGetter.get_resource)
+            3, self.resourceGetter.get_resource)
         self.workItemsSubmitted = 0
         self.maxDepth = maxDepth
 
     def print_results(self, results):
+        print("")
         print("Results:")
         print("Number of links checked = {}".
               format(len(results["linksRequested"])))
 
         self.__print_links(results["linksRequested"])
 
+        print("")
         print("Number of broken links = {}".
               format(len(results["brokenLinks"])))
 
@@ -29,6 +31,7 @@ class LinkChecker:
             print("Broken links:")
             self.__print_links(results["brokenLinks"])
 
+        print("")
         print("Number of links with invalid markup = {}".
               format(len(results["invalidMarkupLinks"])))
 
@@ -40,7 +43,7 @@ class LinkChecker:
         links = sorted(links)
 
         for l in links:
-            print(">>> {}".format(l))
+            print("* {}".format(l))
 
     def __check_links_helper2(self, startLink):
         self.pLinkProcessor.add_work(startLink)
