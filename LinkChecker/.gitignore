@@ -13,6 +13,8 @@ TestWebApplication/obj/*
 
 WebFrontEnd/obj/*
 
+StyleCop.Cache
+
 packages/
 
 # VS Python performance testing related files
