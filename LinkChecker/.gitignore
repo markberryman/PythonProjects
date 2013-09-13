@@ -11,5 +11,9 @@ LinkCheckerProcessWrapper/azureStorageCreds.py
 
 TestWebApplication/obj/*
 
+WebFrontEnd/obj/*
+
+packages/
+
 # VS Python performance testing related files
 *.pyperf

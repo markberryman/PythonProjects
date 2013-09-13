@@ -7,6 +7,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LinkCheckerProcessWrapper",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebApplication", "TestWebApplication\TestWebApplication.csproj", "{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFrontEnd", "WebFrontEnd\WebFrontEnd.csproj", "{704370E5-A1B1-4A69-B049-96F6AB9DAE8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36C7BEE2-D6D6-4AB0-A78F-C2F7D51E6C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{704370E5-A1B1-4A69-B049-96F6AB9DAE8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704370E5-A1B1-4A69-B049-96F6AB9DAE8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704370E5-A1B1-4A69-B049-96F6AB9DAE8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704370E5-A1B1-4A69-B049-96F6AB9DAE8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
