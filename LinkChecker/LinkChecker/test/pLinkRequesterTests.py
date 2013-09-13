@@ -13,7 +13,7 @@ class MockQueue(object):
         return None
 
 
-class GetResultTests(unittest.TestCase):
+class AddWorkTests(unittest.TestCase):
     def test_AddWorkAddsItemToInputQueue(self):
         dummyQueue = MockQueue()
         dummyItem = "x"
@@ -23,6 +23,8 @@ class GetResultTests(unittest.TestCase):
 
         self.assertEqual(dummyItem, dummyQueue.data[0])
 
+
+class GetResultTests(unittest.TestCase):
     def test_GetResultReturnsOutputQueueItem(self):
         dummyQueue = MockQueue()
         sut = pLinkRequester.PLinkRequester(1, None, None, dummyQueue)
