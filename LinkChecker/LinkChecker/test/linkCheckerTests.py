@@ -9,6 +9,7 @@ import linkTransformProcessor
 import linkProcessor
 import markupProcessor
 import pLinkRequester
+import queue
 import resourceGetter
 import unittest
 
@@ -32,7 +33,7 @@ class CheckLinksTests(unittest.TestCase):
         lt = linkTransformProcessor.LinkTransformProcessor(linkTransformers)
         lp = linkProcessor.LinkProcessor(mp, lfp, lt)
         plr = pLinkRequester.PLinkRequester(
-            3, resGetter.get_resource)
+            3, resGetter.get_resource, queue.Queue())
         sut = linkChecker.LinkChecker(resGetter, lp, plr, depth)
 
         results = sut.check_links(startLink)
