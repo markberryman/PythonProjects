@@ -33,7 +33,7 @@ class CheckLinksTests(unittest.TestCase):
         lt = linkTransformProcessor.LinkTransformProcessor(linkTransformers)
         lp = linkProcessor.LinkProcessor(mp, lfp, lt)
         plr = pLinkRequester.PLinkRequester(
-            3, resGetter.get_resource, queue.Queue())
+            3, resGetter.get_resource, queue.Queue(), queue.Queue())
         sut = linkChecker.LinkChecker(resGetter, lp, plr, depth)
 
         results = sut.check_links(startLink)

@@ -4,8 +4,8 @@ import threading
 
 class PLinkRequester(object):
     """Parallel link processor."""
-    def __init__(self, numWorkers, workFn, outputQueue):
-        self.inputQueue = queue.Queue()
+    def __init__(self, numWorkers, workFn, inputQueue, outputQueue):
+        self.inputQueue = inputQueue
         self.outputQueue = outputQueue
         self.numWorkers = numWorkers
         self.workFn = workFn
