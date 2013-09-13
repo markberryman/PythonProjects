@@ -3,7 +3,8 @@ import link
 
 
 class LinkChecker:
-    def __init__(self, resourceGetter, linkProcessor, pLinkRequester, maxDepth):
+    def __init__(
+            self, resourceGetter, linkProcessor, pLinkRequester, maxDepth):
         self.resourceGetter = resourceGetter
         self.linkProcessor = linkProcessor
         self.linksRequested = set()
@@ -54,10 +55,11 @@ class LinkChecker:
 
             numActiveWorkItems -= 1
 
-            print("{} --> {}".format(processedLink.resultStatusCode, processedLink.value))
+            print("{} --> {}".format(
+                processedLink.resultStatusCode, processedLink.value))
 
             if (processedLink.is_link_broken() is False):
-                if (processedLink.type == link.LinkType.ANCHOR):                    
+                if (processedLink.type == link.LinkType.ANCHOR):
                     try:
                         newLinks = self.linkProcessor.process_link(
                             processedLink)

@@ -1,6 +1,7 @@
 import queue
 import threading
 
+
 class PLinkRequester(object):
     """Parallel link processor."""
     def __init__(self, numWorkers, workFn):
@@ -24,6 +25,6 @@ class PLinkRequester(object):
 
     def add_work(self, item):
         self.inputQueue.put(item)
-        
+
     def get_result(self):
         return self.outputQueue.get()
