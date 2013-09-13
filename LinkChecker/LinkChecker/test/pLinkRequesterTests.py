@@ -26,10 +26,11 @@ class AddWorkTests(unittest.TestCase):
     def test_IncrementsNumOfActiveWorkItems(self):
         dummyQueue = MockQueue()
         sut = pLinkRequester.PLinkRequester(1, None, dummyQueue, None)
-        
+
         sut.add_work(None)
 
         self.assertEqual(1, sut.numActiveWorkItems)
+
 
 class GetResultTests(unittest.TestCase):
     def test_GetResultReturnsOutputQueueItem(self):
@@ -43,7 +44,7 @@ class GetResultTests(unittest.TestCase):
     def test_DecrementsNumOfActiveWorkItems(self):
         dummyQueue = MockQueue()
         sut = pLinkRequester.PLinkRequester(1, None, None, dummyQueue)
-        
+
         sut.get_result()
 
         self.assertEqual(-1, sut.numActiveWorkItems)
