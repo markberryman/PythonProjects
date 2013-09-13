@@ -22,10 +22,10 @@ class ResourceGetterTests(unittest.TestCase):
         dummyLink = link.Link("url", link.LinkType.ANCHOR)
         sut = resourceGetter.ResourceGetter(mockRequester)
 
-        contentResult = sut.get_resource(dummyLink)
+        sut.get_resource(dummyLink)
 
         self.assertEqual(200, dummyLink.resultStatusCode)
-        self.assertEqual("hi", contentResult)
+        self.assertEqual("hi", dummyLink.responseData)
 
     def test_GetResourceReturnsNoneForMarkupForNonAnchorLink(self):
         mockRequester = MockRequester()

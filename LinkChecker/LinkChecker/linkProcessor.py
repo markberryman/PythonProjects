@@ -7,11 +7,12 @@ class LinkProcessor(object):
         self.linkFilterProcessor = linkFilterProcessor
         self.linkTransformProcessor = linkTransformProcessor
 
-    def process_link(self, linkToProcess, markup):
-        """Parses the links in the provided markup and then applies filters
+    def process_link(self, linkToProcess):
+        """Parses the link's response and then applies filters
         and transformers before returning the set of new links."""
 
-        newLinks = self.markupProcessor.get_links_from_markup(markup)
+        newLinks = self.markupProcessor.get_links_from_markup(
+            linkToProcess.responseData)
         # we must apply transforms ahead of filtering b/c of the interaction
         # b/w the transform converting relative links to absolute links and the
         # filter which checks to ensure we're not leaving the root domain

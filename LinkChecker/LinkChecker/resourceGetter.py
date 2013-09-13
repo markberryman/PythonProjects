@@ -16,7 +16,7 @@ class ResourceGetter:
         # only want to fetch the content of anchor links
         if (linkToProcess.type == link.LinkType.ANCHOR):
             try:
-                responseData = res.read().decode()
+                linkToProcess.responseData = res.read().decode()
             except UnicodeDecodeError:
                 # going to hit this when an anchor link refers to a binary
                 # resource (e.g. pdf file); instead of trying to filter

@@ -48,7 +48,7 @@ class LinkChecker:
         numActiveWorkItems = 1
 
         while (numActiveWorkItems > 0):
-            markup, processedLink = self.pLinkRequester.get_result()
+            processedLink = self.pLinkRequester.get_result()
 
             self.linksRequested.add(processedLink.value)
 
@@ -60,7 +60,7 @@ class LinkChecker:
                 if (processedLink.type == link.LinkType.ANCHOR):                    
                     try:
                         newLinks = self.linkProcessor.process_link(
-                            processedLink, markup)
+                            processedLink)
 
                         for nl in newLinks:
                             if (nl.value not in self.linksRequested):

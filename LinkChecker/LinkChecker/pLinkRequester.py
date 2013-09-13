@@ -18,13 +18,8 @@ class PLinkRequester(object):
     def worker(self):
         while True:
             item = self.inputQueue.get()
-            # item is a Link obj
-            responseData = self.workFn(item)
-            # also return the item so that we can map the
-            # result to the link 
-            # todo - consider adding these as properties to the
-            # Link object itself
-            self.outputQueue.put((responseData, item))
+            self.workFn(item)
+            self.outputQueue.put(item)
             self.inputQueue.task_done()
 
     def add_work(self, item):

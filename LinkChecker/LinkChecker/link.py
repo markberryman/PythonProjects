@@ -16,6 +16,7 @@ class Link(object):
         self.type = type
         self.resultStatusCode = None
         self.depth = depth
+        self.responseData = None
 
     def is_link_broken(self):
         return ((self.resultStatusCode < http.client.OK) or
