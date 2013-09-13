@@ -44,7 +44,7 @@ class LinkChecker:
         for l in links:
             print("* {}".format(l))
 
-    def __check_links_helper2(self, startLink):
+    def __check_links_helper(self, startLink):
         self.pLinkRequester.add_work(startLink)
         numActiveWorkItems = 1
 
@@ -78,7 +78,7 @@ class LinkChecker:
 
     def check_links(self, startLink):
         self.pLinkRequester.start()
-        self.__check_links_helper2(startLink)
+        self.__check_links_helper(startLink)
 
         return {
             "linksRequested": self.linksRequested,
