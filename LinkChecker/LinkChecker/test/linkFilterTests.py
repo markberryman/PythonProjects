@@ -12,12 +12,20 @@ class MailToFilterTests(unittest.TestCase):
 
 
 class DomainCheckFilterTests(unittest.TestCase):
-    def test_ReturnsTrueWhenHostnameDoesNotMatchBaseHostname(self):
+    def test_ReturnsTrueWhenDomainsDoNotMatch(self):
         sut = linkFilter.DomainCheckFilter("http://www.markwberryman.com")
 
         filterResult = sut.should_filter("http://www.foo.com")
 
         self.assertTrue(filterResult)
+
+    def test_ReturnsFalseWhenDomainsMatch(self):
+        sut = linkFilter.DomainCheckFilter("http://www.markwberryman.com")
+
+        filterResult = sut.should_filter("http://www.markwberryman.com/index.html")
+
+        self.assertFalse(filterResult)
+
 
 if __name__ == '__main__':
     unittest.main()
