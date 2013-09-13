@@ -11,7 +11,6 @@ class LinkChecker:
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
         self.pLinkRequester = pLinkRequester
-        self.workItemsSubmitted = 0
         self.maxDepth = maxDepth
 
     def print_results(self, results):
@@ -46,14 +45,11 @@ class LinkChecker:
 
     def __check_links_helper(self, startLink):
         self.pLinkRequester.add_work(startLink)
-        numActiveWorkItems = 1
 
-        while (numActiveWorkItems > 0):
+        while (self.pLinkRequester.is_done() is False):
             processedLink = self.pLinkRequester.get_result()
 
             self.linksRequested.add(processedLink.value)
-
-            numActiveWorkItems -= 1
 
             print("{} --> {}".format(
                 processedLink.resultStatusCode, processedLink.value))
@@ -70,7 +66,6 @@ class LinkChecker:
 
                                 if (nl.depth < self.maxDepth):
                                     self.pLinkRequester.add_work(nl)
-                                    numActiveWorkItems += 1
                     except html.parser.HTMLParseError:
                         self.invalidMarkupLinks.add(processedLink.value)
             else:

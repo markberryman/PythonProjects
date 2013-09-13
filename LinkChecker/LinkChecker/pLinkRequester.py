@@ -8,6 +8,7 @@ class PLinkRequester(object):
         self.outputQueue = outputQueue
         self.numWorkers = numWorkers
         self.workFn = workFn
+        self.numActiveWorkItems = 0
 
     def start(self):
         for i in range(self.numWorkers):
@@ -23,7 +24,13 @@ class PLinkRequester(object):
             self.inputQueue.task_done()
 
     def add_work(self, item):
+        self.numActiveWorkItems += 1
         self.inputQueue.put(item)
 
     def get_result(self):
-        return self.outputQueue.get()
+        result = self.outputQueue.get()
+        self.numActiveWorkItems -= 1
+        return result
+
+    def is_done(self):
+        return (self.numActiveWorkItems == 0)
