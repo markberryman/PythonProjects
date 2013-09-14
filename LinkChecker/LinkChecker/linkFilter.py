@@ -17,7 +17,21 @@ class DomainCheckFilter(LinkFilter):
         self.baseHostname = urlparse(baseLink).hostname
 
     def should_filter(self, link):
-        linkHostname = urlparse(link).hostname
+        result = True
 
-        # no need to convet to lowercase; hostName attribute already does it
-        return self.baseHostname != linkHostname
+        if ((urlparse(link).hostname is not None) and
+            (self.baseHostname is not None)):
+            linkHostnameSegments = urlparse(link).hostname.split(".")
+            baseHostnameSegments = self.baseHostname.split(".")
+
+            # handle the intranet case as well w/ this check
+            if (urlparse(link).hostname == self.baseHostname):
+                result = False
+            else:
+                if ((len(linkHostnameSegments) > 2) and
+                    (len(baseHostnameSegments) > 2)):
+                    if ((linkHostnameSegments[len(linkHostnameSegments) - 1] == baseHostnameSegments[len(baseHostnameSegments) - 1]) and
+                        (linkHostnameSegments[len(linkHostnameSegments) - 2] == baseHostnameSegments[len(baseHostnameSegments) - 2])):
+                        result = False
+
+        return result
