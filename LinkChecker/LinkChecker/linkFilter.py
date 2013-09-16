@@ -20,7 +20,7 @@ class DomainCheckFilter(LinkFilter):
         result = True
 
         if ((urlparse(link).hostname is not None) and
-            (self.baseHostname is not None)):
+                (self.baseHostname is not None)):
             linkHostnameSegments = urlparse(link).hostname.split(".")
             baseHostnameSegments = self.baseHostname.split(".")
 
@@ -29,7 +29,7 @@ class DomainCheckFilter(LinkFilter):
                 result = False
             else:
                 if ((len(linkHostnameSegments) >= 2) and
-                    (len(baseHostnameSegments) >= 2)):
+                        (len(baseHostnameSegments) >= 2)):
                     if ((linkHostnameSegments[len(linkHostnameSegments) - 1] == baseHostnameSegments[len(baseHostnameSegments) - 1]) and
                         (linkHostnameSegments[len(linkHostnameSegments) - 2] == baseHostnameSegments[len(baseHostnameSegments) - 2])):
                         result = False

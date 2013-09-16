@@ -16,7 +16,7 @@ startLink = link.Link(
     #"http://www.microsoft.com/en-us/default.aspx", link.LinkType.ANCHOR)
     #"http://www.markwberryman.com/", link.LinkType.ANCHOR)
     "http://apigee.com/about/customers/bechtel-improving-workforce-efficiency-and-productivity-through-apis", link.LinkType.ANCHOR)
-    
+
 depth = 2
 
 print("Starting link checking with \"{}\" and depth {}".format(

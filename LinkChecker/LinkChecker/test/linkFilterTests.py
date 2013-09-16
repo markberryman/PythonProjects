@@ -22,7 +22,8 @@ class DomainCheckFilterTests(unittest.TestCase):
     def test_ReturnsFalseWhenDomainsMatch(self):
         sut = linkFilter.DomainCheckFilter("http://www.markwberryman.com")
 
-        filterResult = sut.should_filter("http://www.markwberryman.com/index.html")
+        filterResult = sut.should_filter(
+            "http://www.markwberryman.com/index.html")
 
         self.assertFalse(filterResult)
 
@@ -36,7 +37,8 @@ class DomainCheckFilterTests(unittest.TestCase):
     def test_ReturnsFalseWhenLinkIsNestedSubDomain(self):
         sut = linkFilter.DomainCheckFilter("http://www.markwberryman.com")
 
-        filterResult = sut.should_filter("http://subsubdomain.subdomain.markwberryman.com")
+        filterResult = sut.should_filter(
+            "http://subsubdomain.subdomain.markwberryman.com")
 
         self.assertFalse(filterResult)
 
@@ -48,7 +50,8 @@ class DomainCheckFilterTests(unittest.TestCase):
         self.assertFalse(filterResult)
 
     def test_ReturnsFalseWhenLinkIsHasTwoSegmentsThatMatchDomain(self):
-        sut = linkFilter.DomainCheckFilter("http://subdomain.markwberryman.com")
+        sut = linkFilter.DomainCheckFilter(
+            "http://subdomain.markwberryman.com")
 
         filterResult = sut.should_filter("http://markwberryman.com")
 
