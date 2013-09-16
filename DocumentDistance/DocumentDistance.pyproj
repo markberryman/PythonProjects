@@ -26,14 +26,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="docdist1.py" />
+    <Compile Include="test\generateWordListTests.py" />
+    <Compile Include="test\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="t1.verne.txt" />
     <Content Include="t2.bobsey.txt" />
     <Content Include="t3.lewis.txt" />
+    <Content Include="Todo.txt" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\3.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
