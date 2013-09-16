@@ -4,9 +4,9 @@ import unittest
 
 
 class LowerCaseTransformUnitTests(unittest.TestCase):
-    def test_OnlyLowerCasesUrlSchemeNetlocAndPath(self):
+    def test_OnlyLowerCasesUrlSchemeAndNetloc(self):
         dummyLink = link.Link("HTTP://WWW.FOO.COM/SOMEPATH/INDEX.HTML?A=FOO")
-        expected = "http://www.foo.com/somepath/index.html?A=FOO"
+        expected = "http://www.foo.com/SOMEPATH/INDEX.HTML?A=FOO"
         sut = linkTransform.LowerCaseTransform()
 
         sut.transform(None, dummyLink)

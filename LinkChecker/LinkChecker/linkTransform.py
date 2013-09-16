@@ -18,7 +18,7 @@ class LowerCaseTransform(LinkTransform):
         # b/c we can't modify the values on the urlparts obj directly
         newLink.value = urlunparse(
             (urlparts.scheme.lower(), urlparts.netloc.lower(),
-             urlparts.path.lower(), urlparts.params,
+             urlparts.path, urlparts.params,
              urlparts.query, urlparts.fragment))
 
 
