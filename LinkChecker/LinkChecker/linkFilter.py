@@ -16,22 +16,32 @@ class DomainCheckFilter(LinkFilter):
     def __init__(self, baseLink):
         self.baseHostname = urlparse(baseLink).hostname
 
-    def should_filter(self, link):
+    def __is_top_level_and_first_subdomain_equal(self, link):
         result = True
 
-        if ((urlparse(link).hostname is not None) and
-                (self.baseHostname is not None)):
-            linkHostnameSegments = urlparse(link).hostname.split(".")
-            baseHostnameSegments = self.baseHostname.split(".")
+        linkHostnameSegments = urlparse(link).hostname.split(".")
+        baseHostnameSegments = self.baseHostname.split(".")
 
-            # handle the intranet case as well w/ this check
-            if (urlparse(link).hostname == self.baseHostname):
-                result = False
-            else:
-                if ((len(linkHostnameSegments) >= 2) and
-                        (len(baseHostnameSegments) >= 2)):
-                    if ((linkHostnameSegments[len(linkHostnameSegments) - 1] == baseHostnameSegments[len(baseHostnameSegments) - 1]) and
-                        (linkHostnameSegments[len(linkHostnameSegments) - 2] == baseHostnameSegments[len(baseHostnameSegments) - 2])):
-                        result = False
+        if ((linkHostnameSegments[len(linkHostnameSegments) - 1] ==
+                baseHostnameSegments[len(baseHostnameSegments) - 1]) and
+            (linkHostnameSegments[len(linkHostnameSegments) - 2] ==
+                baseHostnameSegments[len(baseHostnameSegments) - 2])):
+            result = False
+
+        return result
+
+    def should_filter(self, link):
+        """Returns false if hostname of link equals hostname of
+        baselink or if the top level domain and the first level
+        of subdomain are equal."""
+        result = True
+
+        # handle the intranet case as well w/ this check
+        if (urlparse(link).hostname == self.baseHostname):
+            result = False
+        else:
+            if ((urlparse(link).hostname is not None) and
+                    (self.baseHostname is not None)):
+                result = self.__is_top_level_and_first_subdomain_equal(link)
 
         return result
