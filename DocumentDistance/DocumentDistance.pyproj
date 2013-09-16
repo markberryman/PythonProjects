@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>0a8cedf0-60c0-49cd-b8ee-d2800b071cb7</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>docdist1.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,6 +26,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="docdist1.py" />
+    <Compile Include="main.py" />
     <Compile Include="test\generateWordListTests.py" />
     <Compile Include="test\__init__.py" />
   </ItemGroup>
