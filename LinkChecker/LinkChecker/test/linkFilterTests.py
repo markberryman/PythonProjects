@@ -40,6 +40,19 @@ class DomainCheckFilterTests(unittest.TestCase):
 
         self.assertFalse(filterResult)
 
+    def test_ReturnsFalseWhenLinkIsSubDomainAndBaseLinkHasTwoSegemnts(self):
+        sut = linkFilter.DomainCheckFilter("http://markwberryman.com")
+
+        filterResult = sut.should_filter("http://subdomain.markwberryman.com")
+
+        self.assertFalse(filterResult)
+
+    def test_ReturnsFalseWhenLinkIsHasTwoSegmentsThatMatchDomain(self):
+        sut = linkFilter.DomainCheckFilter("http://subdomain.markwberryman.com")
+
+        filterResult = sut.should_filter("http://markwberryman.com")
+
+        self.assertFalse(filterResult)
 
 if __name__ == '__main__':
     unittest.main()

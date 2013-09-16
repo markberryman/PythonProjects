@@ -28,8 +28,8 @@ class DomainCheckFilter(LinkFilter):
             if (urlparse(link).hostname == self.baseHostname):
                 result = False
             else:
-                if ((len(linkHostnameSegments) > 2) and
-                    (len(baseHostnameSegments) > 2)):
+                if ((len(linkHostnameSegments) >= 2) and
+                    (len(baseHostnameSegments) >= 2)):
                     if ((linkHostnameSegments[len(linkHostnameSegments) - 1] == baseHostnameSegments[len(baseHostnameSegments) - 1]) and
                         (linkHostnameSegments[len(linkHostnameSegments) - 2] == baseHostnameSegments[len(baseHostnameSegments) - 2])):
                         result = False
