@@ -9,19 +9,19 @@ def documentDist(fileName1, fileName2):
     wordFrequencyListFile1 = generateWordFrequenciesForFile(wordListForFile1)
     wordFrequencyListFile1 = sortWordFrequencyList(wordFrequencyListFile1)
 
-    print "File {0} : {1} words, {2} distinct words".format(fileName1, len(wordListForFile1),
-                                                            len(wordFrequencyListFile1))
+    print("File {0} : {1} words, {2} distinct words".format(fileName1, len(wordListForFile1),
+                                                            len(wordFrequencyListFile1)))
 
     wordListForFile2 = generateWordList(fileName2)
     wordFrequencyListFile2 = generateWordFrequenciesForFile(wordListForFile2)
     wordFrequencyListFile2 = sortWordFrequencyList(wordFrequencyListFile2)
 
-    print "File {0} : {1} words, {2} distinct words".format(fileName2, len(wordListForFile2),
-                                                            len(wordFrequencyListFile2))
+    print("File {0} : {1} words, {2} distinct words".format(fileName2, len(wordListForFile2),
+                                                            len(wordFrequencyListFile2)))
     
     angleMetric = calculateAngleMetric(wordFrequencyListFile1, wordFrequencyListFile2)
     
-    print "The distance between the documents is: {0} radians".format(angleMetric)
+    print("The distance between the documents is: {0} radians".format(angleMetric))
 
 def generateWordList(fileName):
     file = open(fileName, "r")
@@ -42,7 +42,7 @@ def generateWordFrequenciesForFile(wordList):
     wordFrequenceDictionary = {}
 
     for word in wordList:
-        if (wordFrequenceDictionary.has_key(word) == True):
+        if (word in wordFrequenceDictionary):
             wordFrequenceDictionary[word] = wordFrequenceDictionary[word] + 1
         else:
             wordFrequenceDictionary[word] = 1
@@ -53,7 +53,7 @@ def sortWordFrequencyList(wordFrequencyList):
     # choose your sorting algo here
     #bubbleSort(wordFrequencyList)  # in place sort, no need to return the list
     #combSort(wordFrequencyList)    # in place sort, no need to return the list
-    return mergeSort(wordFrequencyList)    # not an in place sort, must return the list
+    return mergeSort(list(wordFrequencyList))    # not an in place sort, must return the list
 
 ######################
 # merge sort sort land
@@ -62,7 +62,7 @@ def mergeSort(list):
     if (len(list) == 1):
         return list
 
-    splitIndex = len(list) / 2
+    splitIndex = len(list) // 2
     list1 = list[:splitIndex]
     list2 = list[splitIndex:]
 
@@ -217,3 +217,7 @@ def calculateAngleMetric(wordList1, wordList2):
 #File t1.verne.txt : 1057 lines, 8943 words, 2150 distinct words
 #File t2.bobsey.txt : 6667 lines, 49785 words, 3354 distinct words
 #The distance between the documents is: 0.582949 (radians)
+
+documentDist("t1.verne.txt", "t2.bobsey.txt")
+
+input('Press Enter to exit')
