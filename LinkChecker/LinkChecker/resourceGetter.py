@@ -30,7 +30,7 @@ class ResourceGetter:
             # not decoding the msg error code value to a meaningful
             # http status code; since we're primarily hitting timeouts
             # we'll go w/ that
-            print("Socket error making request: " + msg)
+            print("Socket error making request: " + str(msg))
             linkToProcess.resultStatusCode = http.client.GATEWAY_TIMEOUT
 
         return responseData
