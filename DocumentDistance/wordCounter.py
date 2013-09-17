@@ -1,3 +1,6 @@
+import re
+
+
 class WordCounter(object):
     """Abstract class."""
 
@@ -51,3 +54,16 @@ class SimpleWordCounter(WordCounter):
             word_list = word_list + words_in_line
 
         return word_list
+
+
+class MyRegexWordCounter(WordCounter):
+    def count_words(self, input):
+        input = input.lower()
+        words = re.findall(r"[\w]+", input)
+
+        #for word in wordsInLine:
+        #    # huge win to use "append" here over string concat via '+'
+        #    # the latter being an O(n^2) algo
+        #    wordList.append(word)
+
+        return words
