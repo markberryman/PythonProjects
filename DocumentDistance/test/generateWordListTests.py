@@ -1,4 +1,4 @@
-﻿import docdist1
+import docdist1
 import unittest
 
 class GenerateWordListTests(unittest.TestCase):
