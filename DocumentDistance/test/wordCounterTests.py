@@ -48,7 +48,6 @@ class MyRegexWordCounterTests(unittest.TestCase):
 
         result = sut.count_words(input)
 
-        # 4 words too many
         self.assertEqual(49785, len(result))
 
     def test_CountWordsReturnsCorrectCountOfWordsInLewis(self):
@@ -58,7 +57,6 @@ class MyRegexWordCounterTests(unittest.TestCase):
 
         result = sut.count_words(input)
 
-        # 2 words too many
         self.assertEqual(182355, len(result))
 
 
