@@ -20,6 +20,7 @@ class WordCounter(object):
         """Counts the number of words in the provided input string."""
         raise NotImplementedError()
 
+
 class SimpleWordCounter(WordCounter):
     def _get_words_from_string(self, line):
         word_list = []          # accumulates words in line
