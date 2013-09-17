@@ -1,4 +1,4 @@
-﻿import wordFrequencyCalculator
+import wordFrequencyCalculator
 import unittest
 
 

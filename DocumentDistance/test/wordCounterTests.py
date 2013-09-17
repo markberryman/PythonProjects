@@ -1,4 +1,4 @@
-﻿import wordCounter
+import wordCounter
 import unittest
 
 
