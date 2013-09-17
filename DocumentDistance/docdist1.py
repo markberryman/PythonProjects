@@ -1,5 +1,4 @@
 import math
-import re
 import wordCounter
 import wordFrequencyCalculator
 
