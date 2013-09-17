@@ -41,7 +41,7 @@ class SimpleWordCounter(WordCounter):
         # grab that last word in the line if it exists
         if len(character_list)>0:
             word = ''.join(character_list)
-            word = string.lower(word)
+            word = word.lower()
             word_list.append(word)
 
         return word_list
