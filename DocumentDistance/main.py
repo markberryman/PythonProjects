@@ -1,3 +1,4 @@
+import bubbleSortSorter
 import docdist1
 
 # Expected test results
@@ -5,6 +6,6 @@ import docdist1
 #File t2.bobsey.txt : 6667 lines, 49785 words, 3354 distinct words
 #The distance between the documents is: 0.582949 (radians)
 
-docdist1.documentDist("t1.verne.txt", "t2.bobsey.txt")
+docdist1.documentDist("t1.verne.txt", "t2.bobsey.txt", bubbleSortSorter.BubbleSortSorter())
 
 input('Press Enter to exit')

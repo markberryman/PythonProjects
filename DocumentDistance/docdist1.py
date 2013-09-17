@@ -4,15 +4,14 @@ import wordFrequencyCalculator
 
 # program based on assignment:
 # http://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/dd_prog1.htm
-def documentDist(fileName1, fileName2):
+def documentDist(fileName1, fileName2, sortingAlgo):
     theWordCounter = wordCounter.MyRegexWordCounter()
     freqCounter = wordFrequencyCalculator.MyWordFrequencyCalculator()
     
     inputLines = theWordCounter.read_file(fileName1)
     wordListForFile1 = theWordCounter.count_words(inputLines)
     wordFrequencyListFile1 = freqCounter.calculate_word_frequency(wordListForFile1)
-
-    #wordFrequencyListFile1 = sortWordFrequencyList(wordFrequencyListFile1)
+    sortingAlgo.sort_words(list(wordFrequencyListFile1.items()))
 
     print("File {0} : {1} words, {2} distinct words".format(fileName1, len(wordListForFile1),
                                                             len(wordFrequencyListFile1)))
@@ -20,8 +19,7 @@ def documentDist(fileName1, fileName2):
     inputLines = theWordCounter.read_file(fileName2)
     wordListForFile2 = theWordCounter.count_words(inputLines)
     wordFrequencyListFile2 = freqCounter.calculate_word_frequency(wordListForFile2)
-
-    #wordFrequencyListFile2 = sortWordFrequencyList(wordFrequencyListFile2)
+    sortingAlgo.sort_words(list(wordFrequencyListFile2.items()))
 
     print("File {0} : {1} words, {2} distinct words".format(fileName2, len(wordListForFile2),
                                                             len(wordFrequencyListFile2)))
@@ -30,11 +28,6 @@ def documentDist(fileName1, fileName2):
     
     #print("The distance between the documents is: {0} radians".format(angleMetric))
 
-def sortWordFrequencyList(wordFrequencyList):
-    # choose your sorting algo here
-    #bubbleSort(wordFrequencyList)  # in place sort, no need to return the list
-    #combSort(wordFrequencyList)    # in place sort, no need to return the list
-    return mergeSort(list(wordFrequencyList))    # not an in place sort, must return the list
 
 ######################
 # merge sort sort land
@@ -104,34 +97,6 @@ def combSort(data):
 ############################
 # end of comb sort sort land
 ############################
-
-##################
-# bubble sort land
-##################
-def bubbleSort(data):
-    while bubbleSortHelper(data) == True:
-        pass
-
-def bubbleSortHelper(data):
-    swappedAnElement = False;
-
-    for i in range(len(data) - 1):
-        if shouldSwap(data[i][0], data[i + 1][0]):
-            temp = data[i]
-            data[i] = data[i + 1]
-            data[i + 1] = temp
-            swappedAnElement = True
-
-    return swappedAnElement
-
-def shouldSwap(item1, item2):
-    if item1 > item2:
-        return True
-
-    return False
-#########################
-# end of bubble sort land
-#########################
 
 # d1 . d2 = summation across w of d1(w)*d2(w) where w is a common word
 def calculateDotProductOfWordlists(wordList1, wordList2):
