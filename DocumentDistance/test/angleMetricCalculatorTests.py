@@ -40,5 +40,18 @@ class CalcInnerProductTests(unittest.TestCase):
 
         self.assertEqual(2, result)
 
+class CalcVectorAngleTests(unittest.TestCase):
+    def test_BasicVectorAngleCalc(self):
+        # "To be or not to be" and "Doubt truth to be a liar"
+        # common words in each: "to be"
+        wordFreq1 = [2, 2]
+        wordFreq2 = [1, 1]
+        sut = angleMetricCalculator.AngleMetricCalculator()
+
+        result = sut.calc_vector_angle(wordFreq1, wordFreq2)
+
+        self.assertEqual(1.028, result)
+
+
 if __name__ == '__main__':
     unittest.main()
