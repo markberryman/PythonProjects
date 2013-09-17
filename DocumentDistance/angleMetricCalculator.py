@@ -15,22 +15,17 @@ class AngleMetricCalculator(object):
         norm = math.sqrt(dotProduct)
 
         return norm
-
-    def calc_inner_product(self, listOfWordFrequencies1, listOfWordFrequencies2):
+    
+    def calc_inner_product(self, wordFreqs1, wordFreqs2):
         """Calculate the inner (or dot) product of the two vectors 
         representing word frequencies. The calculation is the summation 
         of multiplying corresponding elements from each vector."""
-        length1 = len(listOfWordFrequencies1)
-        length2 = len(listOfWordFrequencies2)
+        shorterList = wordFreqs1 if (len(wordFreqs1) < len(wordFreqs2)) else wordFreqs2
         innerProduct = 0
 
         # any values in one list that don't have a corresponding match
         # in the other equal zero so we ignore them
-        if (length1 < length2):
-            for idx, val in enumerate(listOfWordFrequencies1):
-                innerProduct += listOfWordFrequencies1[idx] * listOfWordFrequencies2[idx]
-        else:
-            for idx, val in enumerate(listOfWordFrequencies2):
-                innerProduct += listOfWordFrequencies1[idx] * listOfWordFrequencies2[idx]
+        for idx, val in enumerate(shorterList):
+            innerProduct += wordFreqs1[idx] * wordFreqs2[idx]
 
         return innerProduct
