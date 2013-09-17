@@ -21,14 +21,14 @@ class SimpleWordCounterTests(unittest.TestCase):
 
         self.assertEqual(49785, len(result))
 
-    def test_CountWordsReturnsCorrectCountOfWordsInLewis(self):
-        filename = "../t3.lewis.txt"
-        sut = wordCounter.SimpleWordCounter()
-        input = sut.read_file(filename)
+    #def test_CountWordsReturnsCorrectCountOfWordsInLewis(self):
+    #    filename = "../t3.lewis.txt"
+    #    sut = wordCounter.SimpleWordCounter()
+    #    input = sut.read_file(filename)
 
-        result = sut.count_words(input)
+    #    result = sut.count_words(input)
 
-        self.assertEqual(182355, len(result))
+    #    self.assertEqual(182355, len(result))
 
 
 if __name__ == '__main__':
