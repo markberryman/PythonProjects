@@ -25,10 +25,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="angleMetricCalculator.py" />
     <Compile Include="bubbleSortSorter.py" />
     <Compile Include="docdist1.py" />
     <Compile Include="main.py" />
     <Compile Include="sorter.py" />
+    <Compile Include="test\angleMetricCalculatorTests.py" />
     <Compile Include="test\bubbleSortSorterTests.py" />
     <Compile Include="test\wordCounterTests.py" />
     <Compile Include="test\myWordFrequencyCalculatorTests.py" />
