@@ -1,52 +1,35 @@
 import math
 import re
+import wordCounter
+import wordFrequencyCalculator
 
 # program based on assignment:
 # http://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/dd_prog1.htm
 def documentDist(fileName1, fileName2):
-    wordListForFile1 = generateWordList(fileName1)
-    wordFrequencyListFile1 = generateWordFrequenciesForFile(wordListForFile1)
-    wordFrequencyListFile1 = sortWordFrequencyList(wordFrequencyListFile1)
+    theWordCounter = wordCounter.MyRegexWordCounter()
+    freqCounter = wordFrequencyCalculator.MyWordFrequencyCalculator()
+    
+    inputLines = theWordCounter.read_file(fileName1)
+    wordListForFile1 = theWordCounter.count_words(inputLines)
+    wordFrequencyListFile1 = freqCounter.calculate_word_frequency(wordListForFile1)
+
+    #wordFrequencyListFile1 = sortWordFrequencyList(wordFrequencyListFile1)
 
     print("File {0} : {1} words, {2} distinct words".format(fileName1, len(wordListForFile1),
                                                             len(wordFrequencyListFile1)))
 
-    wordListForFile2 = generateWordList(fileName2)
-    wordFrequencyListFile2 = generateWordFrequenciesForFile(wordListForFile2)
-    wordFrequencyListFile2 = sortWordFrequencyList(wordFrequencyListFile2)
+    inputLines = theWordCounter.read_file(fileName2)
+    wordListForFile2 = theWordCounter.count_words(inputLines)
+    wordFrequencyListFile2 = freqCounter.calculate_word_frequency(wordListForFile2)
+
+    #wordFrequencyListFile2 = sortWordFrequencyList(wordFrequencyListFile2)
 
     print("File {0} : {1} words, {2} distinct words".format(fileName2, len(wordListForFile2),
                                                             len(wordFrequencyListFile2)))
     
-    angleMetric = calculateAngleMetric(wordFrequencyListFile1, wordFrequencyListFile2)
+    #angleMetric = calculateAngleMetric(wordFrequencyListFile1, wordFrequencyListFile2)
     
-    print("The distance between the documents is: {0} radians".format(angleMetric))
-
-def generateWordList(fileName):
-    file = open(fileName, "r")
-    
-    wordList = []
-
-    for line in file:
-        wordsInLine = re.findall(r"[\w]+", line.lower())
-
-        for word in wordsInLine:
-            # huge win to use "append" here over string concat via '+'
-            # the latter being an O(n^2) algo
-            wordList.append(word)
-
-    return wordList
-
-def generateWordFrequenciesForFile(wordList):
-    wordFrequenceDictionary = {}
-
-    for word in wordList:
-        if (word in wordFrequenceDictionary):
-            wordFrequenceDictionary[word] = wordFrequenceDictionary[word] + 1
-        else:
-            wordFrequenceDictionary[word] = 1
-
-    return wordFrequenceDictionary.items()
+    #print("The distance between the documents is: {0} radians".format(angleMetric))
 
 def sortWordFrequencyList(wordFrequencyList):
     # choose your sorting algo here
