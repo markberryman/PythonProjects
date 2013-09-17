@@ -51,6 +51,7 @@ class SimpleWordCounter(WordCounter):
         
         for line in input:
             words_in_line = self._get_words_from_string(line)
+            print(len(words_in_line))
             word_list = word_list + words_in_line
 
         return word_list
@@ -63,7 +64,8 @@ class MyRegexWordCounter(WordCounter):
         for line in input:
             line = line.lower()
             # the 'r' means raw string; don't treat backslashes as escape chars
-            wordsInLine = re.findall(r"[\w]+", line)
+            wordsInLine = re.findall(r"[a-z0-9]+", line)
+            print(len(wordsInLine))
 
             for word in wordsInLine:
                 # huge win to use "append" here over string concat via '+'
@@ -71,3 +73,4 @@ class MyRegexWordCounter(WordCounter):
                 wordList.append(word)
 
         return wordList
+
