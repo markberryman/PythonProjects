@@ -1,5 +1,4 @@
 import math
-import profile
 import re
 
 # program based on assignment:
