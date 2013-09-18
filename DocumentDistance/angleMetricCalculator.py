@@ -9,16 +9,21 @@ class AngleMetricCalculator(object):
         representing word frequencies. The calculation is the summation 
         of multiplying corresponding elements from each vector.
 
-        Helps if the lists of word frequencies are ordered. Otherwise,
-        we're headed to an O(n^2) algorithm here.
+        Word frequency lists must be ordered.
         """
         innerProduct = 0
-
+        
         for word1, freq1 in wordFreqs1:
-            for word2, freq2 in wordFreqs2:
-                if (word2 == word1):
-                    innerProduct += freq1 * freq2
-                    break
+            secondWordFreqIndex = 0
+            
+            while ((secondWordFreqIndex < len(wordFreqs2)) and
+                    (wordFreqs2[secondWordFreqIndex][0] != word1)):
+                secondWordFreqIndex += 1
+
+            if (secondWordFreqIndex != len(wordFreqs2)):
+                innerProduct += wordFreqs2[secondWordFreqIndex][1] * freq1
+                secondWordFreqIndex += 1
+            # else, ran off the end of the list
 
         return innerProduct
 
@@ -27,6 +32,8 @@ class AngleMetricCalculator(object):
         of their inner product divided by the product of their norms
         which can be restated as the square root of their inner
         products."""
+        wordFreqs1 = list(wordFreqs1.items())
+        wordFreqs2 = list(wordFreqs2.items())
         numerator = self.calc_inner_product(wordFreqs1, wordFreqs2)
         denominator = math.sqrt(
             self.calc_inner_product(wordFreqs1, wordFreqs1) * 
