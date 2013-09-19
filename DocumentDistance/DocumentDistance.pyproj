@@ -27,11 +27,13 @@
   <ItemGroup>
     <Compile Include="angleMetricCalculator.py" />
     <Compile Include="bubbleSortSorter.py" />
+    <Compile Include="mergeSortSorter.py" />
     <Compile Include="combSortSorter.py" />
     <Compile Include="docdist1.py" />
     <Compile Include="main.py" />
     <Compile Include="sorter.py" />
     <Compile Include="test\angleMetricCalculatorTests.py" />
+    <Compile Include="test\mergeSortSorterTests.py" />
     <Compile Include="test\combSortSorterTests.py" />
     <Compile Include="test\bubbleSortSorterTests.py" />
     <Compile Include="test\wordCounterTests.py" />
