@@ -1,3 +1,9 @@
+class Node(object):
+    def __init__(self, data):
+        self.data = data
+        self.lchild = None
+        self.rchild = None
+
 class BST(object):
     """
     Binary search tree.
