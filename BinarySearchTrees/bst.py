@@ -33,9 +33,34 @@ class BST(object):
         else:
             self.root = node
 
+    def get_smallest_node(self):
+        result = None
+
+        if (self.root is not None):
+            curNode = self.root
+
+            while (curNode.lchild is not None):
+                curNode = curNode.lchild
+
+            result = curNode
+
+        return result
+            
     def select(self, index):
         """
         Takes a 1-based index, and returns the element at that index,
         or None if the index is out-of-bounds.
         """
-        return None
+        result = None
+
+        # find the starting node; that would be the smallest node in the tree
+        startNode = self.get_smallest_node()
+
+        # traverse in-order (index - 1) nodes
+        while (index > 1):
+            # step through the tree in ordered fashing (index - 1) times
+
+            index -= 1
+            pass
+
+        return result

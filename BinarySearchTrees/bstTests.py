@@ -45,6 +45,35 @@ class InsertTests(unittest.TestCase):
         self.assertEqual(leftChild1.lchild, leftChild2)
 
 
+class GetSmallestNodeTests(unittest.TestCase):
+    def test_ReturnsNoneForEmptyTree(self):
+        sut = bst.BST()
+
+        result = sut.get_smallest_node()
+
+        self.assertIsNone(result)
+
+    def test_ReturnsSmallestNodeForSingleNodeTree(self):
+        node = bst.Node(0)
+        sut = bst.BST()
+        sut.insert(node)
+
+        result = sut.get_smallest_node()
+
+        self.assertEqual(node, result)
+
+    def test_ReturnsSmallestNodeForTwoNodeTree(self):
+        node1 = bst.Node(2)
+        node2 = bst.Node(1)
+        sut = bst.BST()
+        sut.insert(node1)
+        sut.insert(node2)
+
+        result = sut.get_smallest_node()
+
+        self.assertEqual(node2, result)
+
+
 class SelectTests(unittest.TestCase):
     def test_ReturnsNoneForEmptyTree(self):
         sut = bst.BST()
@@ -59,6 +88,26 @@ class SelectTests(unittest.TestCase):
         result = sut.select(0)
 
         self.assertIsNone(result)
+
+    def test_ReturnsRootNodeIfIndexIsOne(self):
+        node = bst.Node(1)
+        sut = bst.BST()
+        sut.insert(node)
+
+        result = sut.select(1)
+
+        self.assertEqual(sut.root, result)
+
+    def test_ReturnsSecondOrderedNodeIfIndexIsTwo(self):
+        node1 = bst.Node(1)
+        node2 = bst.Node(2)
+        sut = bst.BST()
+        sut.insert(node1)
+        sut.insert(node2)
+
+        result = sut.select(2)
+
+        self.assertEqual(node2, result)
 
 #class TestBST(unittest.TestCase):
 #    def setUp(self):
