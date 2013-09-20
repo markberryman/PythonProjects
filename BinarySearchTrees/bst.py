@@ -14,7 +14,23 @@ class BST(object):
         self.root = None
 
     def insert(self, node):
-        if (self.root is None):
+        if (self.root is not None):
+            curNode = self.root
+
+            while (curNode is not None):
+                if (node.data < curNode.data):
+                    if (curNode.lchild is None):
+                        curNode.lchild = node
+                        break
+                    else:
+                        curNode = curNode.lchild
+                else:
+                    if (curNode.rchild is None):
+                        curNode.rchild = node
+                        break
+                    else:
+                        curNode = curNode.rchild
+        else:
             self.root = node
 
     #def select(self, index):

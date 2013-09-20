@@ -11,6 +11,39 @@ class InsertTests(unittest.TestCase):
 
         self.assertEqual(node, sut.root)
 
+    def test_InsertNodeAsLeftChild(self):
+        rootNode = bst.Node(1)
+        leftChild = bst.Node(0)
+        sut = bst.BST()
+
+        sut.insert(rootNode)
+        sut.insert(leftChild)
+
+        self.assertEqual(rootNode.lchild, leftChild)
+
+    def test_InsertNodeAsRightChild(self):
+        rootNode = bst.Node(1)
+        rightChild = bst.Node(2)
+        sut = bst.BST()
+
+        sut.insert(rootNode)
+        sut.insert(rightChild)
+
+        self.assertEqual(rootNode.rchild, rightChild)
+
+    def test_InsertTwoNodesAsLeftChild(self):
+        rootNode = bst.Node(2)
+        leftChild1 = bst.Node(1)
+        leftChild2 = bst.Node(0)
+        sut = bst.BST()
+
+        sut.insert(rootNode)
+        sut.insert(leftChild1)
+        sut.insert(leftChild2)
+
+        self.assertEqual(rootNode.lchild, leftChild1)
+        self.assertEqual(leftChild1.lchild, leftChild2)
+
 #class TestBST(unittest.TestCase):
 #    def setUp(self):
 #        pass
