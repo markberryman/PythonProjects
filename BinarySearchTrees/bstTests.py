@@ -74,6 +74,35 @@ class GetSmallestNodeTests(unittest.TestCase):
         self.assertEqual(node2, result)
 
 
+class GetNextNodeTests(unittest.TestCase):
+    def test_ReturnsNoneForEmptyTree(self):
+        sut = bst.BST()
+
+        result = sut.get_next_node(bst.Node(0))
+
+        self.assertIsNone(result)
+
+    def test_ReturnsRootNodeForSingleNodeTree(self):
+        node = bst.Node()
+        sut = bst.BST()
+        sut.insert(node)
+
+        result = sut.get_next_node(node)
+
+        self.assertEqual(node, result)
+
+    def test_ReturnsNoneIfNodeDoesNotExist(self):
+        node1 = bst.Node(0)
+        node2 = bst.Node(1)
+        sut = bst.BST()
+        sut.insert(node1)
+        sut.insert(node2)
+
+        result = sut.get_next_node(bst.Node(2))
+
+        self.assertIsNone(result)
+    
+
 class SelectTests(unittest.TestCase):
     def test_ReturnsNoneForEmptyTree(self):
         sut = bst.BST()

@@ -53,7 +53,31 @@ class BST(object):
         result = None
 
         if (self.root is not None):
-            pass
+            if ((self.root.lchild is None) and
+                (self.root.rchild is None)):
+                # single node tree
+                result = self.root
+            else:
+                curNode = self.root
+                lastNode = curNode
+
+                # traverse the tree tracking the last node
+                # which will be the "next" node
+                while ((curNode is not None) and
+                       (curNode.data != node.data)):
+                    if (node.data < curNode.data):
+                        lastNode = curNode
+                        curNode = curNode.lchild
+                    else:
+                        lastNode = curNode
+                        curNode = curNode.rchild
+
+                if (curNode is None):
+                    # didn't find the node requested so we
+                    # can't provide the "next" node
+                    result = None
+                else:
+                    result = lastNode
                 
         return result
 
