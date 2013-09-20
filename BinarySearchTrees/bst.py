@@ -4,6 +4,7 @@ class Node(object):
         self.lchild = None
         self.rchild = None
 
+
 class BST(object):
     """
     Binary search tree.
@@ -11,7 +12,11 @@ class BST(object):
 
     def __init__(self):
         self.root = None
-    
+
+    def insert(self, node):
+        if (self.root is None):
+            self.root = node
+
     #def select(self, index):
     #    """
     #    Takes a 1-based index, and returns the element at that index,

@@ -5,7 +5,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>90b8cf24-73be-4100-8442-d5143258af79</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BinarySearchTrees.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +23,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BinarySearchTrees.py" />
+    <Compile Include="bst.py" />
+    <Compile Include="bstTests.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Todo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>

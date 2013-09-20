@@ -1,10 +1,20 @@
 import bst
 import unittest
 
+
+class InsertTests(unittest.TestCase):
+    def test_FirstInsertSetsRootNode(self):
+        node = bst.Node(1)
+        sut = bst.BST()
+
+        sut.insert(node)
+
+        self.assertEqual(node, sut.root)
+
 #class TestBST(unittest.TestCase):
 #    def setUp(self):
 #        pass
-    
+
 #    def test(self):
 #        t = bstselect.BST()
 #        t.insert(0)
