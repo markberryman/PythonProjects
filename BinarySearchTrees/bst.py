@@ -1,5 +1,5 @@
 class Node(object):
-    def __init__(self, data):
+    def __init__(self, data=0):
         self.data = data
         self.lchild = None
         self.rchild = None
@@ -45,7 +45,18 @@ class BST(object):
             result = curNode
 
         return result
-            
+        
+    def get_next_node(self, node):
+        """
+        Gets the next node (in-order) based on the node provided.
+        """
+        result = None
+
+        if (self.root is not None):
+            pass
+                
+        return result
+
     def select(self, index):
         """
         Takes a 1-based index, and returns the element at that index,
