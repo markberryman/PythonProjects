@@ -33,9 +33,9 @@ class BST(object):
         else:
             self.root = node
 
-    #def select(self, index):
-    #    """
-    #    Takes a 1-based index, and returns the element at that index,
-    #    or None if the index is out-of-bounds.
-    #    """
-    #    return None
+    def select(self, index):
+        """
+        Takes a 1-based index, and returns the element at that index,
+        or None if the index is out-of-bounds.
+        """
+        return None

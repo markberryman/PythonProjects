@@ -44,6 +44,22 @@ class InsertTests(unittest.TestCase):
         self.assertEqual(rootNode.lchild, leftChild1)
         self.assertEqual(leftChild1.lchild, leftChild2)
 
+
+class SelectTests(unittest.TestCase):
+    def test_ReturnsNoneForEmptyTree(self):
+        sut = bst.BST()
+
+        result = sut.select(1)
+
+        self.assertIsNone(result)
+
+    def test_ReturnsNoneForNonPositiveIndex(self):
+        sut = bst.BST()
+
+        result = sut.select(0)
+
+        self.assertIsNone(result)
+
 #class TestBST(unittest.TestCase):
 #    def setUp(self):
 #        pass
