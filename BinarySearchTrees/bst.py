@@ -1,4 +1,5 @@
 class Node(object):
+    """Node with just a left and right child pointer. No parent pointer."""
     def __init__(self, data=0):
         self.data = data
         self.lchild = None
