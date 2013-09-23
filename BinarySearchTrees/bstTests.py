@@ -61,6 +61,23 @@ class SelectTests(unittest.TestCase):
 
         self.assertIsNone(result)
 
+    def test_ReturnsNoneForIndexLargerThanTreeSize(self):
+        node41 = bst.Node(41)
+        node46 = bst.Node(46)
+        node49 = bst.Node(49)
+        node64 = bst.Node(64)
+        node79 = bst.Node(79)
+        sut = bst.BST()
+        sut.insert(node49)
+        sut.insert(node79)
+        sut.insert(node46)
+        sut.insert(node41)
+        sut.insert(node64)
+
+        result = sut.select(sut.root, 99)
+
+        self.assertIsNone(result)
+
     def test_ReturnsNodeAtIndexOne(self):
         node41 = bst.Node(41)
         node46 = bst.Node(46)
