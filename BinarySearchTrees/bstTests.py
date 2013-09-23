@@ -45,126 +45,73 @@ class InsertTests(unittest.TestCase):
         self.assertEqual(leftChild1.lchild, leftChild2)
 
 
-class GetSmallestNodeTests(unittest.TestCase):
-    def test_ReturnsNoneForEmptyTree(self):
-        sut = bst.BST()
-
-        result = sut.get_smallest_node()
-
-        self.assertIsNone(result)
-
-    def test_ReturnsSmallestNodeForSingleNodeTree(self):
-        node = bst.Node(0)
-        sut = bst.BST()
-        sut.insert(node)
-
-        result = sut.get_smallest_node()
-
-        self.assertEqual(node, result)
-
-    def test_ReturnsSmallestNodeForTwoNodeTree(self):
-        node1 = bst.Node(2)
-        node2 = bst.Node(1)
-        sut = bst.BST()
-        sut.insert(node1)
-        sut.insert(node2)
-
-        result = sut.get_smallest_node()
-
-        self.assertEqual(node2, result)
-
-
-class GetNextNodeTests(unittest.TestCase):
-    def test_ReturnsNoneForEmptyTree(self):
-        sut = bst.BST()
-
-        result = sut.get_next_node(bst.Node(0))
-
-        self.assertIsNone(result)
-
-    def test_ReturnsRootNodeForSingleNodeTree(self):
-        node = bst.Node()
-        sut = bst.BST()
-        sut.insert(node)
-
-        result = sut.get_next_node(node)
-
-        self.assertEqual(node, result)
-
-    def test_ReturnsNoneIfNodeDoesNotExist(self):
-        node1 = bst.Node(0)
-        node2 = bst.Node(1)
-        sut = bst.BST()
-        sut.insert(node1)
-        sut.insert(node2)
-
-        result = sut.get_next_node(bst.Node(2))
-
-        self.assertIsNone(result)
-    
-
 class SelectTests(unittest.TestCase):
+    def test_ReturnsNoneForInvalidIndex(self):
+        sut = bst.BST()
+
+        # 1 based indexing here so 0 index is invalid
+        result = sut.select(sut.root, 0)
+
+        self.assertIsNone(result)
+
     def test_ReturnsNoneForEmptyTree(self):
         sut = bst.BST()
 
-        result = sut.select(1)
+        result = sut.select(sut.root, 1)
 
         self.assertIsNone(result)
 
-    def test_ReturnsNoneForNonPositiveIndex(self):
+    def test_ReturnsNodeAtIndexOne(self):
+        node41 = bst.Node(41)
+        node46 = bst.Node(46)
+        node49 = bst.Node(49)
+        node64 = bst.Node(64)
+        node79 = bst.Node(79)
         sut = bst.BST()
+        sut.insert(node49)
+        sut.insert(node79)
+        sut.insert(node46)
+        sut.insert(node41)
+        sut.insert(node64)
 
-        result = sut.select(0)
+        result = sut.select(sut.root, 1)
 
-        self.assertIsNone(result)
+        self.assertEqual(node41, result)
 
-    def test_ReturnsRootNodeIfIndexIsOne(self):
-        node = bst.Node(1)
+    def test_ReturnsNodeAtIndexThree(self):
+        node41 = bst.Node(41)
+        node46 = bst.Node(46)
+        node49 = bst.Node(49)
+        node64 = bst.Node(64)
+        node79 = bst.Node(79)
         sut = bst.BST()
-        sut.insert(node)
+        sut.insert(node49)
+        sut.insert(node79)
+        sut.insert(node46)
+        sut.insert(node41)
+        sut.insert(node64)
 
-        result = sut.select(1)
+        result = sut.select(sut.root, 3)
 
-        self.assertEqual(sut.root, result)
+        self.assertEqual(node49, result)
 
-    def test_ReturnsSecondOrderedNodeIfIndexIsTwo(self):
-        node1 = bst.Node(1)
-        node2 = bst.Node(2)
+    def test_ReturnsNodeAtIndexFive(self):
+        node41 = bst.Node(41)
+        node46 = bst.Node(46)
+        node49 = bst.Node(49)
+        node64 = bst.Node(64)
+        node79 = bst.Node(79)
         sut = bst.BST()
-        sut.insert(node1)
-        sut.insert(node2)
+        sut.insert(node49)
+        sut.insert(node79)
+        sut.insert(node46)
+        sut.insert(node41)
+        sut.insert(node64)
 
-        result = sut.select(2)
+        result = sut.select(sut.root, 5)
 
-        self.assertEqual(node2, result)
+        self.assertEqual(node79, result)
 
-#class TestBST(unittest.TestCase):
-#    def setUp(self):
-#        pass
-
-#    def test(self):
-#        t = bstselect.BST()
-#        t.insert(0)
-#        t.insert(10)
-#        t.insert(5)
-
-#        ans = t.select(1)
-#        self.assertEqual(ans.key, 0)
-#        ans = t.select(2)
-#        self.assertEqual(ans.key, 5)
-#        ans = t.select(3)
-#        self.assertEqual(ans.key, 10)
-
-#        ans = t.select(0)
-#        self.assertEqual(ans, None)
-#        ans = t.select(4)
-#        self.assertEqual(ans, None)
-
-#        t.insert(6)
-#        t.insert(8)
-#        t.insert(7)
-#        ans = t.select(4)
-#        self.assertEqual(ans.key, 7)
 
 if __name__ == '__main__':
     unittest.main()

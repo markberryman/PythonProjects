@@ -12,6 +12,39 @@ class BST(object):
 
     def __init__(self):
         self.root = None
+        self.curCount = 0
+
+    #def get_nodes_in_order(self, node, orderedListOfNodes):
+    #    """Pass in the root node of tree to start and a list to
+    #    store the result."""
+    #    if (node.lchild is not None):
+    #        self.get_nodes_in_order(node.lchild, orderedListOfNodes)
+
+    #    orderedListOfNodes.append(node)
+
+    #    if (node.rchild is not None):
+    #        self.get_nodes_in_order(node.rchild, orderedListOfNodes)
+
+    def select(self, node, idx):
+        if ((idx >= 1) and (self.root is not None)):
+            if (node.lchild is not None):
+                result = self.select(node.lchild, idx)
+
+                if (result is not None):
+                    return result
+
+            self.curCount += 1
+
+            if (self.curCount == idx):
+                return node
+
+            if (node.rchild is not None):
+                result = self.select(node.rchild, idx)
+
+                if (result is not None):
+                    return result
+        else:
+            return None
 
     def insert(self, node):
         if (self.root is not None):
@@ -32,70 +65,3 @@ class BST(object):
                         curNode = curNode.rchild
         else:
             self.root = node
-
-    def get_smallest_node(self):
-        result = None
-
-        if (self.root is not None):
-            curNode = self.root
-
-            while (curNode.lchild is not None):
-                curNode = curNode.lchild
-
-            result = curNode
-
-        return result
-        
-    def get_next_node(self, node):
-        """
-        Gets the next node (in-order) based on the node provided.
-        """
-        result = None
-
-        if (self.root is not None):
-            if ((self.root.lchild is None) and
-                (self.root.rchild is None)):
-                # single node tree
-                result = self.root
-            else:
-                curNode = self.root
-                lastNode = curNode
-
-                # traverse the tree tracking the last node
-                # which will be the "next" node
-                while ((curNode is not None) and
-                       (curNode.data != node.data)):
-                    if (node.data < curNode.data):
-                        lastNode = curNode
-                        curNode = curNode.lchild
-                    else:
-                        lastNode = curNode
-                        curNode = curNode.rchild
-
-                if (curNode is None):
-                    # didn't find the node requested so we
-                    # can't provide the "next" node
-                    result = None
-                else:
-                    result = lastNode
-                
-        return result
-
-    def select(self, index):
-        """
-        Takes a 1-based index, and returns the element at that index,
-        or None if the index is out-of-bounds.
-        """
-        result = None
-
-        # find the starting node; that would be the smallest node in the tree
-        startNode = self.get_smallest_node()
-
-        # traverse in-order (index - 1) nodes
-        while (index > 1):
-            # step through the tree in ordered fashing (index - 1) times
-
-            index -= 1
-            pass
-
-        return result
