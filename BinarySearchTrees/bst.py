@@ -15,16 +15,16 @@ class BST(object):
         self.root = None
         self.curCount = 0
 
-    #def get_nodes_in_order(self, node, orderedListOfNodes):
-    #    """Pass in the root node of tree to start and a list to
-    #    store the result."""
-    #    if (node.lchild is not None):
-    #        self.get_nodes_in_order(node.lchild, orderedListOfNodes)
 
-    #    orderedListOfNodes.append(node)
+    def print_tree(self, node):
+        """Pass in the starting node for printing."""
+        if (node.lchild is not None):
+            self.print_tree(node.lchild)
 
-    #    if (node.rchild is not None):
-    #        self.get_nodes_in_order(node.rchild, orderedListOfNodes)
+        print(node.data)
+
+        if (node.rchild is not None):
+            self.print_tree(node.rchild)
 
     def select(self, node, idx):
         if ((idx >= 1) and (self.root is not None)):
