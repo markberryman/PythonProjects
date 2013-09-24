@@ -16,13 +16,11 @@ class BinaryPlusOne(object):
             num[bitIndex] = 0
             # now we're in the "carry" phase
             while (True):
-                # while true
                 # look at next digit (going left)
                 bitIndex -= 1
                 # if it's a zero, replace w/ a one
                 if (num[bitIndex] == 0):
                     num[bitIndex] = 1
-                    # break
                     break
                 else:
                     # if it's a one, replace w/ a zero; continue
