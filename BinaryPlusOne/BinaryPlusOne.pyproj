@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1da58988-46a2-4c11-b182-33bb129811ae</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BinaryPlusOne.py</StartupFile>
+    <StartupFile>binaryPlusOne.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BinaryPlusOne.py" />
+    <Compile Include="binaryPlusOne.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
