@@ -7,9 +7,9 @@ class AddOneTests(unittest.TestCase):
         num = [0]
         expected = [1]
         
-        actual = binaryPlusOne.BinaryPlusOne.add_one(num)
+        binaryPlusOne.BinaryPlusOne.add_one(num)
 
-        self.assertEqual(expected, actual)
+        self.assertEqual(expected, num)
 
 
 if __name__ == '__main__':
