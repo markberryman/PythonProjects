@@ -61,6 +61,9 @@ class LinkChecker:
                             processedLink)
 
                         for nl in newLinks:
+                            # this check is a lookup in a set object
+                            # and a set is implemented as a hashtable so
+                            # it should be fast - O(n) on average
                             if (nl.value not in self.linksRequested):
                                 nl.depth = processedLink.depth + 1
 
