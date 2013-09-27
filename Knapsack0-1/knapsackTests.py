@@ -17,24 +17,32 @@ class CalculateValuesTests(unittest.TestCase):
 
         self.assertIsNone(actual)
 
-    def test_ComputedValuesArrayCorrectSize_Weight1_1Item(self):
+    def test_ComputedValuesArrayCorrectSize_MaxWeight1_1Item(self):
         item1 = knapsack.Item(0, 1, 1)
+        items = [item1]
+        maxWeight = 1
         sut = knapsack.Knapsack(1)
 
-        actual = sut.calculate_values([item1])
+        actual = sut.calculate_values(items)
 
-        self.assertEqual(2, len(actual))
-        self.assertEqual(2, len(actual[0]))
+        # rows
+        self.assertEqual(len(items) + 1, len(actual))
+        # cols
+        self.assertEqual(maxWeight + 1, len(actual[0]))
 
-    def test_ComputedValuesArrayCorrectSize_Weight3_2Items(self):
+    def test_ComputedValuesArrayCorrectSize_MaxWeight3_2Items(self):
         item1 = knapsack.Item(0, 1, 1)
         item2 = knapsack.Item(1, 2, 2)
-        sut = knapsack.Knapsack(3)
+        items = [item1, item2]
+        maxWeight = 3
+        sut = knapsack.Knapsack(maxWeight)
 
-        actual = sut.calculate_values([item1, item2])
+        actual = sut.calculate_values(items)
 
-        self.assertEqual(2, len(actual))
-        self.assertEqual(3, len(actual[0]))
+        # rows
+        self.assertEqual(len(items) + 1, len(actual))
+        # cols
+        self.assertEqual(maxWeight + 1, len(actual[0]))
 
     def test_MaxWeight1_NoItemCanFit(self):
         item1 = knapsack.Item(0, 2, 1)

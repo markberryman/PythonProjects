@@ -32,7 +32,10 @@ class Knapsack(object):
             # all values set to 0 so no need to init values corresponding
             # to a knapsack w/ maximum weight support of 0 and a knapsack w/ 
             # no items
-            computedValues = [[0 for x in range(self.maxWeight)] for x in range(len(items))]
+            computedValues = [
+                [0 for x in range(self.maxWeight + 1)] 
+                for x in range((len(items) + 1))
+            ]
 
             # for every item
                 # and then for every possible knapsack capacity, calculate
