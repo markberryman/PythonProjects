@@ -1,11 +1,11 @@
-class item(object):
+class Item(object):
     def __init__(self, id, weight, value):
         self.id = id
         self.weight = weight
         self.value = value
 
 
-class knapsack(object):
+class Knapsack(object):
     """The Knapsack problem is a combinatorial optimization problem. Given
     a set of items w/ weights and values optimize the selection of items
     to maximize value w/o exceeding a specific weight.
