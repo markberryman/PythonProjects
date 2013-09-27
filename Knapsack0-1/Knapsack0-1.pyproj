@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>48204dd8-1827-4ec5-b89e-bad905bf4bc2</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Knapsack0_1.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Knapsack0_1.py" />
+    <Compile Include="knapsack.py" />
+    <Compile Include="main.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
