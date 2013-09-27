@@ -4,6 +4,9 @@ class Item(object):
         self.weight = weight
         self.value = value
 
+    def __str__(self):
+        return "Item {}, Weight {}, Value {}".format(self.id, self.weight, self.value)
+
 
 class Knapsack(object):
     """The Knapsack problem is a combinatorial optimization problem. Given
@@ -37,10 +40,10 @@ class Knapsack(object):
                 for x in range((len(items) + 1))
             ]
 
-            # for every item (can skip the 0 index)
-            # TODO - skip the zero index; same for weight check
+            # for every item
             for itemIdx in range(len(items)):
                 item = items[itemIdx]
+                print("Looking at item: " + str(item))
                 # and then for every possible knapsack capacity
                 # calculate the total benefit of a specific combination of items
                 for weight in range(self.maxWeight):
