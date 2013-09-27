@@ -26,28 +26,30 @@ class Knapsack(object):
     def calculate_values(self, items):
         """Determine the value of each combination of items and store
         these values (solutions to a sub-problem) for future computations."""
+        computedValues = None
 
-        # all values set to 0 so no need to init values corresponding
-        # to a knapsack w/ maximum weight support of 0 and a knapsack w/ 
-        # no items
-        computedValues = [[0 for x in range(self.maxWeight)] for x in range(len(items))]
+        if ((self.maxWeight > 0) and (items is not None)):
+            # all values set to 0 so no need to init values corresponding
+            # to a knapsack w/ maximum weight support of 0 and a knapsack w/ 
+            # no items
+            computedValues = [[0 for x in range(self.maxWeight)] for x in range(len(items))]
 
-        # for every item
-            # and then for every possible knapsack capacity, calculate
-            # the total benefit of a specific combination of items
-                # look at adding item 'i' to the knapsack
-                # if it's weight alone does not exceed the capacity of the
-                # knapsack, it can be part of a solution to the problem
-                    # calculate the benefit of adding this item to a
-                    # knapsack solution that does not contain this item
-                    # and can accomodate the weight of item 'i'
-                    # if the new benefit including item 'i' is greater
-                    # than the solution not including item 'i'
-                    # store that benefit, else store the benefit of the
-                    # solution w/o item 'i'
+            # for every item
+                # and then for every possible knapsack capacity, calculate
+                # the total benefit of a specific combination of items
+                    # look at adding item 'i' to the knapsack
+                    # if it's weight alone does not exceed the capacity of the
+                    # knapsack, it can be part of a solution to the problem
+                        # calculate the benefit of adding this item to a
+                        # knapsack solution that does not contain this item
+                        # and can accomodate the weight of item 'i'
+                        # if the new benefit including item 'i' is greater
+                        # than the solution not including item 'i'
+                        # store that benefit, else store the benefit of the
+                        # solution w/o item 'i'
 
-                # else, if it's weight alone exceeds the capacity of
-                # the knapsack, store the benefit of the solution
-                # at the current knapsack capacity w/o item 'i'
+                    # else, if it's weight alone exceeds the capacity of
+                    # the knapsack, store the benefit of the solution
+                    # at the current knapsack capacity w/o item 'i'
 
         return computedValues
