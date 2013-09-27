@@ -29,6 +29,15 @@ class CalculateValuesTests(unittest.TestCase):
         # num cols check
         self.assertEqual(3, len(actual[0]))
 
+    def test_MaxWeight1_NoItemCanFit(self):
+        item1 = knapsack.Item(0, 2, 1)
+        sut = knapsack.Knapsack(1)
+
+        actual = sut.calculate_values([item1])
+
+        for row in range(len(actual)):
+            for col in range(len(actual[0])):
+                self.failUnlessEqual(0, actual[row][col])
 
 
 if __name__ == '__main__':
