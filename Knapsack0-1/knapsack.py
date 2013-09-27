@@ -26,11 +26,10 @@ class Knapsack(object):
     def calculate_values(self, items):
         """Determine the value of each combination of items and store
         these values (solutions to a sub-problem) for future computations."""
-        computedValues = [[0 for x in range(self.maxWeight)] for x in range(len(items))]
 
-        # init the computed values for a knapsack w/ maximum weight support
-        # of 0 and a knapsack w/ no items
-        for i in range(self.maxWeight):
-            pass
+        # all values set to 0 so no need to init values corresponding
+        # to a knapsack w/ maximum weight support of 0 and a knapsack w/ 
+        # no items
+        computedValues = [[0 for x in range(self.maxWeight)] for x in range(len(items))]
 
         return computedValues
