@@ -38,11 +38,15 @@ class Knapsack(object):
             ]
 
             # for every item
-                # and then for every possible knapsack capacity, calculate
-                # the total benefit of a specific combination of items
-                    # look at adding item 'i' to the knapsack
+            for itemIdx in range(len(items)):
+                # and then for every possible knapsack capacity
+                # calculate the total benefit of a specific combination of items
+                for weight in range(self.maxWeight):
+                    # look at adding item to the knapsack
                     # if it's weight alone does not exceed the capacity of the
                     # knapsack, it can be part of a solution to the problem
+                    if (items[itemIdx].weight <= weight):
+                        pass
                         # calculate the benefit of adding this item to a
                         # knapsack solution that does not contain this item
                         # and can accomodate the weight of item 'i'
@@ -50,9 +54,13 @@ class Knapsack(object):
                         # than the solution not including item 'i'
                         # store that benefit, else store the benefit of the
                         # solution w/o item 'i'
-
                     # else, if it's weight alone exceeds the capacity of
                     # the knapsack, store the benefit of the solution
                     # at the current knapsack capacity w/o item 'i'
-
+                    else:
+                        if (itemIdx > 1):
+                            computedValues[itemIdx][weight] = computedValues[itemIdx - 1][weight]
+                        else:
+                            computedValues[itemIdx][weight] = 0
+                    
         return computedValues
