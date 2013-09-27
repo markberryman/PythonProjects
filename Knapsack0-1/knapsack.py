@@ -37,30 +37,43 @@ class Knapsack(object):
                 for x in range((len(items) + 1))
             ]
 
-            # for every item
+            # for every item (can skip the 0 index)
+            # TODO - skip the zero index; same for weight check
             for itemIdx in range(len(items)):
+                item = items[itemIdx]
                 # and then for every possible knapsack capacity
                 # calculate the total benefit of a specific combination of items
                 for weight in range(self.maxWeight):
                     # look at adding item to the knapsack
                     # if it's weight alone does not exceed the capacity of the
                     # knapsack, it can be part of a solution to the problem
-                    if (items[itemIdx].weight <= weight):
-                        pass
-                        # calculate the benefit of adding this item to a
+                    if (item.weight <= weight):
+                        # calculate the value of adding this item to a
                         # knapsack solution that does not contain this item
-                        # and can accomodate the weight of item 'i'
-                        # if the new benefit including item 'i' is greater
-                        # than the solution not including item 'i'
-                        # store that benefit, else store the benefit of the
-                        # solution w/o item 'i'
+                        # and can accomodate the weight of this item
+
+                        # need an index check here?
+                        valueWithoutItemAndCapacityForCurrentItemsWeight = \
+                            computedValues[itemIdx - 1][weight - item.weight]
+                        valueWithoutItemAtCurrentWeight = \
+                            computedValues[itemIdx - 1][weight]
+                        valueWithItem = item.value + valueWithoutItemAndCapacityForCurrentItemsWeight
+
+                        if (valueWithItem > valueWithoutItemAtCurrentWeight):
+                            # better to add the item; calculate the new value
+                            computedValues[itemIdx][weight] = valueWithItem
+                        else:
+                            # better w/o adding the item; store that value instead
+                            computedValues[itemIdx][weight] = valueWithoutItemAtCurrentWeight
+                        
                     # else, if it's weight alone exceeds the capacity of
                     # the knapsack, store the benefit of the solution
                     # at the current knapsack capacity w/o item 'i'
                     else:
-                        if (itemIdx > 1):
+                        if (itemIdx > 0):
                             computedValues[itemIdx][weight] = computedValues[itemIdx - 1][weight]
                         else:
+                            # out of array bounds
                             computedValues[itemIdx][weight] = 0
                     
         return computedValues
