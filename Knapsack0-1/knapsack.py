@@ -20,9 +20,9 @@ class Knapsack(object):
         self.maxWeight = maxWeight
         
     def print_values(self, computedValues):
-        for x in range(len(computedValues)):
-            for y in range(self.maxWeight):
-                print(str(computedValues[x][y]) + " ", end="")
+        for row in range(len(computedValues)):
+            for col in range(len(computedValues[0])):
+                print(str(computedValues[row][col]) + " ", end="")
 
             print("")
 
@@ -41,42 +41,56 @@ class Knapsack(object):
             ]
 
             # for every item
-            for itemIdx in range(len(items)):
-                item = items[itemIdx]
+            for i in range(1, len(items) + 1):
+                # since we range over values starting w/ index 1
+                # we need to tweak the items array index reference
+                item = items[i - 1]
                 print("Looking at item: " + str(item))
                 # and then for every possible knapsack capacity
                 # calculate the total benefit of a specific combination of items
-                for weight in range(self.maxWeight):
+                for weight in range(self.maxWeight + 1):
+                    print("Calc value for table location: [{}][{}]".format(i, weight))
                     # look at adding item to the knapsack
                     # if it's weight alone does not exceed the capacity of the
                     # knapsack, it can be part of a solution to the problem
                     if (item.weight <= weight):
+                        print("Item's weight does *not* exceed current weight limit.")
                         # calculate the value of adding this item to a
                         # knapsack solution that does not contain this item
                         # and can accomodate the weight of this item
 
                         # need an index check here?
                         valueWithoutItemAndCapacityForCurrentItemsWeight = \
-                            computedValues[itemIdx - 1][weight - item.weight]
+                            computedValues[i - 1][weight - item.weight]                        
+                        print("Calculated value w/o item and item's weight: " + str(valueWithoutItemAndCapacityForCurrentItemsWeight))
+
                         valueWithoutItemAtCurrentWeight = \
-                            computedValues[itemIdx - 1][weight]
+                            computedValues[i - 1][weight]
+                        print("Value w/o item at current weight: " + str(valueWithoutItemAtCurrentWeight))
+
                         valueWithItem = item.value + valueWithoutItemAndCapacityForCurrentItemsWeight
+                        print("New calculated value w/ item: " + str(valueWithItem))
 
                         if (valueWithItem > valueWithoutItemAtCurrentWeight):
+                            print("New calculated value with item is greater.")
                             # better to add the item; calculate the new value
-                            computedValues[itemIdx][weight] = valueWithItem
+                            computedValues[i][weight] = valueWithItem
                         else:
+                            print("New calculated value with item is *not* greater.")
                             # better w/o adding the item; store that value instead
-                            computedValues[itemIdx][weight] = valueWithoutItemAtCurrentWeight
+                            computedValues[i][weight] = valueWithoutItemAtCurrentWeight
                         
                     # else, if it's weight alone exceeds the capacity of
                     # the knapsack, store the benefit of the solution
                     # at the current knapsack capacity w/o item 'i'
                     else:
-                        if (itemIdx > 0):
-                            computedValues[itemIdx][weight] = computedValues[itemIdx - 1][weight]
+                        print("Item's weight does exceed current weight limit.")
+                        if (i > 0):
+                            computedValues[i][weight] = computedValues[i - 1][weight]
                         else:
                             # out of array bounds
-                            computedValues[itemIdx][weight] = 0
+                            computedValues[i][weight] = 0
+
+                    self.print_values(computedValues)
                     
         return computedValues
