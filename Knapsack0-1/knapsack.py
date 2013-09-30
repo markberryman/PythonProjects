@@ -94,3 +94,6 @@ class Knapsack(object):
                     self.print_values(computedValues)
                     
         return computedValues
+
+    def find_items(self, computedValues):
+        pass

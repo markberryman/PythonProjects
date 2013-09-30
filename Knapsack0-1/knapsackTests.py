@@ -2,6 +2,9 @@ import knapsack
 import unittest
 
 
+class FindItemsTests(unittest.TestCase):
+    pass
+
 class CalculateValuesTests(unittest.TestCase):
     def test_KnapsackWithCapacityZero(self):
         sut = knapsack.Knapsack(0)
