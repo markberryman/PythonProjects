@@ -16,5 +16,18 @@ class LongestCommonSubstr(object):
 
         return substrings
 
-    def calcLongestCommonSubstr(self, substrings1, substrings2):
-        pass
+    def calcLongestCommonSubstr(self, s1, s2):
+        largestSubstring = ""
+        
+        ss1 = self.genSubstrings(s1)
+        ss2 = self.genSubstrings(s2)
+
+        for s in ss1:
+            if ((s in ss2) and 
+                (len(s) > len(largestSubstring))):
+                largestSubstring = s
+
+        if (len(largestSubstring) == 0):
+            return None
+
+        return largestSubstring
