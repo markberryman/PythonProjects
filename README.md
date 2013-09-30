@@ -8,6 +8,7 @@ Random set of Python projects. Just learning Python here...
 * **GuessingGame** - Guess the number in a fixed range of values.
 * **Knapsack0-1** - Knapsack optimization algorithm (0/1 version).
 * **LinkChecker** - Bare bones link checker for web pages.
+* **LongestCommonSubstr** - Calculate the longest common substring given two strings.
 * **OOP** - Experimenting with basic OOP concepts in Python.
 * **ShoppingCart** - Add, remove and display the items in a shopping cart
 * **WordGuess** - Guess the word. Three strikes and you're out.
