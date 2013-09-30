@@ -53,6 +53,9 @@ class Knapsack(object):
                     # add item to knapsack?
                     # if item's weight < less than knapsack capacity,
                     # it can be part of a solution
+                    # this check also prevents any index out of bounds
+                    # calculations down the road b/c we'll never have
+                    # an item w/ a weight that could result in a < 0 index calc                    
                     if (item.weight <= capacity):
                         print("Item's weight does *not* exceed current weight limit.")
                         # calc value of solution w/ this item plus a knapsack
