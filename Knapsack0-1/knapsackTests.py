@@ -22,14 +22,14 @@ class CalculateValuesTests(unittest.TestCase):
     def test_KnapsackWithCapacityZero(self):
         sut = knapsack.Knapsack(0)
 
-        actual = sut.calculate_values([])
+        actual = sut.calculate_benefits([])
 
         self.assertIsNone(actual)
 
     def test_NoItems(self):
         sut = knapsack.Knapsack(1)
 
-        actual = sut.calculate_values(None)
+        actual = sut.calculate_benefits(None)
 
         self.assertIsNone(actual)
 
@@ -39,7 +39,7 @@ class CalculateValuesTests(unittest.TestCase):
         maxWeight = 1
         sut = knapsack.Knapsack(1)
 
-        actual = sut.calculate_values(items)
+        actual = sut.calculate_benefits(items)
 
         # rows
         self.assertEqual(len(items) + 1, len(actual))
@@ -53,7 +53,7 @@ class CalculateValuesTests(unittest.TestCase):
         maxWeight = 3
         sut = knapsack.Knapsack(maxWeight)
 
-        actual = sut.calculate_values(items)
+        actual = sut.calculate_benefits(items)
 
         # rows
         self.assertEqual(len(items) + 1, len(actual))
@@ -64,7 +64,7 @@ class CalculateValuesTests(unittest.TestCase):
         item1 = knapsack.Item(0, 2, 1)
         sut = knapsack.Knapsack(1)
 
-        actual = sut.calculate_values([item1])
+        actual = sut.calculate_benefits([item1])
 
         for row in range(len(actual)):
             for col in range(len(actual[0])):
@@ -75,7 +75,7 @@ class CalculateValuesTests(unittest.TestCase):
         item1 = knapsack.Item(0, 1, itemValue)
         sut = knapsack.Knapsack(1)
 
-        actual = sut.calculate_values([item1])
+        actual = sut.calculate_benefits([item1])
 
         # [0, 0]
         # [0, 1]

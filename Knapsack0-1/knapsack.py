@@ -1,11 +1,11 @@
 class Item(object):
-    def __init__(self, id, weight, value):
+    def __init__(self, id, weight, benefit):
         self.id = id
         self.weight = weight
-        self.value = value
+        self.benefit = benefit
 
     def __str__(self):
-        return "Item {}, Weight {}, Value {}".format(self.id, self.weight, self.value)
+        return "Item {}, Weight {}, Benefit {}".format(self.id, self.weight, self.benefit)
 
 
 class Knapsack(object):
@@ -16,8 +16,8 @@ class Knapsack(object):
     dynamic programming technique is O(n * W) where n is the number of
     items to consider and W is the maximum weight.
     """
-    def __init__(self, maxWeight):
-        self.maxWeight = maxWeight
+    def __init__(self, capacity):
+        self.capacity = capacity
         
     def print_values(self, computedValues):
         for row in range(len(computedValues)):
@@ -26,88 +26,89 @@ class Knapsack(object):
 
             print("")
 
-    def calculate_values(self, items):
+    def calculate_benefits(self, items):
         """Determine the value of each combination of items and store
         these values (solutions to a sub-problem) for future computations."""
-        computedValues = None
+        benefitsTable = None
 
-        if ((self.maxWeight > 0) and (items is not None)):
-            # all values set to 0 so no need to init values corresponding
-            # to a knapsack w/ maximum weight support of 0 and a knapsack w/ 
-            # no items
-            computedValues = [
-                [0 for x in range(self.maxWeight + 1)] 
+        if ((self.capacity > 0) and (items is not None)):
+            # creating a table with 0..# items rows and 0..knapsack capacity
+            benefitsTable = [
+                [0 for x in range(self.capacity + 1)] 
                 for x in range((len(items) + 1))
             ]
 
-            # for every item
+            # start at index 1 b/c we need a base row of 0's for
+            # the calculations
+            # for each item
             for i in range(1, len(items) + 1):
-                # since we range over values starting w/ index 1
-                # we need to tweak the items array index reference
+                # the items array is 0 based so we tweak the
+                # list index reference
                 item = items[i - 1]
                 print("Looking at item: " + str(item))
-                # and then for every possible knapsack capacity
-                # calculate the total benefit of a specific combination of items
-                for weight in range(self.maxWeight + 1):
-                    print("Calc value for table location: [{}][{}]".format(i, weight))
-                    # look at adding item to the knapsack
-                    # if it's weight alone does not exceed the capacity of the
-                    # knapsack, it can be part of a solution to the problem
-                    if (item.weight <= weight):
+                # for every possible knapsack capacity
+                # calculate the total benefit of a combination of items
+                for capacity in range(self.capacity + 1):
+                    print("Calc value for table location: [{}][{}]".format(i, capacity))
+                    # add item to knapsack?
+                    # if item's weight < less than knapsack capacity,
+                    # it can be part of a solution
+                    if (item.weight <= capacity):
                         print("Item's weight does *not* exceed current weight limit.")
-                        # calculate the value of adding this item to a
-                        # knapsack solution that does not contain this item
-                        # and can accomodate the weight of this item
-                        valueWithoutItemAndCapacityForCurrentItemsWeight = \
-                            computedValues[i - 1][weight - item.weight]                        
-                        print("Calculated value w/o item and item's weight: " + str(valueWithoutItemAndCapacityForCurrentItemsWeight))
+                        # calc value of solution w/ this item plus a knapsack
+                        # solution that does not contain this item that could
+                        # take this item's weight
+                        valueWithoutItemAndCapacityForItemsWeight = \
+                            benefitsTable[i - 1][capacity - item.weight]                        
+                        print("Calculated value w/o item and item's weight: " + str(valueWithoutItemAndCapacityForItemsWeight))
 
-                        valueWithoutItemAtCurrentWeight = \
-                            computedValues[i - 1][weight]
-                        print("Value w/o item at current weight: " + str(valueWithoutItemAtCurrentWeight))
+                        valueWithoutItemAtCurrentCapacity = \
+                            benefitsTable[i - 1][capacity]
+                        print("Value w/o item at current capacity: " + str(valueWithoutItemAtCurrentCapacity))
 
-                        valueWithItem = item.value + valueWithoutItemAndCapacityForCurrentItemsWeight
+                        valueWithItem = item.benefit + valueWithoutItemAndCapacityForItemsWeight
                         print("New calculated value w/ item: " + str(valueWithItem))
 
-                        if (valueWithItem > valueWithoutItemAtCurrentWeight):
+                        if (valueWithItem > valueWithoutItemAtCurrentCapacity):
                             print("New calculated value with item is greater.")
                             # better to add the item; calculate the new value
-                            computedValues[i][weight] = valueWithItem
+                            benefitsTable[i][capacity] = valueWithItem
                         else:
                             print("New calculated value with item is *not* greater.")
                             # better w/o adding the item; store that value instead
-                            computedValues[i][weight] = valueWithoutItemAtCurrentWeight
+                            benefitsTable[i][capacity] = valueWithoutItemAtCurrentCapacity
                         
-                    # else, if it's weight alone exceeds the capacity of
-                    # the knapsack, store the benefit of the solution
-                    # at the current knapsack capacity w/o item 'i'
+                    # else, if item's weight > knapsack capacity,
+                    # it can't be part of a solution
+                    # store the previously calculated benefit of a 
+                    # knapsack w/ the same capacity and w/o this item
                     else:
                         print("Item's weight does exceed current weight limit.")
                         if (i > 0):
-                            computedValues[i][weight] = computedValues[i - 1][weight]
+                            benefitsTable[i][capacity] = benefitsTable[i - 1][capacity]
                         else:
                             # out of array bounds
-                            computedValues[i][weight] = 0
+                            benefitsTable[i][capacity] = 0
 
-                    self.print_values(computedValues)
+                    self.print_values(benefitsTable)
                     
-        return computedValues
+        return benefitsTable
 
-    def find_items(self, items, computedValues):
+    def find_items(self, items, benefitsTable):
         """To determine the items that make up the maximum value, we need
         to walk back through the array of computed values comparing
         calculated values for a given item and the knapsack w/o that item.
         If there's a benefit difference, then the item is part of the
         optimal computed value. If not, it isn't."""
         numItems = len(items)
-        curWeight = self.maxWeight
+        curCapacity = self.capacity
         knapsackItems = []
 
-        while ((numItems > 0) and (curWeight > 0)):
-            if (computedValues[numItems][curWeight] != computedValues[numItems - 1][curWeight]):
+        while ((numItems > 0) and (curCapacity > 0)):
+            if (benefitsTable[numItems][curCapacity] != benefitsTable[numItems - 1][curCapacity]):
                 knapsackItems.append(items[numItems - 1])
                 numItems -= 1
-                curWeight -= items[numItems].weight
+                curCapacity -= items[numItems].weight
             else:
                 numItems -= 1
 
