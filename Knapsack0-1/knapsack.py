@@ -59,8 +59,11 @@ class Knapsack(object):
                     if (item.weight <= capacity):
                         print("Item's weight does *not* exceed current weight limit.")
                         # calc value of solution w/ this item plus a knapsack
-                        # solution that does not contain this item that could
+                        # solution that does not contain this item and that could
                         # take this item's weight
+                        # note - the knapsack solution that does not contain
+                        # this item does not necessarily contain any other
+                        # items; it could be an empty knapsack
                         valueWithoutItemAndCapacityForItemsWeight = \
                             benefitsTable[i - 1][capacity - item.weight]                        
                         print("Calculated value w/o item and item's weight: " + str(valueWithoutItemAndCapacityForItemsWeight))
