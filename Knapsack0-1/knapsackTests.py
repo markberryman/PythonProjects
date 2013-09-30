@@ -8,14 +8,14 @@ class FindItemsTests(unittest.TestCase):
         item2 = knapsack.Item(2, 3, 4)
         item3 = knapsack.Item(3, 4, 5)
         item4 = knapsack.Item(4, 5, 6)
-        items = [item1, item2, item3, item4]
-        expected = [item1, item2]
+        items = [item1, item2, item3, item4]        
         ks = knapsack.Knapsack(5)
-        values = ks.calculate_values(items)
+        values = [[0, 0, 0, 0, 0, 0], [0, 0, 3, 3, 3, 3], [0, 0, 3, 4, 4, 7], [0, 0, 3, 4, 5, 7], [0, 0, 3, 4, 5, 7]]
 
-        actual = ks.find_items(values, items)
+        actual = ks.find_items(items, values)
 
-        self.assertEqual(expected, actual)
+        self.assertEqual(item2.id, actual[0].id)
+        self.assertEqual(item1.id, actual[1].id)
 
 
 class CalculateValuesTests(unittest.TestCase):

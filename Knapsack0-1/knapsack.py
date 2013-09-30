@@ -95,5 +95,22 @@ class Knapsack(object):
                     
         return computedValues
 
-    def find_items(self, computedValues):
-        pass
+    def find_items(self, items, computedValues):
+        """To determine the items that make up the maximum value, we need
+        to walk back through the array of computed values comparing
+        calculated values for a given item and the knapsack w/o that item.
+        If there's a benefit difference, then the item is part of the
+        optimal computed value. If not, it isn't."""
+        numItems = len(items)
+        curWeight = self.maxWeight
+        knapsackItems = []
+
+        while ((numItems > 0) and (curWeight > 0)):
+            if (computedValues[numItems][curWeight] != computedValues[numItems - 1][curWeight]):
+                knapsackItems.append(items[numItems - 1])
+                numItems -= 1
+                curWeight -= items[numItems].weight
+            else:
+                numItems -= 1
+
+        return knapsackItems
