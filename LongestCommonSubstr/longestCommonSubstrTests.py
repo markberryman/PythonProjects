@@ -21,6 +21,14 @@ class GenSubstringsTests(unittest.TestCase):
 
         self.assertEqual(0, len(expected.difference(actual)))
 
+    def test_ThreeCharString(self):
+        s = "xyz"
+        expected = { "x", "y", "z", "xy", "yz", "xyz" }
+        sut = longestCommonSubstr.LongestCommonSubstr()
+
+        actual = sut.genSubstrings(s)
+
+        self.assertEqual(0, len(expected.difference(actual)))
 
 if __name__ == '__main__':
     unittest.main()
