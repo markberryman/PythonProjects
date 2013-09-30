@@ -3,7 +3,20 @@ import unittest
 
 
 class FindItemsTests(unittest.TestCase):
-    pass
+    def test_Knapsack_MaxWeight5_4Items(self):
+        item1 = knapsack.Item(1, 2, 3)
+        item2 = knapsack.Item(2, 3, 4)
+        item3 = knapsack.Item(3, 4, 5)
+        item4 = knapsack.Item(4, 5, 6)
+        items = [item1, item2, item3, item4]
+        expected = [item1, item2]
+        ks = knapsack.Knapsack(5)
+        values = ks.calculate_values(items)
+
+        actual = ks.find_items(values, items)
+
+        self.assertEqual(expected, actual)
+
 
 class CalculateValuesTests(unittest.TestCase):
     def test_KnapsackWithCapacityZero(self):
