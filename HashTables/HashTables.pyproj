@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4c2850b3-e395-4cd4-a52f-6bafdf21bff9</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>HashTables.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="HashTables.py" />
+    <Compile Include="hashtable.py" />
+    <Compile Include="hashtableTests.py" />
+    <Compile Include="main.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
