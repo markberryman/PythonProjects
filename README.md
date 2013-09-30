@@ -12,4 +12,5 @@ Random set of Python projects. Just learning Python here...
 * **LongestCommonSubstr** - Calculate the longest common substring given two strings.
 * **OOP** - Experimenting with basic OOP concepts in Python.
 * **ShoppingCart** - Add, remove and display the items in a shopping cart
+* **StringSearch** - String searching algorithms.
 * **WordGuess** - Guess the word. Three strikes and you're out.
