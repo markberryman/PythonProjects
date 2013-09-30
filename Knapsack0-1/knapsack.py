@@ -58,8 +58,6 @@ class Knapsack(object):
                         # calculate the value of adding this item to a
                         # knapsack solution that does not contain this item
                         # and can accomodate the weight of this item
-
-                        # need an index check here?
                         valueWithoutItemAndCapacityForCurrentItemsWeight = \
                             computedValues[i - 1][weight - item.weight]                        
                         print("Calculated value w/o item and item's weight: " + str(valueWithoutItemAndCapacityForCurrentItemsWeight))
