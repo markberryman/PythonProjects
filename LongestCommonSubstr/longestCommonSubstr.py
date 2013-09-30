@@ -1,6 +1,6 @@
 class LongestCommonSubstr(object):
     def genSubstrings(self, string):
-        pass
+        return { "x" }
 
     def calcLongestCommonSubstr(self, substrings1, substrings2):
         pass

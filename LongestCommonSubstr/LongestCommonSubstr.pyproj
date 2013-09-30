@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ea08060d-c16e-4230-8025-536a700e5c69</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>LongestCommonSubstr.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LongestCommonSubstr.py" />
+    <Compile Include="longestCommonSubstr.py" />
+    <Compile Include="longestCommonSubstrTests.py" />
+    <Compile Include="main.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
