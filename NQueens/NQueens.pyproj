@@ -23,7 +23,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="main.py" />
-    <Compile Include="treeWithBacktracking.py" />
+    <Compile Include="recursiveBacktracking.py" />
+    <Compile Include="recursiveBacktrackingTests.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
