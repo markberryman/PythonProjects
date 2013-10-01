@@ -13,6 +13,7 @@ class RabinKarp(object):
         """Quick b/c we're using previously computed hash values."""
         result = 0
 
+        # todo - could optimize code by handling these conditions elsewhere
         if ((lastString is not None) and
             (len(string) > 1)):
             # new hash equals last hash minus hash value of first char
@@ -39,6 +40,7 @@ class RabinKarp(object):
         # go over each substring in s2 of size equal to length of s1
         for x in range(len(s2) - len(s1) + 1):
             substring = s2[x:x + len(s1)]
+            # todo - inlining this fn speeds up algo by about 15%
             substringHash = self.ascii_sum_rolling_hash(lastSubstring, lastHash, substring)
 
             if (substringHash == s1Hash):
