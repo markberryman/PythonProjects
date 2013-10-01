@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>0a1fc0db-5897-4c84-bf2a-18abc4af38ef</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>StringSearch.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="StringSearch.py" />
+    <Compile Include="main.py" />
+    <Compile Include="rabinKarp.py" />
+    <Compile Include="rabinKarpTests.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
