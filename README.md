@@ -10,6 +10,7 @@ Random set of Python projects. Just learning Python here...
 * **Knapsack0-1** - Knapsack optimization algorithm (0/1 version).
 * **LinkChecker** - Bare bones link checker for web pages.
 * **LongestCommonSubstr** - Calculate the longest common substring given two strings.
+* **NQueens** - N-Queens problem w/ various solutions.
 * **OOP** - Experimenting with basic OOP concepts in Python.
 * **ShoppingCart** - Add, remove and display the items in a shopping cart
 * **StringSearch** - String searching algorithms.
