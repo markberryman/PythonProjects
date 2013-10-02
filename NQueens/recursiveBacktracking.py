@@ -7,10 +7,11 @@ class RecursiveBacktracking(object):
         self.numCalcs = 0
 
     def print(self, board):
-        for x in range(len(board)):
+        # accounting for our two add'l rows of meta-data
+        for x in range(len(board) - 2):
             print(board[x])
 
-    def can_place_queen(self, board, row, col):
+    def can_place_queen(self, board, row, col, boardDimension):
         self.numCalcs += 1
 
         # check for exact space conflict
@@ -19,18 +20,15 @@ class RecursiveBacktracking(object):
             return False
 
         # check for row conflict
-        rowToCheck = board[row]
-        for i in rowToCheck:
-            if (i == 1):
-                #print("Row conflict.")
-                return False
+        rowMetaData = board[boardDimension]
+        if (rowMetaData[row] == 1):
+            return False
 
         # check for col conflict
-        for i in range(len(board)):
-            if (board[i][col] == 1):
-                #print("Column conflict.")
-                return False
-
+        colMetaData = board[boardDimension + 1]
+        if (colMetaData[col] == 1):
+            return False
+        
         # check for diagonal conflict
         # check up and left
         rowIdxToCheck = row - 1
@@ -48,7 +46,7 @@ class RecursiveBacktracking(object):
         rowIdxToCheck = row - 1
         colIdxToCheck = col + 1
 
-        while ((rowIdxToCheck >= 0) and (colIdxToCheck < len(board[0]))):
+        while ((rowIdxToCheck >= 0) and (colIdxToCheck < boardDimension)):
             if (board[rowIdxToCheck][colIdxToCheck] == 1):
                 #print("Diagonal conflict (UR).")
                 return False
@@ -60,7 +58,7 @@ class RecursiveBacktracking(object):
         rowIdxToCheck = row + 1
         colIdxToCheck = col + 1
 
-        while ((rowIdxToCheck < len(board)) and (colIdxToCheck < len(board[0]))):
+        while ((rowIdxToCheck < boardDimension) and (colIdxToCheck < boardDimension)):
             if (board[rowIdxToCheck][colIdxToCheck] == 1):
                 #print("Diagonal conflict (DR).")
                 return False
@@ -72,7 +70,7 @@ class RecursiveBacktracking(object):
         rowIdxToCheck = row + 1
         colIdxToCheck = col - 1
 
-        while ((rowIdxToCheck < len(board)) and (colIdxToCheck >= 0)):
+        while ((rowIdxToCheck < boardDimension) and (colIdxToCheck >= 0)):
             if (board[rowIdxToCheck][colIdxToCheck] == 1):
                 #print("Diagonal conflict (DL).")
                 return False
@@ -82,7 +80,7 @@ class RecursiveBacktracking(object):
 
         return True
 
-    def solve(self, numQueens, board):
+    def solve(self, numQueens, board, boardDimension):
         if (numQueens == 0):
             # solved
             print("\nSolution:")
@@ -90,11 +88,11 @@ class RecursiveBacktracking(object):
             return True
 
         # try to place a queen considering every spot on the board
-        for row in range(len(board)):
-            for col in range(len(board[0])):
+        for row in range(boardDimension):
+            for col in range(boardDimension):
                 # queen can be placed at row,col?
                 #print("Considering [{},{}]".format(row, col))
-                canPlace = self.can_place_queen(board, row, col)
+                canPlace = self.can_place_queen(board, row, col, boardDimension)
 
                 if (canPlace):
                     #print("Placing queen at [{},{}]. {} to go.".format(row, col, numQueens - 1))
@@ -104,11 +102,15 @@ class RecursiveBacktracking(object):
                     newBoard = copy.deepcopy(board)
                     # update the board w/ the queen's placement
                     newBoard[row][col] = 1
+                    # update the board row meta-data
+                    newBoard[boardDimension][row] = 1
+                    # update the board column meta-data
+                    newBoard[boardDimension + 1][col] = 1
 
                     #self.print(newBoard)
 
                     # recurse w/ one less queen
-                    result = self.solve(numQueens - 1, newBoard)
+                    result = self.solve(numQueens - 1, newBoard, boardDimension)
 
                     if (result):
                         # we're done; no need trying to place queens

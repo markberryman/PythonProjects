@@ -6,10 +6,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # x ? o
         # o o o
         # o o o
-        board = [[1,0,0], [0,0,0], [0,0,0]]
+        board = [[1,0,0], [0,0,0], [0,0,0], [1,0,0], [1,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 0, 1)
+        actual = sut.can_place_queen(board, 0, 1, 3)
 
         self.assertFalse(actual)
 
@@ -17,10 +17,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # ? x o
         # o o o
         # o o o
-        board = [[0,0,1], [0,0,0], [0,0,0]]
+        board = [[0,0,1], [0,0,0], [0,0,0], [1,0,0], [0,1,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 0, 0)
+        actual = sut.can_place_queen(board, 0, 0, 3)
 
         self.assertFalse(actual)
 
@@ -28,10 +28,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # x o o
         # ? o o       
         # o o o
-        board = [[1,0,0], [0,0,0], [0,0,0]]
+        board = [[1,0,0], [0,0,0], [0,0,0], [1,0,0], [1,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 1, 0)
+        actual = sut.can_place_queen(board, 1, 0, 3)
 
         self.assertFalse(actual)
 
@@ -39,10 +39,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # x o o
         # o o o       
         # ? o o
-        board = [[1,0,0], [0,0,0], [0,0,0]]
+        board = [[1,0,0], [0,0,0], [0,0,0], [1,0,0], [1,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 2, 0)
+        actual = sut.can_place_queen(board, 2, 0, 3)
 
         self.assertFalse(actual)
 
@@ -50,10 +50,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # ? o o
         # o o o     
         # o o x
-        board = [[0,0,0], [0,0,0], [0,0,1]]
+        board = [[0,0,0], [0,0,0], [0,0,1], [0,0,1], [0,0,1]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 0, 0)
+        actual = sut.can_place_queen(board, 0, 0, 3)
 
         self.assertFalse(actual)
 
@@ -61,10 +61,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # x o o
         # o o o
         # o o ?
-        board = [[1,0,0], [0,0,0], [0,0,0]]
+        board = [[1,0,0], [0,0,0], [0,0,0], [1,0,0], [1,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 2, 2)
+        actual = sut.can_place_queen(board, 2, 2, 3)
 
         self.assertFalse(actual)
 
@@ -72,10 +72,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # o o x
         # o o o
         # ? o o
-        board = [[0,0,1], [0,0,0], [0,0,0]]
+        board = [[0,0,1], [0,0,0], [0,0,0], [1,0,0], [0,0,1]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 2, 0)
+        actual = sut.can_place_queen(board, 2, 0, 3)
 
         self.assertFalse(actual)
 
@@ -83,10 +83,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # o o ?
         # o o o     
         # x o o
-        board = [[0,0,0], [0,0,0], [1,0,0]]
+        board = [[0,0,0], [0,0,0], [1,0,0], [0,0,1], [1,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 0, 2)
+        actual = sut.can_place_queen(board, 0, 2, 3)
 
         self.assertFalse(actual)
 
@@ -94,10 +94,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # x o o
         # o o o     
         # o o o
-        board = [[1,0,0], [0,0,0], [0,0,0]]
+        board = [[1,0,0], [0,0,0], [0,0,0], [1,0,0], [1,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 0, 0)
+        actual = sut.can_place_queen(board, 0, 0, 3)
 
         self.assertFalse(actual)
 
@@ -105,10 +105,10 @@ class CanPlaceQueenTests(unittest.TestCase):
         # x o o
         # o o o     
         # o o o
-        board = [[1,0,0], [0,0,0], [0,0,0]]
+        board = [[1,0,0], [0,0,0], [0,0,0], [1,0,0], [1,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
-        actual = sut.can_place_queen(board, 2, 1)
+        actual = sut.can_place_queen(board, 2, 1, 3)
 
         self.assertTrue(actual)
 
