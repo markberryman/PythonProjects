@@ -3,13 +3,11 @@ import recursiveBacktracking
 rbt = recursiveBacktracking.RecursiveBacktracking()
 boardDimension = 8
 board = [[0 for x in range(boardDimension)] for x in range(boardDimension)]
-result = rbt.solve(6, board)
+result = rbt.solve(8, board)
 
-if (result):
-    print()
-    print("Solution:")
-    rbt.print(board)
-else:
+if (result is False):
     print("No solution")
 
-input("Done")
+print("\nNumber of calculations = {:,}".format(rbt.numCalcs))
+
+#input("Done")
