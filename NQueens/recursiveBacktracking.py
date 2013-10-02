@@ -7,17 +7,20 @@ class RecursiveBacktracking(object):
     def can_place_queen(self, board, row, col):
         # check for exact space conflict
         if (board[row][col] == 1):
+            print("Exact space conflict.")
             return False
 
         # check for row conflict
         rowToCheck = board[row]
         for i in rowToCheck:
             if (i == 1):
+                print("Row conflict.")
                 return False
 
         # check for col conflict
         for i in range(len(board)):
             if (board[i][col] == 1):
+                print("Column conflict.")
                 return False
 
         # check for diagonal conflict
@@ -27,6 +30,7 @@ class RecursiveBacktracking(object):
 
         while ((rowIdxToCheck >= 0) and (colIdxToCheck >= 0)):
             if (board[rowIdxToCheck][colIdxToCheck] == 1):
+                print("Diagonal conflict (UL).")
                 return False
             else:
                 rowIdxToCheck -= 1
@@ -38,6 +42,7 @@ class RecursiveBacktracking(object):
 
         while ((rowIdxToCheck >= 0) and (colIdxToCheck < len(board[0]))):
             if (board[rowIdxToCheck][colIdxToCheck] == 1):
+                print("Diagonal conflict (UR).")
                 return False
             else:
                 rowIdxToCheck -= 1
@@ -49,6 +54,7 @@ class RecursiveBacktracking(object):
 
         while ((rowIdxToCheck < len(board)) and (colIdxToCheck < len(board[0]))):
             if (board[rowIdxToCheck][colIdxToCheck] == 1):
+                print("Diagonal conflict (DR).")
                 return False
             else:
                 rowIdxToCheck += 1
@@ -60,6 +66,7 @@ class RecursiveBacktracking(object):
 
         while ((rowIdxToCheck < len(board)) and (colIdxToCheck >= 0)):
             if (board[rowIdxToCheck][colIdxToCheck] == 1):
+                print("Diagonal conflict (DL).")
                 return False
             else:
                 rowIdxToCheck += 1
