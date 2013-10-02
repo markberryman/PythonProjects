@@ -3,7 +3,7 @@ import unittest
 
 class CanPlaceQueenTests(unittest.TestCase):
     def test_RowConflictReturnsFalse(self):
-        # x o o
+        # x ? o
         # o o o
         # o o o
         board = [[1,0,0], [0,0,0], [0,0,0]]
@@ -13,8 +13,8 @@ class CanPlaceQueenTests(unittest.TestCase):
 
         self.assertFalse(actual)
 
-    def test_RowConflictReturnsFalse(self):
-        # o x o
+    def test_RowConflictToTheLeftReturnsFalse(self):
+        # ? x o
         # o o o
         # o o o
         board = [[0,0,1], [0,0,0], [0,0,0]]
@@ -24,9 +24,9 @@ class CanPlaceQueenTests(unittest.TestCase):
 
         self.assertFalse(actual)
 
-    def test_ColConflictReturnsFalse(self):
+    def test_ColConflictDirectlyAboveReturnsFalse(self):
         # x o o
-        # o o o       
+        # ? o o       
         # o o o
         board = [[1,0,0], [0,0,0], [0,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
@@ -35,10 +35,10 @@ class CanPlaceQueenTests(unittest.TestCase):
 
         self.assertFalse(actual)
 
-    def test_ColConflictReturnsFalse(self):
+    def test_ColConflictNotDirectlyAboveReturnsFalse(self):
         # x o o
         # o o o       
-        # o o o
+        # ? o o
         board = [[1,0,0], [0,0,0], [0,0,0]]
         sut = recursiveBacktracking.RecursiveBacktracking()
 
