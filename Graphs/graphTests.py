@@ -13,6 +13,15 @@ class ShortestPathBFSTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_TwoNodeGraph(self):
+        n2 = dirNode.DirNode(1, [])
+        n1 = dirNode.DirNode(0, [n2])
+        expected = [n1, n2]
+        sut = graph.Graph([n1, n2])
+        
+        actual = sut.shortest_path_bfs(n1, n2, [])
+
+        self.assertEqual(expected, actual)
 
 if __name__ == '__main__':
     unittest.main()
