@@ -4,10 +4,18 @@ import unittest
 
 
 class ShortestPathBFSTests(unittest.TestCase):
+    def test_EmptyGraph(self):
+        expected = []
+        sut = graph.Graph()
+        
+        actual = sut.shortest_path_bfs(None, None, [])
+
+        self.assertEqual(expected, actual)
+
     def test_OneNodeGraph(self):
         n1 = dirNode.DirNode(0, [])
         expected = [n1]
-        sut = graph.Graph([n1])
+        sut = graph.Graph()
         
         actual = sut.shortest_path_bfs(n1, n1, [])
 
@@ -17,7 +25,7 @@ class ShortestPathBFSTests(unittest.TestCase):
         n2 = dirNode.DirNode(1, [])
         n1 = dirNode.DirNode(0, [n2])
         expected = [n1, n2]
-        sut = graph.Graph([n1, n2])
+        sut = graph.Graph()
         
         actual = sut.shortest_path_bfs(n1, n2, [])
 
@@ -28,7 +36,7 @@ class ShortestPathBFSTests(unittest.TestCase):
         n2 = dirNode.DirNode(2, [n3])
         n1 = dirNode.DirNode(1, [n2])
         expected = [n1, n2, n3]
-        sut = graph.Graph([n1, n2, n3])
+        sut = graph.Graph()
         
         actual = sut.shortest_path_bfs(n1, n3, [])
 
@@ -39,7 +47,7 @@ class ShortestPathBFSTests(unittest.TestCase):
         n2 = dirNode.DirNode(2, [n3])
         n1 = dirNode.DirNode(1, [n2, n3])
         expected = [n1, n3]
-        sut = graph.Graph([n1, n2, n3])
+        sut = graph.Graph()
         
         actual = sut.shortest_path_bfs(n1, n3, [])
 
@@ -52,7 +60,7 @@ class ShortestPathBFSTests(unittest.TestCase):
         n1 = dirNode.DirNode(1, [n2, n3])
         # could also be [n1, n3, n4]
         expected = [n1, n2, n4]
-        sut = graph.Graph([n1, n2, n3, n4])
+        sut = graph.Graph()
         
         actual = sut.shortest_path_bfs(n1, n4, [])
 
