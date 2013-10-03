@@ -13,14 +13,20 @@ class Graph(object):
 
         path.append(curNode)
 
-        # found desired node?
-        if (curNode.id == goalNode.id):
+        # special case of 1 node graph
+        if (curNode == goalNode):
             return path
-        
-        for node in curNode.edges:
-            self.nodeQueue.append(node)
+       
+        # for each "next node", see if it's the end node
+        for i in range(len(curNode.edges)):
+            if (curNode.edges[i].id == goalNode.id):
+                path.append(goalNode)
+                return path
+            
+        # we've evaluated all nodes at the current depth
+        # recurse
+        for i in range(len(curNode.edges)):
+            result = self.shortest_path_bfs(curNode.edges[i], goalNode, list(path))
 
-        # update path; don't forget to clone!
-        assert len(self.nodeQueue) > 0
-
-        return self.shortest_path_bfs(self.nodeQueue.pop(0), goalNode, list(path))
+            if (result is not None):
+                return result

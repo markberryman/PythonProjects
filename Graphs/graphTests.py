@@ -45,5 +45,18 @@ class ShortestPathBFSTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_4NodeGraph_ShortestPath2(self):
+        n4 = dirNode.DirNode(4, [])
+        n3 = dirNode.DirNode(3, [n4])
+        n2 = dirNode.DirNode(2, [n4])
+        n1 = dirNode.DirNode(1, [n2, n3])
+        # could also be [n1, n3, n4]
+        expected = [n1, n2, n4]
+        sut = graph.Graph([n1, n2, n3, n4])
+        
+        actual = sut.shortest_path_bfs(n1, n4, [])
+
+        self.assertEqual(expected, actual)
+
 if __name__ == '__main__':
     unittest.main()
