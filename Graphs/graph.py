@@ -11,15 +11,16 @@ class Graph(object):
         assert goalNode is not None
         assert path is not None
 
+        path.append(curNode)
+
         # found desired node?
         if (curNode.id == goalNode.id):
-            path.append(goalNode)
             return path
-
         
+        for node in curNode.edges:
+            self.nodeQueue.append(node)
 
-        # add start node to queue
-        # process head of queue
-        
-        # look at nodes edges and add them to queue
         # update path; don't forget to clone!
+        assert len(self.nodeQueue) > 0
+
+        return self.shortest_path_bfs(self.nodeQueue.pop(0), goalNode, list(path))
