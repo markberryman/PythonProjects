@@ -5,6 +5,11 @@ class Graph(object):
 
     def shortest_path_bfs(self, curNode, goalNode, path):
         """Use breadth-first search to find shortest path to specific node."""
+
+        assert curNode is not None
+        assert goalNode is not None
+        assert path is not None
+
         # found desired node?
         if (curNode.id == goalNode.id):
             path.append(goalNode)
