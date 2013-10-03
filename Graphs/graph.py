@@ -2,7 +2,6 @@ class Graph(object):
     """A graph."""
     def __init__(self, nodes):
         self.nodes = nodes
-        self.nodeQueue = []
 
     def shortest_path_bfs(self, curNode, goalNode, path):
         """Use breadth-first search to find shortest path to specific node."""
