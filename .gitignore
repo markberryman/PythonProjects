@@ -5,3 +5,4 @@ pf
 *.pyc
 *.suo
 __pycache__
+bin/
