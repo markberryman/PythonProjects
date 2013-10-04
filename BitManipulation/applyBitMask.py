@@ -27,6 +27,7 @@ class ApplyBitMask(object):
     def apply_mask(self, N, M, I, J):
         """Note, J and I are 1 based and J >= I."""
         assert J >= I
+        assert J <= 32
 
         # create mask that 0's out portion of N to replace w/ M
         mask = self.create_sub_mask(I, J)

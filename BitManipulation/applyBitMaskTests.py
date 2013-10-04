@@ -65,5 +65,21 @@ class ApplyMaskTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_TotalReplace(self):
+        # N = 10000000000
+        # M = <32 1's>
+        # I = 1, J= 32
+        # R = <all 1's>
+        N = int(math.pow(2, 10))
+        M = int(math.pow(2, 32) - 1)
+        I = 1
+        J = 32
+        expected = M
+        sut = applyBitMask.ApplyBitMask()
+
+        actual = sut.apply_mask(N, M, I, J)
+
+        self.assertEqual(expected, actual)
+
 if __name__ == '__main__':
     unittest.main()
