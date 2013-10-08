@@ -25,6 +25,8 @@
   <ItemGroup>
     <Compile Include="applyBitMask.py" />
     <Compile Include="applyBitMaskTests.py" />
+    <Compile Include="highLow.py" />
+    <Compile Include="highLowTests.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
