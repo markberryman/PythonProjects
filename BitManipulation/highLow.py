@@ -37,30 +37,45 @@ class HighLow(object):
 
         return n
 
+    def move_down_ones(self, n, onesStartIdx, numOnesToMove):
+        result = n
+
+        # replace the 1's w/ 0's
+        for x in range(onesStartIdx, onesStartIdx + numOnesToMove):
+            n = self.set_bit(n, x, 0)
+
+        # move down the one's by replacing the beginning 0's w/ 1's
+        for x in range(0, numOnesToMove):
+            n = self.set_bit(n, x, 1)
+
+        return n
+
     def find_higher(self, n):
         result = n
         bitToTargetForSwapIdx = 0
-        foundFirstOneIdx = 0
-        foundLastOneIdx = 0
-        # todo - do i need this?
-        needToMoveDownOnes = False
+        onesStartIdx = 0
+        numOnesToMoveDown = 0
 
         while (n != 0):
             if (self.get_lsb(n) != 0):
                 # found a '1'
                 n = n >> 1
-                foundFirstOneIdx = bitToTargetForSwapIdx
+                onesStartIdx = bitToTargetForSwapIdx
                 bitToTargetForSwapIdx += 1
 
                 while (n != 0):
                     if (self.get_lsb(n) != 1):
                         # found a '0'
                         # we've found the "01" flip (remember, scanning RTL)
-                        result = self.swap_msbs(result, bitToTargetForSwapIdx)                        
+                        result = self.swap_msbs(result, bitToTargetForSwapIdx)
+                        # taking away 1 b/c we don't need to move down the
+                        # 1 we just swapped
+                        numOnesToMoveDown -= 1
                     else:
                         # keep looking
                         n = n >> 1                    
                         bitToTargetForSwapIdx += 1
+                        numOnesToMoveDown += 1
 
                 # if we've run out of bits, we've crossed the "01" flip
                 if (n == 0):
@@ -70,25 +85,7 @@ class HighLow(object):
                 # keep looking
                 n = n >> 1
                 bitToTargetForSwapIdx += 1
-                needToMoveDownOnes = True
 
-        # move down preceeding 1's
-        foundLastOneIdx = bitToTargetForSwapIdx - 2
-
-        if (needToMoveDownOnes):
-            # set to '0' all bits in the range of foundLastOneIdx to foundFirstOneIdx
-            for x in range(foundFirstOneIdx, foundLastOneIdx + 1):
-                self.set_bit(x, 0)
-
-            # add the '1's by "or'ing" in a number equal to math.pow(foundLastOneIdx - foundFirstOneIdx)
-            orNumber = 0
-
-            if ((foundLastOneIdx - foundFirstOneIdx) == 0):
-                orNumber += 1
-            else:
-                for x in range(foundLastOneIdx - foundFirstOneIdx):
-                    orNumber += math.pow(2, x - 1)
-
-            result = int(result) | orNumber
+        result = self.move_down_ones(result, onesStartIdx, numOnesToMoveDown)
 
         return result

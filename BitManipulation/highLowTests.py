@@ -3,6 +3,30 @@ import math
 import unittest
 
 
+class MoveDownOnesTests(unittest.TestCase):
+    def test_Idx1Move1(self):
+        n = 2
+        index = 1
+        numOnesToMove = 1
+        expected = 1
+        sut = highLow.HighLow()
+
+        actual = sut.move_down_ones(n, index, numOnesToMove)
+
+        self.assertEqual(expected, actual)
+
+    def test_Idx1Move3(self):
+        n = 30
+        index = 1
+        numOnesToMove = 3
+        expected = 23
+        sut = highLow.HighLow()
+
+        actual = sut.move_down_ones(n, index, numOnesToMove)
+
+        self.assertEqual(expected, actual)
+
+
 class SetBitTests(unittest.TestCase):
     def test_SetIdx0To0(self):
         n = 0
@@ -115,14 +139,14 @@ class FindHigherTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    #def test_12Returns13(self):
-    #    n = 12
-    #    expected = 13
-    #    sut = highLow.HighLow()
+    def test_12Returns13(self):
+        n = 12
+        expected = 17
+        sut = highLow.HighLow()
 
-    #    actual = sut.find_higher(n)
+        actual = sut.find_higher(n)
 
-    #    self.assertEqual(expected, actual)
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':
