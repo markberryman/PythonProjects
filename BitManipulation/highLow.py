@@ -1,6 +1,6 @@
 import math
 
-
+# todo - implement the next lowest # portion of the code
 class HighLow(object):
     """Given an integer, return the next highest and 
     lowest number that includes the same number of 1's
