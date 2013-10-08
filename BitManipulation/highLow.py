@@ -5,6 +5,10 @@ class HighLow(object):
     """Given an integer, return the next highest and 
     lowest number that includes the same number of 1's
     as the integer's binary representation."""
+    def get_bit(self, n, index):
+        """Returns a boolean w/ True equaling 1."""
+        return (n & (1 << index)) > 0
+
     def set_bit(self, n, index, bit):
         """Sets the bit at the given index."""
         if (bit == 0):

@@ -3,6 +3,27 @@ import math
 import unittest
 
 
+class GetBitTests(unittest.TestCase):
+    def test_Idx0(self):
+        n = 0
+        index = 0
+        expected = False
+        sut = highLow.HighLow()
+
+        actual = sut.get_bit(n, index)
+
+        self.assertEqual(expected, actual)
+
+    def test_Idx1(self):
+        n = 2
+        index = 1
+        expected = True
+        sut = highLow.HighLow()
+
+        actual = sut.get_bit(n, index)
+
+        self.assertEqual(expected, actual)
+
 class MoveDownOnesTests(unittest.TestCase):
     def test_Idx1Move1(self):
         n = 2
