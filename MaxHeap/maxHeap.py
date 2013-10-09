@@ -12,8 +12,8 @@ class MaxHeap(object):
         return self.__data
 
     def add_data(self, item):
-        """Add a new item to the heap."""
-        # item goes on end of data array
+        """Add a new item to the heap and re-orders node
+        to satisfy max-heap property."""
         self.__data.append(item)
 
         parentIdx = MaxHeap.get_parentIdx(len(self.__data))
