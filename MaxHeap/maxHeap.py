@@ -1,7 +1,7 @@
 # todo - write code to build heap
 # todo - implement heapsort
 
-class maxHeap(object):
+class MaxHeap(object):
     """Binary max-heap."""
     def __init__(self, data=[]):
         """Data is an array of unordered integers."""
@@ -37,8 +37,8 @@ class maxHeap(object):
         Value of parent node >= value of child nodes.
         Once we've done this, we can employ heap sort.
         Parameter 'i' is the starting index ot begin the "heapfication"."""
-        lChildIdx = maxHeap.get_childIdx(i, 0)
-        rChildIdx = maxHeap.get_childIdx(i, 1)
+        lChildIdx = MaxHeap.get_childIdx(i, 0)
+        rChildIdx = MaxHeap.get_childIdx(i, 1)
         largestIdx = i
 
         # for element at 'i', see if either "child" is greater (i.e., voilates
