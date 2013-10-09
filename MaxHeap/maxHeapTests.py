@@ -2,6 +2,17 @@ import maxHeap
 import unittest
 
 
+class AddDataTests(unittest.TestCase):
+    def test_addFirstItem(self):
+        item = 1
+        expected = [1]
+        sut = maxHeap.maxHeap()
+
+        sut.add_data(item)
+
+        self.assertEqual(expected, sut.data)
+
+
 class GetChildTests(unittest.TestCase):
     def test_GetLeftChildOf3ElementHeap(self):
         data = [3,2,1]

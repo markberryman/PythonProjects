@@ -1,11 +1,18 @@
-# todo - implement max_heapify
+# todo - write code to build heap
 # todo - implement heapsort
 
 class maxHeap(object):
     """Binary max-heap."""
-    def __init__(self, data):
+    def __init__(self, data=[]):
         """Data is an array of unordered integers."""
         self.data = data
+
+    def add_data(self, item):
+        """Add a new item to the heap."""
+        # item goes on end of data array
+        # max-heapify the parent of this new item
+        # recurse until we hit the root
+        self.data.append(item)
 
     def get_child(self, i, dir):
         """Returns array index of child of "i" element. "i" is 1 based.
