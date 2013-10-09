@@ -61,7 +61,7 @@ class AddDataTests(unittest.TestCase):
         self.assertEqual(expected, sut.data)
 
 
-class GetParentTests(unittest.TestCase):
+class GetParentIdxTests(unittest.TestCase):
     def test_GetParentOfIdx1(self):
         expected = 0    # indicating root
         
@@ -77,7 +77,7 @@ class GetParentTests(unittest.TestCase):
         self.assertEqual(expected, actual)
 
 
-class GetChildTests(unittest.TestCase):
+class GetChildIdxTests(unittest.TestCase):
     def test_GetLeftChildOf3ElementHeap(self):
         data = [3,2,1]
         expected = 2
