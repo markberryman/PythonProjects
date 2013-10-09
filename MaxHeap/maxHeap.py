@@ -18,11 +18,11 @@ class maxHeap(object):
         # max-heapify the parent of this new item
         # recurse until we hit the root
 
-    def get_parent(self, i):
+    def get_parentIdx(self, i):
         """Gets parent index of "i" element. "i" is 1-based."""
         return int(i / 2)
 
-    def get_child(self, i, dir):
+    def get_childIdx(self, i, dir):
         """Returns array index of child of "i" element. "i" is 1 based.
         Dir 0 means left. 1 means right."""
         if (dir == 0):
@@ -35,8 +35,8 @@ class maxHeap(object):
         Value of parent node >= value of child nodes.
         Once we've done this, we can employ heap sort.
         Parameter 'i' is the starting index ot begin the "heapfication"."""
-        lChildIdx = self.get_child(i, 0)
-        rChildIdx = self.get_child(i, 1)
+        lChildIdx = self.get_childIdx(i, 0)
+        rChildIdx = self.get_childIdx(i, 1)
         largestIdx = i
 
         # for element at 'i', see if either "child" is greater (i.e., voilates

@@ -40,7 +40,7 @@ class GetParentTests(unittest.TestCase):
         expected = 0    # indicating root
         sut = maxHeap.maxHeap()
 
-        actual = sut.get_parent(1)
+        actual = sut.get_parentIdx(1)
 
         self.assertEqual(expected, actual)
 
@@ -51,7 +51,7 @@ class GetChildTests(unittest.TestCase):
         expected = 2
         sut = maxHeap.maxHeap(data)
 
-        actual = sut.get_child(1, 0)
+        actual = sut.get_childIdx(1, 0)
 
         self.assertEqual(expected, actual)
 
@@ -60,7 +60,7 @@ class GetChildTests(unittest.TestCase):
         expected = 3
         sut = maxHeap.maxHeap(data)
 
-        actual = sut.get_child(1, 1)
+        actual = sut.get_childIdx(1, 1)
 
         self.assertEqual(expected, actual)
 
