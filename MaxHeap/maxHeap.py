@@ -14,9 +14,13 @@ class maxHeap(object):
     def add_data(self, item):
         """Add a new item to the heap."""
         # item goes on end of data array
+        self.__data.append(item)
         # max-heapify the parent of this new item
         # recurse until we hit the root
-        self.__data.append(item)
+
+    def get_parent(self, i):
+        """Gets parent index of "i" element. "i" is 1-based."""
+        return int(i / 2)
 
     def get_child(self, i, dir):
         """Returns array index of child of "i" element. "i" is 1 based.

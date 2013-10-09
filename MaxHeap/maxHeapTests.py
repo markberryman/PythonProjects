@@ -35,6 +35,16 @@ class AddDataTests(unittest.TestCase):
         self.assertEqual(expected, sut.data)
 
 
+class GetParentTests(unittest.TestCase):
+    def test_GetParentOfIdx1(self):
+        expected = 0    # indicating root
+        sut = maxHeap.maxHeap()
+
+        actual = sut.get_parent(1)
+
+        self.assertEqual(expected, actual)
+
+
 class GetChildTests(unittest.TestCase):
     def test_GetLeftChildOf3ElementHeap(self):
         data = [3,2,1]
