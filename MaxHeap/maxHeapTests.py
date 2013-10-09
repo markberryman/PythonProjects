@@ -3,23 +3,33 @@ import unittest
 
 
 class HeapSortTests(unittest.TestCase):
+    # input heaps obey max-heap property
     def test_OneItemHeap(self):
         data = [1]
         expected = [1]
         sut = maxHeap.MaxHeap(data)
 
-        sut.heap_sort()
+        actual = sut.heap_sort()
     
-        self.assertEqual(expected, sut.data)
+        self.assertEqual(expected, actual)
 
     def test_TwoItemHeap(self):
-        data = [1,2]
-        expected = [2,1]
+        data = [2,1]
+        expected = [1,2]
         sut = maxHeap.MaxHeap(data)
 
-        sut.heap_sort()
+        actual = sut.heap_sort()
     
-        self.assertEqual(expected, sut.data)
+        self.assertEqual(expected, actual)
+
+    def test_EightItemHeap(self):
+        data = [8, 6, 7, 4, 5, 3, 2, 1]
+        expected = [1,2,3,4,5,6,7,8]
+        sut = maxHeap.MaxHeap(data)
+
+        actual = sut.heap_sort()
+    
+        self.assertEqual(expected, actual)
 
 
 class AddDataTests(unittest.TestCase):

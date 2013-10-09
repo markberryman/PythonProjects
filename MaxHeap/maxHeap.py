@@ -1,5 +1,3 @@
-# todo - implement heapsort
-
 class MaxHeap(object):
     """Binary max-heap."""
     def __init__(self, data=[]):
@@ -72,4 +70,29 @@ class MaxHeap(object):
 
     def heap_sort(self):
         """Heap sort!"""
-        pass
+        sortedArray = []
+        lastSortedIdx = len(self.__data)
+
+        print("Initial  heap: {}".format(self.__data))
+
+        # build sorted array by whacking elements from
+        # the end of the heap
+        while (len(self.__data) > 0):
+            # place largest element (root) in sorted array
+            # swap last element in heap w/ root
+            sortedArray.append(self.__data[0])
+            self.__data[0] = self.__data[len(self.__data) - 1]
+            # delete the last element in the heap which is
+            # now in the sorted array
+            self.__data.pop()
+
+            # max-heapify at the root; ensures largest # is at root
+            # 1 based indexing
+            self.max_heapify(1)
+
+            print("Heap: {}".format(self.__data))
+            print("Sorted array: {}".format(sortedArray))
+
+        sortedArray.reverse()
+
+        return sortedArray
