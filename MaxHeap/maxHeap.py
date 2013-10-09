@@ -15,8 +15,13 @@ class MaxHeap(object):
         """Add a new item to the heap."""
         # item goes on end of data array
         self.__data.append(item)
-        # max-heapify the parent of this new item
-        # recurse until we hit the root
+
+        parentIdx = MaxHeap.get_parentIdx(len(self.__data))
+
+        # repeat until we hit the root
+        while (parentIdx != 0):
+            self.max_heapify(parentIdx)
+            parentIdx = MaxHeap.get_parentIdx(parentIdx)
 
     @staticmethod
     def get_parentIdx(i):

@@ -34,6 +34,29 @@ class AddDataTests(unittest.TestCase):
 
         self.assertEqual(expected, sut.data)
 
+    def test_addEightUnOrderedItems(self):
+        item1 = 6
+        item2 = 5
+        item3 = 3
+        item4 = 1
+        item5 = 8
+        item6 = 7
+        item7 = 2
+        item8 = 4
+        expected = [8, 6, 7, 4, 5, 3, 2, 1]
+        sut = maxHeap.MaxHeap()
+
+        sut.add_data(item1)
+        sut.add_data(item2)
+        sut.add_data(item3)
+        sut.add_data(item4)
+        sut.add_data(item5)
+        sut.add_data(item6)
+        sut.add_data(item7)
+        sut.add_data(item8)
+
+        self.assertEqual(expected, sut.data)
+
 
 class GetParentTests(unittest.TestCase):
     def test_GetParentOfIdx1(self):
