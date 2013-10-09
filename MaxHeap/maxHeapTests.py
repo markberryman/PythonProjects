@@ -12,6 +12,28 @@ class AddDataTests(unittest.TestCase):
 
         self.assertEqual(expected, sut.data)
 
+    def test_addTwoOrderedItems(self):
+        item1 = 1
+        item2 = 2
+        expected = [2,1]
+        sut = maxHeap.maxHeap()
+
+        sut.add_data(item2)
+        sut.add_data(item1)
+
+        self.assertEqual(expected, sut.data)
+
+    def test_addTwoUnOrderedItems(self):
+        item1 = 1
+        item2 = 2
+        expected = [2,1]
+        sut = maxHeap.maxHeap()
+
+        sut.add_data(item1)
+        sut.add_data(item2)
+
+        self.assertEqual(expected, sut.data)
+
 
 class GetChildTests(unittest.TestCase):
     def test_GetLeftChildOf3ElementHeap(self):
