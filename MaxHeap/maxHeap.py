@@ -5,14 +5,18 @@ class maxHeap(object):
     """Binary max-heap."""
     def __init__(self, data=[]):
         """Data is an array of unordered integers."""
-        self.data = data
+        self.__data = data
+
+    @property
+    def data(self):
+        return self.__data
 
     def add_data(self, item):
         """Add a new item to the heap."""
         # item goes on end of data array
         # max-heapify the parent of this new item
         # recurse until we hit the root
-        self.data.append(item)
+        self.__data.append(item)
 
     def get_child(self, i, dir):
         """Returns array index of child of "i" element. "i" is 1 based.
@@ -38,20 +42,20 @@ class maxHeap(object):
         # w/ the array and will cause largestIdx == i when we
         # do which means we won't recurse
         if ((lChildIdx <= len(self.data)) and 
-            (self.data[lChildIdx - 1] > self.data[i - 1])):
+            (self.__data[lChildIdx - 1] > self.__data[i - 1])):
             largestIdx = lChildIdx
         else:
             largestIdx = i
 
         if ((rChildIdx <= len(self.data)) and 
-            (self.data[rChildIdx - 1] > self.data[largestIdx - 1])):
+            (self.__data[rChildIdx - 1] > self.__data[largestIdx - 1])):
             largestIdx = rChildIdx
 
         # need to swap values?
         if (largestIdx != i):
-            temp = self.data[i - 1]
-            self.data[i - 1] = self.data[largestIdx - 1]
-            self.data[largestIdx - 1] = temp
+            temp = self.__data[i - 1]
+            self.__data[i - 1] = self.__data[largestIdx - 1]
+            self.__data[largestIdx - 1] = temp
 
             # we need to max_heapify the child element we swapped
             self.max_heapify(largestIdx)
