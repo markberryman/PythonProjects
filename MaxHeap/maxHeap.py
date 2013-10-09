@@ -1,4 +1,3 @@
-# todo - write code to build heap
 # todo - implement heapsort
 
 class MaxHeap(object):
