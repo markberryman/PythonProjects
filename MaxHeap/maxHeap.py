@@ -69,3 +69,7 @@ class MaxHeap(object):
 
             # we need to max_heapify the child element we swapped
             self.max_heapify(largestIdx)
+
+    def heap_sort(self):
+        """Heap sort!"""
+        pass

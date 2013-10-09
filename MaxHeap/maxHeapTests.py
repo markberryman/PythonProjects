@@ -2,6 +2,9 @@ import maxHeap
 import unittest
 
 
+class HeapSortTests(unittest.TestCase):
+    pass
+
 class AddDataTests(unittest.TestCase):
     def test_addFirstItem(self):
         item = 1
