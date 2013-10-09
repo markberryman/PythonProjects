@@ -43,6 +43,13 @@ class GetParentTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_GetParentOfIdx2(self):
+        expected = 1    # indicating root
+        
+        actual = maxHeap.MaxHeap.get_parentIdx(2)
+
+        self.assertEqual(expected, actual)
+
 
 class GetChildTests(unittest.TestCase):
     def test_GetLeftChildOf3ElementHeap(self):
