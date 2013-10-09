@@ -3,7 +3,24 @@ import unittest
 
 
 class HeapSortTests(unittest.TestCase):
-    pass
+    def test_OneItemHeap(self):
+        data = [1]
+        expected = [1]
+        sut = maxHeap.MaxHeap(data)
+
+        sut.heap_sort()
+    
+        self.assertEqual(expected, sut.data)
+
+    def test_TwoItemHeap(self):
+        data = [1,2]
+        expected = [2,1]
+        sut = maxHeap.MaxHeap(data)
+
+        sut.heap_sort()
+    
+        self.assertEqual(expected, sut.data)
+
 
 class AddDataTests(unittest.TestCase):
     def test_addFirstItem(self):
