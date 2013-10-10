@@ -10,6 +10,7 @@ Random set of Python projects. Just learning Python here...
 * **Graphs** - Various graph algorithms.
 * **GuessingGame** - Guess the number in a fixed range of values.
 * **HashTables** - Random hashtable experiments.
+* **InsertionSort** - It's insertion sort!
 * **Knapsack0-1** - Knapsack optimization algorithm (0/1 version).
 * **LinkChecker** - Bare bones link checker for web pages.
 * **LongestCommonSubstr** - Calculate the longest common substring given two strings.
