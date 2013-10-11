@@ -30,6 +30,20 @@ class AddEdgeTests(unittest.TestCase):
 
     # not a true unit test b/c we're adding a node
     # todo - mock this call
+    def test_AddTwoEdgesFromANode(self):
+        sut = adjListGraph.AdjListGraph()
+        sut.add_node(0)
+        sut.add_node(1)
+        sut.add_node(2)
+
+        sut.add_edge(0, 1, 50)
+        sut.add_edge(0, 2, 25)
+
+        self.assertEqual(sut.graph[0][0], [1, 50])
+        self.assertEqual(sut.graph[0][1], [2, 25])
+
+    # not a true unit test b/c we're adding a node
+    # todo - mock this call
     def test_AddDupeEdgeRaisesValueException(self):
         sut = adjListGraph.AdjListGraph()
         sut.add_node(0)
