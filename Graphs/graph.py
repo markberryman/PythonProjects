@@ -1,3 +1,10 @@
+class DirNode(object):
+    """A directed node."""
+    def __init__(self, id, edges):
+        self.id = id
+        self.edges = edges
+
+
 class Graph(object):
     """A graph."""
     def shortest_path_bfs(self, curNode, goalNode, path):
