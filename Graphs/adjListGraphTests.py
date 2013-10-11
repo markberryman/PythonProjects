@@ -2,6 +2,25 @@ import adjListGraph
 import unittest
 
 
+class GetNumNodesTests(unittest.TestCase):
+    def test_GraphWithZeroVertices(self):
+        sut = adjListGraph.AdjListGraph()
+        expected = 0
+
+        actual = sut.get_num_vertices()
+
+        self.assertEqual(expected, actual)
+
+    def test_GraphWithOneVertice(self):
+        sut = adjListGraph.AdjListGraph()
+        sut.add_node(0)
+        expected = 1
+
+        actual = sut.get_num_vertices()
+
+        self.assertEqual(expected, actual)
+
+
 class AddEdgeTests(unittest.TestCase):
     def test_AddEdgeForNonExistantFirstNode(self):
         sut = adjListGraph.AdjListGraph()

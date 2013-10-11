@@ -10,6 +10,9 @@ class AdjListGraph(object):
     def graph(self):
         return self.__graph
 
+    def get_num_vertices(self):
+        return len(self.__graph)
+
     def add_node(self, id):
         """Add a vertice with the given id."""
         if (id not in self.__graph):
