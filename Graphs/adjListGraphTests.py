@@ -13,6 +13,17 @@ class DfsTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_OneStepPathExistsBetweenTwoNodes(self):
+        g = adjListGraph.AdjListGraph()
+        g.add_node(0)
+        g.add_node(1)
+        g.add_edge(0, 1, 50)
+        expected = [0, 1]
+
+        actual = adjListGraph.GraphSearch.dfs(g, 0, 1)
+
+        self.assertEqual(expected, actual)
+
 
 class AddEdgeTests(unittest.TestCase):
     def test_AddEdgeForNonExistantFirstNode(self):
