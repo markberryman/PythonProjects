@@ -7,9 +7,9 @@ class DfsTests(unittest.TestCase):
         g = adjListGraph.AdjListGraph()
         g.add_node(0)
         g.add_node(1)
-        expected = None
+        expected = []
 
-        actual = adjListGraph.GraphSearch.dfs(g, 0, 1)
+        actual = adjListGraph.GraphSearch.dfs(g.graph, 0, 1)
 
         self.assertEqual(expected, actual)
 
@@ -20,7 +20,21 @@ class DfsTests(unittest.TestCase):
         g.add_edge(0, 1, 50)
         expected = [0, 1]
 
-        actual = adjListGraph.GraphSearch.dfs(g, 0, 1)
+        actual = adjListGraph.GraphSearch.dfs(g.graph, 0, 1)
+
+        self.assertEqual(expected, actual)
+
+    def test_TwoStepPathExistsBetweenThreeNodes(self):
+        # 0 -> 1 -> 2
+        g = adjListGraph.AdjListGraph()
+        g.add_node(0)
+        g.add_node(1)
+        g.add_node(2)
+        g.add_edge(0, 1, 50)
+        g.add_edge(1, 2, 50)
+        expected = [0, 1, 2]
+
+        actual = adjListGraph.GraphSearch.dfs(g.graph, 0, 2)
 
         self.assertEqual(expected, actual)
 

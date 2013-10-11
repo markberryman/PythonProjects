@@ -11,18 +11,34 @@ class GraphSearch(object):
         # add start node to stack
         vStack.append(start)
 
-        # pop node from stack
-        n = vStack.pop()
+        while (len(vStack) > 0):
+            # pop node from stack
+            v = vStack.pop()
                 
-        # add node to path followed
-        # check for end; if not end
-            # for each edge, add target node to stack unless
-            # it's been visited (guards against loops)
-            # if no edges, we've hit an end, backtrack
-            # adjusting the path followed
-        # if end, return path
+            # add node to path followed
+            # no need to check at this point if the vertice
+            # was already followed as we wouldn't have this
+            # case since we never add the edge to this vertice
+            # if it's already in the path
+            vPath.append(v)
 
-        return None
+            # check for end
+            if (v == end):
+                return vPath
+            
+            if (len(graph[v]) > 0):
+                # if not end, look at each edge from 'n'
+                for e in graph[v]:
+                    if (e[0] not in vPath):
+                        # if not already in path, 
+                        # add edge's target vertice to stack
+                        vStack.append(e[0])
+            else:
+                # no edges to follow backtrack
+                # remove last node from path
+                vPath.pop()
+
+        return vPath
 
 
 class AdjListGraph(object):
