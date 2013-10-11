@@ -5,8 +5,8 @@ class DirNode(object):
         self.edges = edges
 
 
-class Graph(object):
-    """A graph."""
+class DirGraph(object):
+    """A directed graph w/ breadth-first search."""
     def shortest_path_bfs(self, curNode, goalNode, path):
         """Use breadth-first search to find shortest path to specific node."""
 
