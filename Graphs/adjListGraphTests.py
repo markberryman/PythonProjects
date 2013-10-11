@@ -2,6 +2,14 @@ import adjListGraph
 import unittest
 
 
+class DfsTests(unittest.TestCase):
+    pass
+
+
+class DfsVisitTests(unittest.TestCase):
+    pass
+
+
 class DfsInefficientTests(unittest.TestCase):
     def test_NoPathExists(self):
         g = adjListGraph.AdjListGraph()
