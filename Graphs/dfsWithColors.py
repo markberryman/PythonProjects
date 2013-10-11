@@ -1,9 +1,10 @@
 class DfsWithColors(object):
     """Depth-first search of a graph using colors for
     optimization."""
-    def __init__(self):
+    def __init__(self, graph):
+        self.__graph = graph
         self.__vColors = []
-        self.__vPath = []
+        self.__vPath = []   # vertice paths
 
     #@staticmethod
     #def find_path(graphData, start, end):
@@ -11,41 +12,35 @@ class DfsWithColors(object):
     #    coloring, see if there exists a path b/w the
     #    start and end vertices."""
 
-    def dfs(graph, start, end):
+    def dfs(self, start):
         """Using depth-first search, builds entire picture
         of graph using a coloring algorithm for optimization.
         Resulting calculated data can be used to check for a
         path (not necessarily shortest) b/w any two vertices."""
         # coloring each node white and 
         # initializing path data
-        for x in range(len(graph)):
+        for x in range(len(self.__graph.graph)):
             self.__vColors.append("w")
             self.__vPath.append(-1)
 
         # begin search w/ start node
-        GraphSearch.dfs_visit(start, end, graph)
+        self.dfs_visit(start)
 
         # todo - handle visiting remaining disconnected
         # nodes
 
-    @staticmethod
-    def dfs_visit(v, end, graph):
-        # terminating condition
-        if (v == end):
-            # return the path from end to start
-            pass
-
+    def dfs_visit(self, v):
         # color vertice 'v' Gray
         self.__vColors[v] = "g"
 
         # for each neighbor of 'v'
-        for neighbor in graph[v]:
+        for neighbor in self.__graph.graph[v]:
             # if neighbor not colored white, visit
             if (self.__vColors[neighbor[0]] == "w"):
                 # record path back from neighbor to 'v'
                 self.__vPath[neighbor] = v
                 # recurse on neighbor
-                dfs_visit(neighbor)
+                self.dfs_visit(neighbor)
 
         # done visiting all neighbors of 'v'; color 'v' black
         self.__vColors[v] = "b"

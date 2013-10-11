@@ -28,6 +28,7 @@
     <Compile Include="adjListGraphTests.py" />
     <Compile Include="dfsBasic.py" />
     <Compile Include="dfsWithColors.py" />
+    <Compile Include="dfsWithColorsTests.py" />
     <Compile Include="dirGraph.py" />
     <Compile Include="dirGraphTests.py" />
   </ItemGroup>
