@@ -2,6 +2,72 @@ import bst
 import unittest
 
 
+class InOrderTraversalTests(unittest.TestCase):
+    def test_OneNodeTree(self):
+        node1 = bst.Node(1)
+        sut = bst.BST()
+        sut.insert(node1)
+        expected = [1]
+
+        actual = sut.inorder_traversal(sut.root, [])
+
+        self.assertEqual(expected, actual)
+        
+    def test_SixNodeTree(self):
+        node1 = bst.Node(1)
+        node2 = bst.Node(2)
+        node3 = bst.Node(3)
+        node4 = bst.Node(4)
+        node5 = bst.Node(5)
+        node6 = bst.Node(6)
+        sut = bst.BST()
+        sut.insert(node4)
+        sut.insert(node5)
+        sut.insert(node6)
+        sut.insert(node2)
+        sut.insert(node1)
+        sut.insert(node3)
+
+        expected = [1, 2, 3, 4, 5, 6]
+
+        actual = sut.inorder_traversal(sut.root, [])
+
+        self.assertEqual(expected, actual)
+
+
+class PreOrderTraversalTests(unittest.TestCase):
+    def test_OneNodeTree(self):
+        node1 = bst.Node(1)
+        sut = bst.BST()
+        sut.insert(node1)
+        expected = [1]
+
+        actual = sut.preorder_traversal(sut.root, [])
+
+        self.assertEqual(expected, actual)
+        
+    def test_SixNodeTree(self):
+        node1 = bst.Node(1)
+        node2 = bst.Node(2)
+        node3 = bst.Node(3)
+        node4 = bst.Node(4)
+        node5 = bst.Node(5)
+        node6 = bst.Node(6)
+        sut = bst.BST()
+        sut.insert(node4)
+        sut.insert(node5)
+        sut.insert(node6)
+        sut.insert(node2)
+        sut.insert(node1)
+        sut.insert(node3)
+
+        expected = [4, 2, 1, 3, 5, 6]
+
+        actual = sut.preorder_traversal(sut.root, [])
+
+        self.assertEqual(expected, actual)
+
+
 class InsertTests(unittest.TestCase):
     def test_FirstInsertSetsRootNode(self):
         node = bst.Node(1)

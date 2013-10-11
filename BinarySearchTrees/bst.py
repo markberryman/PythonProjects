@@ -15,16 +15,33 @@ class BST(object):
         self.root = None
         self.curCount = 0
 
-
-    def print_tree(self, node):
-        """Pass in the starting node for printing."""
+    def inorder_traversal(self, node, result):
+        """Traverse left node, current, then right."""
         if (node.lchild is not None):
-            self.print_tree(node.lchild)
+            self.inorder_traversal(node.lchild, result)
 
-        print(node.data)
+        result.append(node.data)
 
         if (node.rchild is not None):
-            self.print_tree(node.rchild)
+            self.inorder_traversal(node.rchild, result)
+
+        return result
+
+    def preorder_traversal(self, node, result):
+        """Traverse current node, then left, then right."""
+        result.append(node.data)
+
+        if (node.lchild is not None):
+            self.preorder_traversal(node.lchild, result)
+
+        if (node.rchild is not None):
+            self.preorder_traversal(node.rchild, result)
+
+        return result
+
+    def print_tree(self):
+        result = self.inorder_traversal(self.root, [])
+        print(result)
 
     def select(self, node, idx):
         if ((idx >= 1) and (self.root is not None)):
