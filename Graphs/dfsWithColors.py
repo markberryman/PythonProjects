@@ -62,7 +62,7 @@ class DfsWithColors(object):
         # for each neighbor of 'v'
         for neighbor in self.__graph.get_vertice_neighbors(v):
             # if neighbor not colored white, visit
-            if (self.__vColors[neighbor[0]] == "w"):
+            if (self.__vColors[neighbor] == "w"):
                 # record path back from neighbor to 'v'
                 self.__vPath[neighbor] = v
                 # recurse on neighbor
