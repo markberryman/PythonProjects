@@ -4,6 +4,9 @@ import unittest
 import unittest.mock
 
 
+# todo - add tests for dfs_visit
+
+
 class DfsTests(unittest.TestCase):
     def test_InitializesColorTrackingData(self):
         g = adjListGraph.AdjListGraph()
