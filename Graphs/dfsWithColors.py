@@ -19,7 +19,7 @@ class DfsWithColors(object):
         path (not necessarily shortest) b/w any two vertices."""
         # coloring each node white and 
         # initializing path data
-        for x in range(len(self.__graph.graph)):
+        for x in range(self.__graph.get_num_vertices()):
             self.__vColors.append("w")
             self.__vPath.append(-1)
 
