@@ -8,8 +8,9 @@ class InOrderTraversalTests(unittest.TestCase):
         sut = bst.BST()
         sut.insert(node1)
         expected = [1]
+        actual = []
 
-        actual = sut.inorder_traversal(sut.root, [])
+        sut.inorder_traversal(sut.root, actual)
 
         self.assertEqual(expected, actual)
         
@@ -27,10 +28,10 @@ class InOrderTraversalTests(unittest.TestCase):
         sut.insert(node2)
         sut.insert(node1)
         sut.insert(node3)
-
         expected = [1, 2, 3, 4, 5, 6]
+        actual = []
 
-        actual = sut.inorder_traversal(sut.root, [])
+        sut.inorder_traversal(sut.root, actual)
 
         self.assertEqual(expected, actual)
 
@@ -41,8 +42,9 @@ class PreOrderTraversalTests(unittest.TestCase):
         sut = bst.BST()
         sut.insert(node1)
         expected = [1]
+        actual = []
 
-        actual = sut.preorder_traversal(sut.root, [])
+        sut.preorder_traversal(sut.root, actual)
 
         self.assertEqual(expected, actual)
         
@@ -60,10 +62,11 @@ class PreOrderTraversalTests(unittest.TestCase):
         sut.insert(node2)
         sut.insert(node1)
         sut.insert(node3)
+        actual = []
 
         expected = [4, 2, 1, 3, 5, 6]
 
-        actual = sut.preorder_traversal(sut.root, [])
+        sut.preorder_traversal(sut.root, actual)
 
         self.assertEqual(expected, actual)
 

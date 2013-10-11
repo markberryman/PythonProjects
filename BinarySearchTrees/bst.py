@@ -17,27 +17,21 @@ class BST(object):
 
     def inorder_traversal(self, node, result):
         """Traverse left node, current, then right."""
-        if (node.lchild is not None):
-            self.inorder_traversal(node.lchild, result)
+        if (node is None):
+            return
 
+        self.inorder_traversal(node.lchild, result)
         result.append(node.data)
-
-        if (node.rchild is not None):
-            self.inorder_traversal(node.rchild, result)
-
-        return result
+        self.inorder_traversal(node.rchild, result)
 
     def preorder_traversal(self, node, result):
         """Traverse current node, then left, then right."""
+        if (node is None):
+            return
+
         result.append(node.data)
-
-        if (node.lchild is not None):
-            self.preorder_traversal(node.lchild, result)
-
-        if (node.rchild is not None):
-            self.preorder_traversal(node.rchild, result)
-
-        return result
+        self.preorder_traversal(node.lchild, result)
+        self.preorder_traversal(node.rchild, result)
 
     def print_tree(self):
         result = self.inorder_traversal(self.root, [])
