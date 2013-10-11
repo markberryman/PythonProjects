@@ -24,7 +24,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="adjListGraph.py" />
+    <Compile Include="dfsBasicTests.py" />
     <Compile Include="adjListGraphTests.py" />
+    <Compile Include="dfsBasic.py" />
+    <Compile Include="dfsWithColors.py" />
     <Compile Include="dirGraph.py" />
     <Compile Include="dirGraphTests.py" />
   </ItemGroup>
