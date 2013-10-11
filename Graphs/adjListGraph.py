@@ -1,10 +1,21 @@
 class GraphSearch(object):
     @staticmethod
-    def dfs(graph, start, end):
+    def dfs(graph, start):
+        """Using depth-first search, builds entire picture
+        of graph using a coloring algorithm for optimization.
+        Resulting calculated data can be used to check for a
+        path (not necessarily shortest) b/w any two vertices."""
+        pass
+
+    @staticmethod
+    def dfs_inefficient(graph, start, end):
         """Using depth-first search, attempt to find a path 
         from vertice w/ id "start" to vertice w/ id "end". 
         If a path is found, return the list of vertices to 
-        visit. If path is not found, return None."""
+        visit. If path is not found, return None.
+        Note - this implementation of DFS is inefficient
+        as it revisits vertices on paths known not to
+        result in a path to the end vertice."""
         vStack = []
         vPath = []      # path to solution
 
