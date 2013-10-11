@@ -5,6 +5,23 @@ class GraphSearch(object):
         from vertice w/ id "start" to vertice w/ id "end". 
         If a path is found, return the list of vertices to 
         visit. If path is not found, return None."""
+        vStack = []
+        vPath = []      # path to solution
+
+        # add start node to stack
+        vStack.append(start)
+
+        # pop node from stack
+        n = vStack.pop()
+                
+        # add node to path followed
+        # check for end; if not end
+            # for each edge, add target node to stack unless
+            # it's been visited (guards against loops)
+            # if no edges, we've hit an end, backtrack
+            # adjusting the path followed
+        # if end, return path
+
         return None
 
 
