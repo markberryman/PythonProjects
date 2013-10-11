@@ -34,7 +34,7 @@ class DfsWithColors(object):
         self.__vColors[v] = "g"
 
         # for each neighbor of 'v'
-        for neighbor in self.__graph.graph[v]:
+        for neighbor in self.__graph.get_vertice_neighbors(v):
             # if neighbor not colored white, visit
             if (self.__vColors[neighbor[0]] == "w"):
                 # record path back from neighbor to 'v'
