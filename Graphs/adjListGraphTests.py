@@ -28,6 +28,17 @@ class AddEdgeTests(unittest.TestCase):
         self.assertEqual(sut.graph[0][0], [1, 50])
         self.assertEqual(sut.graph[1][0], [0, 50])
 
+    # not a true unit test b/c we're adding a node
+    # todo - mock this call
+    def test_AddDupeEdgeRaisesValueException(self):
+        sut = adjListGraph.AdjListGraph()
+        sut.add_node(0)
+        sut.add_node(1)
+
+        sut.add_edge(0, 1, 50)
+
+        self.assertRaises(ValueError, sut.add_edge, 0, 1, 50)
+
 
 class AddNodeTests(unittest.TestCase):
     def test_AddNewNodeToGraphAddsNode(self):

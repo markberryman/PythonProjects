@@ -17,11 +17,24 @@ class AdjListGraph(object):
         else:
             raise ValueError("Can't add duplicate node.")
 
+    def _is_dupe_edge(self, id1, id2):
+        # assuming our adding of undirected edges is 
+        # correct such that we get two edges for each
+        # edge added
+        for edge in self.__graph[id1]:
+            if (edge[0] == id2):
+                return True
+
+        return False
+
     def add_edge(self, id1, id2, w):
         """Add an edge between nodes w/ given id's and weight "w"."""
         if ((id1 not in self.__graph) or
             (id2 not in self.__graph)):
             raise ValueError("Can't add edge for non-existant node.")
+
+        if (self._is_dupe_edge(id1, id2)):
+            raise ValueError("Can't add duplicate edge.")
 
         # undirected graph so add two edges
         self.__graph[id1].append([id2, w])
