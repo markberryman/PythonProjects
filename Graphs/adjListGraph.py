@@ -27,12 +27,19 @@ class GraphSearch(object):
                 return vPath
             
             if (len(graph[v]) > 0):
-                # if not end, look at each edge from 'n'
+                # if not end, look at each edge from vertice 'v'
+                foundNewEdgeToTraverse = False
                 for e in graph[v]:
                     if (e[0] not in vPath):
                         # if not already in path, 
                         # add edge's target vertice to stack
                         vStack.append(e[0])
+                        foundNewEdgeToTraverse = True
+
+                if (foundNewEdgeToTraverse is False):
+                    # all the edges we found for this vertice
+                    # have already been covered
+                    vPath.pop()
             else:
                 # no edges to follow backtrack
                 # remove last node from path
