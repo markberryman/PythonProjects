@@ -14,11 +14,29 @@ class DfsWithColors(object):
     def vPath(self):
         return self.__vPath
 
-    #@staticmethod
-    #def find_path(graphData, start, end):
-    #    """Taking the data returned by the dfs that uses
-    #    coloring, see if there exists a path b/w the
-    #    start and end vertices."""
+    @staticmethod
+    def find_path(vPath, start, end):
+        """Taking the data returned by the dfs that uses
+        coloring, see if there exists a path b/w the
+        start and end vertices."""
+        result = []
+        v = end
+
+        while (vPath[v] != - 1):
+            result.append(v)
+            v = vPath[v]
+
+        # could have gotten back to the start
+        # or maybe there was no path
+        if (v == start):
+            result.append(v)
+        else:
+            # no path
+            result = []
+
+        result.reverse()
+
+        return result
 
     def dfs(self, start):
         """Using depth-first search, builds entire picture
