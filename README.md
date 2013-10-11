@@ -7,7 +7,7 @@ Random set of Python projects. Just learning Python here...
 * **BitManipulation** - Various bit manipulation problems.
 * **DocumentDistance** - Based on the work described at http://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/dd_prog1.htm
 * **ExprTree** - Expression tree evaluation.
-* **Graphs** - Various graph algorithms.
+* **Graphs** - Various graph structures and algorithms.
 * **GuessingGame** - Guess the number in a fixed range of values.
 * **HashTables** - Random hashtable experiments.
 * **InsertionSort** - It's insertion sort!

@@ -22,6 +22,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="adjListGraph.py" />
+    <Compile Include="adjListGraphTests.py" />
     <Compile Include="graph.py" />
     <Compile Include="graphTests.py" />
     <Compile Include="main.py" />
