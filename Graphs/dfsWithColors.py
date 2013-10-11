@@ -6,6 +6,14 @@ class DfsWithColors(object):
         self.__vColors = []
         self.__vPath = []   # vertice paths
 
+    @property
+    def vColors(self):
+        return self.__vColors
+
+    @property
+    def vPath(self):
+        return self.__vPath
+
     #@staticmethod
     #def find_path(graphData, start, end):
     #    """Taking the data returned by the dfs that uses
