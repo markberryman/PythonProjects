@@ -13,6 +13,18 @@ class AdjListGraph(object):
     def get_num_vertices(self):
         return len(self.__graph)
 
+    def get_vertice_neighbors(self, v):
+        result = []
+
+        if v not in self.__graph:
+            raise ValueError("Vertice doesn't exist.")
+
+        for edge in self.__graph[v]:
+            # add the id of the vertice
+            result.append(edge[0])
+
+        return result
+
     def add_node(self, id):
         """Add a vertice with the given id."""
         if (id not in self.__graph):

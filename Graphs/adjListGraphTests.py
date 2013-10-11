@@ -2,6 +2,36 @@ import adjListGraph
 import unittest
 
 
+class GetVerticeNeighbors(unittest.TestCase):
+    # todo - add test for non-existent v
+    def test_NonExistentVerticeRaisesException(self):
+        sut = adjListGraph.AdjListGraph()
+
+        self.assertRaises(ValueError, sut.get_vertice_neighbors, 0)
+        
+    def test_VerticeWithZeroNeighbors(self):
+        sut = adjListGraph.AdjListGraph()
+        sut.add_node(0)
+        expected = []
+
+        actual = sut.get_vertice_neighbors(0)
+
+        self.assertEqual(expected, actual)
+
+    def test_VerticeWithTwoNeighbors(self):
+        sut = adjListGraph.AdjListGraph()
+        sut.add_node(0)
+        sut.add_node(1)
+        sut.add_node(2)
+        sut.add_edge(0, 1, 0)
+        sut.add_edge(0, 2, 0)
+        expected = [1, 2]
+
+        actual = sut.get_vertice_neighbors(0)
+
+        self.assertEqual(expected, actual)
+
+
 class GetNumNodesTests(unittest.TestCase):
     def test_GraphWithZeroVertices(self):
         sut = adjListGraph.AdjListGraph()
