@@ -2,6 +2,18 @@ import adjListGraph
 import unittest
 
 
+class DfsTests(unittest.TestCase):
+    def test_NoPathExists(self):
+        g = adjListGraph.AdjListGraph()
+        g.add_node(0)
+        g.add_node(1)
+        expected = None
+
+        actual = adjListGraph.GraphSearch.dfs(g, 0, 1)
+
+        self.assertEqual(expected, actual)
+
+
 class AddEdgeTests(unittest.TestCase):
     def test_AddEdgeForNonExistantFirstNode(self):
         sut = adjListGraph.AdjListGraph()

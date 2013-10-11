@@ -1,3 +1,13 @@
+class GraphSearch(object):
+    @staticmethod
+    def dfs(graph, start, end):
+        """Using depth-first search, attempt to find a path 
+        from vertice w/ id "start" to vertice w/ id "end". 
+        If a path is found, return the list of vertices to 
+        visit. If path is not found, return None."""
+        return None
+
+
 class AdjListGraph(object):
     """Undirected graph structure stored in the adjacency list form.
     Using a dictionary for the data structure so we have
