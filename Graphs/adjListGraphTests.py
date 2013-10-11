@@ -2,7 +2,25 @@ import adjListGraph
 import unittest
 
 
-class Test_adjListGraphTests(unittest.TestCase):
+class AddEdgeTests(unittest.TestCase):
+    def test_AddEdgeForNonExistantFirstNode(self):
+        edge1 = adjListGraph.Edge(0, 1, 0)
+        sut = adjListGraph.AdjListGraph()
+
+        self.assertRaises(ValueError, sut.add_edge, edge1)
+
+    # not a true unit test b/c we're adding a node
+    # todo - mock this call
+    def test_AddEdgeForNonExistantFirstNode(self):
+        edge1 = adjListGraph.Edge(0, 1, 0)
+        sut = adjListGraph.AdjListGraph()
+        node1 = adjListGraph.Node(0)
+        sut.add_node(node1)
+
+        self.assertRaises(ValueError, sut.add_edge, edge1)
+
+
+class AddNodeTests(unittest.TestCase):
     def test_AddNewNodeToGraphAddsNode(self):
         node = adjListGraph.Node(0)
         sut = adjListGraph.AdjListGraph()
