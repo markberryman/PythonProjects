@@ -2,14 +2,14 @@ import adjListGraph
 import unittest
 
 
-class DfsTests(unittest.TestCase):
+class DfsInefficientTests(unittest.TestCase):
     def test_NoPathExists(self):
         g = adjListGraph.AdjListGraph()
         g.add_node(0)
         g.add_node(1)
         expected = []
 
-        actual = adjListGraph.GraphSearch.dfs(g.graph, 0, 1)
+        actual = adjListGraph.GraphSearch.dfs_inefficient(g.graph, 0, 1)
 
         self.assertEqual(expected, actual)
 
@@ -20,7 +20,7 @@ class DfsTests(unittest.TestCase):
         g.add_edge(0, 1, 50)
         expected = [0, 1]
 
-        actual = adjListGraph.GraphSearch.dfs(g.graph, 0, 1)
+        actual = adjListGraph.GraphSearch.dfs_inefficient(g.graph, 0, 1)
 
         self.assertEqual(expected, actual)
 
@@ -34,7 +34,7 @@ class DfsTests(unittest.TestCase):
         g.add_edge(1, 2, 50)
         expected = [0, 1, 2]
 
-        actual = adjListGraph.GraphSearch.dfs(g.graph, 0, 2)
+        actual = adjListGraph.GraphSearch.dfs_inefficient(g.graph, 0, 2)
 
         self.assertEqual(expected, actual)
 
@@ -51,9 +51,10 @@ class DfsTests(unittest.TestCase):
         g.add_edge(2, 3, 50)
         expected = [0, 2, 3]
 
-        actual = adjListGraph.GraphSearch.dfs(g.graph, 0, 3)
+        actual = adjListGraph.GraphSearch.dfs_inefficient(g.graph, 0, 3)
 
         self.assertEqual(expected, actual)
+
 
 class AddEdgeTests(unittest.TestCase):
     def test_AddEdgeForNonExistantFirstNode(self):
