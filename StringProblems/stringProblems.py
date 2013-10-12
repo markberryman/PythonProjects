@@ -11,13 +11,17 @@ class StringProblems(object):
 
         # we'll look at each character except the first; no need
         for i in range(1, len(s)):
-            for j in range(i + 1):
-                # we'll look at all characters before that character
+            unique = True
+
+            for j in range(tail + 1):
+                # we'll compare with all characters up to
+                # the last known unique character
                 if (s[i] == s[j]):
                     # dupe char
+                    unique = False
                     break
 
-            if (j == i):
+            if (unique):
                 # unique char
                 tail += 1
                 s[tail] = s[i]
