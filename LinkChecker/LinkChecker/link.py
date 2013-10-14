@@ -18,6 +18,13 @@ class Link(object):
         self.depth = depth
         self.responseData = None
 
+    def __str__(self):
+        result = "[{}] {}".format(self.resultStatusCode,
+            http.client.responses[self.resultStatusCode].upper())
+        result += "\n  --> {}".format(self.value)
+
+        return result
+
     def is_link_broken(self):
         return ((self.resultStatusCode < http.client.OK) or
                 (self.resultStatusCode >= http.client.BAD_REQUEST))

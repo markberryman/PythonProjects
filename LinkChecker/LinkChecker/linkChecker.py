@@ -51,8 +51,7 @@ class LinkChecker:
 
             self.linksRequested.add(processedLink.value)
 
-            print("{} --> {}".format(
-                processedLink.resultStatusCode, processedLink.value))
+            print(processedLink)
 
             if (processedLink.is_link_broken() is False):
                 if (processedLink.type == link.LinkType.ANCHOR):
