@@ -44,34 +44,70 @@ class LinkChecker:
             print("* {}".format(l))
 
     def __check_links_helper(self, startLink):
-        self.pLinkRequester.add_work(startLink)
+        linksToProcess = [startLink]
 
-        while (self.pLinkRequester.is_done() is False):
-            processedLink = self.pLinkRequester.get_result()
+        for depth in range(self.maxDepth):
+            # give work
+            while (len(linksToProcess) > 0):
+                linkToProcess = linksToProcess.pop()
+                self.pLinkRequester.add_work(linkToProcess)
 
-            self.linksRequested.add(processedLink.value)
+            # get results; blocking until all link processing completed
+            linkProcessingResults = self.pLinkRequester.get_results()
 
-            print(processedLink)
+            for processedLink in linkProcessingResults:
+                print(processedLink)
 
-            if (processedLink.is_link_broken() is False):
-                if (processedLink.type == link.LinkType.ANCHOR):
-                    try:
-                        newLinks = self.linkProcessor.process_link(
-                            processedLink)
+                self.linksRequested.add(processedLink.value)
 
-                        for nl in newLinks:
-                            # this check is a lookup in a set object
-                            # and a set is implemented as a hashtable so
-                            # it should be fast - O(n) on average
-                            if (nl.value not in self.linksRequested):
-                                nl.depth = processedLink.depth + 1
+                if (processedLink.is_link_broken() is False):
+                    if (processedLink.type == link.LinkType.ANCHOR):
+                        try:
+                            newLinks = self.linkProcessor.process_link(
+                                processedLink)
 
-                                if (nl.depth < self.maxDepth):
-                                    self.pLinkRequester.add_work(nl)
-                    except html.parser.HTMLParseError:
-                        self.invalidMarkupLinks.add(processedLink.value)
-            else:
-                self.brokenLinks.add(processedLink.value)
+                            for nl in newLinks:
+                                # this check is a lookup in a set object
+                                # and a set is implemented as a hashtable so
+                                # it should be fast - O(n) on average
+                                if (nl.value not in self.linksRequested):
+                                    #nl.depth = processedLink.depth + 1
+
+                                    #if (nl.depth < self.maxDepth):
+                                    #    self.pLinkRequester.add_work(nl)
+                                    linksToProcess.append(nl)
+                        except html.parser.HTMLParseError:
+                            self.invalidMarkupLinks.add(processedLink.value)
+                else:
+                    self.brokenLinks.add(processedLink.value)
+
+
+        #while (self.pLinkRequester.is_done() is False):
+        #    processedLink = self.pLinkRequester.get_result()
+
+        #    self.linksRequested.add(processedLink.value)
+
+        #    print(processedLink)
+
+        #    if (processedLink.is_link_broken() is False):
+        #        if (processedLink.type == link.LinkType.ANCHOR):
+        #            try:
+        #                newLinks = self.linkProcessor.process_link(
+        #                    processedLink)
+
+        #                for nl in newLinks:
+        #                    # this check is a lookup in a set object
+        #                    # and a set is implemented as a hashtable so
+        #                    # it should be fast - O(n) on average
+        #                    if (nl.value not in self.linksRequested):
+        #                        nl.depth = processedLink.depth + 1
+
+        #                        if (nl.depth < self.maxDepth):
+        #                            self.pLinkRequester.add_work(nl)
+        #            except html.parser.HTMLParseError:
+        #                self.invalidMarkupLinks.add(processedLink.value)
+        #    else:
+        #        self.brokenLinks.add(processedLink.value)
 
     def check_links(self, startLink):
         self.pLinkRequester.start()

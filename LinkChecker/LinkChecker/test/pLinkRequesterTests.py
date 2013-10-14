@@ -41,13 +41,6 @@ class GetResultTests(unittest.TestCase):
 
         self.assertEqual(None, result)
 
-    def test_DecrementsNumOfActiveWorkItems(self):
-        dummyQueue = MockQueue()
-        sut = pLinkRequester.PLinkRequester(1, None, None, dummyQueue)
-
-        sut.get_result()
-
-        self.assertEqual(-1, sut.numActiveWorkItems)
 
 if __name__ == '__main__':
     unittest.main()
