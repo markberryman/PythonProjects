@@ -29,14 +29,6 @@ class PLinkRequester(object):
         self.numActiveWorkItems += 1
         self.inputQueue.put(item)
 
-    def get_result(self):
-        if (self.outputQueue.empty()):
-            return None
-
-        result = self.outputQueue.get()
-        
-        return result
-
     def get_results(self):
         while (self.numActiveWorkItems != 0):
             pass
