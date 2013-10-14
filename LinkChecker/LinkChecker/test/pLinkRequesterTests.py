@@ -32,15 +32,5 @@ class AddWorkTests(unittest.TestCase):
         self.assertEqual(1, sut.numActiveWorkItems)
 
 
-class GetResultTests(unittest.TestCase):
-    def test_GetResultReturnsOutputQueueItem(self):
-        dummyQueue = MockQueue()
-        sut = pLinkRequester.PLinkRequester(1, None, None, dummyQueue)
-
-        result = sut.get_result()
-
-        self.assertEqual(None, result)
-
-
 if __name__ == '__main__':
     unittest.main()
