@@ -15,12 +15,11 @@ class Link(object):
         self.value = value
         self.type = type
         self.resultStatusCode = None
-        self.depth = depth
         self.responseData = None
 
     def __str__(self):
         result = "[{}] {}".format(self.resultStatusCode,
-            http.client.responses[self.resultStatusCode].upper())
+                                  http.client.responses[self.resultStatusCode].upper())
         result += "\n  --> {}".format(self.value)
 
         return result
