@@ -39,7 +39,7 @@ class CheckLinksTests(unittest.TestCase):
         results = sut.check_links(startLink)
 
         linksRequested = results["linksRequested"]
-        self.assertEqual(10, len(linksRequested))
+        self.assertEqual(11, len(linksRequested))
         self.assertEqual(3, len(results["brokenLinks"]))
         self.assertEqual(1, len(results["invalidMarkupLinks"]))
         self.assertTrue(
