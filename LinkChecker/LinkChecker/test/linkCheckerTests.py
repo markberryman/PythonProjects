@@ -15,7 +15,7 @@ import unittest
 
 
 # these are more functional tests rather than unit tests
-class CheckLinksTests(unittest.TestCase):
+class LinkChecker_CheckLinksTests(unittest.TestCase):
     def test_FunctionalE2ETest(self):
         baseStartUrl = "http://localhost:35944"
         startLink = link.Link(baseStartUrl + "/index.html")

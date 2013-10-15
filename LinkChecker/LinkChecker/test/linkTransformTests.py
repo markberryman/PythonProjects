@@ -14,7 +14,7 @@ class LowerCaseTransformUnitTests(unittest.TestCase):
         self.assertEqual(expected, dummyLink.value)
 
 
-class RelativeLinkTransformUnitTests(unittest.TestCase):
+class LinkTransform_RelativeLinkTransformTests(unittest.TestCase):
     def test_RaisesTypeErrorIfContextIsNone(self):
         sut = linkTransform.RelativeLinkTransform()
 

@@ -18,7 +18,7 @@ class MockHtmlLinkParserFactory(object):
         return self.htmlLinkParser
 
 
-class GetLinksFromMarkup(unittest.TestCase):
+class MarkupProcessor_GetLinksFromMarkupTests(unittest.TestCase):
     def test_returnsEmptySetIfMarkupProvidedIsNone(self):
         sut = markupProcessor.MarkupProcessor(None)
 

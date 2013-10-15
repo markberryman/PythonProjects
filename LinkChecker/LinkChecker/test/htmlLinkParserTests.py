@@ -3,7 +3,7 @@ import link
 import unittest
 
 
-class HandleStartTagTests(unittest.TestCase):
+class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
     def test_ReturnsZeroLinksWhenMarkupContainsNoLinks(self):
         dummyMarkup = "<html>no links here</html>"
         sut = htmlLinkParser.HTMLLinkParser()

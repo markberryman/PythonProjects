@@ -11,7 +11,7 @@ class MailToFilterTests(unittest.TestCase):
         self.assertTrue(filterResult)
 
 
-class DomainCheckFilterTests(unittest.TestCase):
+class DomainCheckFilter_ShouldFilterTests(unittest.TestCase):
     def test_ReturnsTrueWhenDomainsDoNotMatch(self):
         sut = linkFilter.DomainCheckFilter("http://www.markwberryman.com")
 

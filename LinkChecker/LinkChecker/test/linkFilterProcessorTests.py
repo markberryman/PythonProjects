@@ -11,7 +11,7 @@ class MockFilter(object):
         return self.filterFn(link)
 
 
-class ApplyFiltersUnitTests(unittest.TestCase):
+class LinkFilterProcessor_ApplyFiltersTests(unittest.TestCase):
     def test_RaisesTypeErrorIfLinksIsNone(self):
         sut = linkFilterProcessor.LinkFilterProcessor(None)
 
