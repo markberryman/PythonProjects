@@ -6,6 +6,8 @@ class LinkFilterProcessor(object):
 
     def apply_filters(self, links):
         """Applies filters to links."""
+        if (links is None):
+            raise TypeError("Links can not be none.")
 
         for filter in self.filters:
             linksToFilter = set(

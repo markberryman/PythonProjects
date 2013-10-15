@@ -15,6 +15,16 @@ class LowerCaseTransformUnitTests(unittest.TestCase):
 
 
 class RelativeLinkTransformUnitTests(unittest.TestCase):
+    def test_RaisesTypeErrorIfContextIsNone(self):
+        sut = linkTransform.RelativeLinkTransform()
+
+        self.assertRaises(TypeError, sut.transform, None, "some link")
+
+    def test_RaisesTypeErrorIfNewLinkIsNone(self):
+        sut = linkTransform.RelativeLinkTransform()
+
+        self.assertRaises(TypeError, sut.transform, "some context", None)
+        
     # only need a single sanity unit test here since the transform
     # is pretty much just running urljoin
     def test_TransformsLinkWithNetlocAndOnlySlashForPath(self):

@@ -8,6 +8,9 @@ class ContentRequester(object):
         self.connTimeout = 5
 
     def request_url(self, url):
+        if (url is None):
+            raise TypeError("URL can not be none.")
+
         urlParts = urlparse(url)
 
         # need to include some user agent value otherwise

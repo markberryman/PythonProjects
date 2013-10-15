@@ -16,7 +16,12 @@ class MockRequester(object):
         return MockResponse()
 
 
-class ResourceGetterTests(unittest.TestCase):
+class ResourceGetter_GetResourceTests(unittest.TestCase):
+    def test_RaisesTypeErrorIflinkToProcessIsNone(self):
+        sut = resourceGetter.ResourceGetter(None)
+
+        self.assertRaises(TypeError, sut.get_resource, None)
+
     def test_GetResourceSetsStatusCodeAndUrlContentForAnchorTag(self):
         mockRequester = MockRequester()
         dummyLink = link.Link("url", link.LinkType.ANCHOR)

@@ -13,7 +13,12 @@ class MockQueue(object):
         return None
 
 
-class AddWorkTests(unittest.TestCase):
+class PLinkRequester_AddWorkTests(unittest.TestCase):
+    def test_RaisesTypeErrorIfItemIsNone(self):
+        sut = pLinkRequester.PLinkRequester(1, None, None, None)
+
+        self.assertRaises(TypeError, sut.add_work, None)
+
     def test_AddWorkAddsItemToInputQueue(self):
         dummyQueue = MockQueue()
         dummyItem = "x"
@@ -27,7 +32,7 @@ class AddWorkTests(unittest.TestCase):
         dummyQueue = MockQueue()
         sut = pLinkRequester.PLinkRequester(1, None, dummyQueue, None)
 
-        sut.add_work(None)
+        sut.add_work("some work")
 
         self.assertEqual(1, sut.numActiveWorkItems)
 

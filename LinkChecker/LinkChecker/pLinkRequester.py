@@ -25,6 +25,9 @@ class PLinkRequester(object):
             self.numActiveWorkItems -= 1
 
     def add_work(self, item):
+        if (item is None):
+            raise TypeError("item can not be None.")
+
         self.numActiveWorkItems += 1
         self.inputQueue.put(item)
 

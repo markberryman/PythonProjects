@@ -25,6 +25,12 @@ class LowerCaseTransform(LinkTransform):
 class RelativeLinkTransform(LinkTransform):
     """Transforms relative links to absolute links."""
     def transform(self, context, newLink):
+        if (context is None):
+            raise TypeError("context can not be None.")
+
+        if (newLink is None):
+            raise TypeError("newLink can not be None.")
+
         currentLink = context["currentLink"]
 
         newLink.value = urljoin(currentLink.value, newLink.value)

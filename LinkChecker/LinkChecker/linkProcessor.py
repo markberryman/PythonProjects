@@ -10,6 +10,8 @@ class LinkProcessor(object):
     def process_link(self, linkToProcess):
         """Parses the link's response and then applies filters
         and transformers before returning the set of new links."""
+        if (linkToProcess is None):
+            raise TypeError("linkToProcess can not be None.")
 
         newLinks = self.markupProcessor.get_links_from_markup(
             linkToProcess.responseData)

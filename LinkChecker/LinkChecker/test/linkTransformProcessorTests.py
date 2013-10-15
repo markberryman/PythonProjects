@@ -11,7 +11,17 @@ class MockTransform(object):
         self.transformFnCalled = True
 
 
-class ApplyTransformersUnitTests(unittest.TestCase):
+class LinkTransformProcessor_ApplyTransformersTests(unittest.TestCase):
+    def test_RaisesTypeErrorIfContextIsNone(self):
+        sut = linkTransformProcessor.LinkTransformProcessor(None)
+
+        self.assertRaises(TypeError, sut.apply_transformers, None, "some link")
+
+    def test_RaisesTypeErrorIfNewLinksIsNone(self):
+        sut = linkTransformProcessor.LinkTransformProcessor(None)
+
+        self.assertRaises(TypeError, sut.apply_transformers, "some context", None)
+
     def test_AppliesAllTransforms(self):
         dummyTransformA = MockTransform()
         dummyTransformB = MockTransform()

@@ -9,6 +9,9 @@ class ResourceGetter:
 
     def get_resource(self, linkToProcess):
         """Gets a web page and returns its content"""
+        if (linkToProcess is None):
+            raise TypeError("linkToProcess can not be None.")
+
         responseData = None
 
         try:

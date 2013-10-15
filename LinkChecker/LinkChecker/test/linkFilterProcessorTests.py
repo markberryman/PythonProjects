@@ -12,6 +12,11 @@ class MockFilter(object):
 
 
 class ApplyFiltersUnitTests(unittest.TestCase):
+    def test_RaisesTypeErrorIfLinksIsNone(self):
+        sut = linkFilterProcessor.LinkFilterProcessor(None)
+
+        self.assertRaises(TypeError, sut.apply_filters, None)
+
     def test_ReturnsLinksWhenNoFiltersLeftToApply(self):
         dummyFilters = []
         dummyLinks = set([link.Link("a link")])
