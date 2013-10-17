@@ -11,6 +11,6 @@ class LinkType:
 class Link(object):
     """Represents a link to a resource"""
 
-    def __init__(self, value, type=LinkType.ANCHOR, depth=0):
+    def __init__(self, value, type=LinkType.ANCHOR):
         self.value = value
         self.type = type
