@@ -1,4 +1,5 @@
 import link
+import linkRequestResult
 import resourceGetter
 import unittest
 
@@ -22,24 +23,26 @@ class ResourceGetter_GetResourceTests(unittest.TestCase):
 
         self.assertRaises(TypeError, sut.get_resource, None)
 
-    def test_GetResourceSetsStatusCodeAndUrlContentForAnchorTag(self):
+    def test_SetsResponseStatusCodeAndResponseDataForAnchorTag(self):
         mockRequester = MockRequester()
         dummyLink = link.Link("url", link.LinkType.ANCHOR)
         sut = resourceGetter.ResourceGetter(mockRequester)
+        expected = linkRequestResult.LinkRequestResult(dummyLink, 200, "hi")
 
-        sut.get_resource(dummyLink)
+        actual = sut.get_resource(dummyLink)
 
-        self.assertEqual(200, dummyLink.resultStatusCode)
-        self.assertEqual("hi", dummyLink.responseData)
+        self.assertEqual(expected.statusCode, actual.statusCode)
+        self.assertEqual(expected.responseData, actual.responseData)
 
-    def test_GetResourceReturnsNoneForMarkupForNonAnchorLink(self):
+    def test_SetsResponseDataToNoneForNonAnchorLink(self):
         mockRequester = MockRequester()
         dummyLink = link.Link("url", link.LinkType.IMAGE)
         sut = resourceGetter.ResourceGetter(mockRequester)
+        expected = linkRequestResult.LinkRequestResult(None, None, None)
 
-        contentResult = sut.get_resource(dummyLink)
+        actual = sut.get_resource(dummyLink)
 
-        self.assertEqual(None, contentResult)
+        self.assertEqual(expected.responseData, actual.responseData)
 
 if __name__ == '__main__':
     unittest.main()
