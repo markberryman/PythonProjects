@@ -8,11 +8,10 @@ class ResourceGetter:
         self.contRequester = contRequester
 
     def get_resource(self, linkToProcess):
-        """Gets a web page and returns its content"""
+        """Request link and sets the response status and response
+        on the linkToProcess object."""
         if (linkToProcess is None):
             raise TypeError("linkToProcess can not be None.")
-
-        responseData = None
 
         try:
             res = self.contRequester.request_url(linkToProcess.value)
@@ -35,5 +34,3 @@ class ResourceGetter:
             # we'll go w/ that
             print("Socket error making request: " + str(msg))
             linkToProcess.resultStatusCode = http.client.GATEWAY_TIMEOUT
-
-        return responseData
