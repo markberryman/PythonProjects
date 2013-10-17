@@ -1,6 +1,3 @@
-import http.client
-
-
 class LinkType:
     ANCHOR = 1
     STYLESHEET = 2
