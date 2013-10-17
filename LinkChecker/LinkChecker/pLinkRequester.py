@@ -18,9 +18,9 @@ class PLinkRequester(object):
 
     def worker(self):
         while True:
-            item = self.inputQueue.get()
-            self.workFn(item)
-            self.outputQueue.put(item)
+            workRequest = self.inputQueue.get()
+            self.workFn(workRequest)
+            self.outputQueue.put(workRequest)
             self.inputQueue.task_done()
             self.numActiveWorkItems -= 1
 
