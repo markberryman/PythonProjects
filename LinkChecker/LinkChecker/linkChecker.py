@@ -1,3 +1,4 @@
+import http.client
 import html.parser
 import link
 
@@ -61,11 +62,9 @@ class LinkChecker:
             linkProcessingResults = self.pLinkRequester.get_results()
 
             for processedLink in linkProcessingResults:
-                
-                #print(processedLink)
-                #result = "[{}] {}".format(self.resultStatusCode,
-                #                          http.client.responses[self.resultStatusCode].upper())
-                #result += "\n  --> {}".format(self.value)
+                print("[{}] {}\n  --> {}".format(processedLink.statusCode,
+                                          http.client.responses[processedLink.statusCode].upper(),
+                                          processedLink.value))
 
                 self.linksRequested.add(processedLink.value)
 
