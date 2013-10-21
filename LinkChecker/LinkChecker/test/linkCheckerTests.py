@@ -19,7 +19,7 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
     def test_FunctionalE2ETest(self):
         baseStartUrl = "http://localhost:35944"
         startLink = link.Link(baseStartUrl + "/index.html")
-        depth = 2
+        depth = 3
         linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
         contRequester = contentRequester.ContentRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)

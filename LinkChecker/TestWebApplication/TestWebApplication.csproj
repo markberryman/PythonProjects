@@ -60,6 +60,7 @@
     <Content Include="alinkwithinvalidmarkup.html" />
     <Content Include="arelativelink.html" />
     <Content Include="avalidlink.html" />
+    <Content Include="avalidlinkofdepthtwo.html" />
     <Content Include="image.png" />
     <Content Include="Index.html" />
     <Content Include="style.css" />
