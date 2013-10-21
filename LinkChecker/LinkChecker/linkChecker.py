@@ -49,14 +49,17 @@ class LinkChecker:
         linksToProcess = [startLink]
 
         # breadth-first search of links
-        for depth in range(self.maxDepth):
+        for depth in range(1, self.maxDepth + 1):
             # give work
             print("\nProcessing {} link(s) at depth {}."
-                  .format(len(linksToProcess), depth + 1))
+                  .format(len(linksToProcess), depth))
 
             while (len(linksToProcess) > 0):
                 linkToProcess = linksToProcess.pop()
-                shouldReadResponse = (linkToProcess.type == link.LinkType.ANCHOR)
+                # don't need to read response for last link depth b/c we're not
+                # continuing processing
+                shouldReadResponse = ((linkToProcess.type == link.LinkType.ANCHOR) and
+                                      (depth < self.maxDepth))
                 linkRequestWorkItem = linkRequest.LinkRequest(linkToProcess.value, shouldReadResponse)
                 self.pLinkRequester.add_work(linkRequestWorkItem)
 
