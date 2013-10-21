@@ -22,8 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="boyerMoore.py" />
     <Compile Include="main.py" />
     <Compile Include="rabinKarp.py" />
+    <Compile Include="boyerMooreTests.py" />
     <Compile Include="rabinKarpTests.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
