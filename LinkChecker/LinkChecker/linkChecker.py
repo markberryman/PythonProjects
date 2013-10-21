@@ -55,7 +55,6 @@ class LinkChecker:
 
         # breadth-first search of links
         for depth in range(1, self.maxDepth + 1):
-            # give work
             print("\nProcessing {} link(s) at depth {}."
                   .format(len(linksToProcess), depth))
 
@@ -67,6 +66,7 @@ class LinkChecker:
                                       (depth < self.maxDepth))
                 linkRequestWorkItem = linkRequest.LinkRequest(linkToProcess.value, shouldReadResponse)
                 self.pLinkRequester.add_work(linkRequestWorkItem)
+                self.linksRequested.add(linkToProcess.value)
 
             # get results; blocking until all link processing completed
             print("\nAwaiting results...\n")
@@ -76,9 +76,7 @@ class LinkChecker:
                 result_status_code = linkRequestResult.status_code
                 print("[{}] {}\n  --> {}".format(result_status_code,
                                           http.client.responses[result_status_code].upper(),
-                                          linkRequestResult.value))
-
-                self.linksRequested.add(linkRequestResult.value)
+                                          linkRequestResult.value))                
 
                 if (LinkChecker._is_link_broken(result_status_code) is False):
                     if (linkRequestResult.response is not None):
