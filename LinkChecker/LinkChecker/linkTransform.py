@@ -11,7 +11,8 @@ class LinkTransform(object):
 
 
 class LowerCaseTransform(LinkTransform):
-    """Lower cases parts of url that don't alter semantics."""
+    """Lower cases parts of url that don't alter semantics.
+    Don't touch anything beyond the domain name."""
     def transform(self, context, newLink):
         urlparts = urlparse(newLink.value)
         # have to explicitly create a tuple to pass to urlunparse
