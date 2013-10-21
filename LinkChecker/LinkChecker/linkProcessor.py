@@ -14,7 +14,7 @@ class LinkProcessor(object):
             raise TypeError("linkToProcess can not be None.")
 
         newLinks = self.markupProcessor.get_links_from_markup(
-            linkToProcess.responseData)
+            linkToProcess.response)
         # we must apply transforms ahead of filtering b/c of the interaction
         # b/w the transform converting relative links to absolute links and the
         # filter which checks to ensure we're not leaving the root domain

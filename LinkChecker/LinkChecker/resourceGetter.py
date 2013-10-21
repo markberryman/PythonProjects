@@ -5,29 +5,29 @@ import socket
 
 
 class ResourceGetter:
-    def __init__(self, contRequester):
-        self.contRequester = contRequester
+    def __init__(self, content_requester):
+        self.content_requester = content_requester
 
-    def get_resource(self, linkRequest):
+    def get_resource(self, link_request):
         """Process the link request object."""
-        if (linkRequest is None):
+        if (link_request is None):
             raise TypeError("linkRequest can not be None.")
 
-        resultStatusCode = None
-        responseData = None
-        url = linkRequest.link_url
+        result_status_code = None
+        response_data = None
+        url = link_request.link_url
 
         try:
-            res = self.contRequester.request_url(url)
+            res = self.content_requester.request_url(url)
 
-            resultStatusCode = res.status
+            result_status_code = res.status
 
-            if (linkRequest.read_response):
+            if (link_request.read_response):
                 try:
-                    responseData = res.read().decode()
+                    response_data = res.read().decode()
                 except UnicodeDecodeError:
-                    # going to hit this when an anchor link refers to a binary
-                    # resource (e.g. pdf file); instead of trying to filter
+                    # going to hit this when response data includes binary
+                    # content (e.g. pdf file); instead of trying to filter
                     # out all of these extensions, just swallow the exception
                     # and move on for now
                     pass
@@ -35,10 +35,8 @@ class ResourceGetter:
             # not decoding the msg error code value to a meaningful
             # http status code; since we're primarily hitting timeouts
             # we'll go w/ that
-            print("Socket error making request: " + str(msg))
-            resultStatusCode = http.client.GATEWAY_TIMEOUT
+            print("Socket error making request: {}".format(msg))
+            result_status_code = http.client.GATEWAY_TIMEOUT
 
-        result = linkRequestResult.LinkRequestResult(
-            url, resultStatusCode, responseData)
-
-        return result
+        return linkRequestResult.LinkRequestResult(
+            url, result_status_code, response_data)

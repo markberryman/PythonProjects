@@ -65,14 +65,14 @@ class LinkChecker:
             linkRequestResults = self.pLinkRequester.get_results()
 
             for linkRequestResult in linkRequestResults:
-                print("[{}] {}\n  --> {}".format(linkRequestResult.statusCode,
-                                          http.client.responses[linkRequestResult.statusCode].upper(),
+                print("[{}] {}\n  --> {}".format(linkRequestResult.status_code,
+                                          http.client.responses[linkRequestResult.status_code].upper(),
                                           linkRequestResult.value))
 
                 self.linksRequested.add(linkRequestResult.value)
 
                 if (linkRequestResult.is_link_broken() is False):
-                    if (linkRequestResult.responseData is not None):
+                    if (linkRequestResult.response is not None):
                         try:
                             newLinks = self.linkProcessor.process_link(
                                 linkRequestResult)

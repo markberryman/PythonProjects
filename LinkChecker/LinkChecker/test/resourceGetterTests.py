@@ -33,10 +33,10 @@ class ResourceGetter_GetResourceTests(unittest.TestCase):
 
         actual = sut.get_resource(dummyLinkRequest)
 
-        self.assertEqual(expected.statusCode, actual.statusCode)
-        self.assertEqual(expected.responseData, actual.responseData)
+        self.assertEqual(expected.status_code, actual.status_code)
+        self.assertEqual(expected.response, actual.response)
 
-    def test_SetsResponseDataToNoneForLinkRequestNotReadingResponse(self):
+    def test_SetsResponseToNoneForLinkRequestNotReadingResponse(self):
         mockRequester = MockRequester()
         dummyLinkRequest = linkRequest.LinkRequest("url", False)
         sut = resourceGetter.ResourceGetter(mockRequester)
@@ -44,7 +44,7 @@ class ResourceGetter_GetResourceTests(unittest.TestCase):
 
         actual = sut.get_resource(dummyLinkRequest)
 
-        self.assertEqual(expected.responseData, actual.responseData)
+        self.assertEqual(expected.response, actual.response)
 
 if __name__ == '__main__':
     unittest.main()
