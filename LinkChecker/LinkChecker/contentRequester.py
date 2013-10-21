@@ -3,8 +3,9 @@ from urllib.parse import urlparse
 
 
 class ContentRequester(object):
-    """Requests content from url."""
+    """Requests a url."""
     def __init__(self):
+        # timeout in seconds
         self.connTimeout = 5
 
     def request_url(self, url):
