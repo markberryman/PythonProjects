@@ -17,7 +17,6 @@
   <ItemGroup>
     <Compile Include="contentRequester.py" />
     <Compile Include="htmlLinkParser.py" />
-    <Compile Include="htmlLinkParserFactory.py" />
     <Compile Include="linkRequestResult.py" />
     <Compile Include="pLinkRequester.py" />
     <Compile Include="test\contentRequesterTests.py" />

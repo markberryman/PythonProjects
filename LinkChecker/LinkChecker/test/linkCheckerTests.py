@@ -1,5 +1,5 @@
 import contentRequester
-import htmlLinkParserFactory
+import htmlLinkParser
 import link
 import linkChecker
 import linkFilter
@@ -20,7 +20,6 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
         baseStartUrl = "http://localhost:35944"
         startLink = link.Link(baseStartUrl + "/index.html")
         depth = 3
-        linkParserFactory = htmlLinkParserFactory.HtmlLinkParserFactory()
         contRequester = contentRequester.ContentRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)
         linkFilters = set(
@@ -28,7 +27,8 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
                 linkFilter.DomainCheckFilter(startLink.value)])
         linkTransformers = [linkTransform.RelativeLinkTransform(),
                             linkTransform.LowerCaseTransform()]
-        mp = markupProcessor.MarkupProcessor(linkParserFactory)
+        html_link_parser = htmlLinkParser.HTMLLinkParser()
+        mp = markupProcessor.MarkupProcessor(html_link_parser)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
         lt = linkTransformProcessor.LinkTransformProcessor(linkTransformers)
         lp = linkProcessor.LinkProcessor(mp, lfp, lt)

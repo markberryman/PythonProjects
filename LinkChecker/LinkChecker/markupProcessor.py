@@ -1,16 +1,14 @@
 class MarkupProcessor(object):
-    """Processes markup and returns links."""
+    """Processes markup."""
 
-    def __init__(self, htmlLinkParserFactory):
-        self.htmlLinkParserFactory = htmlLinkParserFactory
+    def __init__(self, html_link_parser):
+        self._html_link_parser = html_link_parser
 
     def get_links_from_markup(self, markup):
-        """Processes markup and returns links."""
+        """Returns links from provided markup."""
         if (markup is None):
             return set()
 
-        htmlLinkParser = self.htmlLinkParserFactory.create_html_link_parser()
+        self._html_link_parser.feed(markup)
 
-        htmlLinkParser.feed(markup)
-
-        return htmlLinkParser.links
+        return self._html_link_parser.links
