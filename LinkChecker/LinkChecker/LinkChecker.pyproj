@@ -22,6 +22,7 @@
     <Compile Include="pLinkRequester.py" />
     <Compile Include="test\contentRequesterTests.py" />
     <Compile Include="test\linkProcessorTests.py" />
+    <Compile Include="linkRequest.py" />
     <Compile Include="test\pLinkRequesterTests.py" />
     <Compile Include="test\htmlLinkParserTests.py" />
     <Compile Include="link.py" />

@@ -3,18 +3,14 @@ import http.client
 
 class LinkRequestResult(object):
     """Represents result of requesting a link."""
-    def __init__(self, link, statusCode, responseData):
-        self.__link = link
+    def __init__(self, link_url, statusCode, responseData):
+        self.__link_url = link_url
         self.__statusCode = statusCode
         self.__responseData = responseData
 
     @property
     def value(self):
-        return self.__link.value
-
-    @property
-    def type(self):
-        return self.__link.type
+        return self.__link_url
 
     @property
     def responseData(self):

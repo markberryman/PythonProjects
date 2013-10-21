@@ -8,22 +8,21 @@ class ResourceGetter:
     def __init__(self, contRequester):
         self.contRequester = contRequester
 
-    def get_resource(self, linkToProcess):
-        """Request link and sets the response status and response
-        on the linkToProcess object."""
-        if (linkToProcess is None):
-            raise TypeError("linkToProcess can not be None.")
+    def get_resource(self, linkRequest):
+        """Process the link request object."""
+        if (linkRequest is None):
+            raise TypeError("linkRequest can not be None.")
 
         resultStatusCode = None
         responseData = None
+        url = linkRequest.link_url
 
         try:
-            res = self.contRequester.request_url(linkToProcess.value)
+            res = self.contRequester.request_url(url)
 
             resultStatusCode = res.status
 
-            # only want to fetch the content of anchor links
-            if (linkToProcess.type == link.LinkType.ANCHOR):
+            if (linkRequest.read_response):
                 try:
                     responseData = res.read().decode()
                 except UnicodeDecodeError:
@@ -40,6 +39,6 @@ class ResourceGetter:
             resultStatusCode = http.client.GATEWAY_TIMEOUT
 
         result = linkRequestResult.LinkRequestResult(
-            linkToProcess, resultStatusCode, responseData)
+            url, resultStatusCode, responseData)
 
         return result

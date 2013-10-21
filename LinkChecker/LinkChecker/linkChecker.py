@@ -1,6 +1,7 @@
 import http.client
 import html.parser
 import link
+import linkRequest
 
 
 class LinkChecker:
@@ -55,24 +56,26 @@ class LinkChecker:
 
             while (len(linksToProcess) > 0):
                 linkToProcess = linksToProcess.pop()
-                self.pLinkRequester.add_work(linkToProcess)
+                shouldReadResponse = (linkToProcess.type == link.LinkType.ANCHOR)
+                linkRequestWorkItem = linkRequest.LinkRequest(linkToProcess.value, shouldReadResponse)
+                self.pLinkRequester.add_work(linkRequestWorkItem)
 
             # get results; blocking until all link processing completed
             print("\nAwaiting results...\n")
-            linkProcessingResults = self.pLinkRequester.get_results()
+            linkRequestResults = self.pLinkRequester.get_results()
 
-            for processedLink in linkProcessingResults:
-                print("[{}] {}\n  --> {}".format(processedLink.statusCode,
-                                          http.client.responses[processedLink.statusCode].upper(),
-                                          processedLink.value))
+            for linkRequestResult in linkRequestResults:
+                print("[{}] {}\n  --> {}".format(linkRequestResult.statusCode,
+                                          http.client.responses[linkRequestResult.statusCode].upper(),
+                                          linkRequestResult.value))
 
-                self.linksRequested.add(processedLink.value)
+                self.linksRequested.add(linkRequestResult.value)
 
-                if (processedLink.is_link_broken() is False):
-                    if (processedLink.type == link.LinkType.ANCHOR):
+                if (linkRequestResult.is_link_broken() is False):
+                    if (linkRequestResult.responseData is not None):
                         try:
                             newLinks = self.linkProcessor.process_link(
-                                processedLink)
+                                linkRequestResult)
 
                             for nl in newLinks:
                                 # this check is a lookup in a set object
@@ -81,9 +84,9 @@ class LinkChecker:
                                 if (nl.value not in self.linksRequested):
                                     linksToProcess.append(nl)
                         except html.parser.HTMLParseError:
-                            self.invalidMarkupLinks.add(processedLink.value)
+                            self.invalidMarkupLinks.add(linkRequestResult.value)
                 else:
-                    self.brokenLinks.add(processedLink.value)
+                    self.brokenLinks.add(linkRequestResult.value)
 
     def check_links(self, startLink):
         self.pLinkRequester.start()
