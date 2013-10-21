@@ -1,6 +1,3 @@
-import http.client
-
-
 class LinkRequestResult(object):
     """Represents result of requesting a link."""
     def __init__(self, link_url, status_code, response):
@@ -19,7 +16,3 @@ class LinkRequestResult(object):
     @property
     def status_code(self):
         return self.__status_code
-
-    def is_link_broken(self):
-        return ((self.__status_code < http.client.OK) or
-                (self.__status_code >= http.client.BAD_REQUEST))

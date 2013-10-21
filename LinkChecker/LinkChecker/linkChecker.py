@@ -45,6 +45,11 @@ class LinkChecker:
         for l in links:
             print("* {}".format(l))
 
+    @staticmethod
+    def _is_link_broken(status_code):
+        return ((status_code < http.client.OK) or
+                (status_code >= http.client.BAD_REQUEST))
+
     def __check_links_helper(self, startLink):
         linksToProcess = [startLink]
 
@@ -74,7 +79,7 @@ class LinkChecker:
 
                 self.linksRequested.add(linkRequestResult.value)
 
-                if (linkRequestResult.is_link_broken() is False):
+                if (LinkChecker._is_link_broken(linkRequestResult.status_code) is False):
                     if (linkRequestResult.response is not None):
                         try:
                             newLinks = self.linkProcessor.process_link(
