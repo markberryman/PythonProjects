@@ -11,7 +11,7 @@ class LowerCaseTransformUnitTests(unittest.TestCase):
 
         sut.transform(None, dummyLink)
 
-        self.assertEqual(expected, dummyLink.value)
+        self.assertEqual(expected, dummyLink.url)
 
 
 class LinkTransform_RelativeLinkTransformTests(unittest.TestCase):
@@ -37,7 +37,7 @@ class LinkTransform_RelativeLinkTransformTests(unittest.TestCase):
         sut.transform(dummyContext, dummyNewLink)
 
         self.assertEqual(
-            dummyNewLink.value, "http://www.foo.com/relativelink.html")
+            dummyNewLink.url, "http://www.foo.com/relativelink.html")
 
 
 if __name__ == '__main__':

@@ -24,7 +24,7 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
         resGetter = resourceGetter.ResourceGetter(contRequester)
         linkFilters = set(
             [linkFilter.MailToFilter(),
-                linkFilter.DomainCheckFilter(startLink.value)])
+                linkFilter.DomainCheckFilter(startLink.url)])
         linkTransformers = [linkTransform.RelativeLinkTransform(),
                             linkTransform.LowerCaseTransform()]
         html_link_parser = htmlLinkParser.HTMLLinkParser()

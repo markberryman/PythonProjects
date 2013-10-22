@@ -63,9 +63,9 @@ class LinkChecker:
             # don't need to read response for last link depth (aka leaf requests)
             shouldReadResponse = ((link.type == linkType.LinkType.ANCHOR) and
                                     (is_leaf_request is False))
-            linkRequestWorkItem = linkRequest.LinkRequest(link.value, shouldReadResponse)
+            linkRequestWorkItem = linkRequest.LinkRequest(link.url, shouldReadResponse)
             self.pLinkRequester.add_work(linkRequestWorkItem)
-            self.linksRequested.add(link.value)
+            self.linksRequested.add(link.url)
 
         links_to_process.clear()
 

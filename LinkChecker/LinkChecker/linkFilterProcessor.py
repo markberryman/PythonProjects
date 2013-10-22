@@ -11,7 +11,7 @@ class LinkFilterProcessor(object):
 
         for filter in self.filters:
             linksToFilter = set(
-                [link for link in links if filter.should_filter(link.value)])
+                [link for link in links if filter.should_filter(link.url)])
             links = links.difference(linksToFilter)
 
         return links

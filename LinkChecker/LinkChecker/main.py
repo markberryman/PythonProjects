@@ -21,12 +21,12 @@ startLink = link.Link(
 depth = 2
 
 print("Starting link checking with \"{}\" and depth {}".format(
-    startLink.value, depth))
+    startLink.url, depth))
 
 contRequester = contentRequester.ContentRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
 linkFilters = set(
-    [linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.value)])
+    [linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.url)])
 linkTransformers = [linkTransform.RelativeLinkTransform(),
                     linkTransform.LowerCaseTransform()]
 html_link_parser = htmlLinkParser.HTMLLinkParser()

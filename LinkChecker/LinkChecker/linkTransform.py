@@ -14,10 +14,10 @@ class LowerCaseTransform(LinkTransform):
     """Lower cases parts of url that don't alter semantics.
     Don't touch anything beyond the domain name."""
     def transform(self, context, newLink):
-        urlparts = urlparse(newLink.value)
+        urlparts = urlparse(newLink.url)
         # have to explicitly create a tuple to pass to urlunparse
         # b/c we can't modify the values on the urlparts obj directly
-        newLink.value = urlunparse(
+        newLink.url = urlunparse(
             (urlparts.scheme.lower(), urlparts.netloc.lower(),
              urlparts.path, urlparts.params,
              urlparts.query, urlparts.fragment))
@@ -32,6 +32,6 @@ class RelativeLinkTransform(LinkTransform):
         if (newLink is None):
             raise TypeError("newLink can not be None.")
 
-        currentLink = context["currentLink"]
+        current_link_url = context["current_link_url"]
 
-        newLink.value = urljoin(currentLink.value, newLink.value)
+        newLink.url = urljoin(current_link_url, newLink.url)
