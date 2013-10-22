@@ -28,14 +28,6 @@ class PLinkRequester_AddWorkTests(unittest.TestCase):
 
         self.assertEqual(dummyItem, dummyQueue.data[0])
 
-    def test_IncrementsNumOfActiveWorkItems(self):
-        dummyQueue = MockQueue()
-        sut = pLinkRequester.PLinkRequester(1, None, dummyQueue, None)
-
-        sut.add_work("some work")
-
-        self.assertEqual(1, sut.numActiveWorkItems)
-
 
 if __name__ == '__main__':
     unittest.main()
