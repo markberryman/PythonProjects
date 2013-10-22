@@ -6,7 +6,7 @@ class LinkRequestResult(object):
         self.__response = response
 
     @property
-    def value(self):
+    def link_url(self):
         return self.__link_url
 
     @property

@@ -85,7 +85,7 @@ class LinkChecker:
                 result_status_code = linkRequestResult.status_code
                 print("[{}] {}\n  --> {}".format(result_status_code,
                                           http.client.responses[result_status_code].upper(),
-                                          linkRequestResult.value))                
+                                          linkRequestResult.link_url))                
 
                 if (LinkChecker._is_link_broken(result_status_code) is False):
                     if (linkRequestResult.response is not None):
@@ -93,9 +93,9 @@ class LinkChecker:
                             new_links = self._process_link_request_result(linkRequestResult)
                             linksToProcess.extend(list(new_links))
                         except html.parser.HTMLParseError:
-                            self.invalidMarkupLinks.add(linkRequestResult.value)
+                            self.invalidMarkupLinks.add(linkRequestResult.link_url)
                 else:
-                    self.brokenLinks.add(linkRequestResult.value)
+                    self.brokenLinks.add(linkRequestResult.link_url)
 
     def check_links(self, startLink):
         self.pLinkRequester.start()

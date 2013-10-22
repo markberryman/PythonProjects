@@ -19,7 +19,7 @@ class LinkProcessor(object):
         # b/w the transform converting relative links to absolute links and the
         # filter which checks to ensure we're not leaving the root domain
         context = {
-            "current_link_url": link_request_result.value
+            "current_link_url": link_request_result.link_url
             }
 
         if (self.linkTransformProcessor is not None):

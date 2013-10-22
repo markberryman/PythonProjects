@@ -29,7 +29,7 @@ class LinkTransform_RelativeLinkTransformTests(unittest.TestCase):
     # is pretty much just running urljoin
     def test_TransformsLinkWithNetlocAndOnlySlashForPath(self):
         dummyContext = {
-            "currentLink": link.Link("http://www.foo.com/")
+            "current_link_url": "http://www.foo.com/"
             }
         dummyNewLink = link.Link("relativelink.html")
         sut = linkTransform.RelativeLinkTransform()
