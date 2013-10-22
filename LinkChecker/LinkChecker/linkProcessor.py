@@ -22,7 +22,10 @@ class LinkProcessor(object):
             "currentLink": linkToProcess
             }
 
-        self.linkTransformProcessor.apply_transformers(context, newLinks)
-        newLinks = self.linkFilterProcessor.apply_filters(newLinks)
+        if (self.linkTransformProcessor is not None):
+            self.linkTransformProcessor.apply_transformers(context, newLinks)
+
+        if (self.linkFilterProcessor is not None):
+            newLinks = self.linkFilterProcessor.apply_filters(newLinks)
 
         return newLinks
