@@ -48,6 +48,24 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
             baseStartUrl + "/subdir/arelativelinkinasubdir.html"
             in linksRequested)
 
+    def test_SimpleDepthProcessingTest(self):
+        baseStartUrl = "http://localhost:35944/SimpleDepthProcessingTest"
+        startLink = link.Link(baseStartUrl + "/depth1.html")
+        depth = 3
+        contRequester = contentRequester.ContentRequester()
+        resGetter = resourceGetter.ResourceGetter(contRequester)
+        html_link_parser = htmlLinkParser.HTMLLinkParser()
+        mp = markupProcessor.MarkupProcessor(html_link_parser)
+        lp = linkProcessor.LinkProcessor(mp, None, None)
+        plr = pLinkRequester.PLinkRequester(
+            3, resGetter.get_resource, queue.Queue(), queue.Queue())
+        sut = linkChecker.LinkChecker(resGetter, lp, plr, depth)
+
+        results = sut.check_links(startLink)
+
+        linksRequested = results["linksRequested"]
+        self.assertEqual(3, len(linksRequested))
+
 
 if __name__ == '__main__':
     unittest.main()

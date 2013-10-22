@@ -63,6 +63,9 @@
     <Content Include="avalidlinkofdepthtwo.html" />
     <Content Include="image.png" />
     <Content Include="Index.html" />
+    <Content Include="SimpleDepthProcessingTest\depth3.html" />
+    <Content Include="SimpleDepthProcessingTest\depth2.html" />
+    <Content Include="SimpleDepthProcessingTest\depth1.html" />
     <Content Include="style.css" />
     <Content Include="subdir\arelativelinkinasubdir.html" />
   </ItemGroup>
