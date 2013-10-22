@@ -7,6 +7,7 @@ import linkFilterProcessor
 import linkProcessor
 import linkTransform
 import linkTransformProcessor
+import linkType
 import markupProcessor
 import pLinkRequester
 import queue
@@ -15,7 +16,7 @@ import resourceGetter
 startLink = link.Link(
     #"http://www.microsoft.com/en-us/default.aspx", link.LinkType.ANCHOR)
     #"http://www.markwberryman.com/", link.LinkType.ANCHOR)
-    "http://apigee.com/about/customers/bechtel-improving-workforce-efficiency-and-productivity-through-apis", link.LinkType.ANCHOR)
+    "http://apigee.com/about/customers/bechtel-improving-workforce-efficiency-and-productivity-through-apis", linkType.LinkType.ANCHOR)
 
 depth = 2
 
