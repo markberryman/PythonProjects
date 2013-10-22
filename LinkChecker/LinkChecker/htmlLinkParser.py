@@ -8,6 +8,11 @@ class HTMLLinkParser(HTMLParser):
     links."""
     def __init__(self):
         super().__init__(self)
+        self.initialize()
+
+    def initialize(self):
+        """Since we don't re-instantiate this parser before each use,
+        we need a way to clear out the instance variable data explicitly."""
         self.links = set()
 
     # tag and attribute values are automatically lowercased

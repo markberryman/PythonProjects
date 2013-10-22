@@ -67,9 +67,9 @@ class LinkChecker:
             self.pLinkRequester.add_work(linkRequestWorkItem)
             self.linksRequested.add(link.value)
 
-    def __check_links_helper(self, startLink):
-        linksToProcess = [startLink]
+        links_to_process.clear()
 
+    def __check_links_helper(self, linksToProcess):
         # breadth-first search of links
         for depth in range(1, self.maxDepth + 1):
             print("\nProcessing {} link(s) at depth {}."
@@ -99,7 +99,7 @@ class LinkChecker:
 
     def check_links(self, startLink):
         self.pLinkRequester.start()
-        self.__check_links_helper(startLink)
+        self.__check_links_helper([startLink])
 
         return {
             "linksRequested": self.linksRequested,

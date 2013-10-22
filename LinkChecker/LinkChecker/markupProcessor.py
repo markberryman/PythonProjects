@@ -9,6 +9,8 @@ class MarkupProcessor(object):
         if (markup is None):
             return set()
 
+        self._html_link_parser.initialize()
+
         self._html_link_parser.feed(markup)
 
         return self._html_link_parser.links
