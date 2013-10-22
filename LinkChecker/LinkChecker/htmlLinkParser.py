@@ -1,4 +1,5 @@
 import link
+import linkType
 from html.parser import HTMLParser
 
 
@@ -33,7 +34,7 @@ class HTMLLinkParser(HTMLParser):
     @staticmethod
     def __process_anchor_tag(attrDict):
         if "href" in attrDict:
-            return link.Link(attrDict["href"], link.LinkType.ANCHOR)
+            return link.Link(attrDict["href"], linkType.LinkType.ANCHOR)
 
     @staticmethod
     def __process_link_tag(attrDict):
@@ -41,14 +42,14 @@ class HTMLLinkParser(HTMLParser):
             if (attrDict["rel"] == "stylesheet"):
                 if "href" in attrDict:
                     return link.Link(
-                        attrDict["href"], link.LinkType.STYLESHEET)
+                        attrDict["href"], linkType.LinkType.STYLESHEET)
 
     @staticmethod
     def __process_script_tag(attrDict):
         if "src" in attrDict:
-            return link.Link(attrDict["src"], link.LinkType.SCRIPT)
+            return link.Link(attrDict["src"], linkType.LinkType.SCRIPT)
 
     @staticmethod
     def __process_image_tag(attrDict):
         if "src" in attrDict:
-            return link.Link(attrDict["src"], link.LinkType.IMAGE)
+            return link.Link(attrDict["src"], linkType.LinkType.IMAGE)

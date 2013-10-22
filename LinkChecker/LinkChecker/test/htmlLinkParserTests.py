@@ -1,5 +1,6 @@
 import htmlLinkParser
 import link
+import linkType
 import unittest
 
 
@@ -28,7 +29,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         sut.feed(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
-        self.assertEqual(list(sut.links)[0].type, link.LinkType.ANCHOR)
+        self.assertEqual(list(sut.links)[0].type, linkType.LinkType.ANCHOR)
 
     def test_DoesNotAddLinkForAnchorTagWithNoHref(self):
         dummyMarkup = "<html> <a></a> </html>"
@@ -47,7 +48,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         sut.feed(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
-        self.assertEqual(list(sut.links)[0].type, link.LinkType.STYLESHEET)
+        self.assertEqual(list(sut.links)[0].type, linkType.LinkType.STYLESHEET)
 
     def test_ReturnsScriptLink(self):
         dummyLink = "http://www.foo.com/script.js"
@@ -57,7 +58,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         sut.feed(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
-        self.assertEqual(list(sut.links)[0].type, link.LinkType.SCRIPT)
+        self.assertEqual(list(sut.links)[0].type, linkType.LinkType.SCRIPT)
 
     def test_ReturnsImageLink(self):
         dummyLink = "http://www.foo.com/bar.jpg"
@@ -67,7 +68,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         sut.feed(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
-        self.assertEqual(list(sut.links)[0].type, link.LinkType.IMAGE)
+        self.assertEqual(list(sut.links)[0].type, linkType.LinkType.IMAGE)
 
 if __name__ == '__main__':
     unittest.main()

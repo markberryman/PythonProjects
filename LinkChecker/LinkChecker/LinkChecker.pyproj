@@ -18,6 +18,7 @@
     <Compile Include="contentRequester.py" />
     <Compile Include="htmlLinkParser.py" />
     <Compile Include="linkRequestResult.py" />
+    <Compile Include="linkType.py" />
     <Compile Include="pLinkRequester.py" />
     <Compile Include="test\contentRequesterTests.py" />
     <Compile Include="test\linkProcessorTests.py" />

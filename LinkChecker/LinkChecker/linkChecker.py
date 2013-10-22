@@ -2,6 +2,7 @@ import http.client
 import html.parser
 import link
 import linkRequest
+import linkType
 
 
 class LinkChecker:
@@ -51,20 +52,20 @@ class LinkChecker:
                 (status_code >= http.client.BAD_REQUEST))
 
     def _process_link_request_result(self, link_request_result):
-        """Pull the new links from a link request result."""
-        # going w/ a set so that if we have duplicate links
-        # in the returned markup, we only add one link
-        links_to_process = set()
+        """Determine the new links to request from a link request result."""
         new_links = self.linkProcessor.process_link(link_request_result)
-
-        for new_link in new_links:
-            # this check is a lookup in a set object
-            # and a set is implemented as a hashtable so
-            # it should be fast - O(n) on average
-            if (new_link.value not in self.linksRequested):
-                links_to_process.add(new_link)
+        links_to_process = new_links.difference(self.linksRequested)
 
         return links_to_process
+
+    def _create_requests(self, links_to_process, is_leaf_request):
+        for link in links_to_process:
+            # don't need to read response for last link depth (aka leaf requests)
+            shouldReadResponse = ((link.type == linkType.LinkType.ANCHOR) and
+                                    (is_leaf_request is False))
+            linkRequestWorkItem = linkRequest.LinkRequest(link.value, shouldReadResponse)
+            self.pLinkRequester.add_work(linkRequestWorkItem)
+            self.linksRequested.add(link.value)
 
     def __check_links_helper(self, startLink):
         linksToProcess = [startLink]
@@ -74,15 +75,7 @@ class LinkChecker:
             print("\nProcessing {} link(s) at depth {}."
                   .format(len(linksToProcess), depth))
 
-            while (len(linksToProcess) > 0):
-                linkToProcess = linksToProcess.pop()
-                # don't need to read response for last link depth b/c we're not
-                # continuing processing
-                shouldReadResponse = ((linkToProcess.type == link.LinkType.ANCHOR) and
-                                      (depth < self.maxDepth))
-                linkRequestWorkItem = linkRequest.LinkRequest(linkToProcess.value, shouldReadResponse)
-                self.pLinkRequester.add_work(linkRequestWorkItem)
-                self.linksRequested.add(linkToProcess.value)
+            self._create_requests(linksToProcess, depth == self.maxDepth)
 
             # get results; blocking until all link processing completed
             print("\nAwaiting results...\n")

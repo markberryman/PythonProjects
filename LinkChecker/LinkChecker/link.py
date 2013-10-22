@@ -1,13 +1,9 @@
-class LinkType:
-    ANCHOR = 1
-    STYLESHEET = 2
-    SCRIPT = 3
-    IMAGE = 4
+import linkType
 
 
 class Link(object):
     """Represents a link to a resource"""
 
-    def __init__(self, value, type=LinkType.ANCHOR):
+    def __init__(self, value, type=linkType.LinkType.ANCHOR):
         self.value = value
         self.type = type
