@@ -50,6 +50,22 @@ class LinkChecker:
         return ((status_code < http.client.OK) or
                 (status_code >= http.client.BAD_REQUEST))
 
+    def _process_link_request_result(self, link_request_result):
+        """Pull the new links from a link request result."""
+        # going w/ a set so that if we have duplicate links
+        # in the returned markup, we only add one link
+        links_to_process = set()
+        new_links = self.linkProcessor.process_link(link_request_result)
+
+        for new_link in new_links:
+            # this check is a lookup in a set object
+            # and a set is implemented as a hashtable so
+            # it should be fast - O(n) on average
+            if (new_link.value not in self.linksRequested):
+                links_to_process.add(new_link)
+
+        return links_to_process
+
     def __check_links_helper(self, startLink):
         linksToProcess = [startLink]
 
@@ -81,15 +97,8 @@ class LinkChecker:
                 if (LinkChecker._is_link_broken(result_status_code) is False):
                     if (linkRequestResult.response is not None):
                         try:
-                            newLinks = self.linkProcessor.process_link(
-                                linkRequestResult)
-
-                            for nl in newLinks:
-                                # this check is a lookup in a set object
-                                # and a set is implemented as a hashtable so
-                                # it should be fast - O(n) on average
-                                if (nl.value not in self.linksRequested):
-                                    linksToProcess.append(nl)
+                            new_links = self._process_link_request_result(linkRequestResult)
+                            linksToProcess.extend(list(new_links))
                         except html.parser.HTMLParseError:
                             self.invalidMarkupLinks.add(linkRequestResult.value)
                 else:
