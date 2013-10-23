@@ -4,14 +4,14 @@ class LinkTransformProcessor(object):
     def __init__(self, transformers):
         self.transformers = transformers
 
-    def apply_transformers(self, context, newLinks):
-        """Applies transformers to newly found links. The provided
-        context contains add'l info required by some transforms."""
-        if (context is None):
-            raise TypeError("context can not be None.")
+    def apply_transformers(self, processing_context, links):
+        """Applies transformers to links. The provided
+        processing_context contains add'l info required by some transforms."""
+        if (processing_context is None):
+            raise TypeError("processing_context can not be None.")
 
-        if (newLinks is None):
-            raise TypeError("newLinks can not be None.")
+        if (links is None):
+            raise TypeError("links can not be None.")
 
         for transformer in self.transformers:
-            [transformer.transform(context, link) for link in newLinks]
+            [transformer.transform(processing_context, link) for link in links]
