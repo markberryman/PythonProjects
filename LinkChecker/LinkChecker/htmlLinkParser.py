@@ -8,16 +8,17 @@ class HTMLLinkParser(HTMLParser):
     links."""
     def __init__(self):
         super().__init__(self)
-        self.initialize()
 
-    def initialize(self):
-        """Since we don't re-instantiate this parser before each use,
-        we need a way to clear out the instance variable data explicitly."""
+    def process_markup(self, markup):
         self.links = set()
         # toss all unprocessed data; needed b/c the parser
         # might have handled an invalid markup case and
         # there could be turd data left around to crunch
         self.reset()
+
+        self.feed(markup)
+
+        return self.links
 
     # tag and attribute values are automatically lowercased
     def handle_starttag(self, tag, attrs):
