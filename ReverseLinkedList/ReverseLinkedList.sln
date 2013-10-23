@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReverseLinkedList", "ReverseLinkedList.pyproj", "{46F24E03-2A4F-44E1-BCEF-8ACA33855FBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46F24E03-2A4F-44E1-BCEF-8ACA33855FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F24E03-2A4F-44E1-BCEF-8ACA33855FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F24E03-2A4F-44E1-BCEF-8ACA33855FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F24E03-2A4F-44E1-BCEF-8ACA33855FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
