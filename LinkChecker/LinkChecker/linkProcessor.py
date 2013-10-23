@@ -20,10 +20,11 @@ class LinkProcessor(object):
         # b/w the transform converting relative links to absolute links and the
         # filter which checks to ensure we're not leaving the root domain
         if (self.linkTransformProcessor is not None):
-            context = {
+            processing_context = {
                 "current_link_url": link_request_result.link_url
             }
-            self.linkTransformProcessor.apply_transformers(context, newLinks)
+            self.linkTransformProcessor.apply_transformers(
+                processing_context, newLinks)
 
         if (self.linkFilterProcessor is not None):
             newLinks = self.linkFilterProcessor.apply_filters(newLinks)
