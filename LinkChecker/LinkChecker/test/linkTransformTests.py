@@ -3,6 +3,18 @@ import linkTransform
 import unittest
 
 
+class LinkTransform_TransformTests(unittest.TestCase):
+    def test_RaisesTypeErrorIfProcessingContextIsNone(self):
+        sut = linkTransform.LinkTransform()
+
+        self.assertRaises(TypeError, sut.transform, None, "some link")
+
+    def test_RaisesTypeErrorIfLinkIsNone(self):
+        sut = linkTransform.LinkTransform()
+
+        self.assertRaises(TypeError, sut.transform, "some context", None)
+
+
 class LowerCaseTransformUnitTests(unittest.TestCase):
     def test_OnlyLowerCasesUrlSchemeAndNetloc(self):
         dummyLink = link.Link("HTTP://WWW.FOO.COM/SOMEPATH/INDEX.HTML?A=FOO")
@@ -14,17 +26,7 @@ class LowerCaseTransformUnitTests(unittest.TestCase):
         self.assertEqual(expected, dummyLink.url)
 
 
-class LinkTransform_RelativeLinkTransformTests(unittest.TestCase):
-    def test_RaisesTypeErrorIfContextIsNone(self):
-        sut = linkTransform.RelativeLinkTransform()
-
-        self.assertRaises(TypeError, sut.transform, None, "some link")
-
-    def test_RaisesTypeErrorIfNewLinkIsNone(self):
-        sut = linkTransform.RelativeLinkTransform()
-
-        self.assertRaises(TypeError, sut.transform, "some context", None)
-        
+class LinkTransform_RelativeLinkTransformTests(unittest.TestCase):           
     # only need a single sanity unit test here since the transform
     # is pretty much just running urljoin
     def test_TransformsLinkWithNetlocAndOnlySlashForPath(self):

@@ -4,10 +4,14 @@ from urllib.parse import urlunparse
 
 
 class LinkTransform(object):
-    """Abstract class for defining link transformers."""
+    """Parent class for defining link transforms."""
 
-    def transform(self, context, newLink):
-        raise NotImplementedError()
+    def transform(self, processing_context, link):
+        if (processing_context is None):
+            raise TypeError("processing_context can not be None.")
+
+        if (link is None):
+            raise TypeError("link can not be None.")
 
 
 class LowerCaseTransform(LinkTransform):
@@ -26,11 +30,7 @@ class LowerCaseTransform(LinkTransform):
 class RelativeLinkTransform(LinkTransform):
     """Transforms relative links to absolute links."""
     def transform(self, processing_context, link):
-        if (processing_context is None):
-            raise TypeError("processing_context can not be None.")
-
-        if (link is None):
-            raise TypeError("link can not be None.")
+        super(RelativeLinkTransform, self).transform(processing_context, link)             
 
         current_link_url = processing_context["current_link_url"]
 

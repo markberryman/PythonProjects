@@ -1,5 +1,6 @@
 class LinkProcessor(object):
-    """Processes the markup returned from requesting a link."""
+    """Processes the result of a link request. This involves 
+    processing the markup for links, applying transforms and filters."""
     def __init__(
             self, markupProcessor, linkFilterProcessor,
             linkTransformProcessor):
