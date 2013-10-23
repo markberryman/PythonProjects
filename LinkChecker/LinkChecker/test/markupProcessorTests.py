@@ -6,7 +6,7 @@ class MockHtmlLinkParser(object):
     def __init__(self):
         self.links = set()
 
-    def process_markup(self, markup):
+    def parse_markup(self, markup):
         return self.links
 
 
