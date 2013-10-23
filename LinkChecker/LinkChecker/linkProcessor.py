@@ -13,7 +13,7 @@ class LinkProcessor(object):
         if (link_request_result is None):
             raise TypeError("link_request_result can not be None.")
 
-        newLinks = self.markupProcessor.get_links_from_markup(
+        links_from_markup = self.markupProcessor.get_links_from_markup(
             link_request_result.response)
 
         # apply transforms ahead of filtering b/c of the interaction
@@ -24,9 +24,9 @@ class LinkProcessor(object):
                 "current_link_url": link_request_result.link_url
             }
             self.linkTransformProcessor.apply_transformers(
-                processing_context, newLinks)
+                processing_context, links_from_markup)
 
         if (self.linkFilterProcessor is not None):
-            newLinks = self.linkFilterProcessor.apply_filters(newLinks)
+            links_from_markup = self.linkFilterProcessor.apply_filters(links_from_markup)
 
-        return newLinks
+        return links_from_markup
