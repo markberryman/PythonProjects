@@ -11,6 +11,7 @@ class LinkChecker:
         self.resourceGetter = resourceGetter
         self.linkProcessor = linkProcessor
         self.linksRequested = set()
+        # tuples of link url and status code
         self.brokenLinks = set()
         self.invalidMarkupLinks = set()
         self.pLinkRequester = pLinkRequester
@@ -30,7 +31,10 @@ class LinkChecker:
 
         if (len(results["brokenLinks"]) > 0):
             print("Broken links:")
-            self.__print_links(results["brokenLinks"])
+            for link in results["brokenLinks"]:
+                # broken link info comes in a tuple that includes
+                # the status code
+                print("* {} - {}".format(link[1], link[0]))
 
         print("")
         print("Number of links with invalid markup = {}".
@@ -95,7 +99,8 @@ class LinkChecker:
                         except html.parser.HTMLParseError:
                             self.invalidMarkupLinks.add(linkRequestResult.link_url)
                 else:
-                    self.brokenLinks.add(linkRequestResult.link_url)
+                    self.brokenLinks.add((
+                        linkRequestResult.link_url, linkRequestResult.status_code))
 
     def check_links(self, startLink):
         self.pLinkRequester.start()
