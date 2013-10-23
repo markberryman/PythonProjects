@@ -13,9 +13,9 @@ import queue
 import resourceGetter
 
 startLink = link.Link(
-    #"http://www.microsoft.com/en-us/default.aspx", link.LinkType.ANCHOR)
-    #"http://www.markwberryman.com/", link.LinkType.ANCHOR)
-    "http://apigee.com/about/customers/bechtel-improving-workforce-efficiency-and-productivity-through-apis", linkType.LinkType.ANCHOR)
+    #"http://www.microsoft.com/en-us/default.aspx")
+    #"http://www.markwberryman.com/")
+    "http://apigee.com/about/customers/bechtel-improving-workforce-efficiency-and-productivity-through-apis")
 
 depth = 2
 
