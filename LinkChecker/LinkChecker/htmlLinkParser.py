@@ -11,6 +11,10 @@ class HTMLLinkParser(HTMLParser):
 
     def parse_markup(self, markup):
         self.links = set()
+
+        if (markup is None):
+            return
+
         # toss all unprocessed data; needed b/c the parser
         # might have handled an invalid markup case and
         # there could be turd data left around to crunch

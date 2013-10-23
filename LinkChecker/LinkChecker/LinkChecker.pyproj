@@ -37,8 +37,6 @@
     <Compile Include="linkProcessor.py" />
     <Compile Include="linkTransform.py" />
     <Compile Include="main.py" />
-    <Compile Include="markupProcessor.py" />
-    <Compile Include="test\markupProcessorTests.py" />
     <Compile Include="test\linkTransformTests.py" />
     <Compile Include="resourceGetter.py" />
     <Compile Include="test\resourceGetterTests.py" />

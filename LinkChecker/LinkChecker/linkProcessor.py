@@ -2,11 +2,11 @@ class LinkProcessor(object):
     """Processes the result of a link request. This involves 
     processing the markup for links, applying transforms and filters."""
     def __init__(
-            self, markupProcessor, linkFilterProcessor,
-            linkTransformProcessor):
-        self.markupProcessor = markupProcessor
+            self, linkFilterProcessor,
+            linkTransformProcessor, html_link_parser):
         self.linkFilterProcessor = linkFilterProcessor
         self.linkTransformProcessor = linkTransformProcessor
+        self._html_link_parser = html_link_parser
 
     def process_link(self, link_request_result):
         """Parses the link's response and then applies filters
@@ -14,7 +14,7 @@ class LinkProcessor(object):
         if (link_request_result is None):
             raise TypeError("link_request_result can not be None.")
 
-        links_from_markup = self.markupProcessor.get_links_from_markup(
+        links_from_markup = self._html_link_parser.parse_markup(
             link_request_result.response)
 
         # apply transforms ahead of filtering b/c of the interaction

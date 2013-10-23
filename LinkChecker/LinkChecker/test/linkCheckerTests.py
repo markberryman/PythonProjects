@@ -7,7 +7,6 @@ import linkFilterProcessor
 import linkTransform
 import linkTransformProcessor
 import linkProcessor
-import markupProcessor
 import pLinkRequester
 import queue
 import resourceGetter
@@ -28,10 +27,9 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
         linkTransformers = [linkTransform.RelativeLinkTransform(),
                             linkTransform.LowerCaseTransform()]
         html_link_parser = htmlLinkParser.HTMLLinkParser()
-        mp = markupProcessor.MarkupProcessor(html_link_parser)
         lfp = linkFilterProcessor.LinkFilterProcessor(linkFilters)
         lt = linkTransformProcessor.LinkTransformProcessor(linkTransformers)
-        lp = linkProcessor.LinkProcessor(mp, lfp, lt)
+        lp = linkProcessor.LinkProcessor(lfp, lt, html_link_parser)
         plr = pLinkRequester.PLinkRequester(
             3, resGetter.get_resource, queue.Queue(), queue.Queue())
         sut = linkChecker.LinkChecker(resGetter, lp, plr, depth)
@@ -55,8 +53,7 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
         contRequester = urlRequester.UrlRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)
         html_link_parser = htmlLinkParser.HTMLLinkParser()
-        mp = markupProcessor.MarkupProcessor(html_link_parser)
-        lp = linkProcessor.LinkProcessor(mp, None, None)
+        lp = linkProcessor.LinkProcessor(None, None, html_link_parser)
         plr = pLinkRequester.PLinkRequester(
             3, resGetter.get_resource, queue.Queue(), queue.Queue())
         sut = linkChecker.LinkChecker(resGetter, lp, plr, depth)

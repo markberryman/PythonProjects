@@ -30,12 +30,11 @@ linkFilters = set(
 linkTransformers = [linkTransform.RelativeLinkTransform(),
                     linkTransform.LowerCaseTransform()]
 html_link_parser = htmlLinkParser.HTMLLinkParser()
-markupProcessor = markupProcessor.MarkupProcessor(html_link_parser)
 linkFilterProcessor = linkFilterProcessor.LinkFilterProcessor(linkFilters)
 linkTransformProcessor = linkTransformProcessor.LinkTransformProcessor(
     linkTransformers)
 linkProcessor = linkProcessor.LinkProcessor(
-    markupProcessor, linkFilterProcessor, linkTransformProcessor)
+    linkFilterProcessor, linkTransformProcessor, html_link_parser)
 pLinkRequester = pLinkRequester.PLinkRequester(
     3, resourceGetter.get_resource, queue.Queue(), queue.Queue())
 
