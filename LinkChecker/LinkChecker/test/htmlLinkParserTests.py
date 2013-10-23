@@ -9,7 +9,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         dummyMarkup = "<html>no links here</html>"
         sut = htmlLinkParser.HTMLLinkParser()
 
-        sut.process_markup(dummyMarkup)
+        sut.parse_markup(dummyMarkup)
 
         self.assertEqual(0, len(sut.links))
 
@@ -17,7 +17,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         dummyMarkup = "<html> <a ></a> </html>"
         sut = htmlLinkParser.HTMLLinkParser()
 
-        sut.process_markup(dummyMarkup)
+        sut.parse_markup(dummyMarkup)
 
         self.assertEqual(0, len(sut.links))
 
@@ -26,7 +26,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         dummyMarkup = "<html> <a href=\"{}\"></a> </html>".format(dummyLink)
         sut = htmlLinkParser.HTMLLinkParser()
 
-        sut.process_markup(dummyMarkup)
+        sut.parse_markup(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
         self.assertEqual(list(sut.links)[0].type, linkType.LinkType.ANCHOR)
@@ -35,7 +35,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         dummyMarkup = "<html> <a></a> </html>"
         sut = htmlLinkParser.HTMLLinkParser()
 
-        sut.process_markup(dummyMarkup)
+        sut.parse_markup(dummyMarkup)
 
         self.assertEqual(0, len(sut.links))
 
@@ -45,7 +45,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
             dummyLink)
         sut = htmlLinkParser.HTMLLinkParser()
 
-        sut.process_markup(dummyMarkup)
+        sut.parse_markup(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
         self.assertEqual(list(sut.links)[0].type, linkType.LinkType.STYLESHEET)
@@ -55,7 +55,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         dummyMarkup = "<script src=\"{}\" />".format(dummyLink)
         sut = htmlLinkParser.HTMLLinkParser()
 
-        sut.process_markup(dummyMarkup)
+        sut.parse_markup(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
         self.assertEqual(list(sut.links)[0].type, linkType.LinkType.SCRIPT)
@@ -65,7 +65,7 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         dummyMarkup = "<img src=\"{}\" />".format(dummyLink)
         sut = htmlLinkParser.HTMLLinkParser()
 
-        sut.process_markup(dummyMarkup)
+        sut.parse_markup(dummyMarkup)
 
         self.assertEqual(1, len(sut.links))
         self.assertEqual(list(sut.links)[0].type, linkType.LinkType.IMAGE)

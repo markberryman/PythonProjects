@@ -9,4 +9,4 @@ class MarkupProcessor(object):
         if (markup is None):
             return set()
 
-        return self._html_link_parser.process_markup(markup)
+        return self._html_link_parser.parse_markup(markup)

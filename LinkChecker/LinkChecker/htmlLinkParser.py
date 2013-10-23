@@ -9,7 +9,7 @@ class HTMLLinkParser(HTMLParser):
     def __init__(self):
         super().__init__(self)
 
-    def process_markup(self, markup):
+    def parse_markup(self, markup):
         self.links = set()
         # toss all unprocessed data; needed b/c the parser
         # might have handled an invalid markup case and
