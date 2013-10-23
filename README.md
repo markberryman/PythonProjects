@@ -17,8 +17,10 @@ Random set of Python projects. Just learning Python here...
 * **NQueens** - N-Queens problem w/ various solutions.
 * **OOP** - Experimenting with basic OOP concepts in Python.
 * **Permutations** - Permutation related algorithms.
+* **ReverseLinkedList** - Reverse a linked list.
 * **SelectionSort** - Well, it's selection sort.
 * **ShoppingCart** - Add, remove and display the items in a shopping cart
 * **StringSearch** - String searching algorithms.
 * **StringProblems** - Random string problems.
+* **Trees** - Breadth-first and depth-first tree searching algorithms.
 * **WordGuess** - Guess the word. Three strikes and you're out.
