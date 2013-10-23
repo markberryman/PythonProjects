@@ -12,7 +12,6 @@ class HtmlLinkParser_HandleStartTagTests(unittest.TestCase):
         sut.parse_markup(dummyMarkup)
 
         self.assertEqual(0, len(sut.links))
-        self.assertFalse(True)
 
     def test_DoesNotAddLinkFromTagWithNoLink(self):
         dummyMarkup = "<html> <a ></a> </html>"
