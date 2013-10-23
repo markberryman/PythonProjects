@@ -15,14 +15,14 @@ class LinkProcessor(object):
 
         newLinks = self.markupProcessor.get_links_from_markup(
             link_request_result.response)
-        # we must apply transforms ahead of filtering b/c of the interaction
+
+        # apply transforms ahead of filtering b/c of the interaction
         # b/w the transform converting relative links to absolute links and the
         # filter which checks to ensure we're not leaving the root domain
-        context = {
-            "current_link_url": link_request_result.link_url
-            }
-
         if (self.linkTransformProcessor is not None):
+            context = {
+                "current_link_url": link_request_result.link_url
+            }
             self.linkTransformProcessor.apply_transformers(context, newLinks)
 
         if (self.linkFilterProcessor is not None):
