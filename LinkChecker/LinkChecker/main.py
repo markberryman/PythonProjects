@@ -1,4 +1,4 @@
-import contentRequester
+import urlRequester
 import htmlLinkParser
 import link
 import linkChecker
@@ -23,7 +23,7 @@ depth = 2
 print("Starting link checking with \"{}\" and depth {}".format(
     startLink.url, depth))
 
-contRequester = contentRequester.ContentRequester()
+contRequester = urlRequester.UrlRequester()
 resourceGetter = resourceGetter.ResourceGetter(contRequester)
 linkFilters = set(
     [linkFilter.MailToFilter(), linkFilter.DomainCheckFilter(startLink.url)])

@@ -1,10 +1,10 @@
-import contentRequester
+import urlRequester
 import unittest
 
 
-class ContentRequester_RequestUrlTests(unittest.TestCase):
+class UrlRequester_RequestUrlTests(unittest.TestCase):
     def test_RaisesTypeErrorIfUrlIsNone(self):
-        sut = contentRequester.ContentRequester()
+        sut = urlRequester.UrlRequester()
 
         self.assertRaises(TypeError, sut.request_url, None)
 

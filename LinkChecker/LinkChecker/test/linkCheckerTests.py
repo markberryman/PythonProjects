@@ -1,4 +1,4 @@
-import contentRequester
+import urlRequester
 import htmlLinkParser
 import link
 import linkChecker
@@ -20,7 +20,7 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
         baseStartUrl = "http://localhost:35944"
         startLink = link.Link(baseStartUrl + "/index.html")
         depth = 3
-        contRequester = contentRequester.ContentRequester()
+        contRequester = urlRequester.UrlRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)
         linkFilters = set(
             [linkFilter.MailToFilter(),
@@ -52,7 +52,7 @@ class LinkChecker_CheckLinksTests(unittest.TestCase):
         baseStartUrl = "http://localhost:35944/SimpleDepthProcessingTest"
         startLink = link.Link(baseStartUrl + "/depth1.html")
         depth = 3
-        contRequester = contentRequester.ContentRequester()
+        contRequester = urlRequester.UrlRequester()
         resGetter = resourceGetter.ResourceGetter(contRequester)
         html_link_parser = htmlLinkParser.HTMLLinkParser()
         mp = markupProcessor.MarkupProcessor(html_link_parser)

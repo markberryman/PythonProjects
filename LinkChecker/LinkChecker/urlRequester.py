@@ -2,7 +2,7 @@ import http.client
 from urllib.parse import urlparse
 
 
-class ContentRequester(object):
+class UrlRequester(object):
     """Requests a url."""
     def __init__(self):
         # timeout in seconds
