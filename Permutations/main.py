@@ -1,28 +1,19 @@
 import math
 
-def inject_char(char, listOfStrings):
-    result = []
 
-    for s in listOfStrings:
-        for i in range(len(s) + 1):
-            result.append(s[:i] + char + s[i:])
-
-    return result
-
-def permute(s):
-    """ "abc" -> ["abc", "acb", "bac", "bca", "cab", "cba"] """
+def permute(prefix, string):
     # base case
-    if (len(s) == 1):
-        return [s]
+    if (len(string) == 0):
+        print(prefix)
 
-    permutation = permute(s[1:])
+    for i in range(len(string)):
+        char = string[i]
+        string_without_char = string[:i] + string[i+1:]
+        permute(prefix + char, string_without_char)
 
-    return inject_char(s[0], permutation)
 
 
+s = "abc"
+permutations = permute("", s)
 
-s = "abcdefghi"
-permutations = permute(s)
-assert len(permutations) == math.factorial(len(s))
-print(permute(s))
 input("Done...")
