@@ -16,6 +16,7 @@ Random set of Python projects. Just learning Python here...
 * **Knapsack0-1** - Knapsack optimization algorithm (0/1 version).
 * **LinkChecker** - Bare bones link checker for web pages.
 * **LongestCommonSubstr** - Calculate the longest common substring given two strings.
+* **MaxPalindromeSubstring** - Find largest substring that's a palindrome in a given string.
 * **MaxSubArray** - Calculate maximum value sub-array.
 * **MergeSortedLinkedLists** - Merge two sorted linked lists.
 * **NQueens** - N-Queens problem w/ various solutions.

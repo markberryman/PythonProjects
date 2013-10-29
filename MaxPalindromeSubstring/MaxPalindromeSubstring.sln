@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MaxPalindromeSubstring", "MaxPalindromeSubstring.pyproj", "{EC4B0912-D016-4F0D-936A-DF0CBA2EA76C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC4B0912-D016-4F0D-936A-DF0CBA2EA76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4B0912-D016-4F0D-936A-DF0CBA2EA76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4B0912-D016-4F0D-936A-DF0CBA2EA76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4B0912-D016-4F0D-936A-DF0CBA2EA76C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
