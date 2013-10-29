@@ -6,7 +6,9 @@ Random set of Python projects. Just learning Python here...
 * **BinarySearchTrees** - Base on the work described at http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-spring-2008/assignments/ps2.pdf
 * **BitManipulation** - Various bit manipulation problems.
 * **DocumentDistance** - Based on the work described at http://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/dd_prog1.htm
+* **EmployeeHierarchy** - Given set of employee/mgr relationships, print employee hierarchy.
 * **ExprTree** - Expression tree evaluation.
+* **Fibonacci** - Print Fibonacci sequence.
 * **Graphs** - Various graph structures and algorithms.
 * **GuessingGame** - Guess the number in a fixed range of values.
 * **HashTables** - Random hashtable experiments.
@@ -15,6 +17,7 @@ Random set of Python projects. Just learning Python here...
 * **LinkChecker** - Bare bones link checker for web pages.
 * **LongestCommonSubstr** - Calculate the longest common substring given two strings.
 * **MaxSubArray** - Calculate maximum value sub-array.
+* **MergeSortedLinkedLists** - Merge two sorted linked lists.
 * **NQueens** - N-Queens problem w/ various solutions.
 * **OOP** - Experimenting with basic OOP concepts in Python.
 * **Permutations** - Permutation related algorithms.
