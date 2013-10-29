@@ -1,6 +1,49 @@
 import maxPalindromeSubstring
 import unittest
 
+
+class FindPalindromeFromCenterTest(unittest.TestCase):
+    def test_SingleCharString(self):
+        s = "x"
+        expected = "x"
+
+        actual = maxPalindromeSubstring.find_palindrome_from_center(s, 0, 0)
+
+        self.assertEqual(expected, actual)
+
+    def test_TwoCharStringLookingAtIndexZero(self):
+        s = "xx"
+        expected = "x"
+
+        actual = maxPalindromeSubstring.find_palindrome_from_center(s, 0, 0)
+
+        self.assertEqual(expected, actual)
+
+    def test_TwoCharStringLookingAtIndexOne(self):
+        s = "xx"
+        expected = "x"
+
+        actual = maxPalindromeSubstring.find_palindrome_from_center(s, 1, 1)
+
+        self.assertEqual(expected, actual)
+
+    def test_ThreeCharStringLookingAtIndexOne(self):
+        s = "xxx"
+        expected = "xxx"
+
+        actual = maxPalindromeSubstring.find_palindrome_from_center(s, 1, 1)
+
+        self.assertEqual(expected, actual)
+
+    def test_FourCharStringLookingAtIndexOneAndTwo(self):
+        s = "xxxx"
+        expected = "xxxx"
+
+        actual = maxPalindromeSubstring.find_palindrome_from_center(s, 1, 2)
+
+        self.assertEqual(expected, actual)
+
+
 class MaxPalindromeSubstringTest(unittest.TestCase):
     # even length palindrome tests
     def test_SingleCharString(self):
