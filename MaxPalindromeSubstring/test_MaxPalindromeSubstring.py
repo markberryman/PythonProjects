@@ -86,7 +86,7 @@ class MaxPalindromeSubstringTest(unittest.TestCase):
 
     # strings w/ a mix of even and odd length palindromes
     def test_StringWithOddLengthPalindromeAsLargest(self):
-        s = "ABBAracecarABA"
+        s = "ABBAracecarXBA"
         expected = "racecar"
 
         actual = maxPalindromeSubstring.find_max_palindrome_substring(s)
