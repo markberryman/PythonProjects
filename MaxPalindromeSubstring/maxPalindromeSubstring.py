@@ -16,6 +16,7 @@ def find_palindrome_from_center(s, left_idx, right_idx):
 
 def find_max_palindrome_substring(s):
     largestPalindrome = ""
+    largerPalindrome = ""
     
     if (len(s) != 1):
         for i in range(len(s)):
@@ -27,13 +28,8 @@ def find_max_palindrome_substring(s):
             evenPalindrome = find_palindrome_from_center(s, i, i + 1)
             oddPalindrome = find_palindrome_from_center(s, i, i)
 
-            if ((len(evenPalindrome) > len(oddPalindrome)) and
-                (len(evenPalindrome) > len(largestPalindrome))):
-                largestPalindrome = evenPalindrome
-
-            if ((len(oddPalindrome) > len(evenPalindrome)) and
-                (len(oddPalindrome) > len(largestPalindrome))):
-                largestPalindrome = oddPalindrome
+            largerPalindrome = evenPalindrome if (len(evenPalindrome) > len(oddPalindrome)) else oddPalindrome
+            largestPalindrome = largerPalindrome if (len(largerPalindrome) > len(largestPalindrome)) else largestPalindrome
     else:
         largestPalindrome = s
 
