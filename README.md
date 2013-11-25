@@ -25,6 +25,7 @@ Random set of Python projects. Just learning Python here...
 * **ReverseLinkedList** - Reverse a linked list.
 * **SelectionSort** - Well, it's selection sort.
 * **ShoppingCart** - Add, remove and display the items in a shopping cart
+* **SpellChecker** - Generate suggestions for misspelled word based on rule set.
 * **StringSearch** - String searching algorithms.
 * **StringProblems** - Random string problems.
 * **Trees** - Breadth-first and depth-first tree searching algorithms.
