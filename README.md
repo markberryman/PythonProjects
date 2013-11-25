@@ -21,6 +21,7 @@ Random set of Python projects. Just learning Python here...
 * **MaxSubArray** - Calculate maximum value sub-array.
 * **MergeSortedLinkedLists** - Merge two sorted linked lists.
 * **NQueens** - N-Queens problem w/ various solutions.
+* **OneMonthDiffBetweenDates** - Given two dates, are they more than a month apart, exactly a month or less than a month.
 * **OOP** - Experimenting with basic OOP concepts in Python.
 * **Permutations** - Permutation related algorithms.
 * **ReverseLinkedList** - Reverse a linked list.
