@@ -2,6 +2,7 @@ PythonProjects
 ==============
 
 Random set of Python projects. Just learning Python here...
+* **BestCandidate** - Interesting solution to determine the "best candidate" in a list of items.
 * **BinaryPlusOne** - Add one to a number represented in a bit array.
 * **BinarySearchTrees** - Base on the work described at http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-spring-2008/assignments/ps2.pdf
 * **BitManipulation** - Various bit manipulation problems.
