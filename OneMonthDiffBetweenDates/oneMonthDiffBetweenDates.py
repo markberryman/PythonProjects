@@ -6,7 +6,7 @@ class date(object):
         self.month = month
         self.year = year
 
-def smaller_date(date1, date2):
+def determine_smaller_date(date1, date2):
     """Given two dates, returns a tuple representing
     <smaller date>, <larger date>."""
     if (date1.year <= date2.year):
@@ -41,8 +41,7 @@ def month_diff_bw_dates(date1, date2):
         # detect year boundary scenario
         if (math.fabs(date1.year - date2.year) == 1):
             # requires knowing which date is smaller
-            smaller_date = date1 if date1.year < date2.year else date2
-            larger_date = date1 if (smaller_date != date1) else date2
+            smaller_date, larger_date = determine_smaller_date(date1, date2)
         
             # years differ, but we've got the boundary scenario of
             # 12/x and 1/(x+1); 
@@ -66,8 +65,7 @@ def month_diff_bw_dates(date1, date2):
                 # years are the same, month 1 apart
                 if (math.fabs(date1.month - date2.month) == 1):
                     # requires knowing which date is smaller
-                    smaller_date = date1 if date1.month < date2.month else date2
-                    larger_date = date1 if (smaller_date != date1) else date2
+                    smaller_date, larger_date = determine_smaller_date(date1, date2)
 
                     # more than a month if days are too far apart
                     if (larger_date.day > smaller_date.day):
