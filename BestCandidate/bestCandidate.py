@@ -2,25 +2,28 @@
 # "best candidate" which means it's better than all other
 # items in the list; a "better than" function does the
 # comparison
+# note - it's possible there is *no* best candidate
 
-# a brute force solution would be to take each item in the
+# a brute force O(N^2) solution would be to take each item in the
 # list and compare it to all others; if that item was
 # better than all others, it would be the best candidate
+#
 # but, there's a better approach; instead, we can start
 # w/ the first item, compare it to the second and if it's
 # better than the 2nd item, move on to the 3rd item; if it's
 # not better than the 2nd item, the 2nd item b/c our
 # "best candidate" and we continue comparisons
-# at the end of the comparisons, we know two things:
+#
+# at the end of these comparisons, we know two things:
 # 1. the current "best candidate" has not lost a comparison
 # 2. all other items have lost at least one comparison so
 #    none of them can be the best candidate
 # the last test though is to take our current "best candidate"
-# and recompare it to all other items in the list since
-# the concept of "better than" is not transitive
+# and compare it to all other items in the list since
+#
+# note - the concept of "better than" is not transitive
 # (i.e., A can be better than B, B can be better than C,
 # but A might not be better than C)
-
 
 def better_than(item1, item2):
     # "a" beats "b"
